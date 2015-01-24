@@ -7,12 +7,6 @@ import org.junit.Test;
 
 import pl.bgora.rpn.advanced.AdvancedCalculatorFactory;
 
-/**
- * 
- * 
- * @author Bartłomiej Góra (Black007pl@gmail.com)
- *
- */
 public class AdvancedCalculatorTest {
 
 	@Test
