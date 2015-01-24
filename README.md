@@ -1,2 +1,0 @@
-# RPNLibrary
-Java RPNLibrary
