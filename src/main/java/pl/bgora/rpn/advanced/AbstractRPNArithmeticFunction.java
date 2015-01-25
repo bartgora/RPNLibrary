@@ -2,6 +2,7 @@ package pl.bgora.rpn.advanced;
 
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 /**
  * Abstract class for arithmetic functions.
@@ -19,18 +20,17 @@ public abstract class AbstractRPNArithmeticFunction {
 	
 	private volatile int hashCode = 0;
 	
+	private RoundingMode roundingMode;
 	
-
-	public AbstractRPNArithmeticFunction(){
-	}
 	
 	/**
 	 * @param name function name
 	 * @param paramCount Parameters count
 	 */
-	public AbstractRPNArithmeticFunction(String name, int paramCount){
+	public AbstractRPNArithmeticFunction(String name, int paramCount, RoundingMode roundingMode){
 		this.name = name;
 		this.paramCount = paramCount;
+		this.roundingMode = roundingMode;
 	}
 
 	/**

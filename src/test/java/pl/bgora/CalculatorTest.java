@@ -3,6 +3,7 @@ package pl.bgora;
 import static org.junit.Assert.assertEquals;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -30,6 +31,19 @@ public class CalculatorTest {
 		BigDecimal result = calc.calculate("2*8");
 		assertEquals("2*8", BigDecimal.valueOf(16), result);
 	}
+	
+	@Test
+	public void testMultiplyDouble() throws RPNException {
+		BigDecimal result = calc.calculate("2*8,59");
+		assertEquals("2*8,59", BigDecimal.valueOf(17.18), result);
+	}
+	
+	@Test
+	public void testMultiplyDouble3AfterDot() throws RPNException {
+		BigDecimal result = calc.calculate("9*3.351");
+		assertEquals("9*3.351", BigDecimal.valueOf(30.159), result);
+	}
+
 
 	@Test
 	public void testPower() throws RPNException {
@@ -53,6 +67,18 @@ public class CalculatorTest {
 	public void testDiv() throws RPNException {
 		BigDecimal result = calc.calculate("10.0/4");
 		assertEquals("10.0/4", BigDecimal.valueOf(2.5), result);
+	}
+	
+	@Test
+	public void testDivDouble() throws RPNException {
+		BigDecimal result = calc.calculate("10.55/4");
+		assertEquals("10.55/4", BigDecimal.valueOf(2.64), result);
+	}
+	
+	@Test
+	public void testDivDouble3AfterDot() throws RPNException {
+		BigDecimal result = calc.calculate("10.505/4");
+		assertEquals("10.505/4", BigDecimal.valueOf(2.626), result);
 	}
 
 	@Test

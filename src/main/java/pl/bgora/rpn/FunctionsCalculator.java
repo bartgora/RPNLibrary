@@ -30,6 +30,7 @@ class FunctionsCalculator extends Calculator {
 	 * @param checker Object that implementa RPNChecking - Used for checking operations in input.
 	 * @param executioner Object iplementing RPNExecuting - used for executing operations on input.
 	 * @param mode Rounding mode for arithmetic operations.
+	 * @param defaultScale 
 	 */
 	FunctionsCalculator(RPNChecking checker, RPNExecuting executioner, RoundingMode mode) {
 		super(checker, executioner, mode);

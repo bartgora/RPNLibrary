@@ -33,7 +33,6 @@ public class Calculator {
 
 	protected RoundingMode roundingMode;
 	
-	protected int scale;
 
 	/**
 	 * Factory Method for RPN calculator object. Creates RPN Calulcator with
