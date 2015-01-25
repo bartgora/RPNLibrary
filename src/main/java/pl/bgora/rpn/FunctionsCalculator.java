@@ -240,7 +240,7 @@ class FunctionsCalculator extends Calculator {
 			} else if (checker.isOperator(temp)) {
 				var1 = stack.pop();
 				var2 = stack.pop();
-				value = executioner.executeOperator(temp, var2, var1, mode);
+				value = executioner.executeOperator(temp, var2, var1, roundingMode);
 				stack.push(value.toPlainString());
 			}else if(checker.isFunction(temp)){
 				int count = checker.getFunctionParamsCount(temp);
@@ -248,7 +248,7 @@ class FunctionsCalculator extends Calculator {
 				for(int j = 0 ; j < count; j++){
 					table[j] = stack.pop();
 				}
-				value = executioner.executeFunction(temp, mode, table);
+				value = executioner.executeFunction(temp, roundingMode, table);
 				stack.push(value.toPlainString());
 			}
 		}

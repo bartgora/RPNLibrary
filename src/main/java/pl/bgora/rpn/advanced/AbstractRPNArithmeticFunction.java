@@ -20,15 +20,11 @@ public abstract class AbstractRPNArithmeticFunction {
 	private volatile int hashCode = 0;
 	
 	
-	/**
-	 * Default Constructor
-	 */
+
 	public AbstractRPNArithmeticFunction(){
 	}
 	
 	/**
-	 * Constructor
-	 * 
 	 * @param name function name
 	 * @param paramCount Parameters count
 	 */

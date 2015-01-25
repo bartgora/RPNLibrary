@@ -31,7 +31,9 @@ public class Calculator {
 
 	protected RPNExecuting executioner;
 
-	protected RoundingMode mode;
+	protected RoundingMode roundingMode;
+	
+	protected int scale;
 
 	/**
 	 * Factory Method for RPN calculator object. Creates RPN Calulcator with
@@ -114,7 +116,7 @@ public class Calculator {
 	 Calculator(RPNChecking checker, RPNExecuting executioner, RoundingMode mode) {
 		this.checker = checker;
 		this.executioner = executioner;
-		this.mode = mode;
+		this.roundingMode = mode;
 	}
 
 	/**
@@ -294,7 +296,7 @@ public class Calculator {
 			} else if (checker.isOperator(temp)) {
 				var1 = stack.pop();
 				var2 = stack.pop();
-				value = executioner.executeOperator(temp, var2, var1, mode);
+				value = executioner.executeOperator(temp, var2, var1, roundingMode);
 				stack.push(value.toPlainString());
 			}
 		}

@@ -4,11 +4,13 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
+ * @deprecated
  * Factory class for creating AdvancedCalculator.
  * 
  * @author Bartłomiej Góra (Black007pl@gmail.com)
  *
  */
+@Deprecated
 public class AdvancedCalculatorFactory {
 	
 	private List<AbstractRPNArithmeticFunction> functions;
@@ -47,14 +49,14 @@ public class AdvancedCalculatorFactory {
 		this.functions.addAll(functions);
 	}
 	
-	/**
-	 * Factory method to create new AdvacedCalculator
-	 * 
-	 * @return {@link pl.bgora.rpn.advanced.AdvancedCalculator}
-	 */
-	public AdvancedCalculator createNewAdvancedCalculator(){
-		AdvancedCalculator calc = new AdvancedCalculator(functions);
-		return calc;
-	}
+//	/**
+//	 * Factory method to create new AdvacedCalculator
+//	 * 
+//	 * @return {@link pl.bgora.rpn.advanced.AdvancedCalculator}
+//	 */
+//	public AdvancedCalculator createNewAdvancedCalculator(){
+//		AdvancedCalculator calc = new AdvancedCalculator(functions);
+//		return calc;
+//	}
 	
 }

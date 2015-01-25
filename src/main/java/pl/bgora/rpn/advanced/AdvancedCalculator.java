@@ -1,6 +1,8 @@
 package pl.bgora.rpn.advanced;
 
-import java.util.List;
+import java.math.RoundingMode;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Advanced Calculator.
@@ -10,11 +12,18 @@ import java.util.List;
  */
 public class AdvancedCalculator {
 	
-	private List<AbstractRPNArithmeticFunction> functions;
+	private Map<String, AbstractRPNArithmeticFunction>  functions;
+	private RoundingMode roundingMode;
 	
-	public AdvancedCalculator(List<AbstractRPNArithmeticFunction> functions) {
+	AdvancedCalculator(RoundingMode mode, Map<String, AbstractRPNArithmeticFunction> functions) {
 		this.functions = functions;
 		
+	}
+	
+	
+	public static AdvancedCalculator createDefaultAdvancedCalculator(){
+		Map<String, AbstractRPNArithmeticFunction> functions = new HashMap<String, AbstractRPNArithmeticFunction>();
+		return new AdvancedCalculator(RoundingMode.HALF_EVEN, functions);
 	}
 
 }
