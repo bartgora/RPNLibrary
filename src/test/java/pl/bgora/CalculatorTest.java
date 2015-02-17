@@ -41,7 +41,7 @@ public class CalculatorTest {
 	@Test
 	public void testMultiplyDouble3AfterDot() throws RPNException {
 		BigDecimal result = calc.calculate("9*3.351");
-		assertEquals("9*3.351", BigDecimal.valueOf(30.159), result);
+		assertEquals("9*3.351", new BigDecimal("30.159"), result);
 	}
 
 
@@ -49,6 +49,13 @@ public class CalculatorTest {
 	public void testPower() throws RPNException {
 		BigDecimal result = calc.calculate("2^8");
 		assertEquals("2^8", BigDecimal.valueOf(256), result);
+	}
+	
+	
+	@Test
+	public void testPowerDouble() throws RPNException {
+		BigDecimal result = calc.calculate("3,678^2");
+		assertEquals("3,678^2", new BigDecimal("13.527684"), result);
 	}
 
 	@Test
