@@ -37,6 +37,7 @@ class FunctionsDefaultChecker implements RPNChecking {
 	 * 
 	 * @see pl.black007.rpn.RPNChecking#isDigit(java.lang.String)
 	 */
+	@Override
 	public boolean isDigit(String input) {
 		return Character.isDigit(input.charAt(0));
 	}
@@ -45,8 +46,9 @@ class FunctionsDefaultChecker implements RPNChecking {
 	 * 
 	 * @see pl.black007.rpn.RPNChecking#isLeftBracket(java.lang.String)
 	 */
+	@Override
 	public boolean isLeftBracket(String input) {
-		return input.equals("(");
+		return "(".equals(input);
 	}
 
 	/**
@@ -54,6 +56,7 @@ class FunctionsDefaultChecker implements RPNChecking {
 	 * 
 	 * @see pl.black007.rpn.RPNChecking#isOperator(java.lang.String)
 	 */
+	@Override
 	public boolean isOperator(String input) {
 		return operators.containsKey(input);
 	}
@@ -63,8 +66,9 @@ class FunctionsDefaultChecker implements RPNChecking {
 	 * 
 	 * @see pl.black007.rpn.RPNChecking#isRightBracket(java.lang.String)
 	 */
+	@Override
 	public boolean isRightBracket(String input) {
-		return input.equals(")");
+		return ")".equals(input);
 	}
 
 	/**
@@ -72,6 +76,7 @@ class FunctionsDefaultChecker implements RPNChecking {
 	 * 
 	 * @see pl.black007.rpn.RPNChecking#isOperatorOrBracket(java.lang.String)
 	 */
+	@Override
 	public boolean isOperatorOrBracket(String c) {
 		return isOperator(c) || isRightBracket(c) || isLeftBracket(c);
 	}
@@ -80,8 +85,9 @@ class FunctionsDefaultChecker implements RPNChecking {
 	 * 
 	 * @see pl.black007.rpn.RPNChecking#isLeftAssociativity(java.lang.String)
 	 */
+	@Override
 	public boolean isLeftAssociativity(String c) {
-		if (c.equals("*") || c.equals("+") || c.equals("/") || c.equals("-")) {
+		if ("*".equals(c) || "+".equals(c) || "/".equals(c) || "-".equals(c)) {
 			return true;
 		}
 		return false;
@@ -90,14 +96,16 @@ class FunctionsDefaultChecker implements RPNChecking {
 	/**
 	 * @see pl.black007.rpn.RPNChecking#isRightAssociativity(java.lang.String)
 	 */
+	@Override
 	public boolean isRightAssociativity(String c) {
-		return c.equals("^");
+		return "^".equals(c);
 	}
 
 	/**
 	 * @see pl.black007.rpn.RPNChecking#compareOperators(java.lang.String,
 	 *      java.lang.String)
 	 */
+	@Override
 	public int compareOperators(String c1, String c2) {
 		Integer i1 = operators.get(c1);
 		Integer i2 = operators.get(c2);

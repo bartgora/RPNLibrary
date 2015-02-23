@@ -156,7 +156,7 @@ class FunctionsCalculator extends Calculator {
 				result.append(" ").append(temp);
 			} else if (checker.isFunction(temp)) {
 				stack.push(temp);
-			} else if (temp.equals(",")) {
+			} else if (",".equals(temp)) {
 				do {
 					stackOper = stack.pop();
 					if (!checker.isLeftBracket(stackOper)) {

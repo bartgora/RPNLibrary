@@ -53,6 +53,7 @@ class DefaultRPNChecker implements RPNChecking{
 	 * 
 	 * @see pl.black007.rpn.RPNChecking#isDigit(java.lang.String)
 	 */
+	@Override
 	public boolean isDigit(String input) {
 		return Character.isDigit(input.charAt(0));
 	}
@@ -60,22 +61,25 @@ class DefaultRPNChecker implements RPNChecking{
 	 * 
 	 * @see pl.black007.rpn.RPNChecking#isLeftBracket(java.lang.String)
 	 */
+	@Override
 	public boolean isLeftBracket(String input) {
-		return input.equals("(");
+		return "(".equals(input);
 	}
 	/**
 	 * Returns true if input = +, or -, or *, or /, or ^, false otherwise.
 	 * @see pl.black007.rpn.RPNChecking#isOperator(java.lang.String)
 	 */
+	@Override
 	public boolean isOperator(String input) {
-		return input.equals("*") || input.equals("+") || input.equals("/") || input.equals("-") || input.equals("^");
+		return "*".equals(input) || "+".equals(input) || "/".equals(input) || "-".equals(input) || "^".equals(input);
 	}
 	/**
 	 * Returns true if input = )
 	 * @see pl.black007.rpn.RPNChecking#isRightBracket(java.lang.String)
 	 */
+	@Override
 	public boolean isRightBracket(String input) {
-		return input.equals(")");
+		return ")".equals(input);
 	}
 	
 
@@ -83,14 +87,15 @@ class DefaultRPNChecker implements RPNChecking{
 	 * Returns true, if input is "+ - * /" or bracket "()"
 	 * @see pl.black007.rpn.RPNChecking#isOperatorOrBracket(java.lang.String)
 	 */
+	@Override
 	public boolean isOperatorOrBracket(String c) {
-		if(c.equals("(")||
-		   c.equals(")") ||
-		   c.equals("*") ||
-		   c.equals("+") ||
-		   c.equals("/") ||
-		   c.equals("-")||
-		   c.equals("^")){
+		if("(".equals(c)||
+		   ")".equals(c) ||
+		   "*".equals(c) ||
+		   "+".equals(c) ||
+		   "/".equals(c) ||
+		   "-".equals(c)||
+		   "^".equals(c)){
 			return true;
 		}
 		return false;
@@ -100,11 +105,12 @@ class DefaultRPNChecker implements RPNChecking{
 	 * 
 	 * @see pl.black007.rpn.RPNChecking#isLeftAssociativity(java.lang.String)
 	 */
+	@Override
 	public boolean isLeftAssociativity(String c) {
-		if(c.equals("*") ||
-				c.equals("+") ||
-				c.equals("/") ||
-				c.equals("-")){
+		if("*".equals(c) ||
+				"+".equals(c) ||
+				"/".equals(c) ||
+				"-".equals(c)){
 				return true;
 			}
 		return false;
@@ -113,13 +119,15 @@ class DefaultRPNChecker implements RPNChecking{
 	/** 
 	 * @see pl.black007.rpn.RPNChecking#isRightAssociativity(java.lang.String)
 	 */
+	@Override
 	public boolean isRightAssociativity(String c) {
-		return c.equals("^");
+		return "^".equals(c);
 	}
 
 	/** 
 	 * @see pl.black007.rpn.RPNChecking#compareOperators(java.lang.String, java.lang.String)
 	 */
+	@Override
 	public int compareOperators(String c1, String c2) {
 		Integer i1 = operators.get(c1);
 		Integer i2 = operators.get(c2);

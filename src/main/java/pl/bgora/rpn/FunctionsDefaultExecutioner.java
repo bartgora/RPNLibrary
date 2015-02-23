@@ -14,15 +14,15 @@ class FunctionsDefaultExecutioner implements RPNExecuting {
 	@Override
 	public BigDecimal executeOperator(String operator, String var1, String var2, RoundingMode mode) throws WrongArgumentException {
 		assert operator!= null : "Operator cannot be null!";
-		if(operator.equals("+")){
+		if("+".equals(operator)){
 			return add(var1, var2);
-		}else if(operator.equals("-")){
+		}else if("-".equals(operator)){
 			return sub(var1, var2);
-		}else if(operator.equals("*")){
+		}else if("*".equals(operator)){
 			return mull(var1,var2);
-		}else if(operator.equals("/")){
+		}else if("/".equals(operator)){
 			return div(var1, var2, mode);
-		}else if(operator.equals("^")){
+		}else if("^".equals(operator)){
 			return pow(var1, var2);
 		}
 		throw new WrongArgumentException("Unrecognized operator: " + operator);
