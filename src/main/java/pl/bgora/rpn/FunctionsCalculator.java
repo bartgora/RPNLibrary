@@ -2,6 +2,8 @@ package pl.bgora.rpn;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.Stack;
 
 import pl.bgora.rpn.exceptions.NoSuchFunctionFound;
@@ -144,7 +146,7 @@ class FunctionsCalculator extends Calculator {
 	private String createRPN(String input) throws WrongArgumentException {
 		input = input.trim();
 		StringBuilder result = new StringBuilder();
-		Stack<String> stack = new Stack<String>();
+		Deque<String> stack = new LinkedList<String>();
 		String[] factors = input.split(" ");
 		int length = factors.length;
 		String temp = null;
@@ -171,7 +173,7 @@ class FunctionsCalculator extends Calculator {
 					// Is less than o2,
 					// Remove O2 from the stack and add it to the output queue;
 					// 2) o1 put on the stack operators.
-				while (!stack.empty() && checker.isOperator(stack.peek())) {
+				while (!stack.isEmpty() && checker.isOperator(stack.peek())) {
 					stackOper = stack.peek();
 					if (checker.isLeftAssociativity(stackOper) && (checker.compareOperators(stackOper, temp) >= 0)) {
 						stack.pop();
@@ -211,7 +213,7 @@ class FunctionsCalculator extends Calculator {
 		}
 		// End of entry, empty the stack.
 		temp = null;
-		while (stack.size() > 0) {
+		while (!stack.isEmpty()) {
 			result.append(" ").append(stack.pop());
 		}
 
@@ -229,7 +231,7 @@ class FunctionsCalculator extends Calculator {
 	 */
 	private BigDecimal getResult(String result) throws WrongArgumentException, NoSuchFunctionFound {
 		String[] factors = result.trim().split(" ");
-		Stack<String> stack = new Stack<String>();
+		Deque<String> stack = new LinkedList<String>();
 		String temp = null;
 		String var1 = null;
 		String var2 = null;

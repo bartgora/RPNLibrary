@@ -21,7 +21,6 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Deque;
 import java.util.LinkedList;
-import java.util.Stack;
 
 import pl.bgora.rpn.exceptions.RPNException;
 import pl.bgora.rpn.exceptions.WrongArgumentException;
@@ -216,7 +215,7 @@ public class Calculator {
 	private String createRPN(String input) throws WrongArgumentException {
 		input = input.trim();
 		StringBuilder result = new StringBuilder();
-		LinkedList<String> stack = new LinkedList<String>();
+		Deque<String> stack = new LinkedList<String>();
 		String[] factors = input.split(" ");
 		int length = factors.length;
 		String temp = null;
@@ -268,7 +267,7 @@ public class Calculator {
 		}
 		// End of entry, empty the stack.
 		temp = null;
-		while (stack.size() > 0) {
+		while (!stack.isEmpty()) {
 			result.append(" ").append(stack.pop());
 		}
 
@@ -285,7 +284,7 @@ public class Calculator {
 	 */
 	private BigDecimal getResult(String result) throws WrongArgumentException {
 		String[] factors = result.trim().split(" ");
-		LinkedList<String> stack = new LinkedList<String>();
+		Deque<String> stack = new LinkedList<String>();
 		String temp = null;
 		String var1 = null;
 		String var2 = null;
