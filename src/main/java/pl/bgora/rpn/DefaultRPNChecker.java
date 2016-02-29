@@ -1,6 +1,6 @@
 /*
     RPNCalculator - Reverse Polish Notation mathematics Library
-    Copyright (C) 2011  Bart�omiej "Black007" G�ra
+    Copyright (C) 2011  Bartłomiej "Black007" Góra
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by

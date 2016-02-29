@@ -1,6 +1,6 @@
 /*
     RPNCalculator - Reverse Polish Notation mathematics Library
-    Copyright (C) 2011  Bart�omiej "Black007" G�ra
+    Copyright (C) 2011  Bartłomiej "Black007" Góra
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -17,36 +17,37 @@
  */
 package pl.bgora.rpn;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-
 import pl.bgora.rpn.exceptions.NoSuchFunctionFound;
 import pl.bgora.rpn.exceptions.WrongArgumentException;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 
 public interface RPNExecuting {
 
 
-	/**
-	 * This method executes arithmetic operator given as first parameter of type String.
-	 * @param operator Arithmetic operator to execute.
-	 * @param var1 first variable
-	 * @param var2 second variable.
-	 * @param mode Rounding Mode for operation.
-	 * @return calculation result.
-	 * @throws WrongArgumentException if theres is something wrong withe the input.
-	 */
-	BigDecimal executeOperator(String operator, String var1, String var2, RoundingMode mode) throws WrongArgumentException;
-	
-	/**
-	 * This method executes Arithmetic Functions.
-	 * The first parameter is Function name.
-	 * @param functionName Name of the function to execute.
-	 * @param mode Rounding mode for calculations.
-	 * @param arguments List of arguments for the called function.
-	 * @return Calculation result as BigDecimal.
-	 * @throws NoSuchFunctionFound thrown if Executing object cannot find method.
-	 */
-	BigDecimal executeFunction(String functionName, RoundingMode mode, String... arguments) throws NoSuchFunctionFound;
+    /**
+     * This method executes arithmetic operator given as first parameter of type String.
+     *
+     * @param operator Arithmetic operator to execute.
+     * @param var1     first variable
+     * @param var2     second variable.
+     * @param mode     Rounding Mode for operation.
+     * @return calculation result.
+     * @throws WrongArgumentException if theres is something wrong withe the input.
+     */
+    BigDecimal executeOperator(String operator, String var1, String var2, RoundingMode mode) throws WrongArgumentException;
+
+    /**
+     * This method executes Arithmetic Functions.
+     * The first parameter is Function name.
+     *
+     * @param functionName Name of the function to execute.
+     * @param mode         Rounding mode for calculations.
+     * @param arguments    List of arguments for the called function.
+     * @return Calculation result as BigDecimal.
+     * @throws NoSuchFunctionFound thrown if Executing object cannot find method.
+     */
+    BigDecimal executeFunction(String functionName, RoundingMode mode, String... arguments) throws NoSuchFunctionFound;
 }

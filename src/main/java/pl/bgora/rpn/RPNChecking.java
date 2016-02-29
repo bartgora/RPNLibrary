@@ -21,14 +21,23 @@ package pl.bgora.rpn;
 public interface RPNChecking {
 
 
-	boolean isDigit(String input);
-	boolean isOperator(String input);
-	boolean isLeftBracket(String input);
-	boolean isRightBracket(String input);
-	boolean isOperatorOrBracket(String c);
-	boolean isLeftAssociativity(String c);
-	boolean isRightAssociativity(String c);
-	int compareOperators(String c1, String c2);
-	boolean isFunction(String input);
-	int getFunctionParamsCount(String functionName);
+    boolean isDigit(String input);
+
+    boolean isOperator(String input);
+
+    boolean isLeftBracket(String input);
+
+    boolean isRightBracket(String input);
+
+    boolean isOperatorOrBracket(String c);
+
+    boolean isLeftAssociativity(String c);
+
+    boolean isRightAssociativity(String c);
+
+    int compareOperators(String c1, String c2);
+
+    boolean isFunction(String input);
+
+    int getFunctionParamsCount(String functionName);
 }
