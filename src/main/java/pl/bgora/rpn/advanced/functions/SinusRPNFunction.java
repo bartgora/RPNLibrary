@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 /**
- * @author Bartłomiej Góra (Black007pl@gmail.com)
+ * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  */
 public class SinusRPNFunction extends AbstractRPNArithmeticFunction {
 

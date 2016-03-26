@@ -10,7 +10,7 @@ import java.math.RoundingMode;
  * This class contains function name, param count.
  * It also provides execute method which is responsible for call the underlying math function.
  *
- * @author Bartłomiej Góra (Black007pl@gmail.com)
+ * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  */
 public abstract class AbstractRPNArithmeticFunction {
 

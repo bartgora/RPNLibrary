@@ -6,9 +6,9 @@ import java.util.Map;
 /**
  * This implementation Extends DefaultChecker with arithmetic funstions.
  * <p/>
- * Provided functiona are: sin, cos, tg, ctg
+ * Provided functions are: sin, cos, tg, ctg
  *
- * @author Bartłomiej Góra (Black007pl@gmail.com)
+ * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  */
 class FunctionsDefaultChecker implements RPNChecking {
 
@@ -33,7 +33,7 @@ class FunctionsDefaultChecker implements RPNChecking {
     }
 
     /**
-     * @see pl.black007.rpn.RPNChecking#isDigit(java.lang.String)
+     * @see pl.bgora.rpn.RPNChecking#isDigit(java.lang.String)
      */
     @Override
     public boolean isDigit(String input) {
@@ -41,7 +41,7 @@ class FunctionsDefaultChecker implements RPNChecking {
     }
 
     /**
-     * @see pl.black007.rpn.RPNChecking#isLeftBracket(java.lang.String)
+     * @see pl.bgora.rpn.RPNChecking#isLeftBracket(java.lang.String)
      */
     @Override
     public boolean isLeftBracket(String input) {
@@ -51,7 +51,7 @@ class FunctionsDefaultChecker implements RPNChecking {
     /**
      * Returns true if input = +, or -, or *, or /, or ^, false otherwise.
      *
-     * @see pl.black007.rpn.RPNChecking#isOperator(java.lang.String)
+     * @see pl.bgora.rpn.RPNChecking#isOperator(java.lang.String)
      */
     @Override
     public boolean isOperator(String input) {
@@ -61,7 +61,7 @@ class FunctionsDefaultChecker implements RPNChecking {
     /**
      * Returns true if input = )
      *
-     * @see pl.black007.rpn.RPNChecking#isRightBracket(java.lang.String)
+     * @see pl.bgora.rpn.RPNChecking#isRightBracket(java.lang.String)
      */
     @Override
     public boolean isRightBracket(String input) {
@@ -71,7 +71,7 @@ class FunctionsDefaultChecker implements RPNChecking {
     /**
      * Returns true, if input is "+ - * /" or bracket "()"
      *
-     * @see pl.black007.rpn.RPNChecking#isOperatorOrBracket(java.lang.String)
+     * @see pl.bgora.rpn.RPNChecking#isOperatorOrBracket(java.lang.String)
      */
     @Override
     public boolean isOperatorOrBracket(String c) {
@@ -79,7 +79,7 @@ class FunctionsDefaultChecker implements RPNChecking {
     }
 
     /**
-     * @see pl.black007.rpn.RPNChecking#isLeftAssociativity(java.lang.String)
+     * @see pl.bgora.rpn.RPNChecking#isLeftAssociativity(java.lang.String)
      */
     @Override
     public boolean isLeftAssociativity(String c) {
@@ -90,7 +90,7 @@ class FunctionsDefaultChecker implements RPNChecking {
     }
 
     /**
-     * @see pl.black007.rpn.RPNChecking#isRightAssociativity(java.lang.String)
+     * @see pl.bgora.rpn.RPNChecking#isRightAssociativity(java.lang.String)
      */
     @Override
     public boolean isRightAssociativity(String c) {
@@ -98,7 +98,7 @@ class FunctionsDefaultChecker implements RPNChecking {
     }
 
     /**
-     * @see pl.black007.rpn.RPNChecking#compareOperators(java.lang.String,
+     * @see pl.bgora.rpn.RPNChecking#compareOperators(java.lang.String,
      * java.lang.String)
      */
     @Override
@@ -113,7 +113,7 @@ class FunctionsDefaultChecker implements RPNChecking {
      * <p/>
      * Recognized functions are: sin, cos, tg, ctg.
      *
-     * @see net.sf.black007pl.rpnlibrary.RPNChecking#isFunction(java.lang.String)
+     * @see pl.bgora.rpn.RPNChecking#isFunction(java.lang.String)
      */
     @Override
     public boolean isFunction(String input) {

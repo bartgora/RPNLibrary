@@ -3,7 +3,7 @@ package pl.bgora.rpn.exceptions;
 /**
  * Base Exception class for all exceptions in RPNLibrary project.
  *
- * @author Bartłomiej Góra (Black007pl@gmail.com)
+ * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  */
 public class RPNException extends Exception {
 

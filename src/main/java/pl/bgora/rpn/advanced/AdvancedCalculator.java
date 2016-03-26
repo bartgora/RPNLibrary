@@ -7,7 +7,7 @@ import java.util.Map;
 /**
  * Advanced Calculator.
  *
- * @author Bartłomiej Góra (Black007pl@gmail.com)
+ * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  */
 public class AdvancedCalculator {
 

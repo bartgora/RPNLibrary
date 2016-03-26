@@ -26,7 +26,7 @@ import pl.bgora.rpn.exceptions.WrongArgumentException;
 
 
 /**
- * @author Bartłomiej Góra (Black007pl@gmail.com)
+ * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  *
  */
 class DefaultRPNExecutioner implements RPNExecuting{

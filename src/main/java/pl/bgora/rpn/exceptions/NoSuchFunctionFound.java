@@ -5,7 +5,7 @@ package pl.bgora.rpn.exceptions;
  * <p/>
  * This Exception is thrown when user put wrong name of the function to input string.
  *
- * @author Bartłomiej Góra (Black007pl@gmail.com)
+ * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  * @serial
  */
 public class NoSuchFunctionFound extends RPNException {

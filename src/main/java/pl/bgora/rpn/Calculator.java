@@ -86,15 +86,15 @@ public class Calculator {
      * Factory method for RPN Calculator object with custom functions, and
      * operations. You should use this factory method if you want to create your
      * own operations. To do so, you have to implement you own objectst, that
-     * implementas {@code net.sf.black007pl.rpnlibrary.RPNChecking}, and
-     * {@code net.sf.black007pl.rpnlibrary.RPNExecuting}.
+     * implementas {@code pl.bgora.rpn.RPNChecking}, and
+     * {@code pl.bgora.rpn.RPNExecuting}.
      *
      * @param mode        Rounding Mode for calculations.
      * @param checker     Custom Checker object.
      * @param executioner custom executioner object
      * @return new Instance of {@code pl.bgora.Calculator}
-     * @see pl.bgora.RPNChecking
-     * @see pl.bgora.RPNExecuting
+     * @see pl.bgora.rpn.RPNChecking
+     * @see pl.bgora.rpn.RPNExecuting
      */
     public static Calculator createCalculator(RoundingMode mode, RPNChecking checker, RPNExecuting executioner) {
         return new FunctionsCalculator(checker, executioner, mode);

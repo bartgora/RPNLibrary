@@ -9,7 +9,7 @@ package pl.bgora.rpn.exceptions;
  * This Exception describes situation, when input string is in wrong format.
  * This occurs when for instance user put unrecognized char into input string.
  *
- * @author Bartłomiej Góra (Black007pl@gmail.com)
+ * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  * @serial
  */
 public class WrongArgumentException extends RPNException {

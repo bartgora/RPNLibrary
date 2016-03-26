@@ -14,8 +14,8 @@ import java.util.LinkedList;
  * <p/>
  * Added functions (sin,cos, tg, ctg) to Calculatoir Class.
  *
- * @author Bartłomiej Góra (Black007pl@gmail.com)
- * @see net.sf.black007pl.rpnlibrary.Calculator
+ * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
+ * @see pl.bgora.rpn.Calculator
  */
 class FunctionsCalculator extends Calculator {
 
@@ -26,7 +26,6 @@ class FunctionsCalculator extends Calculator {
      * @param checker      Object that implementa RPNChecking - Used for checking operations in input.
      * @param executioner  Object iplementing RPNExecuting - used for executing operations on input.
      * @param mode         Rounding mode for arithmetic operations.
-     * @param defaultScale
      */
     FunctionsCalculator(RPNChecking checker, RPNExecuting executioner, RoundingMode mode) {
         super(checker, executioner, mode);
@@ -37,7 +36,7 @@ class FunctionsCalculator extends Calculator {
      * Calculates RPN String into BigDecimal Object.
      *
      * @throws NoSuchFunctionFound
-     * @see net.sf.black007pl.rpnlibrary.Calculator#calculate(java.lang.String)
+     * @see pl.bgora.rpn.Calculator#calculate(java.lang.String)
      */
     @Override
     public BigDecimal calculate(final String input) throws WrongArgumentException, NoSuchFunctionFound {

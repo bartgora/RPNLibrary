@@ -32,7 +32,7 @@ import java.util.Map;
  *\/ - division
  * ^ - power (x^n - x to the power n)
  * </p>
- * @author Bartłomiej Góra (Black007pl@gmail.com)
+ * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  *
  */
 class DefaultRPNChecker implements RPNChecking{
@@ -51,7 +51,7 @@ class DefaultRPNChecker implements RPNChecking{
 
 	/**
 	 * 
-	 * @see pl.black007.rpn.RPNChecking#isDigit(java.lang.String)
+	 * @see pl.bgora.rpn.RPNChecking#isDigit(java.lang.String)
 	 */
 	@Override
 	public boolean isDigit(String input) {
@@ -59,7 +59,7 @@ class DefaultRPNChecker implements RPNChecking{
 	}
 	/**
 	 * 
-	 * @see pl.black007.rpn.RPNChecking#isLeftBracket(java.lang.String)
+	 * @see pl.bgora.rpn.RPNChecking#isLeftBracket(java.lang.String)
 	 */
 	@Override
 	public boolean isLeftBracket(String input) {
@@ -67,7 +67,7 @@ class DefaultRPNChecker implements RPNChecking{
 	}
 	/**
 	 * Returns true if input = +, or -, or *, or /, or ^, false otherwise.
-	 * @see pl.black007.rpn.RPNChecking#isOperator(java.lang.String)
+	 * @see pl.bgora.rpn.RPNChecking#isOperator(java.lang.String)
 	 */
 	@Override
 	public boolean isOperator(String input) {
@@ -75,7 +75,7 @@ class DefaultRPNChecker implements RPNChecking{
 	}
 	/**
 	 * Returns true if input = )
-	 * @see pl.black007.rpn.RPNChecking#isRightBracket(java.lang.String)
+	 * @see pl.bgora.rpn.RPNChecking#isRightBracket(java.lang.String)
 	 */
 	@Override
 	public boolean isRightBracket(String input) {
@@ -85,7 +85,7 @@ class DefaultRPNChecker implements RPNChecking{
 
 	/** 
 	 * Returns true, if input is "+ - * /" or bracket "()"
-	 * @see pl.black007.rpn.RPNChecking#isOperatorOrBracket(java.lang.String)
+	 * @see pl.bgora.rpn.RPNChecking#isOperatorOrBracket(java.lang.String)
 	 */
 	@Override
 	public boolean isOperatorOrBracket(String c) {
@@ -103,7 +103,7 @@ class DefaultRPNChecker implements RPNChecking{
 
 	/** 
 	 * 
-	 * @see pl.black007.rpn.RPNChecking#isLeftAssociativity(java.lang.String)
+	 * @see pl.bgora.rpn.RPNChecking#isLeftAssociativity(java.lang.String)
 	 */
 	@Override
 	public boolean isLeftAssociativity(String c) {
@@ -117,7 +117,7 @@ class DefaultRPNChecker implements RPNChecking{
 	}
 
 	/** 
-	 * @see pl.black007.rpn.RPNChecking#isRightAssociativity(java.lang.String)
+	 * @see pl.bgora.rpn.RPNChecking#isRightAssociativity(java.lang.String)
 	 */
 	@Override
 	public boolean isRightAssociativity(String c) {
@@ -125,7 +125,7 @@ class DefaultRPNChecker implements RPNChecking{
 	}
 
 	/** 
-	 * @see pl.black007.rpn.RPNChecking#compareOperators(java.lang.String, java.lang.String)
+	 * @see pl.bgora.rpn.RPNChecking#compareOperators(java.lang.String, java.lang.String)
 	 */
 	@Override
 	public int compareOperators(String c1, String c2) {
@@ -136,7 +136,7 @@ class DefaultRPNChecker implements RPNChecking{
 
 
 	/** 
-	 * @see net.sf.black007pl.rpnlibrary.RPNChecking#isFunction(java.lang.String)
+	 * @see pl.bgora.rpn.RPNChecking#isFunction(java.lang.String)
 	 */
 	@Override
 	public boolean isFunction(String input) {	
@@ -145,7 +145,7 @@ class DefaultRPNChecker implements RPNChecking{
 
 
 	/** 
-	 * @see net.sf.black007pl.rpnlibrary.RPNChecking#getFunctionParamsCount(java.lang.String)
+	 * @see pl.bgora.rpn.RPNChecking#getFunctionParamsCount(java.lang.String)
 	 */
 	@Override
 	public int getFunctionParamsCount(String functionName) {
