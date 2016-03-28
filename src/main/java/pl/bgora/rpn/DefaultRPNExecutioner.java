@@ -82,10 +82,5 @@ class DefaultRPNExecutioner implements RPNExecuting {
         return big1.pow(big2.intValue());
     }
 
-    @Override
-    public BigDecimal executeFunction(String functionName, RoundingMode mode, String... arguments)
-            throws NoSuchFunctionFound {
-        return null;
-    }
 
 }

@@ -290,4 +290,9 @@ public class Calculator {
         return new BigDecimal(stack.pop());
     }
 
+
+    public RoundingMode getRoundingMode(){
+        return this.roundingMode;
+    }
+
 }

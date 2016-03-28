@@ -138,20 +138,4 @@ class DefaultRPNChecker implements RPNChecking {
     }
 
 
-    /**
-     * @see pl.bgora.rpn.RPNChecking#isFunction(java.lang.String)
-     */
-    @Override
-    public boolean isFunction(String input) {
-        return false;
-    }
-
-
-    /**
-     * @see pl.bgora.rpn.RPNChecking#getFunctionParamsCount(java.lang.String)
-     */
-    @Override
-    public int getFunctionParamsCount(String functionName) {
-        return 0;
-    }
 }
