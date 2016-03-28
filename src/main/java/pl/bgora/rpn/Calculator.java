@@ -291,7 +291,7 @@ public class Calculator {
     }
 
 
-    public RoundingMode getRoundingMode(){
+    public RoundingMode getRoundingMode() {
         return this.roundingMode;
     }
 

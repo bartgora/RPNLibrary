@@ -17,7 +17,6 @@
  */
 package pl.bgora.rpn;
 
-import pl.bgora.rpn.exceptions.NoSuchFunctionFound;
 import pl.bgora.rpn.exceptions.WrongArgumentException;
 
 import java.math.BigDecimal;

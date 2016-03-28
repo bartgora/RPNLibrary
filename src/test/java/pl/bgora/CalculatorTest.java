@@ -100,33 +100,33 @@ public class CalculatorTest {
     }
 
     @Test
-    public void testSinusMinus() throws RPNException{
+    public void testSinusMinus() throws RPNException {
         BigDecimal result = calc.calculate("sin(-1)");
         assertEquals(BigDecimal.valueOf(Math.sin(-1)), result);
     }
 
     @Test
-    public void testCosinusMinus() throws RPNException{
+    public void testCosinusMinus() throws RPNException {
         BigDecimal result = calc.calculate("cos(-1)");
         assertEquals(BigDecimal.valueOf(Math.cos(-1)), result);
     }
 
     @Test
-    public void testTgMinus() throws RPNException{
+    public void testTgMinus() throws RPNException {
         BigDecimal result = calc.calculate("tg(-1)");
         assertEquals(BigDecimal.valueOf(Math.tan(-1)), result);
     }
 
     @Test
-    public void testCtgMinus() throws RPNException{
+    public void testCtgMinus() throws RPNException {
         BigDecimal result = calc.calculate("ctg(-1)");
-        assertEquals(BigDecimal.valueOf( 1.0000000000 / Math.tan(-1)).setScale(10, RoundingMode.HALF_EVEN), result.setScale(10, RoundingMode.HALF_EVEN));
+        assertEquals(BigDecimal.valueOf(1.0000000000 / Math.tan(-1)).setScale(10, RoundingMode.HALF_EVEN), result.setScale(10, RoundingMode.HALF_EVEN));
     }
 
     @Test
-    public void testCtgMinus5Zeros() throws RPNException{
+    public void testCtgMinus5Zeros() throws RPNException {
         BigDecimal result = calc.calculate("ctg(-1.65091)");
-        assertEquals(BigDecimal.valueOf( 1.00 / Math.tan(-1.65091)), result);
+        assertEquals(BigDecimal.valueOf(1.00 / Math.tan(-1.65091)), result);
     }
 
     @Test(expected = RPNException.class)

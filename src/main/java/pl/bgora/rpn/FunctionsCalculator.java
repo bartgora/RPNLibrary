@@ -249,9 +249,9 @@ class FunctionsCalculator extends Calculator {
                 stack.push(temp);
             } else if (checker.isOperator(temp)) {
                 var1 = stack.pop();
-                if(!stack.isEmpty()) {
+                if (!stack.isEmpty()) {
                     var2 = stack.pop();
-                }else{
+                } else {
                     var2 = "0.0";
                 }
                 value = executioner.executeOperator(temp, var2, var1, roundingMode);
