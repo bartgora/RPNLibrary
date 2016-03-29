@@ -49,5 +49,7 @@ public interface RPNExecuting {
      * @return Calculation result as BigDecimal.
      * @throws NoSuchFunctionFound thrown if Executing object cannot find method.
      */
-    BigDecimal executeFunction(String functionName, RoundingMode mode, String... arguments) throws NoSuchFunctionFound;
+    default BigDecimal executeFunction(String functionName, RoundingMode mode, String... arguments) throws NoSuchFunctionFound {
+        return null;
+    }
 }

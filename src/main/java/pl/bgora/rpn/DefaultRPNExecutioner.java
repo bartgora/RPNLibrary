@@ -17,77 +17,69 @@
  */
 package pl.bgora.rpn;
 
+import pl.bgora.rpn.exceptions.WrongArgumentException;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-import pl.bgora.rpn.exceptions.NoSuchFunctionFound;
-import pl.bgora.rpn.exceptions.WrongArgumentException;
-
-
 
 /**
- * @author Bartłomiej Góra (Black007pl@gmail.com)
- *
+ * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  */
-class DefaultRPNExecutioner implements RPNExecuting{
-	
-	@Override
-	public BigDecimal executeOperator(String operator, String var1, String var2, RoundingMode mode) throws WrongArgumentException {
-		assert operator!= null : "Operator cannot be null!";
-		if(operator.equals("+")){
-			return add(var1, var2);
-		}else if(operator.equals("-")){
-			return sub(var1, var2);
-		}else if(operator.equals("*")){
-			return mull(var1,var2);
-		}else if(operator.equals("/")){
-			return div(var1, var2, mode);
-		}else if(operator.equals("^")){
-			return pow(var1, var2);
-		}
-		throw new WrongArgumentException("Unricignized operator: " + operator);
-	}
+class DefaultRPNExecutioner implements RPNExecuting {
 
-	/**
-	 * @param var1
-	 * @param var2
-	 * @param mode
-	 * @return
-	 */
-	private BigDecimal div(String var1, String var2, RoundingMode mode) {
-		BigDecimal big1 = new BigDecimal(var1);
-		BigDecimal big2 = new BigDecimal(var2);
-		return big1.divide(big2, mode);
-	}
+    @Override
+    public BigDecimal executeOperator(String operator, String var1, String var2, RoundingMode mode) throws WrongArgumentException {
+        assert operator != null : "Operator cannot be null!";
+        if (operator.equals("+")) {
+            return add(var1, var2);
+        } else if (operator.equals("-")) {
+            return sub(var1, var2);
+        } else if (operator.equals("*")) {
+            return mull(var1, var2);
+        } else if (operator.equals("/")) {
+            return div(var1, var2, mode);
+        } else if (operator.equals("^")) {
+            return pow(var1, var2);
+        }
+        throw new WrongArgumentException("Unricignized operator: " + operator);
+    }
 
-	private BigDecimal mull(String var1, String var2) {
-		BigDecimal big1 = new BigDecimal(var1);
-		BigDecimal big2 = new BigDecimal(var2);
-		return big1.multiply(big2);
-	}
+    /**
+     * @param var1
+     * @param var2
+     * @param mode
+     * @return
+     */
+    private BigDecimal div(String var1, String var2, RoundingMode mode) {
+        BigDecimal big1 = new BigDecimal(var1);
+        BigDecimal big2 = new BigDecimal(var2);
+        return big1.divide(big2, mode);
+    }
 
-	private BigDecimal sub(String var1, String var2) {
-		BigDecimal big1 = new BigDecimal(var1);
-		BigDecimal big2 = new BigDecimal(var2);
-		return big1.subtract(big2);
-	}
+    private BigDecimal mull(String var1, String var2) {
+        BigDecimal big1 = new BigDecimal(var1);
+        BigDecimal big2 = new BigDecimal(var2);
+        return big1.multiply(big2);
+    }
 
-	private BigDecimal add(String var1, String var2) {
-		BigDecimal big1 = new BigDecimal(var1);
-		BigDecimal big2 = new BigDecimal(var2);
-		return big1.add(big2);
-	}
-	
-	private BigDecimal pow(String var1, String var2) {
-		BigDecimal big1 = new BigDecimal(var1);
-		BigDecimal big2 = new BigDecimal(var2);
-		return big1.pow(big2.intValue());
-	}
+    private BigDecimal sub(String var1, String var2) {
+        BigDecimal big1 = new BigDecimal(var1);
+        BigDecimal big2 = new BigDecimal(var2);
+        return big1.subtract(big2);
+    }
 
-	@Override
-	public BigDecimal executeFunction(String functionName, RoundingMode mode, String... arguments)
-			throws NoSuchFunctionFound {
-		return null;
-	}
+    private BigDecimal add(String var1, String var2) {
+        BigDecimal big1 = new BigDecimal(var1);
+        BigDecimal big2 = new BigDecimal(var2);
+        return big1.add(big2);
+    }
+
+    private BigDecimal pow(String var1, String var2) {
+        BigDecimal big1 = new BigDecimal(var1);
+        BigDecimal big2 = new BigDecimal(var2);
+        return big1.pow(big2.intValue());
+    }
+
 
 }

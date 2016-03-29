@@ -1,3 +1,21 @@
+/*
+    RPNCalculator - Reverse Polish Notation mathematics Library
+    Copyright (C) 2011  Bartłomiej "Black007" Góra
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package pl.bgora.rpn;
 
 import pl.bgora.rpn.exceptions.NoSuchFunctionFound;
@@ -14,8 +32,8 @@ import java.util.LinkedList;
  * <p/>
  * Added functions (sin,cos, tg, ctg) to Calculatoir Class.
  *
- * @author Bartłomiej Góra (Black007pl@gmail.com)
- * @see net.sf.black007pl.rpnlibrary.Calculator
+ * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
+ * @see pl.bgora.rpn.Calculator
  */
 class FunctionsCalculator extends Calculator {
 
@@ -23,10 +41,9 @@ class FunctionsCalculator extends Calculator {
     /**
      * Contructor Creates an instance of the class.
      *
-     * @param checker      Object that implementa RPNChecking - Used for checking operations in input.
-     * @param executioner  Object iplementing RPNExecuting - used for executing operations on input.
-     * @param mode         Rounding mode for arithmetic operations.
-     * @param defaultScale
+     * @param checker     Object that implementa RPNChecking - Used for checking operations in input.
+     * @param executioner Object iplementing RPNExecuting - used for executing operations on input.
+     * @param mode        Rounding mode for arithmetic operations.
      */
     FunctionsCalculator(RPNChecking checker, RPNExecuting executioner, RoundingMode mode) {
         super(checker, executioner, mode);
@@ -37,7 +54,7 @@ class FunctionsCalculator extends Calculator {
      * Calculates RPN String into BigDecimal Object.
      *
      * @throws NoSuchFunctionFound
-     * @see net.sf.black007pl.rpnlibrary.Calculator#calculate(java.lang.String)
+     * @see pl.bgora.rpn.Calculator#calculate(java.lang.String)
      */
     @Override
     public BigDecimal calculate(final String input) throws WrongArgumentException, NoSuchFunctionFound {
@@ -232,7 +249,11 @@ class FunctionsCalculator extends Calculator {
                 stack.push(temp);
             } else if (checker.isOperator(temp)) {
                 var1 = stack.pop();
-                var2 = stack.pop();
+                if (!stack.isEmpty()) {
+                    var2 = stack.pop();
+                } else {
+                    var2 = "0.0";
+                }
                 value = executioner.executeOperator(temp, var2, var1, roundingMode);
                 stack.push(value.toPlainString());
             } else if (checker.isFunction(temp)) {
