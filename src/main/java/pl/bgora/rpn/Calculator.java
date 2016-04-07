@@ -15,9 +15,10 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 package pl.bgora.rpn;
 
-import pl.bgora.rpn.exceptions.RPNException;
+import pl.bgora.rpn.exceptions.NoSuchFunctionFound;
 import pl.bgora.rpn.exceptions.WrongArgumentException;
 
 import java.math.BigDecimal;
@@ -26,7 +27,14 @@ import java.util.Deque;
 import java.util.LinkedList;
 
 
+/**
+ * RPN Calculator Implementation with functions.
+ * <p/>
+ *
+ * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
+ */
 public class Calculator {
+
 
     protected RPNChecking checker;
 
@@ -79,7 +87,7 @@ public class Calculator {
      * @return Calculator Object.
      */
     public static Calculator createDefaultCalculator(RoundingMode mode) {
-        return new FunctionsCalculator(new FunctionsDefaultChecker(), new FunctionsDefaultExecutioner(), mode);
+        return new Calculator(new DefaultChecker(), new DefaultExecutioner(), mode);
     }
 
     /**
@@ -97,11 +105,12 @@ public class Calculator {
      * @see pl.bgora.rpn.RPNExecuting
      */
     public static Calculator createCalculator(RoundingMode mode, RPNChecking checker, RPNExecuting executioner) {
-        return new FunctionsCalculator(checker, executioner, mode);
+        return new Calculator(checker, executioner, mode);
     }
 
+
     /**
-     * Contructor Creates an instance of the class.
+     * Constructor Creates an instance of the class.
      *
      * @param checker     Object that implementa RPNChecking - Used for checking operations in input.
      * @param executioner Object iplementing RPNExecuting - used for executing operations on input.
@@ -113,19 +122,19 @@ public class Calculator {
         this.roundingMode = mode;
     }
 
+
     /**
-     * Caluclates the input String.
+     * Calculates RPN String into BigDecimal Object.
      *
-     * @param input Input string.
-     * @return value as {@code java.math.BigDecimal}
-     * @throws WrongArgumentException Thrown if the input is incorrect (Incorrect format, or
-     *                                unsupported opertians)
+     * @throws NoSuchFunctionFound
+     * @see pl.bgora.rpn.Calculator#calculate(java.lang.String)
      */
-    public BigDecimal calculate(final String input) throws RPNException {
+    public BigDecimal calculate(final String input) throws WrongArgumentException, NoSuchFunctionFound {
         final String temp = prepareInput(input);
         final String result = createRPN(temp);
         return getResult(result);
     }
+
 
     /**
      * Format input for further processing.
@@ -143,6 +152,7 @@ public class Calculator {
         boolean lastWasDigit = false;
         boolean lastWasOperator = false;
         boolean lastWasWhiteSpace = false;
+        boolean lastWasLetter = false;
         // Iteration throght input String.
         for (int i = 0; i < length; i++) {
             c = inputValue.charAt(i);
@@ -154,9 +164,11 @@ public class Calculator {
                 lastWasDigit = true;
                 result.append(c);
                 lastWasWhiteSpace = false;
+                lastWasLetter = false;
                 continue;
             } else if (Character.isDigit(c)) {
                 lastWasDigit = true;
+                lastWasLetter = false;
                 lastWasOperator = false;
                 if (!lastWasWhiteSpace) {
                     result.append(" ");
@@ -166,6 +178,7 @@ public class Calculator {
                 continue;
             } else if (checker.isOperatorOrBracket(String.valueOf(c))) {
                 lastWasDigit = false;
+                lastWasLetter = false;
                 lastWasOperator = true;
                 if (!lastWasWhiteSpace) {
                     result.append(" ");
@@ -184,6 +197,16 @@ public class Calculator {
                 lastWasDigit = false;
                 lastWasOperator = false;
                 continue;
+            } else if (Character.isLetter(c)) {
+                lastWasDigit = false;
+                lastWasOperator = false;
+                lastWasWhiteSpace = false;
+                if (!lastWasLetter) {
+                    result.append(" ").append(c);
+                } else {
+                    result.append(c);
+                }
+                lastWasLetter = true;
             } else {
                 throw new WrongArgumentException("Element \"" + c + "\" is not recognized by the Checker");
             }
@@ -213,6 +236,15 @@ public class Calculator {
             if (checker.isDigit(temp)) {
                 // input String.
                 result.append(" ").append(temp);
+            } else if (checker.isFunction(temp)) {
+                stack.push(temp);
+            } else if (",".equals(temp)) {
+                do {
+                    stackOper = stack.pop();
+                    if (!checker.isLeftBracket(stackOper)) {
+                        result.append(" ").append(stackOper);
+                    }
+                } while (!stack.isEmpty() && !checker.isLeftBracket(stackOper));
             } else if (checker.isOperator(temp)) {
                 // 1) until the top of the stack is an operator, o2 such that:
                 // O1 is the total or left-total and its sequence
@@ -221,7 +253,8 @@ public class Calculator {
                 // Is less than o2,
                 // Remove O2 from the stack and add it to the output queue;
                 // 2) o1 put on the stack operators.
-                while (!stack.isEmpty() && checker.isOperator(stackOper = stack.peek())) {
+                while (!stack.isEmpty() && checker.isOperator(stack.peek())) {
+                    stackOper = stack.peek();
                     if (checker.isLeftAssociativity(stackOper) && (checker.compareOperators(stackOper, temp) >= 0)) {
                         stack.pop();
                         result.append(" ").append(stackOper);
@@ -245,9 +278,14 @@ public class Calculator {
                 // Left bracket oil (and right too)
                 do {
                     temp = stack.pop();
-                    result.append(" ").append(temp);
-                } while (!checker.isLeftBracket(stack.peek()));
-                stack.pop();
+                    if (!checker.isLeftBracket(temp)) {
+                        result.append(" ").append(temp);
+                    }
+                } while (!checker.isLeftBracket(temp));
+
+                if (!stack.isEmpty() && checker.isFunction(stack.peek())) {
+                    result.append(" ").append(stack.pop());
+                }
             } else {
                 // If there is anything that can be recognized ....
                 throw new WrongArgumentException("Element \"" + temp + "\" is not recognized by the Checker");
@@ -268,8 +306,9 @@ public class Calculator {
      * @param result Input RPN String
      * @return value as {@code java.math.BigDecimal}
      * @throws WrongArgumentException
+     * @throws NoSuchFunctionFound
      */
-    private BigDecimal getResult(String result) throws WrongArgumentException {
+    private BigDecimal getResult(String result) throws WrongArgumentException, NoSuchFunctionFound {
         String[] factors = result.trim().split(" ");
         Deque<String> stack = new LinkedList<String>();
         String temp = null;
@@ -282,17 +321,23 @@ public class Calculator {
                 stack.push(temp);
             } else if (checker.isOperator(temp)) {
                 var1 = stack.pop();
-                var2 = stack.pop();
+                if (!stack.isEmpty()) {
+                    var2 = stack.pop();
+                } else {
+                    var2 = "0.0";
+                }
                 value = executioner.executeOperator(temp, var2, var1, roundingMode);
+                stack.push(value.toPlainString());
+            } else if (checker.isFunction(temp)) {
+                int count = checker.getFunctionParamsCount(temp);
+                String[] table = new String[count];
+                for (int j = 0; j < count; j++) {
+                    table[j] = stack.pop();
+                }
+                value = executioner.executeFunction(temp, roundingMode, table);
                 stack.push(value.toPlainString());
             }
         }
         return new BigDecimal(stack.pop());
     }
-
-
-    public RoundingMode getRoundingMode() {
-        return this.roundingMode;
-    }
-
 }
