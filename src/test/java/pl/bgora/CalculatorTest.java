@@ -94,6 +94,12 @@ public class CalculatorTest {
     }
 
     @Test
+    public void testOneAddWhiteSpaceSinus() throws RPNException {
+        BigDecimal result = calc.calculate("1 + sin(2)");
+        assertEquals(BigDecimal.valueOf(1+Math.sin(2)), result);
+    }
+
+    @Test
     public void testSinusPlus() throws RPNException {
         BigDecimal result = calc.calculate("sin(1+1)");
         assertEquals(BigDecimal.valueOf(Math.sin(1 + 1)), result);
@@ -127,6 +133,12 @@ public class CalculatorTest {
     public void testCtgMinus5Zeros() throws RPNException {
         BigDecimal result = calc.calculate("ctg(-1.65091)");
         assertEquals(BigDecimal.valueOf(1.00 / Math.tan(-1.65091)), result);
+    }
+
+    @Test
+    public void testAddTousands() throws RPNException {
+        BigDecimal result = calc.calculate("12 000 + 15");
+        assertEquals(BigDecimal.valueOf(12015), result);
     }
 
     @Test(expected = RPNException.class)

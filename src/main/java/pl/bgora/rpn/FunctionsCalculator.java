@@ -76,45 +76,45 @@ class FunctionsCalculator extends Calculator {
         StringBuilder result = new StringBuilder();
         String inputValue = input.trim();
         int length = inputValue.length();
-        char c = 0;
+        char character = 0;
         boolean lastWasDigit = false;
         boolean lastWasOperator = false;
         boolean lastWasWhiteSpace = false;
         boolean lastWasLetter = false;
         // Iteration throght input String.
         for (int i = 0; i < length; i++) {
-            c = inputValue.charAt(i);
-            if ((Character.isDigit(c) || c == '.' || c == ',') && (lastWasDigit || !lastWasOperator)) {
+            character = inputValue.charAt(i);
+            if ((Character.isDigit(character) || character == '.' || character == ',') && (lastWasDigit || !lastWasOperator)) {
                 //for BigDecimal
-                if (c == ',') {
-                    c = '.';
+                if (character == ',') {
+                    character = '.';
                 }
                 lastWasDigit = true;
-                result.append(c);
+                result.append(character);
                 lastWasWhiteSpace = false;
                 lastWasLetter = false;
                 continue;
-            } else if (Character.isDigit(c)) {
+            } else if (Character.isDigit(character)) {
                 lastWasDigit = true;
                 lastWasLetter = false;
                 lastWasOperator = false;
                 if (!lastWasWhiteSpace) {
                     result.append(" ");
                 }
-                result.append(c);
+                result.append(character);
                 lastWasWhiteSpace = false;
                 continue;
-            } else if (checker.isOperatorOrBracket(String.valueOf(c))) {
+            } else if (checker.isOperatorOrBracket(String.valueOf(character))) {
                 lastWasDigit = false;
                 lastWasLetter = false;
                 lastWasOperator = true;
                 if (!lastWasWhiteSpace) {
                     result.append(" ");
                 }
-                result.append(c);
+                result.append(character);
                 lastWasWhiteSpace = false;
                 continue;
-            } else if (Character.isWhitespace(c)) {
+            } else if (Character.isWhitespace(character)) {
                 // Check Next digit, if it is digit then
                 // erase whitespace
                 // and place digit ex.: 12 456 -> 12456
@@ -125,18 +125,18 @@ class FunctionsCalculator extends Calculator {
                 lastWasDigit = false;
                 lastWasOperator = false;
                 continue;
-            } else if (Character.isLetter(c)) {
+            } else if (Character.isLetter(character)) {
                 lastWasDigit = false;
                 lastWasOperator = false;
-                lastWasWhiteSpace = false;
-                if (!lastWasLetter) {
-                    result.append(" ").append(c);
+                if (!lastWasLetter && !lastWasWhiteSpace) {
+                    result.append(" ").append(character);
                 } else {
-                    result.append(c);
+                    result.append(character);
                 }
+                lastWasWhiteSpace = false;
                 lastWasLetter = true;
             } else {
-                throw new WrongArgumentException("Element \"" + c + "\" is not recognized by the Checker");
+                throw new WrongArgumentException("Element \"" + character + "\" is not recognized by the Checker");
             }
         }
 
