@@ -37,11 +37,7 @@ public interface RPNChecking {
 
     int compareOperators(String c1, String c2);
 
-    default boolean isFunction(String input) {
-        return false;
-    }
+    boolean isFunction(String input);
 
-    default int getFunctionParamsCount(String functionName) {
-        return 0;
-    }
+    int getFunctionParamsCount(String functionName);
 }
