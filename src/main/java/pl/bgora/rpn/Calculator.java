@@ -200,12 +200,12 @@ public class Calculator {
             } else if (Character.isLetter(c)) {
                 lastWasDigit = false;
                 lastWasOperator = false;
-                lastWasWhiteSpace = false;
-                if (!lastWasLetter) {
+                if (!lastWasLetter && !lastWasWhiteSpace) {
                     result.append(" ").append(c);
                 } else {
                     result.append(c);
                 }
+                lastWasWhiteSpace = false;
                 lastWasLetter = true;
             } else {
                 throw new WrongArgumentException("Element \"" + c + "\" is not recognized by the Checker");
