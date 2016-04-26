@@ -16,7 +16,6 @@
 
 
 # RPNLibrary
-Java RPNLibrary
 <a href="https://travis-ci.org/bartlomiej-gora/RPNLibrary">
 <img alt="build:passed" src="https://travis-ci.org/bartlomiej-gora/RPNLibrary.svg">
 </a>
