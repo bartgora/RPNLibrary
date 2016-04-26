@@ -17,6 +17,7 @@
 
 # RPNLibrary
 Java RPNLibrary
+<img alt="build:passed" src="https://travis-ci.org/bartlomiej-gora/RPNLibrary.svg">
 
 Simple RPN Library for Java, just use Calculator.getCalculator() to get instance, 
 and next calc.calculate(expression) to calulate.
