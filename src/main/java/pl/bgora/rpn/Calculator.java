@@ -33,7 +33,7 @@ import java.util.LinkedList;
  *
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  */
-public class Calculator {
+public class Calculator implements CalculatorInterface {
 
 
     protected RPNChecking checker;
@@ -129,6 +129,7 @@ public class Calculator {
      * @throws NoSuchFunctionFound
      * @see pl.bgora.rpn.Calculator#calculate(java.lang.String)
      */
+    @Override
     public BigDecimal calculate(final String input) throws WrongArgumentException, NoSuchFunctionFound {
         final String temp = prepareInput(input);
         final String result = createRPN(temp);

@@ -17,8 +17,12 @@
  */
 package pl.bgora.rpn.advanced;
 
+import pl.bgora.rpn.CalculatorInterface;
+import pl.bgora.rpn.exceptions.NoSuchFunctionFound;
+import pl.bgora.rpn.exceptions.WrongArgumentException;
+
+import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -26,20 +30,21 @@ import java.util.Map;
  *
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  */
-public class AdvancedCalculator {
+public class AdvancedCalculator implements CalculatorInterface {
 
-    private Map<String, AbstractRPNArithmeticFunction> functions;
+    private Map<String, AbstractFunctionStrategy> functions;
+    private Map<String, AbstractOperatorStrategy> operators;
     private RoundingMode roundingMode;
 
-    AdvancedCalculator(RoundingMode mode, Map<String, AbstractRPNArithmeticFunction> functions) {
+    AdvancedCalculator(RoundingMode mode, Map<String, AbstractFunctionStrategy> functions, Map<String, AbstractOperatorStrategy> operators) {
         this.functions = functions;
-
+        this.roundingMode = mode;
+        this.operators = operators;
     }
 
 
-    public static AdvancedCalculator createDefaultAdvancedCalculator() {
-        Map<String, AbstractRPNArithmeticFunction> functions = new HashMap<String, AbstractRPNArithmeticFunction>();
-        return new AdvancedCalculator(RoundingMode.HALF_EVEN, functions);
+    @Override
+    public BigDecimal calculate(String input) throws WrongArgumentException, NoSuchFunctionFound {
+        return null;
     }
-
 }

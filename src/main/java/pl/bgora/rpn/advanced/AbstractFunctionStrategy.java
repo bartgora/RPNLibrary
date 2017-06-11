@@ -29,7 +29,7 @@ import java.math.RoundingMode;
  *
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  */
-public abstract class AbstractRPNArithmeticFunction {
+public abstract class AbstractFunctionStrategy {
 
     private String name;
 
@@ -44,7 +44,7 @@ public abstract class AbstractRPNArithmeticFunction {
      * @param name       function name
      * @param paramCount Parameters count
      */
-    public AbstractRPNArithmeticFunction(String name, int paramCount, RoundingMode roundingMode) {
+    public AbstractFunctionStrategy(String name, int paramCount, RoundingMode roundingMode) {
         this.name = name;
         this.paramCount = paramCount;
         this.roundingMode = roundingMode;
@@ -71,7 +71,7 @@ public abstract class AbstractRPNArithmeticFunction {
 
 
     /**
-     * Executes underlying arithmetic function writen in java.
+     * Executes underlying arithmetic function written in java.
      *
      * @param params Inpout param - A Table of Number, passed as string from Calculator.
      * @return BigDecimal object with resulting value.
@@ -83,8 +83,8 @@ public abstract class AbstractRPNArithmeticFunction {
      */
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof AbstractRPNArithmeticFunction) {
-            AbstractRPNArithmeticFunction rpn = (AbstractRPNArithmeticFunction) obj;
+        if (obj instanceof AbstractFunctionStrategy) {
+            AbstractFunctionStrategy rpn = (AbstractFunctionStrategy) obj;
             return (name != null ? name.equals(rpn.name) : name == rpn.name) && paramCount == rpn.paramCount;
         }
         return false;
