@@ -27,7 +27,7 @@ import java.util.Map;
  *
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  */
-class DefaultChecker implements RPNChecking {
+public class DefaultChecker implements RPNChecking {
 
     private Map<String, Integer> operators;
 
