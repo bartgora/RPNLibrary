@@ -24,7 +24,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 
-class DefaultExecutioner implements RPNExecuting {
+public class DefaultExecutioner implements RPNExecuting {
 
 
     @Override
