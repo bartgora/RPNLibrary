@@ -116,7 +116,7 @@ public class Calculator implements CalculatorInterface {
      * @param executioner Object iplementing RPNExecuting - used for executing operations on input.
      * @param mode        Rounding mode for arithmetic operations.
      */
-    Calculator(RPNChecking checker, RPNExecuting executioner, RoundingMode mode) {
+    protected Calculator(RPNChecking checker, RPNExecuting executioner, RoundingMode mode) {
         this.checker = checker;
         this.executioner = executioner;
         this.roundingMode = mode;
@@ -293,7 +293,6 @@ public class Calculator implements CalculatorInterface {
             }
         }
         // End of entry, empty the stack.
-        temp = null;
         while (!stack.isEmpty()) {
             result.append(" ").append(stack.pop());
         }

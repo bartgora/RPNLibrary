@@ -28,7 +28,7 @@ import java.math.RoundingMode;
 public class SinusFunctionStrategy extends AbstractFunctionStrategy {
 
     public SinusFunctionStrategy(String name, int paramCount, RoundingMode mode) {
-        super(name, paramCount, mode);
+        super("sin", 1, mode);
     }
 
     /**

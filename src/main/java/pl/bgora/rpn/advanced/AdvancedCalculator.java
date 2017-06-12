@@ -17,34 +17,20 @@
  */
 package pl.bgora.rpn.advanced;
 
+import pl.bgora.rpn.Calculator;
+import pl.bgora.rpn.CalculatorEngine;
 import pl.bgora.rpn.CalculatorInterface;
-import pl.bgora.rpn.exceptions.NoSuchFunctionFound;
-import pl.bgora.rpn.exceptions.WrongArgumentException;
 
-import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.Map;
 
 /**
  * Advanced Calculator.
  *
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  */
-public class AdvancedCalculator implements CalculatorInterface {
+public class AdvancedCalculator extends Calculator implements CalculatorInterface {
 
-    private Map<String, AbstractFunctionStrategy> functions;
-    private Map<String, AbstractOperatorStrategy> operators;
-    private RoundingMode roundingMode;
-
-    AdvancedCalculator(RoundingMode mode, Map<String, AbstractFunctionStrategy> functions, Map<String, AbstractOperatorStrategy> operators) {
-        this.functions = functions;
-        this.roundingMode = mode;
-        this.operators = operators;
-    }
-
-
-    @Override
-    public BigDecimal calculate(String input) throws WrongArgumentException, NoSuchFunctionFound {
-        return null;
+    AdvancedCalculator(RoundingMode mode, CalculatorEngine calculatorEngine) {
+        super(calculatorEngine, calculatorEngine, mode);
     }
 }

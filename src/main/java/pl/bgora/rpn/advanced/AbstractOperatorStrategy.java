@@ -5,15 +5,16 @@ import java.math.BigDecimal;
 public abstract class AbstractOperatorStrategy {
 
     private String operator;
-
+    private int priority;
     private volatile int hashCode = 0;
 
 
     public abstract BigDecimal execute(String first, String second);
 
 
-    public AbstractOperatorStrategy(String operator) {
+    public AbstractOperatorStrategy(String operator, int priority) {
         this.operator = operator;
+        this.priority = priority;
     }
 
     /**
@@ -43,5 +44,9 @@ public abstract class AbstractOperatorStrategy {
 
     public String getOperator() {
         return operator;
+    }
+
+    public int getPriority() {
+        return priority;
     }
 }

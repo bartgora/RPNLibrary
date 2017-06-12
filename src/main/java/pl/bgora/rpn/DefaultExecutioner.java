@@ -27,6 +27,8 @@ import java.math.RoundingMode;
 public class DefaultExecutioner implements RPNExecuting {
 
 
+    public static final String ONE = "1.0000000000000000";
+
     @Override
     public BigDecimal executeOperator(String operator, String var1, String var2, RoundingMode mode) throws WrongArgumentException {
         assert operator != null : "Operator cannot be null!";
@@ -89,7 +91,7 @@ public class DefaultExecutioner implements RPNExecuting {
         } else if ("ctg".equals(functionName)) {
             BigDecimal dec = new BigDecimal(arguments[0]);
             BigDecimal tan = BigDecimal.valueOf(Math.tan(dec.doubleValue()));
-            BigDecimal one = new BigDecimal("1.0000000000000000");
+            BigDecimal one = new BigDecimal(ONE);
             return one.divide(tan, mode);
         }
         throw new NoSuchFunctionFound("There is no function named " + functionName);

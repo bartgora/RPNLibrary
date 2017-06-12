@@ -4,11 +4,11 @@ import pl.bgora.rpn.advanced.AbstractOperatorStrategy;
 
 import java.math.BigDecimal;
 
-public class AddOperatorStrategy extends AbstractOperatorStrategy {
+public class MinusOperatorStrategy extends AbstractOperatorStrategy {
 
 
-    public AddOperatorStrategy(String operator) {
-        super("+", 1);
+    public MinusOperatorStrategy(String operator) {
+        super("-", 1);
     }
 
     @Override
@@ -20,6 +20,6 @@ public class AddOperatorStrategy extends AbstractOperatorStrategy {
     private BigDecimal add(String var1, String var2) {
         BigDecimal big1 = new BigDecimal(var1);
         BigDecimal big2 = new BigDecimal(var2);
-        return big1.add(big2);
+        return big1.subtract(big2);
     }
 }
