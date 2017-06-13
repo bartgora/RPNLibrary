@@ -17,33 +17,27 @@
  * Contact: bartlomiej.gora@gmail.com
  */
 
-package pl.bgora.rpn.exceptions;
+package pl.bgora.rpn;
+
+import pl.bgora.rpn.exceptions.NoSuchFunctionFound;
+import pl.bgora.rpn.exceptions.WrongArgumentException;
+
+import java.math.BigDecimal;
 
 /**
- * Base Exception class for all exceptions in RPNLibrary project.
+ * Interface for the Calculator
  *
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  */
-public class RPNException extends Exception {
+public interface CalculatorInterface {
 
-
-    private static final long serialVersionUID = 601457826479138831L;
 
     /**
-     * Contructor
-     * Creates class instance
+     * Calculates RPN String into BigDecimal Object.
+     * @param input Input String
+     * @return The Calculated value
+     * @throws WrongArgumentException If the argument was illegal, like leter, or other unrecognized element
+     * @throws NoSuchFunctionFound If there is no function with given name
      */
-    public RPNException() {
-        super();
-    }
-
-    /**
-     * Contructor.
-     * Creates class instance
-     *
-     * @param message Exception Message
-     */
-    public RPNException(String message) {
-        super(message);
-    }
+    BigDecimal calculate(String input) throws WrongArgumentException, NoSuchFunctionFound;
 }

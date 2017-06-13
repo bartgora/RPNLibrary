@@ -17,33 +17,20 @@
  * Contact: bartlomiej.gora@gmail.com
  */
 
-package pl.bgora.rpn.exceptions;
+package pl.bgora.rpn;
+
+import pl.bgora.rpn.factory.AbstractCalculatorFactory;
 
 /**
- * Base Exception class for all exceptions in RPNLibrary project.
+ * Creates DefaultCalculator instance
  *
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
+ * @see Calculator
  */
-public class RPNException extends Exception {
+public class DefaultCalculatorFactory extends AbstractCalculatorFactory {
 
-
-    private static final long serialVersionUID = 601457826479138831L;
-
-    /**
-     * Contructor
-     * Creates class instance
-     */
-    public RPNException() {
-        super();
-    }
-
-    /**
-     * Contructor.
-     * Creates class instance
-     *
-     * @param message Exception Message
-     */
-    public RPNException(String message) {
-        super(message);
+    @Override
+    public CalculatorInterface createCalulator() {
+        return Calculator.createDefaultCalculator();
     }
 }

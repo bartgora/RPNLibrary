@@ -17,33 +17,29 @@
  * Contact: bartlomiej.gora@gmail.com
  */
 
-package pl.bgora.rpn.exceptions;
+package pl.bgora.rpn.advanced.functions;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 /**
- * Base Exception class for all exceptions in RPNLibrary project.
+ * Cotangent function
  *
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  */
-public class RPNException extends Exception {
+public class CtgFunctionStrategy extends AbstractFunctionStrategy {
 
+    public static final String ONE = "1.0000000000000000";
 
-    private static final long serialVersionUID = 601457826479138831L;
-
-    /**
-     * Contructor
-     * Creates class instance
-     */
-    public RPNException() {
-        super();
+    public CtgFunctionStrategy() {
+        super("ctg", 1, RoundingMode.HALF_EVEN);
     }
 
-    /**
-     * Contructor.
-     * Creates class instance
-     *
-     * @param message Exception Message
-     */
-    public RPNException(String message) {
-        super(message);
+    @Override
+    public BigDecimal execute(String... params) {
+        BigDecimal dec = new BigDecimal(params[0]);
+        BigDecimal tan = BigDecimal.valueOf(Math.tan(dec.doubleValue()));
+        BigDecimal one = new BigDecimal(ONE);
+        return one.divide(tan, roundingMode);
     }
 }

@@ -16,34 +16,27 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * Contact: bartlomiej.gora@gmail.com
  */
+package pl.bgora.rpn.advanced.functions;
 
-package pl.bgora.rpn.exceptions;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 /**
- * Base Exception class for all exceptions in RPNLibrary project.
+ * Cosine function
  *
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  */
-public class RPNException extends Exception {
+public class CosinusFunctionStrategy extends AbstractFunctionStrategy {
 
-
-    private static final long serialVersionUID = 601457826479138831L;
-
-    /**
-     * Contructor
-     * Creates class instance
-     */
-    public RPNException() {
-        super();
+    public CosinusFunctionStrategy() {
+        super("cos", 1, RoundingMode.HALF_EVEN);
     }
 
-    /**
-     * Contructor.
-     * Creates class instance
-     *
-     * @param message Exception Message
-     */
-    public RPNException(String message) {
-        super(message);
+    @Override
+    public BigDecimal execute(String... params) {
+        BigDecimal param = new BigDecimal(params[0]);
+        BigDecimal result = BigDecimal.valueOf(Math.cos(param.doubleValue()));
+        return result;
     }
+
 }

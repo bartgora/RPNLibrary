@@ -17,33 +17,25 @@
  * Contact: bartlomiej.gora@gmail.com
  */
 
-package pl.bgora.rpn.exceptions;
+package pl.bgora.rpn.advanced.functions;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 /**
- * Base Exception class for all exceptions in RPNLibrary project.
+ * Tangent function
  *
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  */
-public class RPNException extends Exception {
+public class TanFunctionStrategy extends AbstractFunctionStrategy {
 
-
-    private static final long serialVersionUID = 601457826479138831L;
-
-    /**
-     * Contructor
-     * Creates class instance
-     */
-    public RPNException() {
-        super();
+    public TanFunctionStrategy() {
+        super("tg", 1, RoundingMode.HALF_EVEN);
     }
 
-    /**
-     * Contructor.
-     * Creates class instance
-     *
-     * @param message Exception Message
-     */
-    public RPNException(String message) {
-        super(message);
+    @Override
+    public BigDecimal execute(String... params) {
+        BigDecimal dec = new BigDecimal(params[0]);
+        return BigDecimal.valueOf(Math.tan(dec.doubleValue()));
     }
 }

@@ -17,33 +17,30 @@
  * Contact: bartlomiej.gora@gmail.com
  */
 
-package pl.bgora.rpn.exceptions;
+package pl.bgora.rpn;
+
+import pl.bgora.rpn.advanced.functions.AbstractFunctionStrategy;
+import pl.bgora.rpn.advanced.operators.AbstractOperatorStrategy;
 
 /**
- * Base Exception class for all exceptions in RPNLibrary project.
+ * Interface tha declares additional operations for new CalculationEngine
  *
- * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
+ * @see RPNChecking
+ * @see RPNExecuting
  */
-public class RPNException extends Exception {
-
-
-    private static final long serialVersionUID = 601457826479138831L;
+public interface CalculationEngine extends RPNExecuting, RPNChecking {
 
     /**
-     * Contructor
-     * Creates class instance
-     */
-    public RPNException() {
-        super();
-    }
-
-    /**
-     * Contructor.
-     * Creates class instance
+     * Adds new operator strategy to the Engine
      *
-     * @param message Exception Message
+     * @param abstractOperatorStrategy
      */
-    public RPNException(String message) {
-        super(message);
-    }
+    void addOperator(final AbstractOperatorStrategy abstractOperatorStrategy);
+
+    /**
+     * Adds new function startegy to the engine
+     *
+     * @param abstractFunctionStrategy
+     */
+    void addFunctionStartegy(final AbstractFunctionStrategy abstractFunctionStrategy);
 }

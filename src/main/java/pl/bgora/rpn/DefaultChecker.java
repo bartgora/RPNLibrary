@@ -1,20 +1,22 @@
 /*
-    RPNCalculator - Reverse Polish Notation mathematics Library
-    Copyright (C) 2011  Bartłomiej "Black007" Góra
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * RPNCalculator - Reverse Polish Notation mathematics Library
+ * Copyright (C) 2011  Bartłomiej Góra
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Contact: bartlomiej.gora@gmail.com
  */
+
 package pl.bgora.rpn;
 
 import java.util.HashMap;
@@ -22,7 +24,7 @@ import java.util.Map;
 
 /**
  * This implementation Extends DefaultChecker with arithmetic funstions.
- * <p/>
+ *
  * Provided functions are: sin, cos, tg, ctg
  *
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
@@ -100,10 +102,7 @@ public class DefaultChecker implements RPNChecking {
      */
     @Override
     public boolean isLeftAssociativity(String c) {
-        if ("*".equals(c) || "+".equals(c) || "/".equals(c) || "-".equals(c)) {
-            return true;
-        }
-        return false;
+        return ("*".equals(c) || "+".equals(c) || "/".equals(c) || "-".equals(c));
     }
 
     /**
@@ -119,15 +118,15 @@ public class DefaultChecker implements RPNChecking {
      * java.lang.String)
      */
     @Override
-    public int compareOperators(String c1, String c2) {
-        Integer i1 = operators.get(c1);
-        Integer i2 = operators.get(c2);
+    public int compareOperators(String operato1, String operator2) {
+        Integer i1 = operators.get(operato1);
+        Integer i2 = operators.get(operator2);
         return i1 - i2;
     }
 
     /**
      * Checks if input is one of the recognized functions.
-     * <p/>
+     *
      * Recognized functions are: sin, cos, tg, ctg.
      *
      * @see pl.bgora.rpn.RPNChecking#isFunction(java.lang.String)

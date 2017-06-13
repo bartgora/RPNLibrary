@@ -17,33 +17,23 @@
  * Contact: bartlomiej.gora@gmail.com
  */
 
-package pl.bgora.rpn.exceptions;
+package pl.bgora.rpn.advanced.operators;
 
-/**
- * Base Exception class for all exceptions in RPNLibrary project.
- *
- * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
- */
-public class RPNException extends Exception {
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
+public class AddOperatorStrategy extends AbstractOperatorStrategy {
 
 
-    private static final long serialVersionUID = 601457826479138831L;
-
-    /**
-     * Contructor
-     * Creates class instance
-     */
-    public RPNException() {
-        super();
+    public AddOperatorStrategy() {
+        super("+", 1, RoundingMode.HALF_EVEN);
     }
 
-    /**
-     * Contructor.
-     * Creates class instance
-     *
-     * @param message Exception Message
-     */
-    public RPNException(String message) {
-        super(message);
+    @Override
+    public BigDecimal execute(String first, String second) {
+        BigDecimal big1 = new BigDecimal(first);
+        BigDecimal big2 = new BigDecimal(second);
+        return big1.add(big2);
     }
+
 }

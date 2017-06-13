@@ -1,19 +1,20 @@
 /*
-    RPNCalculator - Reverse Polish Notation mathematics Library
-    Copyright (C) 2011  Bartłomiej "Black007" Góra
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * RPNCalculator - Reverse Polish Notation mathematics Library
+ * Copyright (C) 2011  Bartłomiej Góra
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Contact: bartlomiej.gora@gmail.com
  */
 
 package pl.bgora.rpn;
@@ -29,11 +30,11 @@ import java.util.LinkedList;
 
 /**
  * RPN Calculator Implementation with functions.
- * <p/>
+ * This Implementation uses Dijkstra Algorithm to create Reverse Polish Notation.
  *
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  */
-public class Calculator {
+public class Calculator implements CalculatorInterface {
 
 
     protected RPNChecking checker;
@@ -49,12 +50,12 @@ public class Calculator {
      * {@code java.math.RoundingMode.HALF_EVEN} for calculations. Fallowing is
      * explanation of this: A tie-breaking rule that is even less biased is
      * round half to even, namely
-     * <p/>
+     *
      * If the fraction of y is 0.5, then q is the even integer nearest to y.
-     * <p/>
+     *
      * Thus, for example, +23.5 becomes +24, +22.5 becomes +22, 22.5 becomes
      * 22, and 23.5 becomes 24.
-     * <p/>
+     *
      * This method also treats positive and negative values symmetrically, and
      * therefore is free of overall bias if the original numbers are positive or
      * negative with equal probability. In addition, for most reasonable
@@ -63,15 +64,15 @@ public class Calculator {
      * the latter are all positive (or all negative). However, this rule will
      * still introduce a positive bias for even numbers (including zero), and a
      * negative bias for the odd ones.
-     * <p/>
+     *
      * This variant of the round-to-nearest method is also called unbiased
      * rounding (ambiguously, and a bit abusively), convergent rounding,
      * statistician's rounding, Dutch rounding, Gaussian rounding, or bankers'
      * rounding. This is widely used in bookkeeping.
-     * <p/>
+     *
      * This is the default rounding mode used in IEEE 754 computing functions
      * and operators.
-     * {@link http://en.wikipedia.org/wiki/Rounding#Round_half_to_even}
+     * @see  <a href="http://en.wikipedia.org/wiki/Rounding#Round_half_to_even"></a>
      *
      * @return Calculator Object.
      * @see java.math.RoundingMode
@@ -116,19 +117,13 @@ public class Calculator {
      * @param executioner Object iplementing RPNExecuting - used for executing operations on input.
      * @param mode        Rounding mode for arithmetic operations.
      */
-    Calculator(RPNChecking checker, RPNExecuting executioner, RoundingMode mode) {
+    protected Calculator(RPNChecking checker, RPNExecuting executioner, RoundingMode mode) {
         this.checker = checker;
         this.executioner = executioner;
         this.roundingMode = mode;
     }
 
-
-    /**
-     * Calculates RPN String into BigDecimal Object.
-     *
-     * @throws NoSuchFunctionFound
-     * @see pl.bgora.rpn.Calculator#calculate(java.lang.String)
-     */
+    @Override
     public BigDecimal calculate(final String input) throws WrongArgumentException, NoSuchFunctionFound {
         final String temp = prepareInput(input);
         final String result = createRPN(temp);
@@ -224,10 +219,10 @@ public class Calculator {
      *                                unsupported opertians)
      */
     private String createRPN(String input) throws WrongArgumentException {
-        input = input.trim();
+        String trimmed = input.trim();
         StringBuilder result = new StringBuilder();
         Deque<String> stack = new LinkedList<String>();
-        String[] factors = input.split(" ");
+        String[] factors = trimmed.split(" ");
         int length = factors.length;
         String temp = null;
         String stackOper = null;
@@ -292,7 +287,6 @@ public class Calculator {
             }
         }
         // End of entry, empty the stack.
-        temp = null;
         while (!stack.isEmpty()) {
             result.append(" ").append(stack.pop());
         }

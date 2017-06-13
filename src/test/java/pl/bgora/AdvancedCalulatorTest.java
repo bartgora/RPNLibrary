@@ -21,7 +21,8 @@ package pl.bgora;
 
 import org.junit.Before;
 import org.junit.Test;
-import pl.bgora.rpn.Calculator;
+import pl.bgora.rpn.CalculatorInterface;
+import pl.bgora.rpn.advanced.AdvancedCalculatorFactory;
 import pl.bgora.rpn.exceptions.RPNException;
 
 import java.math.BigDecimal;
@@ -29,13 +30,14 @@ import java.math.RoundingMode;
 
 import static org.junit.Assert.assertEquals;
 
-public class CalculatorTest {
+public class AdvancedCalulatorTest {
 
-    private Calculator calc;
+    private CalculatorInterface calc;
 
     @Before
     public void setUp() throws Exception {
-        calc = Calculator.createDefaultCalculator();
+        AdvancedCalculatorFactory advancedCalculatorFactory = new AdvancedCalculatorFactory();
+        calc = advancedCalculatorFactory.createCalulator();
     }
 
     @Test
@@ -115,7 +117,7 @@ public class CalculatorTest {
     @Test
     public void testOneAddWhiteSpaceSinus() throws RPNException {
         BigDecimal result = calc.calculate("1 + sin(2)");
-        assertEquals(BigDecimal.valueOf(1+Math.sin(2)), result);
+        assertEquals(BigDecimal.valueOf(1 + Math.sin(2)), result);
     }
 
     @Test
