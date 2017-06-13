@@ -200,10 +200,10 @@ public class Calculator implements CalculatorInterface {
      *                                unsupported opertians)
      */
     private String createRPN(String input) throws WrongArgumentException {
-        input = input.trim();
+        String trimmed = input.trim();
         StringBuilder result = new StringBuilder();
         Deque<String> stack = new LinkedList<String>();
-        String[] factors = input.split(" ");
+        String[] factors = trimmed.split(" ");
         int length = factors.length;
         String temp = null;
         String stackOper = null;
