@@ -1,21 +1,24 @@
-package pl.bgora.rpn.advanced;
+package pl.bgora.rpn.advanced.operators;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public abstract class AbstractOperatorStrategy {
 
     private String operator;
     private int priority;
     private volatile int hashCode = 0;
+    protected RoundingMode roundingMode;
+
+
+    public AbstractOperatorStrategy(String operator, int priority, RoundingMode roundingMode) {
+        this.operator = operator;
+        this.priority = priority;
+        this.roundingMode = roundingMode;
+    }
 
 
     public abstract BigDecimal execute(String first, String second);
-
-
-    public AbstractOperatorStrategy(String operator, int priority) {
-        this.operator = operator;
-        this.priority = priority;
-    }
 
     /**
      * @see java.lang.Object#equals(java.lang.Object)
@@ -48,5 +51,9 @@ public abstract class AbstractOperatorStrategy {
 
     public int getPriority() {
         return priority;
+    }
+
+    public RoundingMode getRoundingMode() {
+        return roundingMode;
     }
 }

@@ -1,6 +1,6 @@
 /*
     RPNCalculator - Reverse Polish Notation mathematics Library
-    Copyright (C) 2011  Bartłomiej "Black007" Góra
+    Copyright (C) 2011  Bartłomiej Góra
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -15,7 +15,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package pl.bgora.rpn.advanced;
+package pl.bgora.rpn.advanced.functions;
 
 
 import java.math.BigDecimal;
@@ -37,7 +37,7 @@ public abstract class AbstractFunctionStrategy {
 
     private volatile int hashCode = 0;
 
-    private RoundingMode roundingMode;
+    protected RoundingMode roundingMode;
 
 
     /**
@@ -69,6 +69,10 @@ public abstract class AbstractFunctionStrategy {
         return paramCount;
     }
 
+
+    public RoundingMode getRoundingMode() {
+        return roundingMode;
+    }
 
     /**
      * Executes underlying arithmetic function written in java.

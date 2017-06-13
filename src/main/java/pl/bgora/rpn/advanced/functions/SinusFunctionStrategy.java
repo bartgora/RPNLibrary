@@ -1,6 +1,6 @@
 /*
     RPNCalculator - Reverse Polish Notation mathematics Library
-    Copyright (C) 2011  Bartłomiej "Black007" Góra
+    Copyright (C) 2011  Bartłomiej Góra
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -17,8 +17,6 @@
  */
 package pl.bgora.rpn.advanced.functions;
 
-import pl.bgora.rpn.advanced.AbstractFunctionStrategy;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
@@ -27,8 +25,8 @@ import java.math.RoundingMode;
  */
 public class SinusFunctionStrategy extends AbstractFunctionStrategy {
 
-    public SinusFunctionStrategy(String name, int paramCount, RoundingMode mode) {
-        super("sin", 1, mode);
+    public SinusFunctionStrategy() {
+        super("sin", 1, RoundingMode.HALF_EVEN);
     }
 
     /**

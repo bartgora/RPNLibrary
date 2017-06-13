@@ -1,7 +1,7 @@
 package pl.bgora.rpn;
 
-import pl.bgora.rpn.advanced.AbstractFunctionStrategy;
-import pl.bgora.rpn.advanced.AbstractOperatorStrategy;
+import pl.bgora.rpn.advanced.functions.AbstractFunctionStrategy;
+import pl.bgora.rpn.advanced.operators.AbstractOperatorStrategy;
 import pl.bgora.rpn.exceptions.NoSuchFunctionFound;
 import pl.bgora.rpn.exceptions.WrongArgumentException;
 
