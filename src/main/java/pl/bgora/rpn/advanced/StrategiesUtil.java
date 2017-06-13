@@ -21,11 +21,6 @@ import java.util.Map;
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  */
 public final class StrategiesUtil {
-
-    private StrategiesUtil() {
-
-    }
-
     /**
      * Default arithmetic operators
      */
@@ -57,6 +52,10 @@ public final class StrategiesUtil {
         AbstractOperatorStrategy powerOperatorStrategy = new PowerOperatorStrategy();
         DEFAULT_OPERATORS.put(powerOperatorStrategy.getOperator(), powerOperatorStrategy);
 
+    }
+
+
+    private StrategiesUtil() {
 
     }
 }
