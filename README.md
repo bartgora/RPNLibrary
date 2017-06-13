@@ -17,6 +17,9 @@
 
 
 # RPNLibrary
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/94cbf471a20048989c9b066f6ad4d414)](https://www.codacy.com/app/bartlomiej.gora/RPNLibrary?utm_source=github.com&utm_medium=referral&utm_content=bartlomiej-gora/RPNLibrary&utm_campaign=badger)
+
 <a href="https://travis-ci.org/bartlomiej-gora/RPNLibrary">
 <img alt="build:passed" src="https://travis-ci.org/bartlomiej-gora/RPNLibrary.svg">
 </a>
