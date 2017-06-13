@@ -21,7 +21,7 @@
 <a href="https://travis-ci.org/bartlomiej-gora/RPNLibrary">
 <img alt="build:passed" src="https://travis-ci.org/bartlomiej-gora/RPNLibrary.svg">
 </a>
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/94cbf471a20048989c9b066f6ad4d414)](https://www.codacy.com/app/bartlomiej.gora/RPNLibrary?utm_source=github.com&utm_medium=referral&utm_content=bartlomiej-gora/RPNLibrary&utm_campaign=badger)
+<a href="https://www.codacy.com/app/bartlomiej.gora/RPNLibrary?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bartlomiej-gora/RPNLibrary&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/94cbf471a20048989c9b066f6ad4d414"/></a>
 
 Simple RPN Library for Java, just use Calculator.getCalculator() to get instance, 
 and next calc.calculate(expression) to calulate.
