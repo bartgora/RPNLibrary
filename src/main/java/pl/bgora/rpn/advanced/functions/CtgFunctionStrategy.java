@@ -3,6 +3,11 @@ package pl.bgora.rpn.advanced.functions;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+/**
+ * Cotangent function
+ *
+ * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
+ */
 public class CtgFunctionStrategy extends AbstractFunctionStrategy {
 
     public static final String ONE = "1.0000000000000000";

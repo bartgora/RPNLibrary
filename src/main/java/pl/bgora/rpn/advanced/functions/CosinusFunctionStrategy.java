@@ -21,6 +21,8 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 /**
+ * Cosine function
+ *
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  */
 public class CosinusFunctionStrategy extends AbstractFunctionStrategy {
@@ -29,9 +31,6 @@ public class CosinusFunctionStrategy extends AbstractFunctionStrategy {
         super("cos", 1, RoundingMode.HALF_EVEN);
     }
 
-    /**
-     *
-     */
     @Override
     public BigDecimal execute(String... params) {
         BigDecimal param = new BigDecimal(params[0]);

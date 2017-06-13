@@ -3,6 +3,11 @@ package pl.bgora.rpn.advanced.functions;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+/**
+ * Tangent function
+ *
+ * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
+ */
 public class TanFunctionStrategy extends AbstractFunctionStrategy {
 
     public TanFunctionStrategy() {

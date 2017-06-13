@@ -15,9 +15,24 @@ import pl.bgora.rpn.advanced.operators.PowerOperatorStrategy;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Utility class for Default Strategies.
+ *
+ * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
+ */
 public final class StrategiesUtil {
 
+    private StrategiesUtil() {
+
+    }
+
+    /**
+     * Default arithmetic operators
+     */
     public static Map<String, AbstractOperatorStrategy> DEFAULT_OPERATORS = new HashMap<String, AbstractOperatorStrategy>();
+    /**
+     * Default Arithmetic functions
+     */
     public static Map<String, AbstractFunctionStrategy> DEFAULT_FUNCTIONS = new HashMap<String, AbstractFunctionStrategy>();
 
     static {

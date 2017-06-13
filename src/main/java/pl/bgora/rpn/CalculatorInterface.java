@@ -12,11 +12,13 @@ import java.math.BigDecimal;
  */
 public interface CalculatorInterface {
 
+
     /**
      * Calculates RPN String into BigDecimal Object.
-     *
-     * @throws NoSuchFunctionFound
-     * @see pl.bgora.rpn.Calculator#calculate(java.lang.String)
+     * @param input Input String
+     * @return The Calculated value
+     * @throws WrongArgumentException If the argument was illegal, like leter, or other unrecognized element
+     * @throws NoSuchFunctionFound If there is no function with given name
      */
     BigDecimal calculate(String input) throws WrongArgumentException, NoSuchFunctionFound;
 }

@@ -7,9 +7,35 @@
 	<groupId>pl.bgora</groupId>
 	<artifactId>RPNLibrary</artifactId>
 	<version>3.0.0</version>
-	<name>RPNLibrary</name>
+    <packaging>jar</packaging>
+
+    <name>RPNLibrary</name>
 	<description>RPN Libray for Java.</description>
-	<build>
+    <url>https://github.com/bartlomiej-gora/RPNLibrary</url>
+
+    <licenses>
+        <license>
+            <name>GNU General Public License v3.0</name>
+            <url>https://www.gnu.org/licenses/gpl-3.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Bartłomiej Góra</name>
+            <email>bartlomiej.gora@gmail.com</email>
+            <organizationUrl>https://github.com/bartlomiej-gora</organizationUrl>
+        </developer>
+    </developers>
+
+
+    <scm>
+        <connection>scm:git:git://github.com/bartlomiej-gora/RPNLibrary.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com:bartlomiej-gora/RPNLibrary.git</developerConnection>
+        <url>https://github.com/bartlomiej-gora/RPNLibrary</url>
+    </scm>
+
+    <build>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -20,7 +46,35 @@
 					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
-		</plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
 		<pluginManagement>
 			<plugins>
 			</plugins>

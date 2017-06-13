@@ -9,14 +9,35 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Map;
 
-public class CalculatorEngine extends DefaultChecker implements RPNExecuting, RPNChecking {
+/**
+ * Calculation Engine.
+ * It is a composite that Implements RPNExecuting, and RPNChecking.
+ * It uses Strategies for Operators, and Functions.
+ *
+ * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
+ * @see RPNChecking
+ * @see RPNExecuting
+ * @see DefaultChecker
+ */
+public class CalculatorEngine extends DefaultChecker implements CalculationEngine {
 
     private Map<String, AbstractOperatorStrategy> operators;
     private Map<String, AbstractFunctionStrategy> functions;
 
+    /**
+     * Default Constructor
+     */
     public CalculatorEngine() {
     }
 
+    /**
+     * Parametrized constructor.
+     * <p>
+     * Takes two maps with AbstractOperatorStrategy, and AbstractFunctionStrategy, to calculate.
+     *
+     * @param operators Map containing AbstractOperatorStrategy identified by it's operator
+     * @param functions Map containing AbstractFunctionStrategy idetfioed by it's name
+     */
     public CalculatorEngine(Map<String, AbstractOperatorStrategy> operators, Map<String, AbstractFunctionStrategy> functions) {
         this.operators = operators;
         this.functions = functions;
@@ -28,10 +49,10 @@ public class CalculatorEngine extends DefaultChecker implements RPNExecuting, RP
     }
 
     @Override
-    public int compareOperators(String c1, String c2) {
-        AbstractOperatorStrategy s1 = operators.get(c1);
-        AbstractOperatorStrategy s2 = operators.get(c2);
-        return s1.getPriority() - s2.getPriority();
+    public int compareOperators(String operato1, String operator2) {
+        AbstractOperatorStrategy strategy1 = operators.get(operato1);
+        AbstractOperatorStrategy strategy2 = operators.get(operator2);
+        return strategy1.getPriority() - strategy2.getPriority();
     }
 
     @Override
@@ -60,5 +81,15 @@ public class CalculatorEngine extends DefaultChecker implements RPNExecuting, RP
 
     public Map<String, AbstractFunctionStrategy> getFunctions() {
         return functions;
+    }
+
+    @Override
+    public void addOperator(AbstractOperatorStrategy abstractOperatorStrategy) {
+        this.operators.put(abstractOperatorStrategy.getOperator(), abstractOperatorStrategy);
+    }
+
+    @Override
+    public void addFunctionStartegy(AbstractFunctionStrategy abstractFunctionStrategy) {
+        this.functions.put(abstractFunctionStrategy.getName(), abstractFunctionStrategy);
     }
 }
