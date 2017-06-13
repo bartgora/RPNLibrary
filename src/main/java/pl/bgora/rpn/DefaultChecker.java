@@ -83,10 +83,7 @@ public class DefaultChecker implements RPNChecking {
      */
     @Override
     public boolean isLeftAssociativity(String c) {
-        if ("*".equals(c) || "+".equals(c) || "/".equals(c) || "-".equals(c)) {
-            return true;
-        }
-        return false;
+        return ("*".equals(c) || "+".equals(c) || "/".equals(c) || "-".equals(c));
     }
 
     /**
