@@ -37,19 +37,35 @@ BigDecimal result = calc.calculate("2^3*(12/6)+18/3+5.0/2");
 
 Version 3.1.0:
 
+
+
 Added package pl.bgora.rpn.advanced
 Added AdvancedCalculatorFactory
-So now you can use:
-        AdvancedCalculatorFactory advancedCalculatorFactory = new AdvancedCalculatorFactory();
-        calc = advancedCalculatorFactory.createCalulator();
+
+Maven:
+
+```
+        <dependency>
+            <groupId>com.github.bartlomiej-gora</groupId>
+            <artifactId>RPNLibrary</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+```
 
 The advanced Calculator works with CalculationEngine, which uses strategy pattern to run.
 please see:
 AbstractOperatorStrategy
 AbstractFunctionStrategy
 
-Example:
+Example 1:
+===
 
+```java
+        AdvancedCalculatorFactory advancedCalculatorFactory = new AdvancedCalculatorFactory();
+        calc = advancedCalculatorFactory.createCalulator();
+```
+Example 2:
+===
 Asume that you want to add a function max(number, number), which will return greater value, You will have to extend
 AbstractFunctionStrategy like this:
 
@@ -77,3 +93,4 @@ And then you can add your function like that:
         advancedCalculatorFactory.getDefaultEngine().addFunctionStartegy(new MaxFunctionStrategy());
         calc = advancedCalculatorFactory.createCalulator();
 ```
+
