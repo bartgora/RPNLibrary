@@ -47,35 +47,35 @@ public interface RPNChecking {
      * Checks if parameter is left bracket
      *
      * @param input String parameter
-     * @return
+     * @return true if left bracket
      */
     boolean isLeftBracket(String input);
 
     /**
      * Checks if parameter is right bracket
      * @param input String parameter
-     * @return
+     * @return true if rigth bracket
      */
     boolean isRightBracket(String input);
 
     /**
      * Checks if parameter is bracket or arithmetic operator
      * @param c String parameter
-     * @return
+     * @return true if operator or bracket
      */
     boolean isOperatorOrBracket(String c);
 
     /**
      * Checks if parametr is lest associated
      * @param c String parameter
-     * @return
+     * @return true if left associativity
      */
     boolean isLeftAssociativity(String c);
 
     /**
      * Checks if parametr is right associated
      * @param c String parameter
-     * @return
+     * @return true if right associativity
      */
     boolean isRightAssociativity(String c);
 
