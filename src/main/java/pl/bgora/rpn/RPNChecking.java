@@ -30,59 +30,61 @@ public interface RPNChecking {
     /**
      * Checks the parameter is digit
      *
-     * @param input
-     * @return
+     * @param input String parameter
+     * @return true if digit
      */
     boolean isDigit(String input);
 
     /**
      * Checks if the parameter is arithmetic operator
      *
-     * @param input
-     * @return
+     * @param input String parameter
+     * @return true if operator
      */
     boolean isOperator(String input);
 
     /**
      * Checks if parameter is left bracket
      *
-     * @param input
+     * @param input String parameter
      * @return
      */
     boolean isLeftBracket(String input);
 
     /**
      * Checks if parameter is right bracket
-     * @param input
+     * @param input String parameter
      * @return
      */
     boolean isRightBracket(String input);
 
     /**
      * Checks if parameter is bracket or arithmetic operator
-     * @param c
+     * @param c String parameter
      * @return
      */
     boolean isOperatorOrBracket(String c);
 
     /**
      * Checks if parametr is lest associated
-     * @param c
+     * @param c String parameter
      * @return
      */
     boolean isLeftAssociativity(String c);
 
     /**
      * Checks if parametr is right associated
-     * @param c
+     * @param c String parameter
      * @return
      */
     boolean isRightAssociativity(String c);
 
     /**
-     * @param operato1
-     * @param operator2
-     * @return
+     * Compare opertors due to their hierarchy
+     *
+     * @param operato1 String First operator
+     * @param operator2 String Second operator
+     * @return int 0 if equals, more than 0 if first is before second less tahn 0 if second is before first
      */
     int compareOperators(String operato1, String operator2);
 
@@ -90,7 +92,7 @@ public interface RPNChecking {
      * Checks if given String is function name
      *
      * @param input function name
-     * @return
+     * @return true if the toke is function
      */
     boolean isFunction(String input);
 
