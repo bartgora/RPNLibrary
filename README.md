@@ -90,7 +90,8 @@ And then you can add your function like that:
 ```java
         CalculatorInterface calc;
         AdvancedCalculatorFactory advancedCalculatorFactory = new AdvancedCalculatorFactory();
-        advancedCalculatorFactory.getDefaultEngine().addFunctionStartegy(new MaxFunctionStrategy());
-        calc = advancedCalculatorFactory.createCalulator();
+        CalculatorEngine engine = advancedCalculatorFactory.getDefaultEngine();
+        engine.addFunctionStartegy(new MaxFunctionStrategy());
+        calc = advancedCalculatorFactory.createCalulator(engine);
 ```
 
