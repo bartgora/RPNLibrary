@@ -35,3 +35,45 @@ example:
 BigDecimal result = calc.calculate("2^3*(12/6)+18/3+5.0/2");
 
 
+Version 3.1.0:
+
+Added package pl.bgora.rpn.advanced
+Added AdvancedCalculatorFactory
+So now you can use:
+        AdvancedCalculatorFactory advancedCalculatorFactory = new AdvancedCalculatorFactory();
+        calc = advancedCalculatorFactory.createCalulator();
+
+The advanced Calculator works with CalculationEngine, which uses strategy pattern to run.
+please see:
+AbstractOperatorStrategy
+AbstractFunctionStrategy
+
+Example:
+
+Asume that you want to add a function max(number, number), which will return greater value, You will have to extend
+AbstractFunctionStrategy like this:
+
+```java
+public class MaxFunctionStrategy extends AbstractFunctionStrategy {
+    public MaxFunctionStrategy() {
+        super("max", 2, RoundingMode.HALF_EVEN);
+    }
+
+    @Override
+    public BigDecimal execute(String... params) {
+        String first = params[0];
+        String second = params[1];
+        //do you calculation here
+        return ///result;
+    }
+}
+```
+
+And then you can add your function like that:
+
+```java
+        CalculatorInterface calc;
+        AdvancedCalculatorFactory advancedCalculatorFactory = new AdvancedCalculatorFactory();
+        advancedCalculatorFactory.getDefaultEngine().addFunctionStartegy(new MaxFunctionStrategy());
+        calc = advancedCalculatorFactory.createCalulator();
+```
