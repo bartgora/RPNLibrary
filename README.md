@@ -64,7 +64,7 @@ public class MaxFunctionStrategy extends AbstractFunctionStrategy {
         String first = params[0];
         String second = params[1];
         //do you calculation here
-        return null;
+        return ///result;
     }
 }
 ```
