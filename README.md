@@ -35,3 +35,16 @@ example:
 BigDecimal result = calc.calculate("2^3*(12/6)+18/3+5.0/2");
 
 
+Version 3.1.0:
+
+Added apckage pl.bgora.rpn.advanced
+Added AdvancedCalculatorFactory
+So now you can use:
+        AdvancedCalculatorFactory advancedCalculatorFactory = new AdvancedCalculatorFactory();
+        calc = advancedCalculatorFactory.createCalulator();
+
+The advanced Calculator works with CalculationEngine, which uses strategy pattern to run.
+please see:
+AbstractOperatorStrategy
+AbstractFunctionStrategy
+
