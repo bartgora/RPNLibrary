@@ -43,7 +43,7 @@ Added package pl.bgora.rpn.advanced
 Added AdvancedCalculatorFactory
 
 Maven:
-
+===
 ```
         <dependency>
             <groupId>com.github.bartlomiej-gora</groupId>
