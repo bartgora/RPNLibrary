@@ -53,7 +53,7 @@ Example:
 Asume that you want to add a function max(number, number), which will return greater value, You will have to extend
 AbstractFunctionStrategy like this:
 
-
+```
 public class MaxFunctionStrategy extends AbstractFunctionStrategy {
     public MaxFunctionStrategy() {
         super("max", 2, RoundingMode.HALF_EVEN);
@@ -67,3 +67,4 @@ public class MaxFunctionStrategy extends AbstractFunctionStrategy {
         return null;
     }
 }
+```
