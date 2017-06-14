@@ -68,3 +68,11 @@ public class MaxFunctionStrategy extends AbstractFunctionStrategy {
     }
 }
 ```
+
+And then you can add your function like that:
+
+```java
+        AdvancedCalculatorFactory advancedCalculatorFactory = new AdvancedCalculatorFactory();
+        advancedCalculatorFactory.getDefaultEngine().addFunctionStartegy(new MaxFunctionStrategy());
+        calc = advancedCalculatorFactory.createCalulator();
+```
