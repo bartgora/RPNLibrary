@@ -98,7 +98,7 @@ public interface RPNChecking {
 
     /**
      * Returns parameters count for the given function
-     * @param functionName
+     * @param functionName function name
      * @return parameters count
      */
     int getFunctionParamsCount(String functionName);
