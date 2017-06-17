@@ -26,6 +26,8 @@
 
 [![Maven Central](https://img.shields.io/badge/maven%20central-3.1.0-brightgreen.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.bartlomiej-gora/RPNLibrary)
 
+[![codecov](https://codecov.io/gh/bartlomiej-gora/RPNLibrary/branch/master/graph/badge.svg)](https://codecov.io/gh/bartlomiej-gora/RPNLibrary)
+
 Description:
 ====
 Simple RPN (Reverse Polish Notation) Library for Java.<br>
