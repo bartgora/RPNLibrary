@@ -57,7 +57,7 @@ Maven:
 
 Changelog:
 ====
-###Version 3.1.0:
+### Version 3.1.0:
 
 
 
@@ -70,14 +70,14 @@ please see:
 AbstractOperatorStrategy
 AbstractFunctionStrategy
 
-###Example 1:
+### Example 1:
 
 
 ```java
         AdvancedCalculatorFactory advancedCalculatorFactory = new AdvancedCalculatorFactory();
         calc = advancedCalculatorFactory.createCalulator();
 ```
-###Example 2:
+### Example 2:
 
 Asume that you want to add a function max(number, number), which will return greater value, You will have to extend
 AbstractFunctionStrategy like this:
