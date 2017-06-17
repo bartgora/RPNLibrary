@@ -50,12 +50,12 @@ public class Calculator implements CalculatorInterface {
      * {@code java.math.RoundingMode.HALF_EVEN} for calculations. Fallowing is
      * explanation of this: A tie-breaking rule that is even less biased is
      * round half to even, namely
-     *
+     * <p>
      * If the fraction of y is 0.5, then q is the even integer nearest to y.
-     *
+     * <p>
      * Thus, for example, +23.5 becomes +24, +22.5 becomes +22, 22.5 becomes
      * 22, and 23.5 becomes 24.
-     *
+     * <p>
      * This method also treats positive and negative values symmetrically, and
      * therefore is free of overall bias if the original numbers are positive or
      * negative with equal probability. In addition, for most reasonable
@@ -64,17 +64,17 @@ public class Calculator implements CalculatorInterface {
      * the latter are all positive (or all negative). However, this rule will
      * still introduce a positive bias for even numbers (including zero), and a
      * negative bias for the odd ones.
-     *
+     * <p>
      * This variant of the round-to-nearest method is also called unbiased
      * rounding (ambiguously, and a bit abusively), convergent rounding,
      * statistician's rounding, Dutch rounding, Gaussian rounding, or bankers'
      * rounding. This is widely used in bookkeeping.
-     *
+     * <p>
      * This is the default rounding mode used in IEEE 754 computing functions
      * and operators.
-     * @see  <a href="http://en.wikipedia.org/wiki/Rounding#Round_half_to_even"></a>
      *
      * @return Calculator Object.
+     * @see <a href="http://en.wikipedia.org/wiki/Rounding#Round_half_to_even"></a>
      * @see java.math.RoundingMode
      */
     public static Calculator createDefaultCalculator() {
