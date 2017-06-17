@@ -25,6 +25,7 @@
 <img src="https://api.codacy.com/project/badge/Grade/94cbf471a20048989c9b066f6ad4d414"/></a>
 <a href="https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22RPNLibrary%22">
 <img alt="3.1.0" src="https://img.shields.io/maven-central/v/org.apache.maven/apache-maven.svg">
+</a>
 
 Simple RPN Library for Java, just use Calculator.getCalculator() to get instance, 
 and next calc.calculate(expression) to calulate.
