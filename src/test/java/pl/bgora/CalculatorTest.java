@@ -115,7 +115,7 @@ public class CalculatorTest {
     @Test
     public void testOneAddWhiteSpaceSinus() throws RPNException {
         BigDecimal result = calc.calculate("1 + sin(2)");
-        assertEquals(BigDecimal.valueOf(1+Math.sin(2)), result);
+        assertEquals(BigDecimal.valueOf(1 + Math.sin(2)), result);
     }
 
     @Test
