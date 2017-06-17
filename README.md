@@ -21,26 +21,30 @@
 <a href="https://travis-ci.org/bartlomiej-gora/RPNLibrary">
 <img alt="build:passed" src="https://travis-ci.org/bartlomiej-gora/RPNLibrary.svg">
 </a>
-<a href="https://www.codacy.com/app/bartlomiej.gora/RPNLibrary?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bartlomiej-gora/RPNLibrary&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/94cbf471a20048989c9b066f6ad4d414"/></a>
+<a href="https://www.codacy.com/app/bartlomiej.gora/RPNLibrary?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bartlomiej-gora/RPNLibrary&amp;utm_campaign=Badge_Grade">
+<img src="https://api.codacy.com/project/badge/Grade/94cbf471a20048989c9b066f6ad4d414"/></a>
 
-Simple RPN Library for Java, just use Calculator.getCalculator() to get instance, 
-and next calc.calculate(expression) to calulate.
+[![Maven Central](https://img.shields.io/badge/maven%20central-3.1.0-brightgreen.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.bartlomiej-gora/RPNLibrary)
+
+[![codecov](https://codecov.io/gh/bartlomiej-gora/RPNLibrary/branch/master/graph/badge.svg)](https://codecov.io/gh/bartlomiej-gora/RPNLibrary)
+
+Description:
+====
+Simple RPN (Reverse Polish Notation) Library for Java.<br>
+It is based on Dijkstra Algorithm. (https://en.wikipedia.org/wiki/Reverse_Polish_notation)
+
+
 
 functionalities:
 +,-,*,/ with ()
 Sin, cos, tg, ctg.
 
 example: 
-
+```java
+Calculator.createDefaultCalculator();
 BigDecimal result = calc.calculate("2^3*(12/6)+18/3+5.0/2");
+```
 
-
-Version 3.1.0:
-
-
-
-Added package pl.bgora.rpn.advanced
-Added AdvancedCalculatorFactory
 
 Maven:
 ===
@@ -52,20 +56,31 @@ Maven:
         </dependency>
 ```
 
+
+Changelog:
+====
+### Version 3.1.0:
+
+
+
+Added package pl.bgora.rpn.advanced
+Added AdvancedCalculatorFactory
+
+
 The advanced Calculator works with CalculationEngine, which uses strategy pattern to run.
 please see:
 AbstractOperatorStrategy
 AbstractFunctionStrategy
 
-Example 1:
-===
+### Example 1:
+
 
 ```java
         AdvancedCalculatorFactory advancedCalculatorFactory = new AdvancedCalculatorFactory();
         calc = advancedCalculatorFactory.createCalulator();
 ```
-Example 2:
-===
+### Example 2:
+
 Asume that you want to add a function max(number, number), which will return greater value, You will have to extend
 AbstractFunctionStrategy like this:
 
@@ -79,8 +94,8 @@ public class MaxFunctionStrategy extends AbstractFunctionStrategy {
     public BigDecimal execute(String... params) {
         String first = params[0];
         String second = params[1];
-        //do you calculation here
-        return ///result;
+        BigDecimal result = //do you calculation here
+        return result; //result;
     }
 }
 ```
