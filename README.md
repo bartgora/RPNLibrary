@@ -24,19 +24,23 @@
 <a href="https://www.codacy.com/app/bartlomiej.gora/RPNLibrary?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bartlomiej-gora/RPNLibrary&amp;utm_campaign=Badge_Grade">
 <img src="https://api.codacy.com/project/badge/Grade/94cbf471a20048989c9b066f6ad4d414"/></a>
 
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.bartlomiej.gora/RPNLibrary/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.bartlomiej-gora/RPNLibrary)
+[![Maven Central](https://img.shields.io/badge/maven%20central-3.1.0-brightgreen.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.bartlomiej-gora/RPNLibrary)
 
-Simple RPN (Reverse Polish Notation) Library for Java, just use Calculator.getCalculator() to get instance, 
-and next calc.calculate(expression) to calulate.
+
+Simple RPN (Reverse Polish Notation) Library for Java.
+It is based on Dijkstra Algorithm.
+
+
 
 functionalities:
 +,-,*,/ with ()
 Sin, cos, tg, ctg.
 
 example: 
-
+```java
+Calculator.createDefaultCalculator();
 BigDecimal result = calc.calculate("2^3*(12/6)+18/3+5.0/2");
-
+```
 
 Version 3.1.0:
 =====
@@ -83,7 +87,7 @@ public class MaxFunctionStrategy extends AbstractFunctionStrategy {
         String first = params[0];
         String second = params[1];
         //do you calculation here
-        return ///result;
+        return; ///result;
     }
 }
 ```
