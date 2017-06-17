@@ -26,9 +26,10 @@
 
 [![Maven Central](https://img.shields.io/badge/maven%20central-3.1.0-brightgreen.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.bartlomiej-gora/RPNLibrary)
 
-
-Simple RPN (Reverse Polish Notation) Library for Java.
-It is based on Dijkstra Algorithm.
+Description:
+====
+Simple RPN (Reverse Polish Notation) Library for Java.<br>
+It is based on Dijkstra Algorithm. (https://en.wikipedia.org/wiki/Reverse_Polish_notation)
 
 
 
@@ -42,12 +43,6 @@ Calculator.createDefaultCalculator();
 BigDecimal result = calc.calculate("2^3*(12/6)+18/3+5.0/2");
 ```
 
-Version 3.1.0:
-=====
-
-
-Added package pl.bgora.rpn.advanced
-Added AdvancedCalculatorFactory
 
 Maven:
 ===
@@ -59,20 +54,31 @@ Maven:
         </dependency>
 ```
 
+
+Changelog:
+====
+###Version 3.1.0:
+
+
+
+Added package pl.bgora.rpn.advanced
+Added AdvancedCalculatorFactory
+
+
 The advanced Calculator works with CalculationEngine, which uses strategy pattern to run.
 please see:
 AbstractOperatorStrategy
 AbstractFunctionStrategy
 
-Example 1:
-===
+###Example 1:
+
 
 ```java
         AdvancedCalculatorFactory advancedCalculatorFactory = new AdvancedCalculatorFactory();
         calc = advancedCalculatorFactory.createCalulator();
 ```
-Example 2:
-===
+###Example 2:
+
 Asume that you want to add a function max(number, number), which will return greater value, You will have to extend
 AbstractFunctionStrategy like this:
 
@@ -86,8 +92,8 @@ public class MaxFunctionStrategy extends AbstractFunctionStrategy {
     public BigDecimal execute(String... params) {
         String first = params[0];
         String second = params[1];
-        //do you calculation here
-        return; ///result;
+        BigDecimal result = //do you calculation here
+        return result; //result;
     }
 }
 ```
