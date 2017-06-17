@@ -1,6 +1,5 @@
 language: java
 install: true
-sudo: false # faster builds
 
 script: "mvn clean site"
 
