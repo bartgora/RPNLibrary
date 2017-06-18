@@ -107,4 +107,32 @@ And then you can add your function like that:
         calc = advancedCalculatorFactory.createCalulator(engine);
 ```
 
+### Example 3:
+Assume that you want to add a function max(number, number), which will return greater value, You will have to extend
+AbstractFunctionStrategy like this:
 
+```java
+public class MaxFunctionStrategy extends AbstractFunctionStrategy {
+    public MaxFunctionStrategy() {
+        super("max", 2, RoundingMode.HALF_EVEN);
+    }
+
+    @Override
+    public BigDecimal execute(String... params) {
+        String first = params[0];
+        String second = params[1];
+        BigDecimal result = //do you calculation here
+        return result; //result;
+    }
+}
+```
+
+And then you can add your function like that:
+
+```java
+        CalculatorInterface calc;
+        AdvancedCalculatorFactory advancedCalculatorFactory = new AdvancedCalculatorFactory();
+        CalculatorEngine engine = advancedCalculatorFactory.getDefaultEngine();
+        engine.addFunctionStartegy(new MaxFunctionStrategy());
+        calc = advancedCalculatorFactory.createCalulator(engine);
+```
