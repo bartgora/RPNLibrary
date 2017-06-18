@@ -1,10 +1,13 @@
 language: java
 install: true
 
+
+
 addons:
   apt:
     packages:
     - jq
+    - oracle-java8-installer
 
 script:
  - mvn clean cobertura:cobertura
