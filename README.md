@@ -112,6 +112,7 @@ And then you can add your function like that:
 
 Changing public API, so now you have to use "." in the numbers, and "," </br>
 as function parameter separators( in previous versions "." and "," were interpreted the same)
+Now you can create function Strategies, that have more than one parametes.
 
 ### Example 1:
 
