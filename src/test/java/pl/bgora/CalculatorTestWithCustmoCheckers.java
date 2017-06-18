@@ -54,8 +54,8 @@ public class CalculatorTestWithCustmoCheckers {
 
     @Test
     public void testMultiplyDouble() throws RPNException {
-        BigDecimal result = calc.calculate("2*8,59");
-        assertEquals("2*8,59", BigDecimal.valueOf(17.18), result);
+        BigDecimal result = calc.calculate("2*8.59");
+        assertEquals("2*8.59", BigDecimal.valueOf(17.18), result);
     }
 
     @Test
@@ -74,8 +74,8 @@ public class CalculatorTestWithCustmoCheckers {
 
     @Test
     public void testPowerDouble() throws RPNException {
-        BigDecimal result = calc.calculate("3,678^2");
-        assertEquals("3,678^2", new BigDecimal("13.527684"), result);
+        BigDecimal result = calc.calculate("3.678^2");
+        assertEquals("3.678^2", new BigDecimal("13.527684"), result);
     }
 
     @Test

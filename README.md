@@ -79,7 +79,9 @@ AbstractFunctionStrategy
         AdvancedCalculatorFactory advancedCalculatorFactory = new AdvancedCalculatorFactory();
         calc = advancedCalculatorFactory.createCalulator();
 ```
-### Example 2:
+
+### Version 4.0.0:
+### Example 1:
 
 Asume that you want to add a function max(number, number), which will return greater value, You will have to extend
 AbstractFunctionStrategy like this:
