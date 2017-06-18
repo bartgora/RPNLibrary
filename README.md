@@ -80,35 +80,6 @@ AbstractFunctionStrategy
         calc = advancedCalculatorFactory.createCalulator();
 ```
 
-### Version 4.0.0:
-### Example 1:
-
-Assume that you want to add a function sqrt(number), which will return The square root , You will have to extend
-AbstractFunctionStrategy like this:
-
-```java
-public class SqrtFunctionStrategy extends AbstractFunctionStrategy {
-    public SqrtFunctionStrategy() {
-        super("sqrt", 1, RoundingMode.HALF_EVEN);
-    }
-
-    @Override
-    public BigDecimal execute(String... params) {
-        return java.math.BigDecimal.valueOf(Math.sqrt(x));
-    }
-}
-```
-
-And then you can add your function like that:
-
-```java
-        CalculatorInterface calc;
-        AdvancedCalculatorFactory advancedCalculatorFactory = new AdvancedCalculatorFactory();
-        CalculatorEngine engine = advancedCalculatorFactory.getDefaultEngine();
-        engine.addFunctionStartegy(new SqrtFunctionStrategy());
-        calc = advancedCalculatorFactory.createCalulator(engine);
-```
-
 ### Example 3:
 Assume that you want to add a function max(number, number), which will return greater value, You will have to extend
 AbstractFunctionStrategy like this:
