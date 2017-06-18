@@ -81,21 +81,18 @@ AbstractFunctionStrategy
 ```
 ### Example 2:
 
-Asume that you want to add a function max(number, number), which will return greater value, You will have to extend
+Asume that you want to add a function sqrt(number), which will return The square root , You will have to extend
 AbstractFunctionStrategy like this:
 
 ```java
-public class MaxFunctionStrategy extends AbstractFunctionStrategy {
-    public MaxFunctionStrategy() {
-        super("max", 2, RoundingMode.HALF_EVEN);
+public class SqrtFunctionStrategy extends AbstractFunctionStrategy {
+    public SqrtFunctionStrategy() {
+        super("sqrt", 1, RoundingMode.HALF_EVEN);
     }
 
     @Override
     public BigDecimal execute(String... params) {
-        String first = params[0];
-        String second = params[1];
-        BigDecimal result = //do you calculation here
-        return result; //result;
+        return java.math.BigDecimal.valueOf(Math.sqrt(x));
     }
 }
 ```
@@ -106,7 +103,7 @@ And then you can add your function like that:
         CalculatorInterface calc;
         AdvancedCalculatorFactory advancedCalculatorFactory = new AdvancedCalculatorFactory();
         CalculatorEngine engine = advancedCalculatorFactory.getDefaultEngine();
-        engine.addFunctionStartegy(new MaxFunctionStrategy());
+        engine.addFunctionStartegy(new SqrtFunctionStrategy());
         calc = advancedCalculatorFactory.createCalulator(engine);
 ```
 
