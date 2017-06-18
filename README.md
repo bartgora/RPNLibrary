@@ -109,10 +109,11 @@ And then you can add your function like that:
 
 
 ### Version 4.0.0 (NOT RELEASED):
-### Example 1:
 
 Changing public API, so now you have to use "." in the numbers, and "," </br>
-as function parameter separators( in previuos versions "." and "," were interpreted the same)
+as function parameter separators( in previous versions "." and "," were interpreted the same)
+
+### Example 1:
 
 Assume that you want to add a function max(number, number), which will return greater value, You will have to extend
 AbstractFunctionStrategy like this:
