@@ -81,7 +81,7 @@ AbstractFunctionStrategy
 ```
 ### Example 2:
 
-Asume that you want to add a function sqrt(number), which will return The square root , You will have to extend
+Assume that you want to add a function sqrt(number), which will return The square root , You will have to extend
 AbstractFunctionStrategy like this:
 
 ```java
@@ -114,7 +114,7 @@ And then you can add your function like that:
 Changing public API, so now you have to use "." in the numbers, and "," </br>
 as function parameter separators( in previuos versions "." and "," were interpreted the same)
 
-Asume that you want to add a function max(number, number), which will return greater value, You will have to extend
+Assume that you want to add a function max(number, number), which will return greater value, You will have to extend
 AbstractFunctionStrategy like this:
 
 ```java
