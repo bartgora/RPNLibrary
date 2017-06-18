@@ -111,8 +111,8 @@ And then you can add your function like that:
 ### Version 4.0.0 (NOT RELEASED):
 
 Changing public API, so now you have to use "." in the numbers, and "," </br>
-as function parameter separators( in previous versions "." and "," were interpreted the same)
-Now you can create function Strategies, that have more than one parametes.
+as function parameter separators( in previous versions "." and "," were interpreted the same)</br>
+Now you can create function Strategies, that have more than one parametes.</br>
 
 ### Example 1:
 
