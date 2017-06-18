@@ -1,5 +1,5 @@
 language: java
-dist: precise
+sudo: required
 install: true
 
 script:
