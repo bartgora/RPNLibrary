@@ -79,6 +79,7 @@ pl.bgora.rpn.AbstractFunctionStrategy</br>
         AdvancedCalculatorFactory advancedCalculatorFactory = new AdvancedCalculatorFactory();
         calc = advancedCalculatorFactory.createCalulator();
 ```
+
 ### Example 2:
 
 Assume that you want to add a function sqrt(number), which will return The square root , You will have to extend

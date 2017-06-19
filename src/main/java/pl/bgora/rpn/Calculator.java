@@ -152,10 +152,6 @@ public class Calculator implements CalculatorInterface {
         for (int i = 0; i < length; i++) {
             c = inputValue.charAt(i);
             if ((Character.isDigit(c) || c == '.' || c == ',') && (lastWasDigit || !lastWasOperator)) {
-                //for BigDecimal
-                if (c == ',') {
-                    c = '.';
-                }
                 lastWasDigit = true;
                 result.append(c);
                 lastWasWhiteSpace = false;
@@ -325,8 +321,10 @@ public class Calculator implements CalculatorInterface {
             } else if (checker.isFunction(temp)) {
                 int count = checker.getFunctionParamsCount(temp);
                 String[] table = new String[count];
+                String params = stack.pop();
+                String[] paramsTable = params.split(",");
                 for (int j = 0; j < count; j++) {
-                    table[j] = stack.pop();
+                    table[j] = paramsTable[j];
                 }
                 value = executioner.executeFunction(temp, roundingMode, table);
                 stack.push(value.toPlainString());
