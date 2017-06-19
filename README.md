@@ -41,7 +41,7 @@ Sin, cos, tg, ctg.
 
 example: 
 ```java
-Calculator.createDefaultCalculator();
+pl.bgora.rpn.Calculator calc = Calculator.createDefaultCalculator();
 BigDecimal result = calc.calculate("2^3*(12/6)+18/3+5.0/2");
 ```
 
@@ -64,13 +64,13 @@ Changelog:
 
 
 Added package pl.bgora.rpn.advanced
-Added AdvancedCalculatorFactory
+Added pl.bgora.rpn.advanced.AdvancedCalculatorFactory
 
 
 The advanced Calculator works with CalculationEngine, which uses strategy pattern to run.
 please see:
-AbstractOperatorStrategy
-AbstractFunctionStrategy
+pl.bgora.rpn.AbstractOperatorStrategy
+pl.bgora.rpn.AbstractFunctionStrategy
 
 ### Example 1:
 
