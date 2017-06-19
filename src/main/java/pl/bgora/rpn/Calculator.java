@@ -152,10 +152,6 @@ public class Calculator implements CalculatorInterface {
         for (int i = 0; i < length; i++) {
             c = inputValue.charAt(i);
             if ((Character.isDigit(c) || c == '.' || c == ',') && (lastWasDigit || !lastWasOperator)) {
-                //for BigDecimal
-//                if (c == ',') {
-//                    c = '.';
-//                }
                 lastWasDigit = true;
                 result.append(c);
                 lastWasWhiteSpace = false;
