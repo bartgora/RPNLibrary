@@ -63,14 +63,14 @@ Changelog:
 
 
 
-Added package pl.bgora.rpn.advanced
-Added pl.bgora.rpn.advanced.AdvancedCalculatorFactory
+Added package pl.bgora.rpn.advanced</br>
+Added pl.bgora.rpn.advanced.AdvancedCalculatorFactory</br>
 
 
 The advanced Calculator works with CalculationEngine, which uses strategy pattern to run.
-please see:
-pl.bgora.rpn.AbstractOperatorStrategy
-pl.bgora.rpn.AbstractFunctionStrategy
+please see:</br>
+pl.bgora.rpn.AbstractOperatorStrategy</br>
+pl.bgora.rpn.AbstractFunctionStrategy</br>
 
 ### Example 1:
 
