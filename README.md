@@ -1,4 +1,4 @@
-    RPNCalculator - Reverse Polish Notation mathematics Library
+    RPNLibrary - Reverse Polish Notation Library
     Copyright (C) 2011  Bartłomiej Góra
 
     This program is free software: you can redistribute it and/or modify
@@ -79,6 +79,7 @@ pl.bgora.rpn.AbstractFunctionStrategy</br>
         AdvancedCalculatorFactory advancedCalculatorFactory = new AdvancedCalculatorFactory();
         calc = advancedCalculatorFactory.createCalulator();
 ```
+
 ### Example 2:
 
 Assume that you want to add a function sqrt(number), which will return The square root , You will have to extend

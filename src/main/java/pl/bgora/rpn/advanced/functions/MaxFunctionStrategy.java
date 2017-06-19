@@ -22,24 +22,19 @@ package pl.bgora.rpn.advanced.functions;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-/**
- * Sinus function
- * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
- */
-public class SinusFunctionStrategy extends AbstractFunctionStrategy {
-
-    public SinusFunctionStrategy() {
-        super("sin", 1, RoundingMode.HALF_EVEN);
+public class MaxFunctionStrategy extends AbstractFunctionStrategy {
+    /**
+     * Default Constructor.
+     * Subclass need to provide required fields.
+     */
+    public MaxFunctionStrategy() {
+        super("max", 2, RoundingMode.HALF_EVEN);
     }
 
-    /**
-     *
-     */
     @Override
     public BigDecimal execute(String... params) {
-        BigDecimal param = new BigDecimal(params[0]);
-        BigDecimal result = BigDecimal.valueOf(Math.sin(param.doubleValue()));
-        return result;
+        BigDecimal param1 = new BigDecimal(params[0]);
+        BigDecimal param2 = new BigDecimal(params[1]);
+        return param1.max(param2);
     }
-
 }
