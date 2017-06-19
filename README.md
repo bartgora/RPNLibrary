@@ -1,4 +1,4 @@
-    RPNCalculator - Reverse Polish Notation mathematics Library
+    RPNLibrary - Reverse Polish Notation Library
     Copyright (C) 2011  Bartłomiej Góra
 
     This program is free software: you can redistribute it and/or modify
