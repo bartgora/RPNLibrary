@@ -17,23 +17,24 @@
  * Contact: bartlomiej.gora@gmail.com
  */
 
-package pl.bgora.rpn.advanced;
+package pl.bgora.rpn.advanced.functions;
 
-import pl.bgora.rpn.CalculationEngine;
-import pl.bgora.rpn.Calculator;
-import pl.bgora.rpn.CalculatorEngine;
-import pl.bgora.rpn.CalculatorInterface;
-
+import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-/**
- * Advanced Calculator.
- *
- * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
- */
-public class AdvancedCalculator extends Calculator implements CalculatorInterface {
+public class MinFunctionStrategy extends AbstractFunctionStrategy {
+    /**
+     * Default Constructor.
+     * Subclass need to provide required fields.
+     */
+    public MinFunctionStrategy() {
+        super("min", 2, RoundingMode.HALF_EVEN);
+    }
 
-    AdvancedCalculator(RoundingMode mode, CalculationEngine calculatorEngine) {
-        super(calculatorEngine, calculatorEngine, mode);
+    @Override
+    public BigDecimal execute(String... params) {
+        BigDecimal param1 = new BigDecimal(params[0]);
+        BigDecimal param2 = new BigDecimal(params[1]);
+        return param1.min(param2);
     }
 }

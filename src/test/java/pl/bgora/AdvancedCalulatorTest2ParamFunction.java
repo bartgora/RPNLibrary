@@ -21,10 +21,8 @@ package pl.bgora;
 
 import org.junit.Before;
 import org.junit.Test;
-import pl.bgora.rpn.CalculationEngine;
 import pl.bgora.rpn.CalculatorInterface;
 import pl.bgora.rpn.advanced.AdvancedCalculatorFactory;
-import pl.bgora.rpn.advanced.functions.MaxFunctionStrategy;
 import pl.bgora.rpn.exceptions.NoSuchFunctionFound;
 import pl.bgora.rpn.exceptions.WrongArgumentException;
 
@@ -39,8 +37,6 @@ public class AdvancedCalulatorTest2ParamFunction {
     @Before
     public void setUp() throws Exception {
         AdvancedCalculatorFactory advancedCalculatorFactory = new AdvancedCalculatorFactory();
-        CalculationEngine engine = advancedCalculatorFactory.getDefaultEngine();
-        engine.addFunctionStartegy(new MaxFunctionStrategy());
         calc = advancedCalculatorFactory.createCalulator();
     }
 
@@ -49,5 +45,35 @@ public class AdvancedCalulatorTest2ParamFunction {
     public void testMax() throws WrongArgumentException, NoSuchFunctionFound {
         BigDecimal result = calc.calculate("max(10, 8)");
         assertEquals(BigDecimal.valueOf(10), result);
+    }
+
+    @Test
+    public void testMaxPlus10() throws WrongArgumentException, NoSuchFunctionFound {
+        BigDecimal result = calc.calculate("max(10, 8) + 10");
+        assertEquals(BigDecimal.valueOf(20), result);
+    }
+
+    @Test
+    public void testMaxMinus5() throws WrongArgumentException, NoSuchFunctionFound {
+        BigDecimal result = calc.calculate("max(10, 8) -5");
+        assertEquals(BigDecimal.valueOf(5), result);
+    }
+
+    @Test
+    public void testMin() throws WrongArgumentException, NoSuchFunctionFound {
+        BigDecimal result = calc.calculate("min(10, 8)");
+        assertEquals(BigDecimal.valueOf(8), result);
+    }
+
+    @Test
+    public void testMinPlus10() throws WrongArgumentException, NoSuchFunctionFound {
+        BigDecimal result = calc.calculate("min(10, 8) + 10");
+        assertEquals(BigDecimal.valueOf(18), result);
+    }
+
+    @Test
+    public void testMinMinus5() throws WrongArgumentException, NoSuchFunctionFound {
+        BigDecimal result = calc.calculate("min(10, 8) -5");
+        assertEquals(BigDecimal.valueOf(3), result);
     }
 }

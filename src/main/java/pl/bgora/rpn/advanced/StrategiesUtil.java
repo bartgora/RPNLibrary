@@ -19,11 +19,7 @@
 
 package pl.bgora.rpn.advanced;
 
-import pl.bgora.rpn.advanced.functions.AbstractFunctionStrategy;
-import pl.bgora.rpn.advanced.functions.CosinusFunctionStrategy;
-import pl.bgora.rpn.advanced.functions.CtgFunctionStrategy;
-import pl.bgora.rpn.advanced.functions.SinusFunctionStrategy;
-import pl.bgora.rpn.advanced.functions.TanFunctionStrategy;
+import pl.bgora.rpn.advanced.functions.*;
 import pl.bgora.rpn.advanced.operators.AbstractOperatorStrategy;
 import pl.bgora.rpn.advanced.operators.AddOperatorStrategy;
 import pl.bgora.rpn.advanced.operators.DivideOperatorStrategy;
@@ -58,6 +54,10 @@ public final class StrategiesUtil {
         DEFAULT_FUNCTIONS.put(tanFunctionStrategy.getName(), tanFunctionStrategy);
         AbstractFunctionStrategy ctgFunctionStrategy = new CtgFunctionStrategy();
         DEFAULT_FUNCTIONS.put(ctgFunctionStrategy.getName(), ctgFunctionStrategy);
+        AbstractFunctionStrategy maxFunctionStrategy = new MaxFunctionStrategy();
+        DEFAULT_FUNCTIONS.put(maxFunctionStrategy.getName(), maxFunctionStrategy);
+        AbstractFunctionStrategy minFunctionStrategy = new MinFunctionStrategy();
+        DEFAULT_FUNCTIONS.put(minFunctionStrategy.getName(), minFunctionStrategy);
 
 
         AbstractOperatorStrategy addOperatorStrategy = new AddOperatorStrategy();
