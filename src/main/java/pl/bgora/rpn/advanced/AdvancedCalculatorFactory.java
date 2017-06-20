@@ -19,6 +19,7 @@
 
 package pl.bgora.rpn.advanced;
 
+import pl.bgora.rpn.CalculationEngine;
 import pl.bgora.rpn.CalculatorEngine;
 import pl.bgora.rpn.CalculatorInterface;
 import pl.bgora.rpn.factory.AbstractCalculatorFactory;
@@ -43,13 +44,14 @@ public class AdvancedCalculatorFactory extends AbstractCalculatorFactory {
      * @param engine CalculatorEngine instance
      * @return AdvanceCalculator
      */
-    public CalculatorInterface createCalulator(CalculatorEngine engine) {
+    public CalculatorInterface createCalulator(CalculationEngine engine) {
         return new AdvancedCalculator(RoundingMode.HALF_UP, engine);
     }
 
 
     /**
      * Return default CalculatorEngine
+     *
      * @return CalculatorEngine
      */
     public CalculatorEngine getDefaultEngine() {
