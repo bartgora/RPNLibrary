@@ -21,11 +21,8 @@ package pl.bgora;
 
 import org.junit.Before;
 import org.junit.Test;
-import pl.bgora.rpn.CalculationEngine;
 import pl.bgora.rpn.CalculatorInterface;
 import pl.bgora.rpn.advanced.AdvancedCalculatorFactory;
-import pl.bgora.rpn.advanced.functions.MaxFunctionStrategy;
-import pl.bgora.rpn.advanced.functions.MinFunctionStrategy;
 import pl.bgora.rpn.exceptions.NoSuchFunctionFound;
 import pl.bgora.rpn.exceptions.WrongArgumentException;
 
