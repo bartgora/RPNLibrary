@@ -19,7 +19,9 @@
 
 package com.github.rpnlibrary;
 
+import com.github.rpnlibrary.exceptions.NoSuchFunctionFound;
 import com.github.rpnlibrary.exceptions.RPNException;
+import com.github.rpnlibrary.exceptions.WrongArgumentException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -162,5 +164,11 @@ public class CalculatorTest {
     @Test(expected = RPNException.class)
     public void shouldThrowRPNException() throws RPNException {
         calc.calculate("aaaaa");
+    }
+
+    @Test
+    public void testBrackets() throws WrongArgumentException, NoSuchFunctionFound {
+        BigDecimal result = calc.calculate("10 * (5+2)");
+        assertEquals(BigDecimal.valueOf(70), result);
     }
 }

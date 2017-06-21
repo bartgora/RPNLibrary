@@ -22,11 +22,13 @@ package com.github.rpnlibrary.advanced.functions;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+/**
+ * Min Function - returns lesser number from two
+ *
+ * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
+ */
 public class MinFunctionStrategy extends AbstractFunctionStrategy {
-    /**
-     * Default Constructor.
-     * Subclass need to provide required fields.
-     */
+
     public MinFunctionStrategy() {
         super("min", 2, RoundingMode.HALF_EVEN);
     }

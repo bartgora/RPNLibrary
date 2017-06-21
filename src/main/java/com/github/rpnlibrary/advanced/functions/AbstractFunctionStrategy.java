@@ -83,7 +83,7 @@ public abstract class AbstractFunctionStrategy {
     /**
      * Executes underlying arithmetic function written in java.
      *
-     * @param params Inpout param - A Table of Number, passed as string from Calculator.
+     * @param params Input param - A Table of Number, passed as string from Calculator.
      * @return BigDecimal object with resulting value.
      */
     public abstract BigDecimal execute(String... params);
@@ -95,7 +95,7 @@ public abstract class AbstractFunctionStrategy {
     public boolean equals(Object obj) {
         if (obj instanceof AbstractFunctionStrategy) {
             AbstractFunctionStrategy rpn = (AbstractFunctionStrategy) obj;
-            return (name != null ? name.equals(rpn.name) : name == rpn.name) && paramCount == rpn.paramCount;
+            return (name != null ? name.equals(rpn.name) : false) && paramCount == rpn.paramCount;
         }
         return false;
     }

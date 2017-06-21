@@ -24,6 +24,7 @@ import com.github.rpnlibrary.advanced.functions.CosinusFunctionStrategy;
 import com.github.rpnlibrary.advanced.functions.CtgFunctionStrategy;
 import com.github.rpnlibrary.advanced.functions.MaxFunctionStrategy;
 import com.github.rpnlibrary.advanced.functions.MinFunctionStrategy;
+import com.github.rpnlibrary.advanced.functions.PowerFunctionStrategy;
 import com.github.rpnlibrary.advanced.functions.SinusFunctionStrategy;
 import com.github.rpnlibrary.advanced.functions.TanFunctionStrategy;
 import com.github.rpnlibrary.advanced.operators.AbstractOperatorStrategy;
@@ -64,7 +65,8 @@ public final class StrategiesUtil {
         DEFAULT_FUNCTIONS.put(maxFunctionStrategy.getName(), maxFunctionStrategy);
         AbstractFunctionStrategy minFunctionStrategy = new MinFunctionStrategy();
         DEFAULT_FUNCTIONS.put(minFunctionStrategy.getName(), minFunctionStrategy);
-
+        AbstractFunctionStrategy powerFunctionStrategy = new PowerFunctionStrategy();
+        DEFAULT_FUNCTIONS.put(powerFunctionStrategy.getName(), powerFunctionStrategy);
 
         AbstractOperatorStrategy addOperatorStrategy = new AddOperatorStrategy();
         DEFAULT_OPERATORS.put(addOperatorStrategy.getOperator(), addOperatorStrategy);

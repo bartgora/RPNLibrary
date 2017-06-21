@@ -1,5 +1,5 @@
 /*
- * RPNLibrary - Reverse Polish Notation Library
+ * RPNLibrary - Reverse Polish NotationLibrary
  * Copyright (C) 2011  Bartłomiej Góra
  *
  * This program is free software: you can redistribute it and/or modify
@@ -23,20 +23,21 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 /**
- * Max function - return greater value from given two.
+ * Math Power function.
+ * Takes two number, and power first by the second
  *
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  */
-public class MaxFunctionStrategy extends AbstractFunctionStrategy {
+public class PowerFunctionStrategy extends AbstractFunctionStrategy {
 
-    public MaxFunctionStrategy() {
-        super("max", 2, RoundingMode.HALF_EVEN);
+    public PowerFunctionStrategy() {
+        super("pow", 2, RoundingMode.HALF_EVEN);
     }
 
     @Override
     public BigDecimal execute(String... params) {
         BigDecimal param1 = new BigDecimal(params[0]);
         BigDecimal param2 = new BigDecimal(params[1]);
-        return param1.max(param2);
+        return param1.pow(param2.intValue());
     }
 }
