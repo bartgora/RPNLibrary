@@ -113,8 +113,8 @@ public class Calculator implements CalculatorInterface {
     /**
      * Constructor Creates an instance of the class.
      *
-     * @param checker     Object that implementa RPNChecking - Used for checking operations in input.
-     * @param executioner Object iplementing RPNExecuting - used for executing operations on input.
+     * @param checker     Object implementing RPNChecking - Used for checking operations in input.
+     * @param executioner Object implementing RPNExecuting - used for executing operations on input.
      * @param mode        Rounding mode for arithmetic operations.
      */
     protected Calculator(RPNChecking checker, RPNExecuting executioner, RoundingMode mode) {
@@ -137,7 +137,7 @@ public class Calculator implements CalculatorInterface {
      * @param input Input string.
      * @return Formatted String.
      * @throws WrongArgumentException Thrown if the input is incorrect (Incorrect format, or
-     *                                unsupported opertians)
+     *                                unsupported operations)
      */
     private String prepareInput(String input) throws WrongArgumentException {
         StringBuilder result = new StringBuilder();
@@ -148,10 +148,10 @@ public class Calculator implements CalculatorInterface {
         boolean lastWasOperator = false;
         boolean lastWasWhiteSpace = false;
         boolean lastWasLetter = false;
-        // Iteration throght input String.
+        // Iteration thought input String.
         for (int i = 0; i < length; i++) {
             c = inputValue.charAt(i);
-            if ((Character.isDigit(c) || c == '.' || c == ',') && (lastWasDigit || !lastWasOperator)) {
+            if (isDigitOrSeparator(c) && (lastWasDigit || !lastWasOperator)) {
                 lastWasDigit = true;
                 result.append(c);
                 lastWasWhiteSpace = false;
@@ -204,6 +204,10 @@ public class Calculator implements CalculatorInterface {
         }
 
         return result.toString().trim();
+    }
+
+    private boolean isDigitOrSeparator(char c) {
+        return Character.isDigit(c) || c == '.' || c == ',';
     }
 
     /**

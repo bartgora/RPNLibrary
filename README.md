@@ -25,7 +25,7 @@
 <img src="https://api.codacy.com/project/badge/Grade/94cbf471a20048989c9b066f6ad4d414"/></a>
 <a href="https://www.codacy.com/app/bartlomiej.gora/RPNLibrary?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bartlomiej-gora/RPNLibrary&amp;utm_campaign=Badge_Coverage"><img src="https://api.codacy.com/project/badge/Coverage/94cbf471a20048989c9b066f6ad4d414"/></a>
 
-[![Maven Central](https://img.shields.io/badge/maven%20central-3.1.0-brightgreen.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.bartlomiej-gora/RPNLibrary)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.bartlomiej-gora/RPNLibrary/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.bartlomiej-gora/RPNLibrary)
 
 
 Description:
@@ -137,3 +137,23 @@ And then you can add your function like that:
         engine.addFunctionStartegy(new MaxFunctionStrategy());
         calc = advancedCalculatorFactory.createCalulator(engine);
 ```
+
+### Version 3.2.0:
+
+<font color = "red"><b>IMPORTANT:</b></font></br>
+Changed package names from
+```java
+    pl.bgora.rpn
+```
+ to 
+ ```java
+ com.github.rpnlibrary
+ ```
+  
+  <b>Fixed bug, that prevented from exucint functions with multiple parameters.</b>
+  
+  <b>New functions:</b></br>
+  max()</br>
+  min()</br>
+  power()</br>
+  fib()</br>
