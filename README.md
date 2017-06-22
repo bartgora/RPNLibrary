@@ -147,7 +147,7 @@ Changed package names from
 ```
  to 
  ```java
- com.github.rpnlibrary
+ com.github.bgora.rpnlibrary
  ```
   
   <b>Fixed bug, that prevented from exucint functions with multiple parameters.</b>
