@@ -156,3 +156,29 @@ Changed package names from
   max() - takes two parameters, returns greater one</br>
   min() - take two parameters, returns less one</br>
   fib() - Fibonacci number</br>
+  
+  <b>Refactor:</b>
+  
+  Changed <i>createCalulator</i>, and <i> getDefaultEngine</i> to use <i>CalculationEngine</i> interface
+  
+```java
+    /**
+     * Creates AdvanceCalculator with given CalculatorEngine
+     *
+     * @param engine CalculationEngine implementation
+     * @return AdvanceCalculator
+     */
+    public CalculatorInterface createCalulator(CalculationEngine engine) {
+        return new AdvancedCalculator(RoundingMode.HALF_UP, engine);
+    }
+
+
+    /**
+     * Return default CalculationEngine implementation
+     *
+     * @return CalculatorEngine
+     */
+    public CalculationEngine getDefaultEngine() {
+        return new CalculatorEngine(StrategiesUtil.DEFAULT_OPERATORS, StrategiesUtil.DEFAULT_FUNCTIONS);
+    }
+```

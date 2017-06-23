@@ -41,7 +41,7 @@ public class AdvancedCalculatorFactory extends AbstractCalculatorFactory {
     /**
      * Creates AdvanceCalculator with given CalculatorEngine
      *
-     * @param engine CalculatorEngine instance
+     * @param engine CalculationEngine implementation
      * @return AdvanceCalculator
      */
     public CalculatorInterface createCalulator(CalculationEngine engine) {
@@ -50,7 +50,7 @@ public class AdvancedCalculatorFactory extends AbstractCalculatorFactory {
 
 
     /**
-     * Return default CalculatorEngine
+     * Return default CalculationEngine implementation
      *
      * @return CalculatorEngine
      */
