@@ -19,16 +19,16 @@
 
 package com.github.bgora.rpnlibrary.advanced;
 
-import com.github.bgora.rpnlibrary.advanced.functions.CosinusFunctionStrategy;
-import com.github.bgora.rpnlibrary.advanced.operators.AddOperatorStrategy;
 import com.github.bgora.rpnlibrary.advanced.functions.AbstractFunctionStrategy;
+import com.github.bgora.rpnlibrary.advanced.functions.CosinusFunctionStrategy;
 import com.github.bgora.rpnlibrary.advanced.functions.CtgFunctionStrategy;
+import com.github.bgora.rpnlibrary.advanced.functions.FibFunctionStrategy;
 import com.github.bgora.rpnlibrary.advanced.functions.MaxFunctionStrategy;
 import com.github.bgora.rpnlibrary.advanced.functions.MinFunctionStrategy;
-import com.github.bgora.rpnlibrary.advanced.functions.PowerFunctionStrategy;
 import com.github.bgora.rpnlibrary.advanced.functions.SinusFunctionStrategy;
 import com.github.bgora.rpnlibrary.advanced.functions.TanFunctionStrategy;
 import com.github.bgora.rpnlibrary.advanced.operators.AbstractOperatorStrategy;
+import com.github.bgora.rpnlibrary.advanced.operators.AddOperatorStrategy;
 import com.github.bgora.rpnlibrary.advanced.operators.DivideOperatorStrategy;
 import com.github.bgora.rpnlibrary.advanced.operators.MiltiplyOperatorStrategy;
 import com.github.bgora.rpnlibrary.advanced.operators.MinusOperatorStrategy;
@@ -65,8 +65,8 @@ public final class StrategiesUtil {
         DEFAULT_FUNCTIONS.put(maxFunctionStrategy.getName(), maxFunctionStrategy);
         AbstractFunctionStrategy minFunctionStrategy = new MinFunctionStrategy();
         DEFAULT_FUNCTIONS.put(minFunctionStrategy.getName(), minFunctionStrategy);
-        AbstractFunctionStrategy powerFunctionStrategy = new PowerFunctionStrategy();
-        DEFAULT_FUNCTIONS.put(powerFunctionStrategy.getName(), powerFunctionStrategy);
+        AbstractFunctionStrategy fibFunctionStrategy = new FibFunctionStrategy();
+        DEFAULT_FUNCTIONS.put(fibFunctionStrategy.getName(), fibFunctionStrategy);
 
         AbstractOperatorStrategy addOperatorStrategy = new AddOperatorStrategy();
         DEFAULT_OPERATORS.put(addOperatorStrategy.getOperator(), addOperatorStrategy);

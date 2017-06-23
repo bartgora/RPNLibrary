@@ -34,7 +34,7 @@ import java.math.RoundingMode;
 public class AdvancedCalculatorFactory extends AbstractCalculatorFactory {
 
     public CalculatorInterface createCalulator() {
-        CalculatorEngine engine = getDefaultEngine();
+        CalculationEngine engine = getDefaultEngine();
         return new AdvancedCalculator(RoundingMode.HALF_UP, engine);
     }
 
@@ -54,7 +54,7 @@ public class AdvancedCalculatorFactory extends AbstractCalculatorFactory {
      *
      * @return CalculatorEngine
      */
-    public CalculatorEngine getDefaultEngine() {
+    public CalculationEngine getDefaultEngine() {
         return new CalculatorEngine(StrategiesUtil.DEFAULT_OPERATORS, StrategiesUtil.DEFAULT_FUNCTIONS);
     }
 

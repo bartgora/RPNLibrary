@@ -140,7 +140,7 @@ And then you can add your function like that:
 
 ### Version 3.2.0:
 
-<font color = "red"><b>IMPORTANT:</b></font></br>
+<b>IMPORTANT:</b></br>
 Changed package names from
 ```java
     pl.bgora.rpn
@@ -153,7 +153,6 @@ Changed package names from
   <b>Fixed bug, that prevented from exucuting functions with multiple parameters.</b>
   
   <b>New functions:</b></br>
-  max()</br>
-  min()</br>
-  power()</br>
-  fib()</br>
+  max() - takes two parameters, returns greater one</br>
+  min() - take two parameters, returns less one</br>
+  fib() - Fibonacci number</br>

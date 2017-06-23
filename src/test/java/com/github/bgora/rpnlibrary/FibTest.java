@@ -29,7 +29,7 @@ import java.math.BigDecimal;
 
 import static org.junit.Assert.assertEquals;
 
-public class PowerFunctionTest {
+public class FibTest {
 
     private CalculatorInterface calc;
 
@@ -40,34 +40,38 @@ public class PowerFunctionTest {
     }
 
     @Test
-    public void testPower() throws WrongArgumentException, NoSuchFunctionFound {
-        BigDecimal result = calc.calculate("pow(2,8)");
-        assertEquals(BigDecimal.valueOf(256), result);
+    public void testFib0() throws WrongArgumentException, NoSuchFunctionFound {
+        BigDecimal result = calc.calculate("fib(0)");
+        assertEquals(BigDecimal.ZERO, result);
     }
 
     @Test
-    public void testPowerPlus10() throws WrongArgumentException, NoSuchFunctionFound {
-        BigDecimal result = calc.calculate("pow(2,8)+10");
-        assertEquals(BigDecimal.valueOf(266), result);
+    public void testFib1() throws WrongArgumentException, NoSuchFunctionFound {
+        BigDecimal result = calc.calculate("fib(1)");
+        assertEquals(BigDecimal.ONE, result);
     }
 
     @Test
-    public void testPowerMultiply10() throws WrongArgumentException, NoSuchFunctionFound {
-        BigDecimal result = calc.calculate("10*pow(2,8)");
-        assertEquals(BigDecimal.valueOf(2560), result);
+    public void testFib6() throws WrongArgumentException, NoSuchFunctionFound {
+        BigDecimal result = calc.calculate("fib(6)");
+        assertEquals(BigDecimal.valueOf(8), result);
     }
 
     @Test
-    public void testPowerMultiply10Minus20() throws WrongArgumentException, NoSuchFunctionFound {
-        BigDecimal result = calc.calculate("10*pow(2,8)-20");
-        assertEquals(BigDecimal.valueOf(2540), result);
+    public void testFib10() throws WrongArgumentException, NoSuchFunctionFound {
+        BigDecimal result = calc.calculate("fib(10)");
+        assertEquals(BigDecimal.valueOf(55), result);
     }
-
 
     @Test
-    public void testExecute() throws WrongArgumentException, NoSuchFunctionFound {
-        BigDecimal result = calc.calculate("sin(0) * 10 * pow(2,8)");
-        assertEquals(BigDecimal.valueOf(0.0), result);
+    public void testFib15() throws WrongArgumentException, NoSuchFunctionFound {
+        BigDecimal result = calc.calculate("fib(15)");
+        assertEquals(BigDecimal.valueOf(610), result);
     }
 
+    @Test
+    public void testFib19() throws WrongArgumentException, NoSuchFunctionFound {
+        BigDecimal result = calc.calculate("fib(19)");
+        assertEquals(BigDecimal.valueOf(4181), result);
+    }
 }
