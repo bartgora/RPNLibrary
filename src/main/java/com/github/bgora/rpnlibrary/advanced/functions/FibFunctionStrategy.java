@@ -22,22 +22,25 @@ package com.github.bgora.rpnlibrary.advanced.functions;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-/**
- * Math Power function.
- * Takes two number, and power first by the second
- *
- * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
- */
-public class PowerFunctionStrategy extends AbstractFunctionStrategy {
+public class FibFunctionStrategy extends AbstractFunctionStrategy {
 
-    public PowerFunctionStrategy() {
-        super("pow", 2, RoundingMode.HALF_EVEN);
+
+    public FibFunctionStrategy() {
+        super("fib", 1, RoundingMode.HALF_EVEN);
     }
 
     @Override
     public BigDecimal execute(String... params) {
-        BigDecimal param1 = new BigDecimal(params[0]);
-        BigDecimal param2 = new BigDecimal(params[1]);
-        return param1.pow(param2.intValue());
+        BigDecimal bigDecimal = new BigDecimal(params[0]);
+        return fib(bigDecimal);
+    }
+
+    private BigDecimal fib(BigDecimal bigDecimal) {
+        if (bigDecimal.equals(BigDecimal.ZERO)) {
+            return BigDecimal.ZERO;
+        } else if (bigDecimal.equals(BigDecimal.ONE)) {
+            return BigDecimal.ONE;
+        }
+        return fib(bigDecimal.subtract(BigDecimal.ONE)).add(fib(bigDecimal.subtract(BigDecimal.valueOf(2))));
     }
 }

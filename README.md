@@ -140,7 +140,7 @@ And then you can add your function like that:
 
 ### Version 3.2.0:
 
-<font color = "red"><b>IMPORTANT:</b></font></br>
+<b>IMPORTANT:</b></br>
 Changed package names from
 ```java
     pl.bgora.rpn
@@ -153,7 +153,32 @@ Changed package names from
   <b>Fixed bug, that prevented from exucuting functions with multiple parameters.</b>
   
   <b>New functions:</b></br>
-  max()</br>
-  min()</br>
-  power()</br>
-  fib()</br>
+  max() - takes two parameters, returns greater one</br>
+  min() - take two parameters, returns less one</br>
+  fib() - Fibonacci number</br>
+  
+  <b>Refactor:</b>
+  
+  Changed <i>createCalulator</i>, and <i> getDefaultEngine</i> to use <i>CalculationEngine</i> interface
+  
+```java
+    /**
+     * Creates AdvanceCalculator with given CalculatorEngine
+     *
+     * @param engine CalculationEngine implementation
+     * @return AdvanceCalculator
+     */
+    public CalculatorInterface createCalulator(CalculationEngine engine) {
+        return new AdvancedCalculator(RoundingMode.HALF_UP, engine);
+    }
+
+
+    /**
+     * Return default CalculationEngine implementation
+     *
+     * @return CalculatorEngine
+     */
+    public CalculationEngine getDefaultEngine() {
+        return new CalculatorEngine(StrategiesUtil.DEFAULT_OPERATORS, StrategiesUtil.DEFAULT_FUNCTIONS);
+    }
+```
