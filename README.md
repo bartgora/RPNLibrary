@@ -1,4 +1,4 @@
-    RPNCalculator - Reverse Polish Notation mathematics Library
+    RPNLibrary - Reverse Polish Notation Library
     Copyright (C) 2011  Bartłomiej Góra
 
     This program is free software: you can redistribute it and/or modify
@@ -25,11 +25,11 @@
 <img src="https://api.codacy.com/project/badge/Grade/94cbf471a20048989c9b066f6ad4d414"/></a>
 <a href="https://www.codacy.com/app/bartlomiej.gora/RPNLibrary?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bartlomiej-gora/RPNLibrary&amp;utm_campaign=Badge_Coverage"><img src="https://api.codacy.com/project/badge/Coverage/94cbf471a20048989c9b066f6ad4d414"/></a>
 
-[![Maven Central](https://img.shields.io/badge/maven%20central-3.1.0-brightgreen.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.bartlomiej-gora/RPNLibrary)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.bartlomiej-gora/RPNLibrary/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.bartlomiej-gora/RPNLibrary)
 
 
 Description:
-====
+===
 Simple RPN (Reverse Polish Notation) Library for Java.<br>
 It is based on Dijkstra Algorithm. (https://en.wikipedia.org/wiki/Reverse_Polish_notation)
 
@@ -41,7 +41,7 @@ Sin, cos, tg, ctg.
 
 example: 
 ```java
-pl.bgora.rpn.Calculator calc = Calculator.createDefaultCalculator();
+Calculator calc = Calculator.createDefaultCalculator();
 BigDecimal result = calc.calculate("2^3*(12/6)+18/3+5.0/2");
 ```
 
@@ -64,7 +64,7 @@ Changelog:
 
 
 Added package pl.bgora.rpn.advanced</br>
-Added pl.bgora.rpn.advanced.AdvancedCalculatorFactory</br>
+Added AdvancedCalculatorFactory</br>
 
 
 The advanced Calculator works with CalculationEngine, which uses strategy pattern to run.
@@ -79,6 +79,7 @@ pl.bgora.rpn.AbstractFunctionStrategy</br>
         AdvancedCalculatorFactory advancedCalculatorFactory = new AdvancedCalculatorFactory();
         calc = advancedCalculatorFactory.createCalulator();
 ```
+
 ### Example 2:
 
 Assume that you want to add a function sqrt(number), which will return The square root , You will have to extend
@@ -135,4 +136,49 @@ And then you can add your function like that:
         CalculatorEngine engine = advancedCalculatorFactory.getDefaultEngine();
         engine.addFunctionStartegy(new MaxFunctionStrategy());
         calc = advancedCalculatorFactory.createCalulator(engine);
+```
+
+### Version 3.2.0:
+
+<b>IMPORTANT:</b></br>
+Changed package names from
+```java
+    pl.bgora.rpn
+```
+ to 
+ ```java
+ com.github.bgora.rpnlibrary
+ ```
+  
+  <b>Fixed bug, that prevented from exucuting functions with multiple parameters.</b>
+  
+  <b>New functions:</b></br>
+  max() - takes two parameters, returns greater one</br>
+  min() - take two parameters, returns less one</br>
+  fib() - Fibonacci number</br>
+  
+  <b>Refactor:</b>
+  
+  Changed <i>createCalulator</i>, and <i> getDefaultEngine</i> to use <i>CalculationEngine</i> interface
+  
+```java
+    /**
+     * Creates AdvanceCalculator with given CalculatorEngine
+     *
+     * @param engine CalculationEngine implementation
+     * @return AdvanceCalculator
+     */
+    public CalculatorInterface createCalulator(CalculationEngine engine) {
+        return new AdvancedCalculator(RoundingMode.HALF_UP, engine);
+    }
+
+
+    /**
+     * Return default CalculationEngine implementation
+     *
+     * @return CalculatorEngine
+     */
+    public CalculationEngine getDefaultEngine() {
+        return new CalculatorEngine(StrategiesUtil.DEFAULT_OPERATORS, StrategiesUtil.DEFAULT_FUNCTIONS);
+    }
 ```
