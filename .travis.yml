@@ -1,16 +1,16 @@
 language: java
 install: true
 
-#addons:
-#  apt:
-#    packages:
-#    - jq
+addons:
+  apt:
+    packages:
+    - jq
 
 script:
  - jdk_switcher use oraclejdk8
  - mvn clean cobertura:cobertura
 before_install:
-  - wget https://github.com/codacy/codacy-coverage-reporter/releases/download/2.0.0/codacy-coverage-reporter-2.0.0-assembly.jar
+   - wget -O ~/codacy-coverage-reporter-assembly-latest.jar $(curl https://api.github.com/repos/codacy/codacy-coverage-reporter/releases/latest | jq -r .assets[0].browser_download_url)
 
 after_success:
-  - java -cp ~/codacy-coverage-reporter-2.0.0-assembly.jar com.codacy.CodacyCoverageReporter -l Java -r target/site/cobertura/coverage.xml
+  - java -cp ~/codacy-coverage-reporter-assembly-latest.jar com.codacy.CodacyCoverageReporter -l Java -r target/site/cobertura/coverage.xml
