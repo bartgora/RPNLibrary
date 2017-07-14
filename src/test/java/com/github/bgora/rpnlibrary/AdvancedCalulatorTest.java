@@ -48,7 +48,7 @@ public class AdvancedCalulatorTest {
     @Test
     public void testMultiply() throws RPNException {
         BigDecimal result = calc.calculate("2*8");
-        assertEquals("2*8", BigDecimal.valueOf(16), result);
+        assertEquals("2*8", BigDecimal.valueOf(16), result.setScale(0, RoundingMode.HALF_EVEN));
     }
 
     @Test
@@ -67,14 +67,14 @@ public class AdvancedCalulatorTest {
     @Test
     public void testPower() throws RPNException {
         BigDecimal result = calc.calculate("2^8");
-        assertEquals("2^8", BigDecimal.valueOf(256), result);
+        assertEquals("2^8", BigDecimal.valueOf(256), result.setScale(0, RoundingMode.HALF_EVEN));
     }
 
 
     @Test
     public void testPowerDouble() throws RPNException {
         BigDecimal result = calc.calculate("3.678^2");
-        assertEquals("3.678^2", new BigDecimal("13.527684"), result);
+        assertEquals("3.678^2", new BigDecimal("13.527684"), result.setScale(6, RoundingMode.HALF_EVEN));
     }
 
     @Test
@@ -98,13 +98,13 @@ public class AdvancedCalulatorTest {
     @Test
     public void testDivDouble() throws RPNException {
         BigDecimal result = calc.calculate("10.55/4");
-        assertEquals("10.55/4", BigDecimal.valueOf(2.64), result);
+        assertEquals("10.55/4", BigDecimal.valueOf(2.64), result.setScale(2, RoundingMode.HALF_EVEN));
     }
 
     @Test
     public void testDivDouble3AfterDot() throws RPNException {
         BigDecimal result = calc.calculate("10.505/4");
-        assertEquals("10.505/4", BigDecimal.valueOf(2.626), result);
+        assertEquals("10.505/4", BigDecimal.valueOf(2.626), result.setScale(3, BigDecimal.ROUND_HALF_EVEN));
     }
 
     @Test

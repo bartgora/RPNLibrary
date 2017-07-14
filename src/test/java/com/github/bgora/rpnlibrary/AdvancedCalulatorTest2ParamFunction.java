@@ -26,6 +26,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 import static org.junit.Assert.assertEquals;
 
@@ -79,13 +80,13 @@ public class AdvancedCalulatorTest2ParamFunction {
     @Test
     public void testMinDouble() throws WrongArgumentException, NoSuchFunctionFound {
         BigDecimal result = calc.calculate("min(12.5, 9.4)");
-        assertEquals(BigDecimal.valueOf(12.5), result);
+        assertEquals(BigDecimal.valueOf(9.4), result);
     }
 
     @Test
     public void testMaxDouble() throws WrongArgumentException, NoSuchFunctionFound {
         BigDecimal result = calc.calculate("max(12 345.50, 8 000.66)");
-        assertEquals(BigDecimal.valueOf(12345.50), result);
+        assertEquals(BigDecimal.valueOf(12345.50), result.setScale(1, RoundingMode.HALF_EVEN));
     }
 
 

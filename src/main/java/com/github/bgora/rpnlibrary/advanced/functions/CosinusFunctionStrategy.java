@@ -34,8 +34,8 @@ public class CosinusFunctionStrategy extends AbstractFunctionStrategy {
 
     @Override
     public BigDecimal execute(String... params) {
-        BigDecimal param = new BigDecimal(params[0]);
-        BigDecimal result = BigDecimal.valueOf(Math.cos(param.doubleValue()));
+        Double param = new Double(params[0]);
+        BigDecimal result = BigDecimal.valueOf(Math.cos(param));
         return result;
     }
 
