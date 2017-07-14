@@ -35,7 +35,7 @@ public class AdvancedCalculatorFactory extends AbstractCalculatorFactory {
 
     public CalculatorInterface createCalulator() {
         CalculationEngine engine = getDefaultEngine();
-        return new AdvancedCalculator(RoundingMode.HALF_UP, engine);
+        return new AdvancedCalculator(RoundingMode.HALF_EVEN, engine);
     }
 
     /**
@@ -45,7 +45,7 @@ public class AdvancedCalculatorFactory extends AbstractCalculatorFactory {
      * @return AdvanceCalculator
      */
     public CalculatorInterface createCalulator(CalculationEngine engine) {
-        return new AdvancedCalculator(RoundingMode.HALF_UP, engine);
+        return new AdvancedCalculator(RoundingMode.HALF_EVEN, engine);
     }
 
 

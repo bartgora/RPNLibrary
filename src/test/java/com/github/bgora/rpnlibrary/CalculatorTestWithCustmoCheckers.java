@@ -34,7 +34,7 @@ public class CalculatorTestWithCustmoCheckers {
 
     @Before
     public void setUp() throws Exception {
-        calc = Calculator.createCalculator(RoundingMode.HALF_UP, new DefaultChecker(), new DefaultExecutioner());
+        calc = Calculator.createCalculator(RoundingMode.HALF_EVEN, new DefaultChecker(), new DefaultExecutioner());
     }
 
     @Test

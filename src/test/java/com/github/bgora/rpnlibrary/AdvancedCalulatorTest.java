@@ -165,4 +165,22 @@ public class AdvancedCalulatorTest {
     public void shouldThrowRPNException() throws RPNException {
         calc.calculate("aaaaa");
     }
+
+    @Test
+    public void shouldReturn2andHalf() throws RPNException {
+        BigDecimal result =  calc.calculate("5/2");
+        assertEquals(BigDecimal.valueOf(2.5).setScale(1), result.setScale(1));
+    }
+
+    @Test
+    public void shouldReturn35() throws RPNException {
+        BigDecimal result =  calc.calculate("7/2");
+        assertEquals(BigDecimal.valueOf(3.5).setScale(1), result.setScale(1));
+    }
+
+    @Test
+    public void shouldReturn() throws RPNException {
+        BigDecimal result =  calc.calculate("7/2");
+        assertEquals(BigDecimal.valueOf(3.5).setScale(1), result.setScale(1));
+    }
 }
