@@ -60,6 +60,59 @@ Maven:
 Changelog:
 ====
 
+### Version 3.2.1-SNAPSHOT:
+
+- Fixed bug in divide operator, that caused:
+ ex: "10/4 = 2, and not 2.5",
+ "5/2 = 2, and not 2.5"
+- Changed RoundinMode from HALF_UP, to HALF_EVEN
+- Changed internal calculation type from BigDecimal to Double
+
+### Version 3.2.0:
+
+<b>IMPORTANT:</b></br>
+Changed package names from
+```java
+    pl.bgora.rpn
+```
+ to 
+ ```java
+ com.github.bgora.rpnlibrary
+ ```
+  
+  <b>Fixed bug, that prevented from exucuting functions with multiple parameters.</b>
+  
+  <b>New functions:</b></br>
+  max() - takes two parameters, returns greater one</br>
+  min() - take two parameters, returns less one</br>
+  fib() - Fibonacci number</br>
+  
+  <b>Refactor:</b>
+  
+  Changed <i>createCalulator</i>, and <i> getDefaultEngine</i> to use <i>CalculationEngine</i> interface
+  
+```java
+    /**
+     * Creates AdvanceCalculator with given CalculatorEngine
+     *
+     * @param engine CalculationEngine implementation
+     * @return AdvanceCalculator
+     */
+    public CalculatorInterface createCalulator(CalculationEngine engine) {
+        return new AdvancedCalculator(RoundingMode.HALF_UP, engine);
+    }
+
+
+    /**
+     * Return default CalculationEngine implementation
+     *
+     * @return CalculatorEngine
+     */
+    public CalculationEngine getDefaultEngine() {
+        return new CalculatorEngine(StrategiesUtil.DEFAULT_OPERATORS, StrategiesUtil.DEFAULT_FUNCTIONS);
+    }
+```
+
 ### Version 3.1.0:
 
 
@@ -139,55 +192,5 @@ And then you can add your function like that:
         calc = advancedCalculatorFactory.createCalulator(engine);
 ```
 
-### Version 3.2.0:
-
-<b>IMPORTANT:</b></br>
-Changed package names from
-```java
-    pl.bgora.rpn
-```
- to 
- ```java
- com.github.bgora.rpnlibrary
- ```
-  
-  <b>Fixed bug, that prevented from exucuting functions with multiple parameters.</b>
-  
-  <b>New functions:</b></br>
-  max() - takes two parameters, returns greater one</br>
-  min() - take two parameters, returns less one</br>
-  fib() - Fibonacci number</br>
-  
-  <b>Refactor:</b>
-  
-  Changed <i>createCalulator</i>, and <i> getDefaultEngine</i> to use <i>CalculationEngine</i> interface
-  
-```java
-    /**
-     * Creates AdvanceCalculator with given CalculatorEngine
-     *
-     * @param engine CalculationEngine implementation
-     * @return AdvanceCalculator
-     */
-    public CalculatorInterface createCalulator(CalculationEngine engine) {
-        return new AdvancedCalculator(RoundingMode.HALF_UP, engine);
-    }
 
 
-    /**
-     * Return default CalculationEngine implementation
-     *
-     * @return CalculatorEngine
-     */
-    public CalculationEngine getDefaultEngine() {
-        return new CalculatorEngine(StrategiesUtil.DEFAULT_OPERATORS, StrategiesUtil.DEFAULT_FUNCTIONS);
-    }
-```
-
-### Version 3.2.1-SNAPSHOT:
-
-- Fixed bug in divide operator, that caused:
- ex: "10/4 = 2, and not 2.5",
- "5/2 = 2, and not 2.5"
-- Changed RoundinMode from HALF_UP, to HALF_EVEN
-- Changed internal calculation type from BigDecimal to Double
