@@ -59,12 +59,22 @@ Maven:
 
 Changelog:
 ====
+
+### Version 3.1.1-SNAPSHOT:
+
+- Fixed bug in divide operator, that caused:
+ ex: "10/4 = 2, and not 2.5",
+ "5/2 = 2, and not 2.5"
+- Changed RoundinMode from HALF_UP, to HALF_EVEN
+- Changed internal calculation type from BigDecimal to Double
+
+
 ### Version 3.1.0:
 
 
 
-Added package pl.bgora.rpn.advanced</br>
-Added AdvancedCalculatorFactory</br>
+- Added package pl.bgora.rpn.advanced</br>
+- Added AdvancedCalculatorFactory</br>
 
 
 The advanced Calculator works with CalculationEngine, which uses strategy pattern to run.

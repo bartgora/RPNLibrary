@@ -37,9 +37,9 @@ public class CtgFunctionStrategy extends AbstractFunctionStrategy {
 
     @Override
     public BigDecimal execute(String... params) {
-        BigDecimal dec = new BigDecimal(params[0]);
-        BigDecimal tan = BigDecimal.valueOf(Math.tan(dec.doubleValue()));
-        BigDecimal one = new BigDecimal(ONE);
-        return one.divide(tan, roundingMode);
+        Double dec = new Double(params[0]);
+        Double tan = Math.tan(dec.doubleValue());
+        Double one = new Double(1);
+        return BigDecimal.valueOf(one / tan);
     }
 }
