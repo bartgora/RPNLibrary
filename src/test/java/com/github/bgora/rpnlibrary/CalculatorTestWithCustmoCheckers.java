@@ -34,7 +34,7 @@ public class CalculatorTestWithCustmoCheckers {
 
     @Before
     public void setUp() throws Exception {
-        calc = Calculator.createCalculator(RoundingMode.HALF_UP, new DefaultChecker(), new DefaultExecutioner());
+        calc = Calculator.createCalculator(RoundingMode.HALF_EVEN, new DefaultChecker(), new DefaultExecutioner());
     }
 
     @Test
@@ -46,7 +46,7 @@ public class CalculatorTestWithCustmoCheckers {
     @Test
     public void testMultiply() throws RPNException {
         BigDecimal result = calc.calculate("2*8");
-        assertEquals("2*8", BigDecimal.valueOf(16), result);
+        assertEquals("2*8", BigDecimal.valueOf(16), result.setScale(0, RoundingMode.HALF_EVEN));
     }
 
     @Test
@@ -96,13 +96,13 @@ public class CalculatorTestWithCustmoCheckers {
     @Test
     public void testDivDouble() throws RPNException {
         BigDecimal result = calc.calculate("10.55/4");
-        assertEquals("10.55/4", BigDecimal.valueOf(2.64), result);
+        assertEquals("10.55/4", BigDecimal.valueOf(2.64), result.setScale(2, RoundingMode.HALF_EVEN));
     }
 
     @Test
     public void testDivDouble3AfterDot() throws RPNException {
         BigDecimal result = calc.calculate("10.505/4");
-        assertEquals("10.505/4", BigDecimal.valueOf(2.626), result);
+        assertEquals("10.505/4", BigDecimal.valueOf(2.626), result.setScale(3, RoundingMode.HALF_EVEN));
     }
 
     @Test

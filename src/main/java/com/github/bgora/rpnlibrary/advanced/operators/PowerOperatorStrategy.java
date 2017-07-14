@@ -31,9 +31,9 @@ public class PowerOperatorStrategy extends AbstractOperatorStrategy {
 
     @Override
     public BigDecimal execute(String first, String second) {
-        BigDecimal big1 = new BigDecimal(first);
-        BigDecimal big2 = new BigDecimal(second);
-        return big1.pow(big2.intValue());
+        Double big1 = new Double(first);
+        Double big2 = new Double(second);
+        return BigDecimal.valueOf(Math.pow(big1, big2));
     }
 
 

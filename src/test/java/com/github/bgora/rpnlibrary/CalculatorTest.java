@@ -20,8 +20,8 @@
 package com.github.bgora.rpnlibrary;
 
 import com.github.bgora.rpnlibrary.exceptions.NoSuchFunctionFound;
-import com.github.bgora.rpnlibrary.exceptions.WrongArgumentException;
 import com.github.bgora.rpnlibrary.exceptions.RPNException;
+import com.github.bgora.rpnlibrary.exceptions.WrongArgumentException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -41,14 +41,14 @@ public class CalculatorTest {
 
     @Test
     public void testCalculate() throws RPNException {
-        BigDecimal result = calc.calculate("2^3*(12/6)+18/3+5.0/2");
-        assertEquals("2^3*(12/6)+18/3+5.0/2", BigDecimal.valueOf(24.5), result);
+        BigDecimal result = calc.calculate("2^3*(12/6)+18/3+5/2");
+        assertEquals("2^3*(12/6)+18/3+5/2", BigDecimal.valueOf(24.5), result.setScale(1,RoundingMode.HALF_EVEN));
     }
 
     @Test
     public void testMultiply() throws RPNException {
         BigDecimal result = calc.calculate("2*8");
-        assertEquals("2*8", BigDecimal.valueOf(16), result);
+        assertEquals("2*8", BigDecimal.valueOf(16), result.setScale(0, RoundingMode.HALF_EVEN));
     }
 
     @Test
@@ -91,20 +91,20 @@ public class CalculatorTest {
 
     @Test
     public void testDiv() throws RPNException {
-        BigDecimal result = calc.calculate("10.0/4");
-        assertEquals("10.0/4", BigDecimal.valueOf(2.5), result);
+        BigDecimal result = calc.calculate("10/4");
+        assertEquals("10/4", BigDecimal.valueOf(2.5), result.setScale(1,RoundingMode.HALF_EVEN));
     }
 
     @Test
     public void testDivDouble() throws RPNException {
         BigDecimal result = calc.calculate("10.55/4");
-        assertEquals("10.55/4", BigDecimal.valueOf(2.64), result);
+        assertEquals("10.55/4", BigDecimal.valueOf(2.64), result.setScale(2, RoundingMode.HALF_EVEN));
     }
 
     @Test
     public void testDivDouble3AfterDot() throws RPNException {
         BigDecimal result = calc.calculate("10.505/4");
-        assertEquals("10.505/4", BigDecimal.valueOf(2.626), result);
+        assertEquals("10.505/4", BigDecimal.valueOf(2.626), result.setScale(3, BigDecimal.ROUND_HALF_EVEN));
     }
 
     @Test
@@ -169,6 +169,6 @@ public class CalculatorTest {
     @Test
     public void testBrackets() throws WrongArgumentException, NoSuchFunctionFound {
         BigDecimal result = calc.calculate("10 * (5+2)");
-        assertEquals(BigDecimal.valueOf(70), result);
+        assertEquals(BigDecimal.valueOf(70), result.setScale(0, RoundingMode.HALF_EVEN));
     }
 }

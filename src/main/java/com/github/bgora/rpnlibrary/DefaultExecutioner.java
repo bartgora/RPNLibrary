@@ -53,15 +53,15 @@ public class DefaultExecutioner implements RPNExecuting {
     }
 
     private BigDecimal div(String var1, String var2, RoundingMode mode) {
-        BigDecimal big1 = new BigDecimal(var1);
-        BigDecimal big2 = new BigDecimal(var2);
-        return big1.divide(big2, mode);
+        Double big1 = new Double(var1);
+        Double big2 = new Double(var2);
+        return BigDecimal.valueOf(big1 / big2);
     }
 
     private BigDecimal mull(String var1, String var2) {
-        BigDecimal big1 = new BigDecimal(var1);
-        BigDecimal big2 = new BigDecimal(var2);
-        return big1.multiply(big2);
+        Double big1 = new Double(var1);
+        Double big2 = new Double(var2);
+        return BigDecimal.valueOf(big1*big2);
     }
 
     private BigDecimal sub(String var1, String var2) {

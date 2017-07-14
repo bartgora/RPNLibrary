@@ -35,7 +35,7 @@ public class TanFunctionStrategy extends AbstractFunctionStrategy {
 
     @Override
     public BigDecimal execute(String... params) {
-        BigDecimal dec = new BigDecimal(params[0]);
-        return BigDecimal.valueOf(Math.tan(dec.doubleValue()));
+        Double dec = new Double(params[0]);
+        return BigDecimal.valueOf(Math.tan(dec));
     }
 }

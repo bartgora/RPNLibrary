@@ -37,8 +37,8 @@ public class SinusFunctionStrategy extends AbstractFunctionStrategy {
      */
     @Override
     public BigDecimal execute(String... params) {
-        BigDecimal param = new BigDecimal(params[0]);
-        BigDecimal result = BigDecimal.valueOf(Math.sin(param.doubleValue()));
+        Double param = new Double(params[0]);
+        BigDecimal result = BigDecimal.valueOf(Math.sin(param));
         return result;
     }
 
