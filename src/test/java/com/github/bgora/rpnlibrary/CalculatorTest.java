@@ -41,8 +41,8 @@ public class CalculatorTest {
 
     @Test
     public void testCalculate() throws RPNException {
-        BigDecimal result = calc.calculate("2^3*(12/6)+18/3+5.0/2");
-        assertEquals("2^3*(12/6)+18/3+5.0/2", BigDecimal.valueOf(24.5), result);
+        BigDecimal result = calc.calculate("2^3*(12/6)+18/3+5/2");
+        assertEquals("2^3*(12/6)+18/3+5/2", BigDecimal.valueOf(24.5), result);
     }
 
     @Test
@@ -91,8 +91,8 @@ public class CalculatorTest {
 
     @Test
     public void testDiv() throws RPNException {
-        BigDecimal result = calc.calculate("10.0/4");
-        assertEquals("10.0/4", BigDecimal.valueOf(2.5), result);
+        BigDecimal result = calc.calculate("10/4");
+        assertEquals("10/4", BigDecimal.valueOf(2.5), result);
     }
 
     @Test

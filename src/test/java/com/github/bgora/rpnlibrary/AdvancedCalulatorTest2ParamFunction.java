@@ -75,4 +75,18 @@ public class AdvancedCalulatorTest2ParamFunction {
         BigDecimal result = calc.calculate("min(10, 8) -5");
         assertEquals(BigDecimal.valueOf(3), result);
     }
+
+    @Test
+    public void testMinDouble() throws WrongArgumentException, NoSuchFunctionFound {
+        BigDecimal result = calc.calculate("min(12.5, 9.4)");
+        assertEquals(BigDecimal.valueOf(12.5), result);
+    }
+
+    @Test
+    public void testMaxDouble() throws WrongArgumentException, NoSuchFunctionFound {
+        BigDecimal result = calc.calculate("max(12 345.50, 8 000.66)");
+        assertEquals(BigDecimal.valueOf(12345.50), result);
+    }
+
+
 }
