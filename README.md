@@ -52,7 +52,7 @@ Maven:
         <dependency>
             <groupId>com.github.bartlomiej-gora</groupId>
             <artifactId>RPNLibrary</artifactId>
-            <version>3.1.0</version>
+            <version>3.2.1-SNAPSHOT</version>
         </dependency>
 ```
 
