@@ -60,6 +60,14 @@ Maven:
 Changelog:
 ====
 
+### Version 3.2.1
+
+- Fixed bug in divide operator, that caused:
+ ex: "10/4 = 2, and not 2.5",
+ "5/2 = 2, and not 2.5"
+- Changed RoundinMode from HALF_UP, to HALF_EVEN
+- Changed internal calculation type from BigDecimal to Double
+
 ### Version 3.2.1-SNAPSHOT:
 
 - Fixed bug in divide operator, that caused:
