@@ -60,6 +60,10 @@ Maven:
 Changelog:
 ====
 
+### Version 3.2.2:
+
+- Changed internal calculation from BigDecimal to Double in DefaultCalculator implementation
+
 ### Version 3.2.1:
 
 - Fixed bug in divide operator, that caused:

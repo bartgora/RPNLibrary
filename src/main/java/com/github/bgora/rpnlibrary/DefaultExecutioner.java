@@ -33,7 +33,7 @@ import java.math.RoundingMode;
 public class DefaultExecutioner implements RPNExecuting {
 
 
-    public static final String ONE = "1.0000000000000000";
+    private static final String ONE = "1";
 
     @Override
     public BigDecimal executeOperator(String operator, String var1, String var2, RoundingMode mode) throws WrongArgumentException {
@@ -45,14 +45,14 @@ public class DefaultExecutioner implements RPNExecuting {
         } else if ("*".equals(operator)) {
             return mull(var1, var2);
         } else if ("/".equals(operator)) {
-            return div(var1, var2, mode);
+            return div(var1, var2);
         } else if ("^".equals(operator)) {
             return pow(var1, var2);
         }
         throw new WrongArgumentException("Unrecognized operator: " + operator);
     }
 
-    private BigDecimal div(String var1, String var2, RoundingMode mode) {
+    private BigDecimal div(String var1, String var2) {
         Double big1 = new Double(var1);
         Double big2 = new Double(var2);
         return BigDecimal.valueOf(big1 / big2);
@@ -61,44 +61,44 @@ public class DefaultExecutioner implements RPNExecuting {
     private BigDecimal mull(String var1, String var2) {
         Double big1 = new Double(var1);
         Double big2 = new Double(var2);
-        return BigDecimal.valueOf(big1*big2);
+        return BigDecimal.valueOf(big1 * big2);
     }
 
     private BigDecimal sub(String var1, String var2) {
-        BigDecimal big1 = new BigDecimal(var1);
-        BigDecimal big2 = new BigDecimal(var2);
-        return big1.subtract(big2);
+        Double big1 = new Double(var1);
+        Double big2 = new Double(var2);
+        return BigDecimal.valueOf(big1 - big2);
     }
 
     private BigDecimal add(String var1, String var2) {
-        BigDecimal big1 = new BigDecimal(var1);
-        BigDecimal big2 = new BigDecimal(var2);
-        return big1.add(big2);
+        Double big1 = new Double(var1);
+        Double big2 = new Double(var2);
+        return BigDecimal.valueOf(big1 + big2);
     }
 
     private BigDecimal pow(String var1, String var2) {
-        BigDecimal big1 = new BigDecimal(var1);
-        BigDecimal big2 = new BigDecimal(var2);
-        return big1.pow(big2.intValue());
+        Double big1 = new Double(var1);
+        Double big2 = new Double(var2);
+        return BigDecimal.valueOf(Math.pow(big1, big2));
     }
 
     @Override
     public BigDecimal executeFunction(String functionName, RoundingMode mode, String... arguments)
             throws NoSuchFunctionFound {
         if ("sin".equals(functionName)) {
-            BigDecimal dec = new BigDecimal(arguments[0]);
-            return BigDecimal.valueOf(Math.sin(dec.doubleValue()));
+            Double dec = new Double(arguments[0]);
+            return BigDecimal.valueOf(Math.sin(dec));
         } else if ("cos".equals(functionName)) {
-            BigDecimal dec = new BigDecimal(arguments[0]);
-            return BigDecimal.valueOf(Math.cos(dec.doubleValue()));
+            Double dec = new Double(arguments[0]);
+            return BigDecimal.valueOf(Math.cos(dec));
         } else if ("tg".equals(functionName)) {
-            BigDecimal dec = new BigDecimal(arguments[0]);
-            return BigDecimal.valueOf(Math.tan(dec.doubleValue()));
+            Double dec = new Double(arguments[0]);
+            return BigDecimal.valueOf(Math.tan(dec));
         } else if ("ctg".equals(functionName)) {
-            BigDecimal dec = new BigDecimal(arguments[0]);
-            BigDecimal tan = BigDecimal.valueOf(Math.tan(dec.doubleValue()));
-            BigDecimal one = new BigDecimal(ONE);
-            return one.divide(tan, mode);
+            Double dec = new Double(arguments[0]);
+            Double tan = Math.tan(dec);
+            Double one = new Double(ONE);
+            return BigDecimal.valueOf(one/tan);
         }
         throw new NoSuchFunctionFound("There is no function named " + functionName);
 

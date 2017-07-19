@@ -37,7 +37,7 @@ public class AdvancedCalulatorTest2ParamFunction {
     @Before
     public void setUp() throws Exception {
         AdvancedCalculatorFactory advancedCalculatorFactory = new AdvancedCalculatorFactory();
-        calc = advancedCalculatorFactory.createCalulator();
+        calc = advancedCalculatorFactory.createCalculator();
     }
 
 
