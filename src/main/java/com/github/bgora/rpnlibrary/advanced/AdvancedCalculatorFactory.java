@@ -33,7 +33,7 @@ import java.math.RoundingMode;
  */
 public class AdvancedCalculatorFactory extends AbstractCalculatorFactory {
 
-    public CalculatorInterface createCalulator() {
+    public CalculatorInterface createCalculator() {
         CalculationEngine engine = getDefaultEngine();
         return new AdvancedCalculator(RoundingMode.HALF_EVEN, engine);
     }

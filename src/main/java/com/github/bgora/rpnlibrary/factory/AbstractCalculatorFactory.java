@@ -36,5 +36,5 @@ public abstract class AbstractCalculatorFactory {
      * Creates Calculator
      * @return an CalculatorInterface instance
      */
-    public abstract CalculatorInterface createCalulator();
+    public abstract CalculatorInterface createCalculator();
 }
