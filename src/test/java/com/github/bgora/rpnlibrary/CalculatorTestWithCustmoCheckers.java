@@ -65,26 +65,26 @@ public class CalculatorTestWithCustmoCheckers {
     @Test
     public void testPower() throws RPNException {
         BigDecimal result = calc.calculate("2^8");
-        assertEquals("2^8", BigDecimal.valueOf(256), result);
+        assertEquals("2^8", BigDecimal.valueOf(256), result.setScale(0));
     }
 
 
     @Test
     public void testPowerDouble() throws RPNException {
         BigDecimal result = calc.calculate("3.678^2");
-        assertEquals("3.678^2", new BigDecimal("13.527684"), result);
+        assertEquals("3.678^2", new BigDecimal("13.527684"), result.setScale(6, RoundingMode.HALF_EVEN));
     }
 
     @Test
     public void testAdd() throws RPNException {
         BigDecimal result = calc.calculate("2+8");
-        assertEquals("2+8", BigDecimal.valueOf(10), result);
+        assertEquals("2+8", BigDecimal.valueOf(10), result.setScale(0));
     }
 
     @Test
     public void testSub() throws RPNException {
         BigDecimal result = calc.calculate("2-5");
-        assertEquals("2-5", BigDecimal.valueOf(-3), result);
+        assertEquals("2-5", BigDecimal.valueOf(-3), result.setScale(0));
     }
 
     @Test
@@ -156,7 +156,7 @@ public class CalculatorTestWithCustmoCheckers {
     @Test
     public void testAddTousands() throws RPNException {
         BigDecimal result = calc.calculate("12 000 + 15");
-        assertEquals(BigDecimal.valueOf(12015), result);
+        assertEquals(BigDecimal.valueOf(12015), result.setScale(0));
     }
 
     @Test(expected = RPNException.class)
