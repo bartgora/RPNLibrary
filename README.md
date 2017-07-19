@@ -62,7 +62,7 @@ Changelog:
 
 ### Version 3.2.2:
 
-- Changed internal calculation form BigDecimal to Double in DefaultCalculator implementation
+- Changed internal calculation from BigDecimal to Double in DefaultCalculator implementation
 
 ### Version 3.2.1:
 
