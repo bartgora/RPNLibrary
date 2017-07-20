@@ -37,12 +37,13 @@ It is based on Dijkstra Algorithm. (https://en.wikipedia.org/wiki/Reverse_Polish
 
 functionalities:
 +,-,*,/ with ()
-Sin, cos, tg, ctg.
+Sin, cos, tg, ctg,
+min, max, fib
 
 example: 
 ```java
-Calculator calc = Calculator.createDefaultCalculator();
-BigDecimal result = calc.calculate("2^3*(12/6)+18/3+5.0/2");
+        AdvancedCalculatorFactory advancedCalculatorFactory = new AdvancedCalculatorFactory();
+        calc = advancedCalculatorFactory.createCalulator();
 ```
 
 
@@ -52,7 +53,7 @@ Maven:
         <dependency>
             <groupId>com.github.bartlomiej-gora</groupId>
             <artifactId>RPNLibrary</artifactId>
-            <version>3.2.1-SNAPSHOT</version>
+            <version>3.2.2</version>
         </dependency>
 ```
 
