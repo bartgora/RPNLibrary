@@ -45,6 +45,11 @@ example:
         AdvancedCalculatorFactory advancedCalculatorFactory = new AdvancedCalculatorFactory();
         calc = advancedCalculatorFactory.createCalulator();
         BigDecimal result = calc.calculate("2^3*(12/6)+18/3+5.0/2");
+        BigDecimal result2 = calc.calculate("3.678^2");
+        BigDecimal resultSin = calc.calculate("sin(2)");
+        BigDecimal resultSin2 = calc.calculate("sin(1+1)")
+        BigDecimal resultCtg = calc.calculate("ctg(-1.65091)");
+        BigDecimal min = calc.calculate("min(10, 8) + 10");
 ```
 
 
