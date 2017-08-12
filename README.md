@@ -44,6 +44,7 @@ example:
 ```java
         AdvancedCalculatorFactory advancedCalculatorFactory = new AdvancedCalculatorFactory();
         calc = advancedCalculatorFactory.createCalulator();
+        BigDecimal result = calc.calculate("2^3*(12/6)+18/3+5.0/2");
 ```
 
 
