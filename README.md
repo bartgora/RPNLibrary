@@ -36,7 +36,7 @@ It is based on Dijkstra Algorithm. (https://en.wikipedia.org/wiki/Reverse_Polish
 
 
 functionalities:
-+,-,*,/ with ()
++,-,*,/ with (), power(^)
 Sin, cos, tg, ctg,
 min, max, fib
 
