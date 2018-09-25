@@ -1,5 +1,5 @@
 # RPNLibrary
-===
+
 Simple RPN (Reverse Polish Notation) Library for Java.<br>
 It is based on Dijkstra Algorithm. (https://en.wikipedia.org/wiki/Reverse_Polish_notation)
 
