@@ -12,7 +12,8 @@ It is based on Dijkstra Algorithm. (https://en.wikipedia.org/wiki/Reverse_Polish
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.bartlomiej-gora/RPNLibrary/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.bartlomiej-gora/RPNLibrary)
 
-functionalities:
+Available functions:
+===
 +,-,*,/ with (), power(^)
 Sin, cos, tg, ctg,
 min, max, fib
