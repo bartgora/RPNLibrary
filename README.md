@@ -1,4 +1,7 @@
 # RPNLibrary
+===
+Simple RPN (Reverse Polish Notation) Library for Java.<br>
+It is based on Dijkstra Algorithm. (https://en.wikipedia.org/wiki/Reverse_Polish_notation)
 
 <a href="https://travis-ci.org/bartlomiej-gora/RPNLibrary">
 <img src="https://travis-ci.org/bartlomiej-gora/RPNLibrary.svg?branch=master">
@@ -8,14 +11,6 @@
 <a href="https://www.codacy.com/app/bartlomiej.gora/RPNLibrary?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bartlomiej-gora/RPNLibrary&amp;utm_campaign=Badge_Coverage"><img src="https://api.codacy.com/project/badge/Coverage/94cbf471a20048989c9b066f6ad4d414"/></a>
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.bartlomiej-gora/RPNLibrary/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.bartlomiej-gora/RPNLibrary)
-
-
-Description:
-===
-Simple RPN (Reverse Polish Notation) Library for Java.<br>
-It is based on Dijkstra Algorithm. (https://en.wikipedia.org/wiki/Reverse_Polish_notation)
-
-
 
 functionalities:
 +,-,*,/ with (), power(^)
