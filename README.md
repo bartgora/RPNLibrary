@@ -67,7 +67,7 @@ Changelog:
 
 ### Version 3.2.0:
 
-<b>IMPORTANT:</b></br>
+<b>IMPORTANT:</b><br>
 Changed package names from
 ```java
     pl.bgora.rpn
@@ -114,14 +114,14 @@ Changed package names from
 
 
 
-- Added package pl.bgora.rpn.advanced</br>
-- Added AdvancedCalculatorFactory</br>
+- Added package pl.bgora.rpn.advanced<br>
+- Added AdvancedCalculatorFactory<br>
 
 
 The advanced Calculator works with CalculationEngine, which uses strategy pattern to run.
-please see:</br>
-pl.bgora.rpn.AbstractOperatorStrategy</br>
-pl.bgora.rpn.AbstractFunctionStrategy</br>
+please see:<br>
+pl.bgora.rpn.AbstractOperatorStrategy<br>
+pl.bgora.rpn.AbstractFunctionStrategy<br>
 
 ### Example 1:
 
