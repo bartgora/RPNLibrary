@@ -10,7 +10,7 @@ script:
  - jdk_switcher use oraclejdk8
  - mvn clean cobertura:cobertura
 before_install:
-   - wget -O ~/codacy-coverage-reporter-assembly-4.0.3.jar $(curl https://api.github.com/repos/codacy/codacy-coverage-reporter/releases/latest | jq -r .assets[0].browser_download_url)
+   - wget -O ~/codacy-coverage-reporter-assembly-4.0.3.jar $(curl https://github.com/codacy/codacy-coverage-reporter/releases/download/4.0.3/codacy-coverage-reporter-4.0.3-assembly.jar | jq -r .assets[0].browser_download_url)
 
 after_success:
   - java -jar ~/codacy-coverage-reporter-assembly-4.0.3.jar com.codacy.CodacyCoverageReporter -l Java -r target/site/cobertura/coverage.xml
