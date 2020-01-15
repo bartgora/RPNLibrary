@@ -29,8 +29,6 @@ import java.math.RoundingMode;
  */
 public class CtgFunctionStrategy extends AbstractFunctionStrategy {
 
-    public static final String ONE = "1.0000000000000000";
-
     public CtgFunctionStrategy() {
         super("ctg", 1, RoundingMode.HALF_EVEN);
     }

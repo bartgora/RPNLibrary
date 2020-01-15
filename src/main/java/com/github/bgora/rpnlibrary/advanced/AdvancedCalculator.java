@@ -19,9 +19,9 @@
 
 package com.github.bgora.rpnlibrary.advanced;
 
-import com.github.bgora.rpnlibrary.CalculatorInterface;
-import com.github.bgora.rpnlibrary.CalculationEngine;
+import com.github.bgora.rpnlibrary.Calculating;
 import com.github.bgora.rpnlibrary.Calculator;
+import com.github.bgora.rpnlibrary.StrategiesProvider;
 
 import java.math.RoundingMode;
 
@@ -30,9 +30,9 @@ import java.math.RoundingMode;
  *
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  */
-public class AdvancedCalculator extends Calculator implements CalculatorInterface {
+public class AdvancedCalculator extends Calculator implements Calculating {
 
-    AdvancedCalculator(RoundingMode mode, CalculationEngine calculatorEngine) {
-        super(calculatorEngine, calculatorEngine, mode);
+    AdvancedCalculator(RoundingMode mode, StrategiesProvider strategiesProvider) {
+        super(strategiesProvider, strategiesProvider, mode);
     }
 }

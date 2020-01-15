@@ -31,7 +31,7 @@ import static org.junit.Assert.assertEquals;
 
 public class FibTest {
 
-    private CalculatorInterface calc;
+    private Calculating calc;
 
     @Before
     public void setUp() throws Exception {

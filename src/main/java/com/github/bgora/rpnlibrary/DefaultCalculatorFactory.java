@@ -30,7 +30,7 @@ import com.github.bgora.rpnlibrary.factory.AbstractCalculatorFactory;
 public class DefaultCalculatorFactory extends AbstractCalculatorFactory {
 
     @Override
-    public CalculatorInterface createCalculator() {
+    public Calculating createCalculator() {
         return Calculator.createDefaultCalculator();
     }
 }

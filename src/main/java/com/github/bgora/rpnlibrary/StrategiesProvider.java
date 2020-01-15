@@ -28,7 +28,7 @@ import com.github.bgora.rpnlibrary.advanced.operators.AbstractOperatorStrategy;
  * @see RPNChecking
  * @see RPNExecuting
  */
-public interface CalculationEngine extends RPNExecuting, RPNChecking {
+public interface StrategiesProvider extends RPNExecuting, RPNChecking {
 
     /**
      * Adds new operator strategy to the Engine
@@ -42,5 +42,5 @@ public interface CalculationEngine extends RPNExecuting, RPNChecking {
      *
      * @param abstractFunctionStrategy AbstractFunctionStrategy instance
      */
-    void addFunctionStartegy(final AbstractFunctionStrategy abstractFunctionStrategy);
+    void addFunctionStrategy(final AbstractFunctionStrategy abstractFunctionStrategy);
 }

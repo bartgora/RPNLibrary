@@ -34,13 +34,10 @@ import java.util.LinkedList;
  *
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  */
-public class Calculator implements CalculatorInterface {
-
+public class Calculator implements Calculating {
 
     protected RPNChecking checker;
-
     protected RPNExecuting executioner;
-
     protected RoundingMode roundingMode;
 
 
@@ -143,44 +140,40 @@ public class Calculator implements CalculatorInterface {
         StringBuilder result = new StringBuilder();
         String inputValue = input.trim();
         int length = inputValue.length();
-        char c = 0;
+        char character = 0;
         boolean lastWasDigit = false;
         boolean lastWasOperator = false;
         boolean lastWasWhiteSpace = false;
         boolean lastWasLetter = false;
-        // Iteration thought input String.
         for (int i = 0; i < length; i++) {
-            c = inputValue.charAt(i);
-            if (isDigitOrSeparator(c) && (lastWasDigit || !lastWasOperator)) {
+            character = inputValue.charAt(i);
+            if (isDigitOrSeparator(character) && (lastWasDigit || !lastWasOperator)) {
                 lastWasDigit = true;
-                result.append(c);
+                result.append(character);
                 lastWasWhiteSpace = false;
                 lastWasLetter = false;
                 continue;
-            } else if (Character.isDigit(c)) {
+            } else if (Character.isDigit(character)) {
                 lastWasDigit = true;
                 lastWasLetter = false;
                 lastWasOperator = false;
                 if (!lastWasWhiteSpace) {
                     result.append(" ");
                 }
-                result.append(c);
+                result.append(character);
                 lastWasWhiteSpace = false;
                 continue;
-            } else if (checker.isOperatorOrBracket(String.valueOf(c))) {
+            } else if (checker.isOperatorOrBracket(String.valueOf(character))) {
                 lastWasDigit = false;
                 lastWasLetter = false;
                 lastWasOperator = true;
                 if (!lastWasWhiteSpace) {
                     result.append(" ");
                 }
-                result.append(c);
+                result.append(character);
                 lastWasWhiteSpace = false;
                 continue;
-            } else if (Character.isWhitespace(c)) {
-                // Check Next digit, if it is digit then
-                // erase whitespace
-                // and place digit ex.: 12 456 -> 12456
+            } else if (Character.isWhitespace(character)) {
                 if (!lastWasWhiteSpace && !lastWasDigit) {
                     result.append(" ");
                     lastWasWhiteSpace = true;
@@ -188,18 +181,18 @@ public class Calculator implements CalculatorInterface {
                 lastWasDigit = false;
                 lastWasOperator = false;
                 continue;
-            } else if (Character.isLetter(c)) {
+            } else if (Character.isLetter(character)) {
                 lastWasDigit = false;
                 lastWasOperator = false;
                 if (!lastWasLetter && !lastWasWhiteSpace) {
-                    result.append(" ").append(c);
+                    result.append(" ").append(character);
                 } else {
-                    result.append(c);
+                    result.append(character);
                 }
                 lastWasWhiteSpace = false;
                 lastWasLetter = true;
             } else {
-                throw new WrongArgumentException("Element \"" + c + "\" is not recognized by the Checker");
+                throw new WrongArgumentException("Element \"" + character + "\" is not recognized by the Checker");
             }
         }
 
@@ -241,13 +234,6 @@ public class Calculator implements CalculatorInterface {
                     }
                 } while (!stack.isEmpty() && !checker.isLeftBracket(stackOper));
             } else if (checker.isOperator(temp)) {
-                // 1) until the top of the stack is an operator, o2 such that:
-                // O1 is the total or left-total and its sequence
-                // Execution is less than or equal to the order of execution o2, or
-                // O1 is right-total and the order of execution
-                // Is less than o2,
-                // Remove O2 from the stack and add it to the output queue;
-                // 2) o1 put on the stack operators.
                 while (!stack.isEmpty() && checker.isOperator(stack.peek())) {
                     stackOper = stack.peek();
                     if (checker.isLeftAssociativity(stackOper) && (checker.compareOperators(stackOper, temp) >= 0)) {
@@ -262,15 +248,10 @@ public class Calculator implements CalculatorInterface {
                     }
                 }
 
-                // 2.
                 stack.push(temp);
             } else if (checker.isLeftBracket(temp)) {
-                // put on stack
                 stack.push(temp);
             } else if (checker.isRightBracket(temp)) {
-                // Download from the stack and place the items on the exit until you
-                // Get a left parenthesis.
-                // Left bracket oil (and right too)
                 do {
                     temp = stack.pop();
                     if (!checker.isLeftBracket(temp)) {
@@ -282,11 +263,9 @@ public class Calculator implements CalculatorInterface {
                     result.append(" ").append(stack.pop());
                 }
             } else {
-                // If there is anything that can be recognized ....
                 throw new WrongArgumentException("Element \"" + temp + "\" is not recognized by the Checker");
             }
         }
-        // End of entry, empty the stack.
         while (!stack.isEmpty()) {
             result.append(" ").append(stack.pop());
         }

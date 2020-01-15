@@ -32,9 +32,6 @@ public class SinusFunctionStrategy extends AbstractFunctionStrategy {
         super("sin", 1, RoundingMode.HALF_EVEN);
     }
 
-    /**
-     *
-     */
     @Override
     public BigDecimal execute(String... params) {
         Double param = new Double(params[0]);

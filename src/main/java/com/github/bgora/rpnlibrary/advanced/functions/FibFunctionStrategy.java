@@ -41,6 +41,7 @@ public class FibFunctionStrategy extends AbstractFunctionStrategy {
         } else if (bigDecimal.equals(BigDecimal.ONE)) {
             return BigDecimal.ONE;
         }
-        return fib(bigDecimal.subtract(BigDecimal.ONE)).add(fib(bigDecimal.subtract(BigDecimal.valueOf(2))));
+        return fib(bigDecimal.subtract(BigDecimal.ONE))
+                .add(fib(bigDecimal.subtract(BigDecimal.valueOf(2))));
     }
 }

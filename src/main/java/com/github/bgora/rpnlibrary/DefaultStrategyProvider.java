@@ -38,7 +38,7 @@ import java.util.Map;
  * @see RPNExecuting
  * @see DefaultChecker
  */
-public class CalculatorEngine extends DefaultChecker implements CalculationEngine {
+public class DefaultStrategyProvider extends DefaultChecker implements StrategiesProvider {
 
     private Map<String, AbstractOperatorStrategy> operators;
     private Map<String, AbstractFunctionStrategy> functions;
@@ -46,7 +46,7 @@ public class CalculatorEngine extends DefaultChecker implements CalculationEngin
     /**
      * Default Constructor
      */
-    public CalculatorEngine() {
+    public DefaultStrategyProvider() {
     }
 
     /**
@@ -57,7 +57,7 @@ public class CalculatorEngine extends DefaultChecker implements CalculationEngin
      * @param operators Map containing AbstractOperatorStrategy identified by it's operator
      * @param functions Map containing AbstractFunctionStrategy idetfioed by it's name
      */
-    public CalculatorEngine(Map<String, AbstractOperatorStrategy> operators, Map<String, AbstractFunctionStrategy> functions) {
+    public DefaultStrategyProvider(Map<String, AbstractOperatorStrategy> operators, Map<String, AbstractFunctionStrategy> functions) {
         this.operators = operators;
         this.functions = functions;
     }
@@ -68,8 +68,8 @@ public class CalculatorEngine extends DefaultChecker implements CalculationEngin
     }
 
     @Override
-    public int compareOperators(String operato1, String operator2) {
-        AbstractOperatorStrategy strategy1 = operators.get(operato1);
+    public int compareOperators(String operator1, String operator2) {
+        AbstractOperatorStrategy strategy1 = operators.get(operator1);
         AbstractOperatorStrategy strategy2 = operators.get(operator2);
         return strategy1.getPriority() - strategy2.getPriority();
     }
@@ -94,21 +94,21 @@ public class CalculatorEngine extends DefaultChecker implements CalculationEngin
         return functions.get(functionName).execute(arguments);
     }
 
-    public Map<String, AbstractOperatorStrategy> getOperators() {
-        return operators;
-    }
-
-    public Map<String, AbstractFunctionStrategy> getFunctions() {
-        return functions;
-    }
-
     @Override
     public void addOperator(AbstractOperatorStrategy abstractOperatorStrategy) {
         this.operators.put(abstractOperatorStrategy.getOperator(), abstractOperatorStrategy);
     }
 
     @Override
-    public void addFunctionStartegy(AbstractFunctionStrategy abstractFunctionStrategy) {
+    public void addFunctionStrategy(AbstractFunctionStrategy abstractFunctionStrategy) {
         this.functions.put(abstractFunctionStrategy.getName(), abstractFunctionStrategy);
+    }
+
+    public Map<String, AbstractOperatorStrategy> getOperators() {
+        return operators;
+    }
+
+    public Map<String, AbstractFunctionStrategy> getFunctions() {
+        return functions;
     }
 }

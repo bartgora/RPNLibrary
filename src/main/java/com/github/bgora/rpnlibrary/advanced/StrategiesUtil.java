@@ -34,8 +34,8 @@ import com.github.bgora.rpnlibrary.advanced.operators.MiltiplyOperatorStrategy;
 import com.github.bgora.rpnlibrary.advanced.operators.MinusOperatorStrategy;
 import com.github.bgora.rpnlibrary.advanced.operators.PowerOperatorStrategy;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Utility class for Default Strategies.
@@ -46,11 +46,11 @@ public final class StrategiesUtil {
     /**
      * Default arithmetic operators
      */
-    public static Map<String, AbstractOperatorStrategy> DEFAULT_OPERATORS = new HashMap<String, AbstractOperatorStrategy>();
+    public static Map<String, AbstractOperatorStrategy> DEFAULT_OPERATORS = new ConcurrentHashMap<String, AbstractOperatorStrategy>();
     /**
      * Default Arithmetic functions
      */
-    public static Map<String, AbstractFunctionStrategy> DEFAULT_FUNCTIONS = new HashMap<String, AbstractFunctionStrategy>();
+    public static Map<String, AbstractFunctionStrategy> DEFAULT_FUNCTIONS = new ConcurrentHashMap<String, AbstractFunctionStrategy>();
 
     static {
         AbstractFunctionStrategy sinusFunctionStrategy = new SinusFunctionStrategy();

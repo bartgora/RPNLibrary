@@ -30,9 +30,6 @@ package com.github.bgora.rpnlibrary.exceptions;
 public class NoSuchFunctionFound extends RPNException {
 
 
-    /**
-     * <code>serialVersionUID</code> -
-     */
     private static final long serialVersionUID = 2721403205060626078L;
 
     public NoSuchFunctionFound() {

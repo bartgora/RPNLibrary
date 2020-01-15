@@ -19,9 +19,9 @@
 
 package com.github.bgora.rpnlibrary.advanced;
 
-import com.github.bgora.rpnlibrary.CalculationEngine;
-import com.github.bgora.rpnlibrary.CalculatorEngine;
-import com.github.bgora.rpnlibrary.CalculatorInterface;
+import com.github.bgora.rpnlibrary.Calculating;
+import com.github.bgora.rpnlibrary.DefaultStrategyProvider;
+import com.github.bgora.rpnlibrary.StrategiesProvider;
 import com.github.bgora.rpnlibrary.factory.AbstractCalculatorFactory;
 
 import java.math.RoundingMode;
@@ -33,19 +33,19 @@ import java.math.RoundingMode;
  */
 public class AdvancedCalculatorFactory extends AbstractCalculatorFactory {
 
-    public CalculatorInterface createCalculator() {
-        CalculationEngine engine = getDefaultEngine();
+    public Calculating createCalculator() {
+        StrategiesProvider engine = getDefaultStrategies();
         return new AdvancedCalculator(RoundingMode.HALF_EVEN, engine);
     }
 
     /**
      * Creates AdvanceCalculator with given CalculatorEngine
      *
-     * @param engine CalculationEngine implementation
+     * @param strategiesProvider CalculationEngine implementation
      * @return AdvanceCalculator
      */
-    public CalculatorInterface createCalulator(CalculationEngine engine) {
-        return new AdvancedCalculator(RoundingMode.HALF_EVEN, engine);
+    public Calculating createCalculator(StrategiesProvider strategiesProvider) {
+        return new AdvancedCalculator(RoundingMode.HALF_EVEN, strategiesProvider);
     }
 
 
@@ -54,8 +54,8 @@ public class AdvancedCalculatorFactory extends AbstractCalculatorFactory {
      *
      * @return CalculatorEngine
      */
-    public CalculationEngine getDefaultEngine() {
-        return new CalculatorEngine(StrategiesUtil.DEFAULT_OPERATORS, StrategiesUtil.DEFAULT_FUNCTIONS);
+    public StrategiesProvider getDefaultStrategies() {
+        return new DefaultStrategyProvider(StrategiesUtil.DEFAULT_OPERATORS, StrategiesUtil.DEFAULT_FUNCTIONS);
     }
 
 }
