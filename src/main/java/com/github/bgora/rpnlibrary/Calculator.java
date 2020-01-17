@@ -36,6 +36,10 @@ import java.util.LinkedList;
  */
 public class Calculator implements Calculating {
 
+    private static final String WHITE_SPACE = " ";
+    public static final char DOT = '.';
+    public static final char COMMA = ',';
+    public static final String ZERO = "0.0";
     protected RPNChecking checker;
     protected RPNExecuting executioner;
     protected RoundingMode roundingMode;
@@ -140,7 +144,7 @@ public class Calculator implements Calculating {
         StringBuilder result = new StringBuilder();
         String inputValue = input.trim();
         int length = inputValue.length();
-        char character = 0;
+        char character;
         boolean lastWasDigit = false;
         boolean lastWasOperator = false;
         boolean lastWasWhiteSpace = false;
@@ -148,8 +152,8 @@ public class Calculator implements Calculating {
         for (int i = 0; i < length; i++) {
             character = inputValue.charAt(i);
             if (isDigitOrSeparator(character) && (lastWasDigit || !lastWasOperator)) {
-                lastWasDigit = true;
                 result.append(character);
+                lastWasDigit = true;
                 lastWasWhiteSpace = false;
                 lastWasLetter = false;
                 continue;
@@ -158,7 +162,7 @@ public class Calculator implements Calculating {
                 lastWasLetter = false;
                 lastWasOperator = false;
                 if (!lastWasWhiteSpace) {
-                    result.append(" ");
+                    result.append(WHITE_SPACE);
                 }
                 result.append(character);
                 lastWasWhiteSpace = false;
@@ -168,14 +172,14 @@ public class Calculator implements Calculating {
                 lastWasLetter = false;
                 lastWasOperator = true;
                 if (!lastWasWhiteSpace) {
-                    result.append(" ");
+                    result.append(WHITE_SPACE);
                 }
                 result.append(character);
                 lastWasWhiteSpace = false;
                 continue;
             } else if (Character.isWhitespace(character)) {
                 if (!lastWasWhiteSpace && !lastWasDigit) {
-                    result.append(" ");
+                    result.append(WHITE_SPACE);
                     lastWasWhiteSpace = true;
                 }
                 lastWasDigit = false;
@@ -185,7 +189,7 @@ public class Calculator implements Calculating {
                 lastWasDigit = false;
                 lastWasOperator = false;
                 if (!lastWasLetter && !lastWasWhiteSpace) {
-                    result.append(" ").append(character);
+                    result.append(WHITE_SPACE).append(character);
                 } else {
                     result.append(character);
                 }
@@ -200,7 +204,7 @@ public class Calculator implements Calculating {
     }
 
     private boolean isDigitOrSeparator(char c) {
-        return Character.isDigit(c) || c == '.' || c == ',';
+        return Character.isDigit(c) || c == DOT || c == COMMA;
     }
 
     /**
@@ -215,34 +219,33 @@ public class Calculator implements Calculating {
         String trimmed = input.trim();
         StringBuilder result = new StringBuilder();
         Deque<String> stack = new LinkedList<String>();
-        String[] factors = trimmed.split(" ");
+        String[] factors = trimmed.split(WHITE_SPACE);
         int length = factors.length;
-        String temp = null;
-        String stackOper = null;
+        String temp;
+        String stackOperator;
         for (int i = 0; i < length; i++) {
             temp = factors[i];
             if (checker.isDigit(temp)) {
-                // input String.
-                result.append(" ").append(temp);
+                result.append(WHITE_SPACE).append(temp);
             } else if (checker.isFunction(temp)) {
                 stack.push(temp);
             } else if (",".equals(temp)) {
                 do {
-                    stackOper = stack.pop();
-                    if (!checker.isLeftBracket(stackOper)) {
-                        result.append(" ").append(stackOper);
+                    stackOperator = stack.pop();
+                    if (!checker.isLeftBracket(stackOperator)) {
+                        result.append(WHITE_SPACE).append(stackOperator);
                     }
-                } while (!stack.isEmpty() && !checker.isLeftBracket(stackOper));
+                } while (!stack.isEmpty() && !checker.isLeftBracket(stackOperator));
             } else if (checker.isOperator(temp)) {
                 while (!stack.isEmpty() && checker.isOperator(stack.peek())) {
-                    stackOper = stack.peek();
-                    if (checker.isLeftAssociativity(stackOper) && (checker.compareOperators(stackOper, temp) >= 0)) {
+                    stackOperator = stack.peek();
+                    if (checker.isLeftAssociativity(stackOperator) && (checker.compareOperators(stackOperator, temp) >= 0)) {
                         stack.pop();
-                        result.append(" ").append(stackOper);
-                    } else if (checker.isRightAssociativity(stackOper)
-                            && (checker.compareOperators(stackOper, temp) > 0)) {
+                        result.append(WHITE_SPACE).append(stackOperator);
+                    } else if (checker.isRightAssociativity(stackOperator)
+                            && (checker.compareOperators(stackOperator, temp) > 0)) {
                         stack.pop();
-                        result.append(" ").append(stackOper);
+                        result.append(WHITE_SPACE).append(stackOperator);
                     } else {
                         break;
                     }
@@ -255,19 +258,19 @@ public class Calculator implements Calculating {
                 do {
                     temp = stack.pop();
                     if (!checker.isLeftBracket(temp)) {
-                        result.append(" ").append(temp);
+                        result.append(WHITE_SPACE).append(temp);
                     }
                 } while (!checker.isLeftBracket(temp));
 
                 if (!stack.isEmpty() && checker.isFunction(stack.peek())) {
-                    result.append(" ").append(stack.pop());
+                    result.append(WHITE_SPACE).append(stack.pop());
                 }
             } else {
                 throw new WrongArgumentException("Element \"" + temp + "\" is not recognized by the Checker");
             }
         }
         while (!stack.isEmpty()) {
-            result.append(" ").append(stack.pop());
+            result.append(WHITE_SPACE).append(stack.pop());
         }
 
         return result.toString().trim();
@@ -282,12 +285,12 @@ public class Calculator implements Calculating {
      * @throws NoSuchFunctionFound
      */
     private BigDecimal getResult(String result) throws WrongArgumentException, NoSuchFunctionFound {
-        String[] factors = result.trim().split(" ");
+        String[] factors = result.trim().split(WHITE_SPACE);
         Deque<String> stack = new LinkedList<String>();
-        String temp = null;
-        String var1 = null;
-        String var2 = null;
-        BigDecimal value = null;
+        String temp;
+        String var1;
+        String var2;
+        BigDecimal value;
         for (int i = 0; i < factors.length; i++) {
             temp = factors[i];
             if (checker.isDigit(temp)) {
@@ -297,7 +300,7 @@ public class Calculator implements Calculating {
                 if (!stack.isEmpty()) {
                     var2 = stack.pop();
                 } else {
-                    var2 = "0.0";
+                    var2 = ZERO;
                 }
                 value = executioner.executeOperator(temp, var2, var1, roundingMode);
                 stack.push(value.toPlainString());

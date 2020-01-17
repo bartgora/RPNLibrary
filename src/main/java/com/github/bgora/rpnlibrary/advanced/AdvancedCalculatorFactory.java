@@ -34,8 +34,7 @@ import java.math.RoundingMode;
 public class AdvancedCalculatorFactory extends AbstractCalculatorFactory {
 
     public Calculating createCalculator() {
-        StrategiesProvider engine = getDefaultStrategies();
-        return new AdvancedCalculator(RoundingMode.HALF_EVEN, engine);
+        return new AdvancedCalculator(RoundingMode.HALF_EVEN, getDefaultStrategies());
     }
 
     /**
