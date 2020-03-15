@@ -44,12 +44,6 @@ public class CalculatorEngine extends DefaultChecker implements CalculationEngin
     private Map<String, AbstractFunctionStrategy> functions;
 
     /**
-     * Default Constructor
-     */
-    public CalculatorEngine() {
-    }
-
-    /**
      * Parametrized constructor.
      * <p>
      * Takes two maps with AbstractOperatorStrategy, and AbstractFunctionStrategy, to calculate.

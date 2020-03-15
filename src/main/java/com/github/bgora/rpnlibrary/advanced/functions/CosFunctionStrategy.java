@@ -19,18 +19,19 @@
 package com.github.bgora.rpnlibrary.advanced.functions;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.math.MathContext;
 
 /**
  * Cosine function
  *
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  */
-public class CosinusFunctionStrategy extends AbstractFunctionStrategy {
+public class CosFunctionStrategy extends AbstractFunctionStrategy {
 
-    public CosinusFunctionStrategy() {
-        super("cos", 1, RoundingMode.HALF_EVEN);
+    public CosFunctionStrategy(MathContext mathContext) {
+        super("cos", 1, mathContext);
     }
+
 
     @Override
     public BigDecimal execute(String... params) {

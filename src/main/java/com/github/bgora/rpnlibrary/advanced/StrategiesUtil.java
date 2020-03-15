@@ -20,7 +20,7 @@
 package com.github.bgora.rpnlibrary.advanced;
 
 import com.github.bgora.rpnlibrary.advanced.functions.AbstractFunctionStrategy;
-import com.github.bgora.rpnlibrary.advanced.functions.CosinusFunctionStrategy;
+import com.github.bgora.rpnlibrary.advanced.functions.CosFunctionStrategy;
 import com.github.bgora.rpnlibrary.advanced.functions.CtgFunctionStrategy;
 import com.github.bgora.rpnlibrary.advanced.functions.FibFunctionStrategy;
 import com.github.bgora.rpnlibrary.advanced.functions.MaxFunctionStrategy;
@@ -55,7 +55,7 @@ public final class StrategiesUtil {
     static {
         AbstractFunctionStrategy sinusFunctionStrategy = new SinusFunctionStrategy();
         DEFAULT_FUNCTIONS.put(sinusFunctionStrategy.getName(), sinusFunctionStrategy);
-        AbstractFunctionStrategy cosinusFunctionStrategy = new CosinusFunctionStrategy();
+        AbstractFunctionStrategy cosinusFunctionStrategy = new CosFunctionStrategy();
         DEFAULT_FUNCTIONS.put(cosinusFunctionStrategy.getName(), cosinusFunctionStrategy);
         AbstractFunctionStrategy tanFunctionStrategy = new TanFunctionStrategy();
         DEFAULT_FUNCTIONS.put(tanFunctionStrategy.getName(), tanFunctionStrategy);

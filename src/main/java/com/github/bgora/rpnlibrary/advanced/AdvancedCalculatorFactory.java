@@ -20,8 +20,8 @@
 package com.github.bgora.rpnlibrary.advanced;
 
 import com.github.bgora.rpnlibrary.CalculationEngine;
+import com.github.bgora.rpnlibrary.Calculator;
 import com.github.bgora.rpnlibrary.CalculatorEngine;
-import com.github.bgora.rpnlibrary.CalculatorInterface;
 import com.github.bgora.rpnlibrary.factory.AbstractCalculatorFactory;
 
 import java.math.RoundingMode;
@@ -33,7 +33,7 @@ import java.math.RoundingMode;
  */
 public class AdvancedCalculatorFactory extends AbstractCalculatorFactory {
 
-    public CalculatorInterface createCalculator() {
+    public Calculator createCalculator() {
         CalculationEngine engine = getDefaultEngine();
         return new AdvancedCalculator(RoundingMode.HALF_EVEN, engine);
     }
@@ -44,7 +44,7 @@ public class AdvancedCalculatorFactory extends AbstractCalculatorFactory {
      * @param engine CalculationEngine implementation
      * @return AdvanceCalculator
      */
-    public CalculatorInterface createCalulator(CalculationEngine engine) {
+    public Calculator createCalulator(CalculationEngine engine) {
         return new AdvancedCalculator(RoundingMode.HALF_EVEN, engine);
     }
 

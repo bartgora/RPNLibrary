@@ -21,6 +21,7 @@ package com.github.bgora.rpnlibrary.advanced.functions;
 
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.math.RoundingMode;
 
 /**
@@ -41,20 +42,24 @@ public abstract class AbstractFunctionStrategy {
 
     protected RoundingMode roundingMode;
 
+    protected int scale;
+
 
     /**
      * Default Constructor.
      * Subclass need to provide required fields.
      *
-     * @param name Name of the function
-     * @param paramCount parameters count
-     * @param roundingMode Rounding Mode
+     * @param name        Name of the function
+     * @param paramCount  parameters count
+     * @param mathContext MathContext to set precision and rounding mode
      */
-    public AbstractFunctionStrategy(String name, int paramCount, RoundingMode roundingMode) {
+    public AbstractFunctionStrategy(String name, int paramCount, MathContext mathContext) {
         this.name = name;
         this.paramCount = paramCount;
-        this.roundingMode = roundingMode;
+        this.roundingMode = mathContext.getRoundingMode();
+        this.scale = mathContext.getPrecision();
     }
+
 
     /**
      * Returns Name value

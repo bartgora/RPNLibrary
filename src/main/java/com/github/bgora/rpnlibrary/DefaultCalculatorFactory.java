@@ -25,12 +25,12 @@ import com.github.bgora.rpnlibrary.factory.AbstractCalculatorFactory;
  * Creates DefaultCalculator instance
  *
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
- * @see Calculator
+ * @see DefaultCalculator
  */
 public class DefaultCalculatorFactory extends AbstractCalculatorFactory {
 
     @Override
-    public CalculatorInterface createCalculator() {
-        return Calculator.createDefaultCalculator();
+    public Calculator createCalculator() {
+        return DefaultCalculator.createDefaultCalculator();
     }
 }

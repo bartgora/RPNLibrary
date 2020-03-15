@@ -32,7 +32,7 @@ import static org.junit.Assert.assertEquals;
 
 public class AdvancedCalulatorTest2ParamFunction {
 
-    private CalculatorInterface calc;
+    private Calculator calc;
 
     @Before
     public void setUp() throws Exception {

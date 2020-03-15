@@ -20,7 +20,7 @@
 package com.github.bgora.rpnlibrary.advanced.functions;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.math.MathContext;
 
 /**
  * Cotangent function
@@ -31,8 +31,8 @@ public class CtgFunctionStrategy extends AbstractFunctionStrategy {
 
     public static final String ONE = "1.0000000000000000";
 
-    public CtgFunctionStrategy() {
-        super("ctg", 1, RoundingMode.HALF_EVEN);
+    public CtgFunctionStrategy(MathContext mathContext) {
+        super("ctg", 1, mathContext);
     }
 
     @Override

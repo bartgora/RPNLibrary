@@ -19,7 +19,7 @@
 
 package com.github.bgora.rpnlibrary.factory;
 
-import com.github.bgora.rpnlibrary.CalculatorInterface;
+import com.github.bgora.rpnlibrary.Calculator;
 
 /**
  * AbstractCalculatorFactory.
@@ -27,14 +27,15 @@ import com.github.bgora.rpnlibrary.CalculatorInterface;
  * It's subclasses are used do provide CalculatorInterace implementations
  *
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
- * @see CalculatorInterface
+ * @see Calculator
  */
 
 public abstract class AbstractCalculatorFactory {
 
     /**
      * Creates Calculator
+     *
      * @return an CalculatorInterface instance
      */
-    public abstract CalculatorInterface createCalculator();
+    public abstract Calculator createCalculator();
 }
