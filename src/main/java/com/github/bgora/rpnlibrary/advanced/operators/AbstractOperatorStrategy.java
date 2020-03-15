@@ -43,12 +43,11 @@ public abstract class AbstractOperatorStrategy {
      * @see java.lang.Object#equals(java.lang.Object)
      */
     @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof AbstractOperatorStrategy) {
-            AbstractOperatorStrategy rpn = (AbstractOperatorStrategy) obj;
-            return (operator != null ? operator.equals(rpn.operator) : operator == rpn.operator);
-        }
-        return false;
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        final AbstractOperatorStrategy that = (AbstractOperatorStrategy) o;
+        return operator.equals(that.operator);
     }
 
     /**

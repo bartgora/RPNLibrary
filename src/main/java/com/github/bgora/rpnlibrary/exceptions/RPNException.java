@@ -24,18 +24,10 @@ package com.github.bgora.rpnlibrary.exceptions;
  *
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  */
-public class RPNException extends Exception {
+public class RPNException extends RuntimeException {
 
 
     private static final long serialVersionUID = 601457826479138831L;
-
-    /**
-     * Contructor
-     * Creates class instance
-     */
-    public RPNException() {
-        super();
-    }
 
     /**
      * Contructor.

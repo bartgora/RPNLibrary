@@ -42,7 +42,7 @@ public abstract class AbstractFunctionStrategy {
 
     protected RoundingMode roundingMode;
 
-    protected int scale;
+    protected int precision;
 
 
     /**
@@ -57,7 +57,7 @@ public abstract class AbstractFunctionStrategy {
         this.name = name;
         this.paramCount = paramCount;
         this.roundingMode = mathContext.getRoundingMode();
-        this.scale = mathContext.getPrecision();
+        this.precision = mathContext.getPrecision();
     }
 
 
