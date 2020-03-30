@@ -20,13 +20,13 @@
 package com.github.bgora.rpnlibrary.advanced.operators;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.math.MathContext;
 
 public class PowerOperatorStrategy extends AbstractOperatorStrategy {
 
 
-    public PowerOperatorStrategy() {
-        super("^", 3, RoundingMode.HALF_EVEN);
+    public PowerOperatorStrategy(MathContext mathContext) {
+        super("^", 3, mathContext);
     }
 
     @Override

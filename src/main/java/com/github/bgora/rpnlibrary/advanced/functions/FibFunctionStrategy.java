@@ -20,13 +20,13 @@
 package com.github.bgora.rpnlibrary.advanced.functions;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.math.MathContext;
 
 public class FibFunctionStrategy extends AbstractFunctionStrategy {
 
 
-    public FibFunctionStrategy() {
-        super("fib", 1, RoundingMode.HALF_EVEN);
+    public FibFunctionStrategy(MathContext mathContext) {
+        super("fib", 1, mathContext);
     }
 
     @Override

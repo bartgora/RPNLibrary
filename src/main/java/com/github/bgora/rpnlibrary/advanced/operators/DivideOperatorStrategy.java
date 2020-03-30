@@ -20,20 +20,20 @@
 package com.github.bgora.rpnlibrary.advanced.operators;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.math.MathContext;
 
 public class DivideOperatorStrategy extends AbstractOperatorStrategy {
 
 
-    public DivideOperatorStrategy() {
-        super("/", 2, RoundingMode.HALF_EVEN);
+    public DivideOperatorStrategy(MathContext mathContext) {
+        super("/", 2, mathContext);
     }
 
     @Override
     public BigDecimal execute(String first, String second) {
         Double big1 = new Double(first);
         Double big2 = new Double(second);
-        return BigDecimal.valueOf(big1/big2);
+        return BigDecimal.valueOf(big1 / big2);
     }
 
 

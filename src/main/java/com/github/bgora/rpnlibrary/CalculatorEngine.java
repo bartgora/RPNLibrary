@@ -102,7 +102,7 @@ public class CalculatorEngine extends DefaultChecker implements CalculationEngin
     }
 
     @Override
-    public void addFunctionStartegy(AbstractFunctionStrategy abstractFunctionStrategy) {
+    public void addFunctionStrategy(AbstractFunctionStrategy abstractFunctionStrategy) {
         this.functions.put(abstractFunctionStrategy.getName(), abstractFunctionStrategy);
     }
 }

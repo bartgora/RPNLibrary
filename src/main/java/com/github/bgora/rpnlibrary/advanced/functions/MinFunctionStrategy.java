@@ -20,7 +20,7 @@
 package com.github.bgora.rpnlibrary.advanced.functions;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.math.MathContext;
 
 /**
  * Min Function - returns lesser number from two
@@ -29,8 +29,8 @@ import java.math.RoundingMode;
  */
 public class MinFunctionStrategy extends AbstractFunctionStrategy {
 
-    public MinFunctionStrategy() {
-        super("min", 2, RoundingMode.HALF_EVEN);
+    public MinFunctionStrategy(MathContext mathContext) {
+        super("min", 2, mathContext);
     }
 
     @Override

@@ -19,7 +19,6 @@
 
 package com.github.bgora.rpnlibrary;
 
-import com.github.bgora.rpnlibrary.advanced.AdvancedCalculatorFactory;
 import com.github.bgora.rpnlibrary.exceptions.RPNException;
 import org.junit.Before;
 import org.junit.Test;

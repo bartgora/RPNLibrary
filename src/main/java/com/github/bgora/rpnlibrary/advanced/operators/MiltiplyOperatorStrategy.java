@@ -20,13 +20,13 @@
 package com.github.bgora.rpnlibrary.advanced.operators;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.math.MathContext;
 
 public class MiltiplyOperatorStrategy extends AbstractOperatorStrategy {
 
 
-    public MiltiplyOperatorStrategy() {
-        super("*", 2, RoundingMode.HALF_EVEN);
+    public MiltiplyOperatorStrategy(MathContext mathContext) {
+        super("*", 2, mathContext);
     }
 
     @Override

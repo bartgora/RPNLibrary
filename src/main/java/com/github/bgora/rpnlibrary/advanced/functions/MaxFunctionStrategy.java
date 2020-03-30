@@ -20,7 +20,7 @@
 package com.github.bgora.rpnlibrary.advanced.functions;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.math.MathContext;
 
 /**
  * Max function - return greater value from given two.
@@ -29,8 +29,8 @@ import java.math.RoundingMode;
  */
 public class MaxFunctionStrategy extends AbstractFunctionStrategy {
 
-    public MaxFunctionStrategy() {
-        super("max", 2, RoundingMode.HALF_EVEN);
+    public MaxFunctionStrategy(MathContext mathContext) {
+        super("max", 2, mathContext);
     }
 
     @Override

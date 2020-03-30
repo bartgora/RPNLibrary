@@ -20,20 +20,23 @@
 package com.github.bgora.rpnlibrary.advanced.operators;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.math.RoundingMode;
 
 public abstract class AbstractOperatorStrategy {
 
-    private String operator;
-    private int priority;
+    private final String operator;
+    private final int priority;
     private volatile int hashCode = 0;
-    protected RoundingMode roundingMode;
+    protected final RoundingMode roundingMode;
+    protected final int precision;
 
 
-    public AbstractOperatorStrategy(String operator, int priority, RoundingMode roundingMode) {
+    public AbstractOperatorStrategy(String operator, int priority, MathContext mathContext) {
         this.operator = operator;
         this.priority = priority;
-        this.roundingMode = roundingMode;
+        this.roundingMode = mathContext.getRoundingMode();
+        this.precision = mathContext.getPrecision();
     }
 
 

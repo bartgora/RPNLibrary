@@ -20,7 +20,7 @@
 package com.github.bgora.rpnlibrary.advanced.functions;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.math.MathContext;
 
 /**
  * Tangent function
@@ -29,8 +29,8 @@ import java.math.RoundingMode;
  */
 public class TanFunctionStrategy extends AbstractFunctionStrategy {
 
-    public TanFunctionStrategy() {
-        super("tg", 1, RoundingMode.HALF_EVEN);
+    public TanFunctionStrategy(MathContext mathContext) {
+        super("tg", 1, mathContext);
     }
 
     @Override

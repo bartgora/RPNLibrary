@@ -26,7 +26,7 @@ import java.math.RoundingMode;
 
 /**
  * Abstract class for arithmetic functions.
- *
+ * <p>
  * This class contains function name, param count.
  * It also provides execute method which is responsible for call the underlying math function.
  *
@@ -34,15 +34,11 @@ import java.math.RoundingMode;
  */
 public abstract class AbstractFunctionStrategy {
 
-    private String name;
-
-    private int paramCount;
-
+    private final String name;
+    private final int paramCount;
     private volatile int hashCode = 0;
-
-    protected RoundingMode roundingMode;
-
-    protected int precision;
+    protected final RoundingMode roundingMode;
+    protected final int precision;
 
 
     /**

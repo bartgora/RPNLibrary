@@ -20,13 +20,13 @@
 package com.github.bgora.rpnlibrary.advanced.operators;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.math.MathContext;
 
 public class MinusOperatorStrategy extends AbstractOperatorStrategy {
 
 
-    public MinusOperatorStrategy() {
-        super("-", 1, RoundingMode.HALF_EVEN);
+    public MinusOperatorStrategy(MathContext mathContext) {
+        super("-", 1, mathContext);
     }
 
     @Override

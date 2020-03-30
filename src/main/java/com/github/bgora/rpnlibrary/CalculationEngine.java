@@ -42,5 +42,5 @@ public interface CalculationEngine extends RPNExecuting, RPNChecking {
      *
      * @param abstractFunctionStrategy AbstractFunctionStrategy instance
      */
-    void addFunctionStartegy(final AbstractFunctionStrategy abstractFunctionStrategy);
+    void addFunctionStrategy(final AbstractFunctionStrategy abstractFunctionStrategy);
 }

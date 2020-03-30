@@ -20,16 +20,17 @@
 package com.github.bgora.rpnlibrary.advanced.functions;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.math.MathContext;
 
 /**
  * Sinus function
+ *
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  */
 public class SinusFunctionStrategy extends AbstractFunctionStrategy {
 
-    public SinusFunctionStrategy() {
-        super("sin", 1, RoundingMode.HALF_EVEN);
+    public SinusFunctionStrategy(MathContext mathContext) {
+        super("sin", 1, mathContext);
     }
 
     /**
