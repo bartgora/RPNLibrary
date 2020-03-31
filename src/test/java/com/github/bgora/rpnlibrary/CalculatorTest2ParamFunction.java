@@ -29,14 +29,13 @@ import java.math.RoundingMode;
 
 import static org.junit.Assert.assertEquals;
 
-public class AdvancedCalulatorTest2ParamFunction {
+public class CalculatorTest2ParamFunction {
 
     private Calculator calc;
 
     @Before
     public void setUp() throws Exception {
-        AdvancedCalculatorFactory advancedCalculatorFactory = new AdvancedCalculatorFactory();
-        calc = advancedCalculatorFactory.createCalculator();
+        calc = Calculator.createCalculator();
     }
 
 

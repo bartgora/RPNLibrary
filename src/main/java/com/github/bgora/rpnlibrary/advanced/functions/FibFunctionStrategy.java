@@ -25,12 +25,12 @@ import java.math.MathContext;
 public class FibFunctionStrategy extends AbstractFunctionStrategy {
 
 
-    public FibFunctionStrategy(MathContext mathContext) {
-        super("fib", 1, mathContext);
+    public FibFunctionStrategy() {
+        super("fib", 1);
     }
 
     @Override
-    public BigDecimal execute(String... params) {
+    public BigDecimal execute(final MathContext mathContext, final String... params) {
         BigDecimal bigDecimal = new BigDecimal(params[0]);
         return fib(bigDecimal);
     }

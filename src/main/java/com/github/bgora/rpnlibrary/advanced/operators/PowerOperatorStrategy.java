@@ -25,12 +25,12 @@ import java.math.MathContext;
 public class PowerOperatorStrategy extends AbstractOperatorStrategy {
 
 
-    public PowerOperatorStrategy(MathContext mathContext) {
-        super("^", 3, mathContext);
+    public PowerOperatorStrategy() {
+        super("^", 3);
     }
 
     @Override
-    public BigDecimal execute(String first, String second) {
+    public BigDecimal execute(String first, String second, final MathContext mathContext) {
         Double big1 = new Double(first);
         Double big2 = new Double(second);
         return BigDecimal.valueOf(Math.pow(big1, big2));

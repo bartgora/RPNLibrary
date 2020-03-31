@@ -29,12 +29,12 @@ import java.math.MathContext;
  */
 public class MaxFunctionStrategy extends AbstractFunctionStrategy {
 
-    public MaxFunctionStrategy(MathContext mathContext) {
-        super("max", 2, mathContext);
+    public MaxFunctionStrategy() {
+        super("max", 2);
     }
 
     @Override
-    public BigDecimal execute(String... params) {
+    public BigDecimal execute(final MathContext mathContext, String... params) {
         BigDecimal param1 = new BigDecimal(params[0]);
         BigDecimal param2 = new BigDecimal(params[1]);
         return param1.max(param2);

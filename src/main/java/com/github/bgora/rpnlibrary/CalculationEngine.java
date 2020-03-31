@@ -38,7 +38,7 @@ public interface CalculationEngine extends RPNExecuting, RPNChecking {
     void addOperator(final AbstractOperatorStrategy abstractOperatorStrategy);
 
     /**
-     * Adds new function startegy to the engine
+     * Adds new function strategy to the engine
      *
      * @param abstractFunctionStrategy AbstractFunctionStrategy instance
      */

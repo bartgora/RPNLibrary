@@ -25,12 +25,12 @@ import java.math.MathContext;
 public class MiltiplyOperatorStrategy extends AbstractOperatorStrategy {
 
 
-    public MiltiplyOperatorStrategy(MathContext mathContext) {
-        super("*", 2, mathContext);
+    public MiltiplyOperatorStrategy() {
+        super("*", 2);
     }
 
     @Override
-    public BigDecimal execute(String first, String second) {
+    public BigDecimal execute(String first, String second, final MathContext mathContext) {
         Double big1 = new Double(first);
         Double big2 = new Double(second);
         return BigDecimal.valueOf(big1 * big2);

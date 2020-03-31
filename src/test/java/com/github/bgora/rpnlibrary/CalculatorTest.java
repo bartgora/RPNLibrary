@@ -28,14 +28,13 @@ import java.math.RoundingMode;
 
 import static org.junit.Assert.assertEquals;
 
-public class AdvancedCalulatorTest {
+public class CalculatorTest {
 
     private Calculator calc;
 
     @Before
     public void setUp() throws Exception {
-        AdvancedCalculatorFactory advancedCalculatorFactory = new AdvancedCalculatorFactory();
-        calc = advancedCalculatorFactory.createCalculator();
+        calc = Calculator.createCalculator();
     }
 
     @Test

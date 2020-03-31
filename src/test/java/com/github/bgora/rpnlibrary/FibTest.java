@@ -34,8 +34,7 @@ public class FibTest {
 
     @Before
     public void setUp() throws Exception {
-        AdvancedCalculatorFactory advancedCalculatorFactory = new AdvancedCalculatorFactory();
-        calc = advancedCalculatorFactory.createCalculator();
+        calc = Calculator.createCalculator();
     }
 
     @Test

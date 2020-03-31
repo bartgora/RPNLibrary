@@ -19,10 +19,13 @@
 
 package com.github.bgora.rpnlibrary;
 
+import com.github.bgora.rpnlibrary.advanced.StrategiesUtil;
 import com.github.bgora.rpnlibrary.exceptions.NoSuchFunctionFound;
 import com.github.bgora.rpnlibrary.exceptions.WrongArgumentException;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.util.Deque;
 import java.util.LinkedList;
 
@@ -37,8 +40,8 @@ public class Calculator {
 
 
     protected RPNChecking checker;
-
     protected RPNExecuting executioner;
+    private MathContext mathContext;
 
 
     /**
@@ -48,14 +51,14 @@ public class Calculator {
      * implementas {@code RPNChecking}, and
      * {@code RPNExecuting}.
      *
-     * @param checker     Custom Checker object.
-     * @param executioner custom executioner object
      * @return new Instance of {@code pl.bgora.Calculator}
      * @see RPNChecking
      * @see RPNExecuting
      */
-    public static Calculator createCalculator(RPNChecking checker, RPNExecuting executioner) {
-        return new Calculator(checker, executioner);
+    public static Calculator createCalculator() {
+        final CalculationEngine calculationEngine = new CalculatorEngine(StrategiesUtil.DEFAULT_OPERATORS, StrategiesUtil.DEFAULT_FUNCTIONS);
+        final MathContext mathContext = new MathContext(2, RoundingMode.HALF_EVEN);
+        return new Calculator(calculationEngine, calculationEngine, mathContext);
     }
 
 
@@ -64,10 +67,12 @@ public class Calculator {
      *
      * @param checker     Object implementing RPNChecking - Used for checking operations in input.
      * @param executioner Object implementing RPNExecuting - used for executing operations on input.
+     * @param mathContext
      */
-    protected Calculator(RPNChecking checker, RPNExecuting executioner) {
+    private Calculator(RPNChecking checker, RPNExecuting executioner, final MathContext mathContext) {
         this.checker = checker;
         this.executioner = executioner;
+        this.mathContext = mathContext;
     }
 
     public BigDecimal calculate(final String input) throws WrongArgumentException, NoSuchFunctionFound {
@@ -247,7 +252,7 @@ public class Calculator {
                 } else {
                     variable2 = "0.0";
                 }
-                value = executioner.executeOperator(temp, variable2, variable1);
+                value = executioner.executeOperator(temp, mathContext, variable2, variable1);
                 stack.push(value.toPlainString());
             } else if (checker.isFunction(temp)) {
                 int count = checker.getFunctionParamsCount(temp);
@@ -257,7 +262,7 @@ public class Calculator {
                 for (int j = 0; j < count; j++) {
                     table[j] = paramsTable[j];
                 }
-                value = executioner.executeFunction(temp, table);
+                value = executioner.executeFunction(temp, mathContext, table);
                 stack.push(value.toPlainString());
             }
         }

@@ -29,12 +29,12 @@ import java.math.MathContext;
  */
 public class MinFunctionStrategy extends AbstractFunctionStrategy {
 
-    public MinFunctionStrategy(MathContext mathContext) {
-        super("min", 2, mathContext);
+    public MinFunctionStrategy() {
+        super("min", 2);
     }
 
     @Override
-    public BigDecimal execute(String... params) {
+    public BigDecimal execute(final MathContext mathContext, String... params) {
         BigDecimal param1 = new BigDecimal(params[0]);
         BigDecimal param2 = new BigDecimal(params[1]);
         return param1.min(param2);

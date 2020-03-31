@@ -31,12 +31,12 @@ public class CtgFunctionStrategy extends AbstractFunctionStrategy {
 
     public static final String ONE = "1.0000000000000000";
 
-    public CtgFunctionStrategy(MathContext mathContext) {
-        super("ctg", 1, mathContext);
+    public CtgFunctionStrategy() {
+        super("ctg", 1);
     }
 
     @Override
-    public BigDecimal execute(String... params) {
+    public BigDecimal execute(final MathContext mathContext, final String... params) {
         Double dec = new Double(params[0]);
         Double tan = Math.tan(dec.doubleValue());
         Double one = new Double(1);

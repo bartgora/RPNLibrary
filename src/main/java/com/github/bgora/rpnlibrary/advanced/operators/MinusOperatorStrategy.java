@@ -25,12 +25,12 @@ import java.math.MathContext;
 public class MinusOperatorStrategy extends AbstractOperatorStrategy {
 
 
-    public MinusOperatorStrategy(MathContext mathContext) {
-        super("-", 1, mathContext);
+    public MinusOperatorStrategy() {
+        super("-", 1);
     }
 
     @Override
-    public BigDecimal execute(String first, String second) {
+    public BigDecimal execute(String first, String second, final MathContext mathContext) {
         BigDecimal big1 = new BigDecimal(first);
         BigDecimal big2 = new BigDecimal(second);
         return big1.subtract(big2);

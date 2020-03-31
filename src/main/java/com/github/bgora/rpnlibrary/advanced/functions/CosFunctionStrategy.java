@@ -28,13 +28,13 @@ import java.math.MathContext;
  */
 public class CosFunctionStrategy extends AbstractFunctionStrategy {
 
-    public CosFunctionStrategy(MathContext mathContext) {
-        super("cos", 1, mathContext);
+    public CosFunctionStrategy() {
+        super("cos", 1);
     }
 
 
     @Override
-    public BigDecimal execute(String... params) {
+    public BigDecimal execute(final MathContext mathContext, final String... params) {
         Double param = new Double(params[0]);
         BigDecimal result = BigDecimal.valueOf(Math.cos(param));
         return result;

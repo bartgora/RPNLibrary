@@ -29,12 +29,12 @@ import java.math.MathContext;
  */
 public class TanFunctionStrategy extends AbstractFunctionStrategy {
 
-    public TanFunctionStrategy(MathContext mathContext) {
-        super("tg", 1, mathContext);
+    public TanFunctionStrategy() {
+        super("tg", 1);
     }
 
     @Override
-    public BigDecimal execute(String... params) {
+    public BigDecimal execute(final MathContext mathContext, String... params) {
         Double dec = new Double(params[0]);
         return BigDecimal.valueOf(Math.tan(dec));
     }

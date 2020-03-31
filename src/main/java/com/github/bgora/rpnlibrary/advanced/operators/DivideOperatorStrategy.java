@@ -25,12 +25,12 @@ import java.math.MathContext;
 public class DivideOperatorStrategy extends AbstractOperatorStrategy {
 
 
-    public DivideOperatorStrategy(MathContext mathContext) {
-        super("/", 2, mathContext);
+    public DivideOperatorStrategy() {
+        super("/", 2);
     }
 
     @Override
-    public BigDecimal execute(String first, String second) {
+    public BigDecimal execute(String first, String second, final MathContext mathContext) {
         Double big1 = new Double(first);
         Double big2 = new Double(second);
         return BigDecimal.valueOf(big1 / big2);

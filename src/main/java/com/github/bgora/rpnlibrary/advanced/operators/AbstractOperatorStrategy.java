@@ -21,26 +21,21 @@ package com.github.bgora.rpnlibrary.advanced.operators;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
-import java.math.RoundingMode;
 
 public abstract class AbstractOperatorStrategy {
 
     private final String operator;
     private final int priority;
     private volatile int hashCode = 0;
-    protected final RoundingMode roundingMode;
-    protected final int precision;
 
 
-    public AbstractOperatorStrategy(String operator, int priority, MathContext mathContext) {
+    public AbstractOperatorStrategy(final String operator, int priority) {
         this.operator = operator;
         this.priority = priority;
-        this.roundingMode = mathContext.getRoundingMode();
-        this.precision = mathContext.getPrecision();
     }
 
 
-    public abstract BigDecimal execute(String first, String second);
+    public abstract BigDecimal execute(final String first, final String second, final MathContext mathContext);
 
     /**
      * @see java.lang.Object#equals(java.lang.Object)
@@ -74,7 +69,4 @@ public abstract class AbstractOperatorStrategy {
         return priority;
     }
 
-    public RoundingMode getRoundingMode() {
-        return roundingMode;
-    }
 }

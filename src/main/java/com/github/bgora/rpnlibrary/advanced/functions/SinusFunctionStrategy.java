@@ -29,15 +29,15 @@ import java.math.MathContext;
  */
 public class SinusFunctionStrategy extends AbstractFunctionStrategy {
 
-    public SinusFunctionStrategy(MathContext mathContext) {
-        super("sin", 1, mathContext);
+    public SinusFunctionStrategy() {
+        super("sin", 1);
     }
 
     /**
      *
      */
     @Override
-    public BigDecimal execute(String... params) {
+    public BigDecimal execute(final MathContext mathContext, String... params) {
         Double param = new Double(params[0]);
         BigDecimal result = BigDecimal.valueOf(Math.sin(param));
         return result;
