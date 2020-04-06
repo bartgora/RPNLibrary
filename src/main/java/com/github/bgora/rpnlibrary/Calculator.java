@@ -25,7 +25,6 @@ import com.github.bgora.rpnlibrary.exceptions.WrongArgumentException;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
-import java.math.RoundingMode;
 import java.util.Deque;
 import java.util.LinkedList;
 
@@ -39,15 +38,19 @@ import java.util.LinkedList;
 public class Calculator {
 
 
-    protected RPNChecking checker;
-    protected RPNExecuting executioner;
-    private MathContext mathContext;
+    public static final String ZERO = "0.0";
+    public static final String EMPTY_SPACE = " ";
+    public static final String COMMA = ",";
+    protected final RPNChecking checker;
+    protected final RPNExecuting executioner;
+    private final MathContext mathContext;
+    private final int SCALE;
 
 
     /**
      * Factory method for RPN Calculator object with custom functions, and
      * operations. You should use this factory method if you want to create your
-     * own operations. To do so, you have to implement you own objectst, that
+     * own operations. To do so, you have to implement you own objects, that
      * implementas {@code RPNChecking}, and
      * {@code RPNExecuting}.
      *
@@ -57,8 +60,8 @@ public class Calculator {
      */
     public static Calculator createCalculator() {
         final CalculationEngine calculationEngine = new CalculatorEngine(StrategiesUtil.DEFAULT_OPERATORS, StrategiesUtil.DEFAULT_FUNCTIONS);
-        final MathContext mathContext = new MathContext(2, RoundingMode.HALF_EVEN);
-        return new Calculator(calculationEngine, calculationEngine, mathContext);
+        final MathContext mathContext = MathContext.DECIMAL64;
+        return new Calculator(calculationEngine, calculationEngine, mathContext, 2);
     }
 
 
@@ -68,11 +71,13 @@ public class Calculator {
      * @param checker     Object implementing RPNChecking - Used for checking operations in input.
      * @param executioner Object implementing RPNExecuting - used for executing operations on input.
      * @param mathContext
+     * @param scale
      */
-    private Calculator(RPNChecking checker, RPNExecuting executioner, final MathContext mathContext) {
+    private Calculator(RPNChecking checker, RPNExecuting executioner, final MathContext mathContext, final int scale) {
         this.checker = checker;
         this.executioner = executioner;
         this.mathContext = mathContext;
+        this.SCALE = scale;
     }
 
     public BigDecimal calculate(final String input) throws WrongArgumentException, NoSuchFunctionFound {
@@ -112,7 +117,7 @@ public class Calculator {
                 lastWasLetter = false;
                 lastWasOperator = false;
                 if (!lastWasWhiteSpace) {
-                    result.append(" ");
+                    result.append(EMPTY_SPACE);
                 }
                 result.append(c);
                 lastWasWhiteSpace = false;
@@ -121,16 +126,13 @@ public class Calculator {
                 lastWasLetter = false;
                 lastWasOperator = true;
                 if (!lastWasWhiteSpace) {
-                    result.append(" ");
+                    result.append(EMPTY_SPACE);
                 }
                 result.append(c);
                 lastWasWhiteSpace = false;
             } else if (Character.isWhitespace(c)) {
-                // Check Next digit, if it is digit then
-                // erase whitespace
-                // and place digit ex.: 12 456 -> 12456
                 if (!lastWasWhiteSpace && !lastWasDigit) {
-                    result.append(" ");
+                    result.append(EMPTY_SPACE);
                     lastWasWhiteSpace = true;
                 }
                 lastWasDigit = false;
@@ -139,7 +141,7 @@ public class Calculator {
                 lastWasDigit = false;
                 lastWasOperator = false;
                 if (!lastWasLetter && !lastWasWhiteSpace) {
-                    result.append(" ").append(c);
+                    result.append(EMPTY_SPACE).append(c);
                 } else {
                     result.append(c);
                 }
@@ -169,22 +171,21 @@ public class Calculator {
         String trimmed = input.trim();
         StringBuilder result = new StringBuilder();
         Deque<String> stack = new LinkedList<String>();
-        String[] factors = trimmed.split(" ");
+        String[] factors = trimmed.split(EMPTY_SPACE);
         int length = factors.length;
         String temp;
         String stackOperator;
         for (int i = 0; i < length; i++) {
             temp = factors[i];
             if (checker.isDigit(temp)) {
-                // input String.
-                result.append(" ").append(temp);
+                result.append(EMPTY_SPACE).append(temp);
             } else if (checker.isFunction(temp)) {
                 stack.push(temp);
-            } else if (",".equals(temp)) {
+            } else if (COMMA.equals(temp)) {
                 do {
                     stackOperator = stack.pop();
                     if (!checker.isLeftBracket(stackOperator)) {
-                        result.append(" ").append(stackOperator);
+                        result.append(EMPTY_SPACE).append(stackOperator);
                     }
                 } while (!stack.isEmpty() && !checker.isLeftBracket(stackOperator));
             } else if (checker.isOperator(temp)) {
@@ -192,11 +193,11 @@ public class Calculator {
                     stackOperator = stack.peek();
                     if (checker.isLeftAssociativity(stackOperator) && (checker.compareOperators(stackOperator, temp) >= 0)) {
                         stack.pop();
-                        result.append(" ").append(stackOperator);
+                        result.append(EMPTY_SPACE).append(stackOperator);
                     } else if (checker.isRightAssociativity(stackOperator)
                             && (checker.compareOperators(stackOperator, temp) > 0)) {
                         stack.pop();
-                        result.append(" ").append(stackOperator);
+                        result.append(EMPTY_SPACE).append(stackOperator);
                     } else {
                         break;
                     }
@@ -209,18 +210,18 @@ public class Calculator {
                 do {
                     temp = stack.pop();
                     if (!checker.isLeftBracket(temp)) {
-                        result.append(" ").append(temp);
+                        result.append(EMPTY_SPACE).append(temp);
                     }
                 } while (!checker.isLeftBracket(temp));
                 if (!stack.isEmpty() && checker.isFunction(stack.peek())) {
-                    result.append(" ").append(stack.pop());
+                    result.append(EMPTY_SPACE).append(stack.pop());
                 }
             } else {
                 throw new WrongArgumentException("Element \"" + temp + "\" is not recognized by the Checker");
             }
         }
         while (!stack.isEmpty()) {
-            result.append(" ").append(stack.pop());
+            result.append(EMPTY_SPACE).append(stack.pop());
         }
 
         return result.toString().trim();
@@ -235,7 +236,7 @@ public class Calculator {
      * @throws NoSuchFunctionFound
      */
     private BigDecimal getResult(String result) throws WrongArgumentException, NoSuchFunctionFound {
-        String[] factors = result.trim().split(" ");
+        String[] factors = result.trim().split(EMPTY_SPACE);
         Deque<String> stack = new LinkedList<String>();
         String temp;
         String variable1;
@@ -250,7 +251,7 @@ public class Calculator {
                 if (!stack.isEmpty()) {
                     variable2 = stack.pop();
                 } else {
-                    variable2 = "0.0";
+                    variable2 = ZERO;
                 }
                 value = executioner.executeOperator(temp, mathContext, variable2, variable1);
                 stack.push(value.toPlainString());
@@ -258,7 +259,7 @@ public class Calculator {
                 int count = checker.getFunctionParamsCount(temp);
                 String[] table = new String[count];
                 String params = stack.pop();
-                String[] paramsTable = params.split(",");
+                String[] paramsTable = params.split(COMMA);
                 for (int j = 0; j < count; j++) {
                     table[j] = paramsTable[j];
                 }
@@ -266,6 +267,41 @@ public class Calculator {
                 stack.push(value.toPlainString());
             }
         }
-        return new BigDecimal(stack.pop());
+        return new BigDecimal(stack.pop()).setScale(SCALE, mathContext.getRoundingMode());
+    }
+
+    public MathContext getMathContext() {
+        return new MathContext(mathContext.getPrecision(), mathContext.getRoundingMode());
+    }
+
+    class Builder {
+        protected RPNChecking checker;
+        protected RPNExecuting executioner;
+        private MathContext mathContext;
+        private int scale;
+
+        public Builder setChecker(final RPNChecking checker) {
+            this.checker = checker;
+            return this;
+        }
+
+        public Builder setExecutioner(final RPNExecuting executioner) {
+            this.executioner = executioner;
+            return this;
+        }
+
+        public Builder setMathContext(final MathContext mathContext) {
+            this.mathContext = mathContext;
+            return this;
+        }
+
+        public Builder setScale(final int scale) {
+            this.scale = scale;
+            return this;
+        }
+
+        Calculator build() {
+            return new Calculator(checker, executioner, mathContext, scale);
+        }
     }
 }

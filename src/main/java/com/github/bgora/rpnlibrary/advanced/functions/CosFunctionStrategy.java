@@ -18,6 +18,8 @@
  */
 package com.github.bgora.rpnlibrary.advanced.functions;
 
+import ch.obermuhlner.math.big.BigDecimalMath;
+
 import java.math.BigDecimal;
 import java.math.MathContext;
 
@@ -35,9 +37,7 @@ public class CosFunctionStrategy extends AbstractFunctionStrategy {
 
     @Override
     public BigDecimal execute(final MathContext mathContext, final String... params) {
-        Double param = new Double(params[0]);
-        BigDecimal result = BigDecimal.valueOf(Math.cos(param));
-        return result;
+        return BigDecimalMath.cos(new BigDecimal(params[0]), mathContext);
     }
 
 }

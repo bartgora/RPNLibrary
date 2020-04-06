@@ -19,6 +19,8 @@
 
 package com.github.bgora.rpnlibrary.advanced.functions;
 
+import ch.obermuhlner.math.big.BigDecimalMath;
+
 import java.math.BigDecimal;
 import java.math.MathContext;
 
@@ -33,14 +35,9 @@ public class SinusFunctionStrategy extends AbstractFunctionStrategy {
         super("sin", 1);
     }
 
-    /**
-     *
-     */
     @Override
     public BigDecimal execute(final MathContext mathContext, String... params) {
-        Double param = new Double(params[0]);
-        BigDecimal result = BigDecimal.valueOf(Math.sin(param));
-        return result;
+        return BigDecimalMath.sin(new BigDecimal(params[0]), mathContext);
     }
 
 }

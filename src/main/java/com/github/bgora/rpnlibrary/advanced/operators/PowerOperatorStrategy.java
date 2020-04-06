@@ -19,6 +19,8 @@
 
 package com.github.bgora.rpnlibrary.advanced.operators;
 
+import ch.obermuhlner.math.big.BigDecimalMath;
+
 import java.math.BigDecimal;
 import java.math.MathContext;
 
@@ -31,9 +33,7 @@ public class PowerOperatorStrategy extends AbstractOperatorStrategy {
 
     @Override
     public BigDecimal execute(String first, String second, final MathContext mathContext) {
-        Double big1 = new Double(first);
-        Double big2 = new Double(second);
-        return BigDecimal.valueOf(Math.pow(big1, big2));
+        return BigDecimalMath.pow(new BigDecimal(first), new BigDecimal(second), mathContext);
     }
 
 

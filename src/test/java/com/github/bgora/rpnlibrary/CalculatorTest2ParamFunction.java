@@ -21,13 +21,11 @@ package com.github.bgora.rpnlibrary;
 
 import com.github.bgora.rpnlibrary.exceptions.NoSuchFunctionFound;
 import com.github.bgora.rpnlibrary.exceptions.WrongArgumentException;
+import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
-
-import static org.junit.Assert.assertEquals;
 
 public class CalculatorTest2ParamFunction {
 
@@ -42,49 +40,49 @@ public class CalculatorTest2ParamFunction {
     @Test
     public void testMax() throws WrongArgumentException, NoSuchFunctionFound {
         BigDecimal result = calc.calculate("max(10, 8)");
-        assertEquals(BigDecimal.valueOf(10), result);
+        Assertions.assertThat(result).isEqualTo(new BigDecimal("10.00"));
     }
 
     @Test
     public void testMaxPlus10() throws WrongArgumentException, NoSuchFunctionFound {
         BigDecimal result = calc.calculate("max(10, 8) + 10");
-        assertEquals(BigDecimal.valueOf(20), result);
+        Assertions.assertThat(result).isEqualTo(new BigDecimal("20.00"));
     }
 
     @Test
     public void testMaxMinus5() throws WrongArgumentException, NoSuchFunctionFound {
         BigDecimal result = calc.calculate("max(10, 8) -5");
-        assertEquals(BigDecimal.valueOf(5), result);
+        Assertions.assertThat(result).isEqualTo(new BigDecimal("5.00"));
     }
 
     @Test
     public void testMin() throws WrongArgumentException, NoSuchFunctionFound {
         BigDecimal result = calc.calculate("min(10, 8)");
-        assertEquals(BigDecimal.valueOf(8), result);
+        Assertions.assertThat(result).isEqualTo(new BigDecimal("8.00"));
     }
 
     @Test
     public void testMinPlus10() throws WrongArgumentException, NoSuchFunctionFound {
         BigDecimal result = calc.calculate("min(10, 8) + 10");
-        assertEquals(BigDecimal.valueOf(18), result);
+        Assertions.assertThat(result).isEqualTo(new BigDecimal("18.00"));
     }
 
     @Test
     public void testMinMinus5() throws WrongArgumentException, NoSuchFunctionFound {
         BigDecimal result = calc.calculate("min(10, 8) -5");
-        assertEquals(BigDecimal.valueOf(3), result);
+        Assertions.assertThat(result).isEqualTo(new BigDecimal("3.00"));
     }
 
     @Test
     public void testMinDouble() throws WrongArgumentException, NoSuchFunctionFound {
         BigDecimal result = calc.calculate("min(12.5, 9.4)");
-        assertEquals(BigDecimal.valueOf(9.4), result);
+        Assertions.assertThat(result).isEqualTo(new BigDecimal("9.40"));
     }
 
     @Test
     public void testMaxDouble() throws WrongArgumentException, NoSuchFunctionFound {
         BigDecimal result = calc.calculate("max(12 345.50, 8 000.66)");
-        assertEquals(BigDecimal.valueOf(12345.50), result.setScale(1, RoundingMode.HALF_EVEN));
+        Assertions.assertThat(result).isEqualTo(new BigDecimal("12345.50"));
     }
 
 

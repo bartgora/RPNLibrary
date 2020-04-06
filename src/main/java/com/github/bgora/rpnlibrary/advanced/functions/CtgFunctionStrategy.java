@@ -19,6 +19,8 @@
 
 package com.github.bgora.rpnlibrary.advanced.functions;
 
+import ch.obermuhlner.math.big.BigDecimalMath;
+
 import java.math.BigDecimal;
 import java.math.MathContext;
 
@@ -29,7 +31,6 @@ import java.math.MathContext;
  */
 public class CtgFunctionStrategy extends AbstractFunctionStrategy {
 
-    public static final String ONE = "1.0000000000000000";
 
     public CtgFunctionStrategy() {
         super("ctg", 1);
@@ -37,9 +38,6 @@ public class CtgFunctionStrategy extends AbstractFunctionStrategy {
 
     @Override
     public BigDecimal execute(final MathContext mathContext, final String... params) {
-        Double dec = new Double(params[0]);
-        Double tan = Math.tan(dec.doubleValue());
-        Double one = new Double(1);
-        return BigDecimal.valueOf(one / tan);
+        return BigDecimalMath.cot(new BigDecimal(params[0]), mathContext);
     }
 }

@@ -31,8 +31,8 @@ public class AddOperatorStrategy extends AbstractOperatorStrategy {
 
     @Override
     public BigDecimal execute(String first, String second, final MathContext mathContext) {
-        BigDecimal big1 = new BigDecimal(first);
-        BigDecimal big2 = new BigDecimal(second);
+        BigDecimal big1 = new BigDecimal(first, mathContext);
+        BigDecimal big2 = new BigDecimal(second, mathContext);
         return big1.add(big2);
     }
 

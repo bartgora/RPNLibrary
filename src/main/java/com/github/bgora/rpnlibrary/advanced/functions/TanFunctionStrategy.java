@@ -19,6 +19,8 @@
 
 package com.github.bgora.rpnlibrary.advanced.functions;
 
+import ch.obermuhlner.math.big.BigDecimalMath;
+
 import java.math.BigDecimal;
 import java.math.MathContext;
 
@@ -35,7 +37,6 @@ public class TanFunctionStrategy extends AbstractFunctionStrategy {
 
     @Override
     public BigDecimal execute(final MathContext mathContext, String... params) {
-        Double dec = new Double(params[0]);
-        return BigDecimal.valueOf(Math.tan(dec));
+        return BigDecimalMath.tan(new BigDecimal(params[0]), mathContext);
     }
 }
