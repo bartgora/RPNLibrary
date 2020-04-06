@@ -16,7 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * Contact: bartlomiej.gora@gmail.com
  */
-package com.github.bgora.rpnlibrary.advanced.functions;
+
+package com.github.bgora.rpnlibrary.functions;
 
 import ch.obermuhlner.math.big.BigDecimalMath;
 
@@ -24,20 +25,19 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 
 /**
- * Cosine function
+ * Sinus function
  *
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  */
-public class CosFunctionStrategy extends AbstractFunctionStrategy {
+public class SinusFunctionStrategy extends AbstractFunctionStrategy {
 
-    public CosFunctionStrategy() {
-        super("cos", 1);
+    public SinusFunctionStrategy() {
+        super("sin", 1);
     }
 
-
     @Override
-    public BigDecimal execute(final MathContext mathContext, final String... params) {
-        return BigDecimalMath.cos(new BigDecimal(params[0]), mathContext);
+    public BigDecimal execute(final MathContext mathContext, String... params) {
+        return BigDecimalMath.sin(new BigDecimal(params[0]), mathContext);
     }
 
 }

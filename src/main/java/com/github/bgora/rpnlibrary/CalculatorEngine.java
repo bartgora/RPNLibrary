@@ -19,10 +19,10 @@
 
 package com.github.bgora.rpnlibrary;
 
-import com.github.bgora.rpnlibrary.advanced.functions.AbstractFunctionStrategy;
-import com.github.bgora.rpnlibrary.advanced.operators.AbstractOperatorStrategy;
 import com.github.bgora.rpnlibrary.exceptions.NoSuchFunctionFound;
 import com.github.bgora.rpnlibrary.exceptions.WrongArgumentException;
+import com.github.bgora.rpnlibrary.functions.AbstractFunctionStrategy;
+import com.github.bgora.rpnlibrary.operators.AbstractOperatorStrategy;
 
 import java.math.BigDecimal;
 import java.math.MathContext;

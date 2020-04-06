@@ -19,7 +19,6 @@
 
 package com.github.bgora.rpnlibrary;
 
-import com.github.bgora.rpnlibrary.advanced.StrategiesUtil;
 import com.github.bgora.rpnlibrary.exceptions.NoSuchFunctionFound;
 import com.github.bgora.rpnlibrary.exceptions.WrongArgumentException;
 

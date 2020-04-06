@@ -17,23 +17,27 @@
  * Contact: bartlomiej.gora@gmail.com
  */
 
-package com.github.bgora.rpnlibrary.advanced.operators;
+package com.github.bgora.rpnlibrary.functions;
+
+import ch.obermuhlner.math.big.BigDecimalMath;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-public class AddOperatorStrategy extends AbstractOperatorStrategy {
+/**
+ * Cotangent function
+ *
+ * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
+ */
+public class CtgFunctionStrategy extends AbstractFunctionStrategy {
 
 
-    public AddOperatorStrategy() {
-        super("+", 1);
+    public CtgFunctionStrategy() {
+        super("ctg", 1);
     }
 
     @Override
-    public BigDecimal execute(String first, String second, final MathContext mathContext) {
-        BigDecimal big1 = new BigDecimal(first, mathContext);
-        BigDecimal big2 = new BigDecimal(second, mathContext);
-        return big1.add(big2);
+    public BigDecimal execute(final MathContext mathContext, final String... params) {
+        return BigDecimalMath.cot(new BigDecimal(params[0]), mathContext);
     }
-
 }

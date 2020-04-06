@@ -19,8 +19,8 @@
 
 package com.github.bgora.rpnlibrary;
 
-import com.github.bgora.rpnlibrary.advanced.functions.AbstractFunctionStrategy;
-import com.github.bgora.rpnlibrary.advanced.operators.AbstractOperatorStrategy;
+import com.github.bgora.rpnlibrary.functions.AbstractFunctionStrategy;
+import com.github.bgora.rpnlibrary.operators.AbstractOperatorStrategy;
 
 /**
  * Interface tha declares additional operations for new CalculationEngine

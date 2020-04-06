@@ -17,27 +17,26 @@
  * Contact: bartlomiej.gora@gmail.com
  */
 
-package com.github.bgora.rpnlibrary.advanced.functions;
-
-import ch.obermuhlner.math.big.BigDecimalMath;
+package com.github.bgora.rpnlibrary.functions;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
 
 /**
- * Sinus function
+ * Min Function - returns lesser number from two
  *
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  */
-public class SinusFunctionStrategy extends AbstractFunctionStrategy {
+public class MinFunctionStrategy extends AbstractFunctionStrategy {
 
-    public SinusFunctionStrategy() {
-        super("sin", 1);
+    public MinFunctionStrategy() {
+        super("min", 2);
     }
 
     @Override
     public BigDecimal execute(final MathContext mathContext, String... params) {
-        return BigDecimalMath.sin(new BigDecimal(params[0]), mathContext);
+        BigDecimal param1 = new BigDecimal(params[0]);
+        BigDecimal param2 = new BigDecimal(params[1]);
+        return param1.min(param2);
     }
-
 }

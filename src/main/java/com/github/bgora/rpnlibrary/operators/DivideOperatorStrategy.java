@@ -17,26 +17,24 @@
  * Contact: bartlomiej.gora@gmail.com
  */
 
-package com.github.bgora.rpnlibrary.advanced.functions;
-
-import ch.obermuhlner.math.big.BigDecimalMath;
+package com.github.bgora.rpnlibrary.operators;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-/**
- * Tangent function
- *
- * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
- */
-public class TanFunctionStrategy extends AbstractFunctionStrategy {
+public class DivideOperatorStrategy extends AbstractOperatorStrategy {
 
-    public TanFunctionStrategy() {
-        super("tg", 1);
+
+    public DivideOperatorStrategy() {
+        super("/", 2);
     }
 
     @Override
-    public BigDecimal execute(final MathContext mathContext, String... params) {
-        return BigDecimalMath.tan(new BigDecimal(params[0]), mathContext);
+    public BigDecimal execute(String first, String second, final MathContext mathContext) {
+        Double big1 = new Double(first);
+        Double big2 = new Double(second);
+        return BigDecimal.valueOf(big1 / big2);
     }
+
+
 }

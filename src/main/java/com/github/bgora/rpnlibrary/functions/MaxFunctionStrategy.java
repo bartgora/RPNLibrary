@@ -1,5 +1,5 @@
 /*
- * RPNLibrary - Reverse Polish NotationLibrary
+ * RPNLibrary - Reverse Polish Notation Library
  * Copyright (C) 2011  Bartłomiej Góra
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,30 +17,26 @@
  * Contact: bartlomiej.gora@gmail.com
  */
 
-package com.github.bgora.rpnlibrary.advanced.functions;
+package com.github.bgora.rpnlibrary.functions;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-public class FibFunctionStrategy extends AbstractFunctionStrategy {
+/**
+ * Max function - return greater value from given two.
+ *
+ * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
+ */
+public class MaxFunctionStrategy extends AbstractFunctionStrategy {
 
-
-    public FibFunctionStrategy() {
-        super("fib", 1);
+    public MaxFunctionStrategy() {
+        super("max", 2);
     }
 
     @Override
-    public BigDecimal execute(final MathContext mathContext, final String... params) {
-        BigDecimal bigDecimal = new BigDecimal(params[0]);
-        return fib(bigDecimal);
-    }
-
-    private BigDecimal fib(BigDecimal bigDecimal) {
-        if (bigDecimal.equals(BigDecimal.ZERO)) {
-            return BigDecimal.ZERO;
-        } else if (bigDecimal.equals(BigDecimal.ONE)) {
-            return BigDecimal.ONE;
-        }
-        return fib(bigDecimal.subtract(BigDecimal.ONE)).add(fib(bigDecimal.subtract(BigDecimal.valueOf(2))));
+    public BigDecimal execute(final MathContext mathContext, String... params) {
+        BigDecimal param1 = new BigDecimal(params[0]);
+        BigDecimal param2 = new BigDecimal(params[1]);
+        return param1.max(param2);
     }
 }

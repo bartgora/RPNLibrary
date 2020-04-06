@@ -17,24 +17,23 @@
  * Contact: bartlomiej.gora@gmail.com
  */
 
-package com.github.bgora.rpnlibrary.advanced.operators;
-
-import ch.obermuhlner.math.big.BigDecimalMath;
+package com.github.bgora.rpnlibrary.operators;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-public class PowerOperatorStrategy extends AbstractOperatorStrategy {
+public class AddOperatorStrategy extends AbstractOperatorStrategy {
 
 
-    public PowerOperatorStrategy() {
-        super("^", 3);
+    public AddOperatorStrategy() {
+        super("+", 1);
     }
 
     @Override
     public BigDecimal execute(String first, String second, final MathContext mathContext) {
-        return BigDecimalMath.pow(new BigDecimal(first), new BigDecimal(second), mathContext);
+        BigDecimal big1 = new BigDecimal(first, mathContext);
+        BigDecimal big2 = new BigDecimal(second, mathContext);
+        return big1.add(big2);
     }
-
 
 }

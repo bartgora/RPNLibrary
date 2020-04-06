@@ -17,26 +17,24 @@
  * Contact: bartlomiej.gora@gmail.com
  */
 
-package com.github.bgora.rpnlibrary.advanced.functions;
+package com.github.bgora.rpnlibrary.operators;
+
+import ch.obermuhlner.math.big.BigDecimalMath;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-/**
- * Min Function - returns lesser number from two
- *
- * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
- */
-public class MinFunctionStrategy extends AbstractFunctionStrategy {
+public class PowerOperatorStrategy extends AbstractOperatorStrategy {
 
-    public MinFunctionStrategy() {
-        super("min", 2);
+
+    public PowerOperatorStrategy() {
+        super("^", 3);
     }
 
     @Override
-    public BigDecimal execute(final MathContext mathContext, String... params) {
-        BigDecimal param1 = new BigDecimal(params[0]);
-        BigDecimal param2 = new BigDecimal(params[1]);
-        return param1.min(param2);
+    public BigDecimal execute(String first, String second, final MathContext mathContext) {
+        return BigDecimalMath.pow(new BigDecimal(first), new BigDecimal(second), mathContext);
     }
+
+
 }

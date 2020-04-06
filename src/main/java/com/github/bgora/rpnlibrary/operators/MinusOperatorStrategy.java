@@ -17,23 +17,23 @@
  * Contact: bartlomiej.gora@gmail.com
  */
 
-package com.github.bgora.rpnlibrary.advanced.operators;
+package com.github.bgora.rpnlibrary.operators;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-public class MiltiplyOperatorStrategy extends AbstractOperatorStrategy {
+public class MinusOperatorStrategy extends AbstractOperatorStrategy {
 
 
-    public MiltiplyOperatorStrategy() {
-        super("*", 2);
+    public MinusOperatorStrategy() {
+        super("-", 1);
     }
 
     @Override
     public BigDecimal execute(String first, String second, final MathContext mathContext) {
-        Double big1 = new Double(first);
-        Double big2 = new Double(second);
-        return BigDecimal.valueOf(big1 * big2);
+        BigDecimal big1 = new BigDecimal(first);
+        BigDecimal big2 = new BigDecimal(second);
+        return big1.subtract(big2);
     }
 
 

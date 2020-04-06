@@ -17,7 +17,7 @@
  * Contact: bartlomiej.gora@gmail.com
  */
 
-package com.github.bgora.rpnlibrary.advanced.operators;
+package com.github.bgora.rpnlibrary.operators;
 
 import java.math.BigDecimal;
 import java.math.MathContext;

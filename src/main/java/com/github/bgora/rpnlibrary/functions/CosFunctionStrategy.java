@@ -16,8 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * Contact: bartlomiej.gora@gmail.com
  */
-
-package com.github.bgora.rpnlibrary.advanced.functions;
+package com.github.bgora.rpnlibrary.functions;
 
 import ch.obermuhlner.math.big.BigDecimalMath;
 
@@ -25,19 +24,20 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 
 /**
- * Cotangent function
+ * Cosine function
  *
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  */
-public class CtgFunctionStrategy extends AbstractFunctionStrategy {
+public class CosFunctionStrategy extends AbstractFunctionStrategy {
 
-
-    public CtgFunctionStrategy() {
-        super("ctg", 1);
+    public CosFunctionStrategy() {
+        super("cos", 1);
     }
+
 
     @Override
     public BigDecimal execute(final MathContext mathContext, final String... params) {
-        return BigDecimalMath.cot(new BigDecimal(params[0]), mathContext);
+        return BigDecimalMath.cos(new BigDecimal(params[0]), mathContext);
     }
+
 }

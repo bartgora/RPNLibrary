@@ -32,7 +32,7 @@ public class FibTest {
     private Calculator calc;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         calc = Calculator.createCalculator();
     }
 
