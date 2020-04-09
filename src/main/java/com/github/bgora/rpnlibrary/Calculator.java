@@ -63,6 +63,26 @@ public class Calculator {
         return new Calculator(calculationEngine, calculationEngine, mathContext, 2);
     }
 
+    /**
+     * Factory method for RPN Calculator object with custom functions, and
+     * operations. You should use this factory method if you want to create your
+     * own operations. To do so, you have to implement you own objects, that
+     * implementas {@code RPNChecking}, and
+     * {@code RPNExecuting}.
+     *
+     * @param checker
+     * @param executioner
+     * @param mathContext
+     * @param scale
+     * @return new Instance of {@code pl.bgora.Calculator}
+     * @see RPNChecking
+     * @see RPNExecuting
+     */
+
+    public static Calculator createCalculator(RPNChecking checker, RPNExecuting executioner, final MathContext mathContext, final int scale) {
+        return new Calculator(checker, executioner, mathContext, scale);
+    }
+
 
     /**
      * Constructor Creates an instance of the class.
@@ -273,34 +293,4 @@ public class Calculator {
         return new MathContext(mathContext.getPrecision(), mathContext.getRoundingMode());
     }
 
-    class Builder {
-        protected RPNChecking checker;
-        protected RPNExecuting executioner;
-        private MathContext mathContext;
-        private int scale;
-
-        public Builder setChecker(final RPNChecking checker) {
-            this.checker = checker;
-            return this;
-        }
-
-        public Builder setExecutioner(final RPNExecuting executioner) {
-            this.executioner = executioner;
-            return this;
-        }
-
-        public Builder setMathContext(final MathContext mathContext) {
-            this.mathContext = mathContext;
-            return this;
-        }
-
-        public Builder setScale(final int scale) {
-            this.scale = scale;
-            return this;
-        }
-
-        Calculator build() {
-            return new Calculator(checker, executioner, mathContext, scale);
-        }
-    }
 }
