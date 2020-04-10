@@ -22,19 +22,40 @@ package com.github.bgora.rpnlibrary.operators;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+/**
+ * Abstract class for operators.
+ * <p>
+ * This class contains operator name, param count.
+ * It also provides execute method which is responsible for call the underlying math function.
+ *
+ * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
+ */
 public abstract class AbstractOperatorStrategy {
 
     private final String operator;
     private final int priority;
     private volatile int hashCode = 0;
 
-
+    /**
+     * Default Constructor.
+     * Subclass need to provide required fields.
+     *
+     * @param operator Name of the operator
+     * @param priority priority of the operator to sort
+     */
     public AbstractOperatorStrategy(final String operator, int priority) {
         this.operator = operator;
         this.priority = priority;
     }
 
-
+    /**
+     * Execute Operator
+     *
+     * @param first       first argument of the operation
+     * @param second      second argument of the operation
+     * @param mathContext matchContext object to do eqation
+     * @return result of the operation
+     */
     public abstract BigDecimal execute(final String first, final String second, final MathContext mathContext);
 
     /**
@@ -61,10 +82,21 @@ public abstract class AbstractOperatorStrategy {
         return hashCode;
     }
 
+
+    /**
+     * Returns operator sign
+     *
+     * @return operator
+     */
     public String getOperator() {
         return operator;
     }
 
+    /**
+     * Returns priority
+     *
+     * @return priority
+     */
     public int getPriority() {
         return priority;
     }

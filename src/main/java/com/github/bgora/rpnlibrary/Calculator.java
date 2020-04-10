@@ -70,10 +70,10 @@ public class Calculator {
      * implementas {@code RPNChecking}, and
      * {@code RPNExecuting}.
      *
-     * @param checker
-     * @param executioner
-     * @param mathContext
-     * @param scale
+     * @param checker     Object implementing RPNChecking - Used for checking operations in input.
+     * @param executioner Object implementing RPNExecuting - used for executing operations on input.
+     * @param mathContext MathContext - Set Rounding Mode, and precision
+     * @param scale       scale number of digits after .
      * @return new Instance of {@code pl.bgora.Calculator}
      * @see RPNChecking
      * @see RPNExecuting

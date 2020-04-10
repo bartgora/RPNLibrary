@@ -20,7 +20,7 @@ min, max, fib
 
 example: 
 ```java
-        AdvancedCalculatorFactory advancedCalculatorFactory = new AdvancedCalculatorFactory();
+        Calculator calc = Calculator.createCalculator();
         calc = advancedCalculatorFactory.createCalulator();
         BigDecimal result = calc.calculate("2^3*(12/6)+18/3+5.0/2");
         BigDecimal result2 = calc.calculate("3.678^2");
@@ -37,7 +37,7 @@ Maven:
         <dependency>
             <groupId>com.github.bartlomiej-gora</groupId>
             <artifactId>RPNLibrary</artifactId>
-            <version>3.2.2</version>
+            <version>4.0.0</version>
         </dependency>
 ```
 

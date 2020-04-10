@@ -74,9 +74,8 @@ public abstract class AbstractFunctionStrategy {
     /**
      * Executes underlying arithmetic function written in java.
      *
-     *
-     * @param mathContext
-     * @param params Input param - A Table of Number, passed as string from Calculator.
+     * @param mathContext MathContext - Set Rounding Mode, and precision
+     * @param params      Input param - A Table of Number, passed as string from Calculator.
      * @return BigDecimal object with resulting value.
      */
     public abstract BigDecimal execute(final MathContext mathContext, String... params);
