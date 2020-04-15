@@ -54,7 +54,7 @@ Changelog:
 
 ### Version 4.0.0:
 
-- Using big Decimal Math library (ch.obermuhlner)
+- Using big Decimal Math library (https://github.com/eobermuhlner/big-math)
 - General refactoring.
 - Added Javadoc
 
