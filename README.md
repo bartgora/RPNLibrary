@@ -49,6 +49,12 @@ Maven:
 Changelog:
 ====
 
+### Version 4.0.0:
+
+- Using big Decimal Math library (https://github.com/eobermuhlner/big-math)
+- General refactoring.
+- Added Javadoc
+
 ### Version 3.2.2:
 
 - Changed internal calculation from BigDecimal to Double in DefaultCalculator implementation
