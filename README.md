@@ -12,6 +12,8 @@ It is based on Dijkstra Algorithm. (https://en.wikipedia.org/wiki/Reverse_Polish
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.bartlomiej-gora/RPNLibrary/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.bartlomiej-gora/RPNLibrary)
 
+[![javadoc](https://javadoc.io/badge2/com.github.bartlomiej-gora/RPNLibrary/javadoc.svg)](https://javadoc.io/doc/com.github.bartlomiej-gora/RPNLibrary)
+
 Available functions:
 ===
 +,-,*,/ with (), power(^)
@@ -20,8 +22,7 @@ min, max, fib
 
 example: 
 ```java
-        Calculator calc = Calculator.createCalculator();
-        calc = advancedCalculatorFactory.createCalulator();
+        Calculator calc = Calculator.createCalulator();
         BigDecimal result = calc.calculate("2^3*(12/6)+18/3+5.0/2");
         BigDecimal result2 = calc.calculate("3.678^2");
         BigDecimal resultSin = calc.calculate("sin(2)");
@@ -30,6 +31,12 @@ example:
         BigDecimal min = calc.calculate("min(10, 8) + 10");
 ```
 
+To Customize use:
+```java
+static Calculator Calculator.Calculator createCalculator(RPNChecking checker, RPNExecuting executioner, final MathContext mathContext, final int scale); 
+        
+    }
+```
 
 Maven:
 ===
