@@ -17,25 +17,27 @@
  * Contact: bartlomiej.gora@gmail.com
  */
 
-package com.github.bgora.rpnlibrary.advanced.functions;
+package com.github.bgora.rpnlibrary.functions;
+
+import ch.obermuhlner.math.big.BigDecimalMath;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.math.MathContext;
 
 /**
- * Tangent function
+ * Cotangent function
  *
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  */
-public class TanFunctionStrategy extends AbstractFunctionStrategy {
+public class CtgFunctionStrategy extends AbstractFunctionStrategy {
 
-    public TanFunctionStrategy() {
-        super("tg", 1, RoundingMode.HALF_EVEN);
+
+    public CtgFunctionStrategy() {
+        super("ctg", 1);
     }
 
     @Override
-    public BigDecimal execute(String... params) {
-        Double dec = new Double(params[0]);
-        return BigDecimal.valueOf(Math.tan(dec));
+    public BigDecimal execute(final MathContext mathContext, final String... params) {
+        return BigDecimalMath.cot(new BigDecimal(params[0]), mathContext);
     }
 }

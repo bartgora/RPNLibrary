@@ -23,7 +23,7 @@ import com.github.bgora.rpnlibrary.exceptions.NoSuchFunctionFound;
 import com.github.bgora.rpnlibrary.exceptions.WrongArgumentException;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.math.MathContext;
 
 /**
  * Interface used for executing Calculation on RPN String
@@ -36,24 +36,24 @@ public interface RPNExecuting {
     /**
      * This method executes arithmetic operator given as first parameter of type String.
      *
-     * @param operator Arithmetic operator to execute.
-     * @param var1     first variable
-     * @param var2     second variable.
-     * @param mode     Rounding Mode for operation.
+     * @param operator    Arithmetic operator to execute.
+     * @param mathContext MathContext
+     * @param var1        first variable
+     * @param var2        second variable.
      * @return calculation result.
-     * @throws WrongArgumentException if theres is something wrong withe the input.
+     * @throws WrongArgumentException if there is something wrong withe the input.
      */
-    BigDecimal executeOperator(String operator, String var1, String var2, RoundingMode mode) throws WrongArgumentException;
+    BigDecimal executeOperator(String operator, MathContext mathContext, String var1, String var2) throws WrongArgumentException;
 
     /**
      * This method executes Arithmetic Functions.
      * The first parameter is Function name.
      *
      * @param functionName Name of the function to execute.
-     * @param mode         Rounding mode for calculations.
+     * @param mathContext  MathContext
      * @param arguments    List of arguments for the called function.
      * @return Calculation result as BigDecimal.
      * @throws NoSuchFunctionFound thrown if Executing object cannot find method.
      */
-    BigDecimal executeFunction(String functionName, RoundingMode mode, String... arguments) throws NoSuchFunctionFound;
+    BigDecimal executeFunction(String functionName, MathContext mathContext, String... arguments) throws NoSuchFunctionFound;
 }

@@ -16,27 +16,27 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * Contact: bartlomiej.gora@gmail.com
  */
-package com.github.bgora.rpnlibrary.advanced.functions;
+
+package com.github.bgora.rpnlibrary.functions;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.math.MathContext;
 
 /**
- * Cosine function
+ * Min Function - returns lesser number from two
  *
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  */
-public class CosinusFunctionStrategy extends AbstractFunctionStrategy {
+public class MinFunctionStrategy extends AbstractFunctionStrategy {
 
-    public CosinusFunctionStrategy() {
-        super("cos", 1, RoundingMode.HALF_EVEN);
+    public MinFunctionStrategy() {
+        super("min", 2);
     }
 
     @Override
-    public BigDecimal execute(String... params) {
-        Double param = new Double(params[0]);
-        BigDecimal result = BigDecimal.valueOf(Math.cos(param));
-        return result;
+    public BigDecimal execute(final MathContext mathContext, String... params) {
+        BigDecimal param1 = new BigDecimal(params[0]);
+        BigDecimal param2 = new BigDecimal(params[1]);
+        return param1.min(param2);
     }
-
 }

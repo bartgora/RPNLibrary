@@ -17,26 +17,26 @@
  * Contact: bartlomiej.gora@gmail.com
  */
 
-package com.github.bgora.rpnlibrary.advanced.functions;
+package com.github.bgora.rpnlibrary.functions;
+
+import ch.obermuhlner.math.big.BigDecimalMath;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.math.MathContext;
 
 /**
- * Max function - return greater value from given two.
+ * Tangent function
  *
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  */
-public class MaxFunctionStrategy extends AbstractFunctionStrategy {
+public class TanFunctionStrategy extends AbstractFunctionStrategy {
 
-    public MaxFunctionStrategy() {
-        super("max", 2, RoundingMode.HALF_EVEN);
+    public TanFunctionStrategy() {
+        super("tg", 1);
     }
 
     @Override
-    public BigDecimal execute(String... params) {
-        BigDecimal param1 = new BigDecimal(params[0]);
-        BigDecimal param2 = new BigDecimal(params[1]);
-        return param1.max(param2);
+    public BigDecimal execute(final MathContext mathContext, String... params) {
+        return BigDecimalMath.tan(new BigDecimal(params[0]), mathContext);
     }
 }

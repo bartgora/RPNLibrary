@@ -17,29 +17,24 @@
  * Contact: bartlomiej.gora@gmail.com
  */
 
-package com.github.bgora.rpnlibrary.advanced.functions;
+package com.github.bgora.rpnlibrary.operators;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.math.MathContext;
 
-/**
- * Cotangent function
- *
- * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
- */
-public class CtgFunctionStrategy extends AbstractFunctionStrategy {
+public class DivideOperatorStrategy extends AbstractOperatorStrategy {
 
-    public static final String ONE = "1.0000000000000000";
 
-    public CtgFunctionStrategy() {
-        super("ctg", 1, RoundingMode.HALF_EVEN);
+    public DivideOperatorStrategy() {
+        super("/", 2);
     }
 
     @Override
-    public BigDecimal execute(String... params) {
-        Double dec = new Double(params[0]);
-        Double tan = Math.tan(dec.doubleValue());
-        Double one = new Double(1);
-        return BigDecimal.valueOf(one / tan);
+    public BigDecimal execute(String first, String second, final MathContext mathContext) {
+        Double big1 = new Double(first);
+        Double big2 = new Double(second);
+        return BigDecimal.valueOf(big1 / big2);
     }
+
+
 }

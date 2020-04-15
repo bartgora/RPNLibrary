@@ -17,22 +17,24 @@
  * Contact: bartlomiej.gora@gmail.com
  */
 
-package com.github.bgora.rpnlibrary.advanced;
+package com.github.bgora.rpnlibrary.operators;
 
-import com.github.bgora.rpnlibrary.CalculatorInterface;
-import com.github.bgora.rpnlibrary.CalculationEngine;
-import com.github.bgora.rpnlibrary.Calculator;
+import java.math.BigDecimal;
+import java.math.MathContext;
 
-import java.math.RoundingMode;
+public class MinusOperatorStrategy extends AbstractOperatorStrategy {
 
-/**
- * Advanced Calculator.
- *
- * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
- */
-public class AdvancedCalculator extends Calculator implements CalculatorInterface {
 
-    AdvancedCalculator(RoundingMode mode, CalculationEngine calculatorEngine) {
-        super(calculatorEngine, calculatorEngine, mode);
+    public MinusOperatorStrategy() {
+        super("-", 1);
     }
+
+    @Override
+    public BigDecimal execute(String first, String second, final MathContext mathContext) {
+        BigDecimal big1 = new BigDecimal(first);
+        BigDecimal big2 = new BigDecimal(second);
+        return big1.subtract(big2);
+    }
+
+
 }

@@ -17,27 +17,24 @@
  * Contact: bartlomiej.gora@gmail.com
  */
 
-package com.github.bgora.rpnlibrary;
-
-import com.github.bgora.rpnlibrary.exceptions.NoSuchFunctionFound;
-import com.github.bgora.rpnlibrary.exceptions.WrongArgumentException;
+package com.github.bgora.rpnlibrary.operators;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 
-/**
- * Interface for the Calculator
- *
- * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
- */
-public interface CalculatorInterface {
+public class MiltiplyOperatorStrategy extends AbstractOperatorStrategy {
 
 
-    /**
-     * Calculates RPN String into BigDecimal Object.
-     * @param input Input String
-     * @return The Calculated value
-     * @throws WrongArgumentException If the argument was illegal, like leter, or other unrecognized element
-     * @throws NoSuchFunctionFound If there is no function with given name
-     */
-    BigDecimal calculate(String input) throws WrongArgumentException, NoSuchFunctionFound;
+    public MiltiplyOperatorStrategy() {
+        super("*", 2);
+    }
+
+    @Override
+    public BigDecimal execute(String first, String second, final MathContext mathContext) {
+        Double big1 = new Double(first);
+        Double big2 = new Double(second);
+        return BigDecimal.valueOf(big1 * big2);
+    }
+
+
 }

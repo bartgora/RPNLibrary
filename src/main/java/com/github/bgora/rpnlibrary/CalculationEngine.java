@@ -19,8 +19,8 @@
 
 package com.github.bgora.rpnlibrary;
 
-import com.github.bgora.rpnlibrary.advanced.functions.AbstractFunctionStrategy;
-import com.github.bgora.rpnlibrary.advanced.operators.AbstractOperatorStrategy;
+import com.github.bgora.rpnlibrary.functions.AbstractFunctionStrategy;
+import com.github.bgora.rpnlibrary.operators.AbstractOperatorStrategy;
 
 /**
  * Interface tha declares additional operations for new CalculationEngine
@@ -38,9 +38,9 @@ public interface CalculationEngine extends RPNExecuting, RPNChecking {
     void addOperator(final AbstractOperatorStrategy abstractOperatorStrategy);
 
     /**
-     * Adds new function startegy to the engine
+     * Adds new function strategy to the engine
      *
      * @param abstractFunctionStrategy AbstractFunctionStrategy instance
      */
-    void addFunctionStartegy(final AbstractFunctionStrategy abstractFunctionStrategy);
+    void addFunctionStrategy(final AbstractFunctionStrategy abstractFunctionStrategy);
 }

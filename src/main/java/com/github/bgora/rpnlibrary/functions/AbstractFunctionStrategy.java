@@ -17,15 +17,15 @@
  * Contact: bartlomiej.gora@gmail.com
  */
 
-package com.github.bgora.rpnlibrary.advanced.functions;
+package com.github.bgora.rpnlibrary.functions;
 
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.math.MathContext;
 
 /**
  * Abstract class for arithmetic functions.
- *
+ * <p>
  * This class contains function name, param count.
  * It also provides execute method which is responsible for call the underlying math function.
  *
@@ -33,28 +33,23 @@ import java.math.RoundingMode;
  */
 public abstract class AbstractFunctionStrategy {
 
-    private String name;
-
-    private int paramCount;
-
+    private final String name;
+    private final int paramCount;
     private volatile int hashCode = 0;
-
-    protected RoundingMode roundingMode;
 
 
     /**
      * Default Constructor.
      * Subclass need to provide required fields.
      *
-     * @param name Name of the function
+     * @param name       Name of the function
      * @param paramCount parameters count
-     * @param roundingMode Rounding Mode
      */
-    public AbstractFunctionStrategy(String name, int paramCount, RoundingMode roundingMode) {
+    public AbstractFunctionStrategy(String name, int paramCount) {
         this.name = name;
         this.paramCount = paramCount;
-        this.roundingMode = roundingMode;
     }
+
 
     /**
      * Returns Name value
@@ -76,17 +71,14 @@ public abstract class AbstractFunctionStrategy {
     }
 
 
-    public RoundingMode getRoundingMode() {
-        return roundingMode;
-    }
-
     /**
      * Executes underlying arithmetic function written in java.
      *
-     * @param params Input param - A Table of Number, passed as string from Calculator.
+     * @param mathContext MathContext - Set Rounding Mode, and precision
+     * @param params      Input param - A Table of Number, passed as string from Calculator.
      * @return BigDecimal object with resulting value.
      */
-    public abstract BigDecimal execute(String... params);
+    public abstract BigDecimal execute(final MathContext mathContext, String... params);
 
     /**
      * @see java.lang.Object#equals(java.lang.Object)

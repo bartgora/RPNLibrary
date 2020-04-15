@@ -1,5 +1,5 @@
 /*
- * RPNLibrary - Reverse Polish Notation Library
+ * RPNLibrary - Reverse Polish NotationLibrary
  * Copyright (C) 2011  Bartłomiej Góra
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,22 +17,22 @@
  * Contact: bartlomiej.gora@gmail.com
  */
 
-package com.github.bgora.rpnlibrary.advanced;
+package com.github.bgora.rpnlibrary;
 
-import com.github.bgora.rpnlibrary.advanced.functions.AbstractFunctionStrategy;
-import com.github.bgora.rpnlibrary.advanced.functions.CosinusFunctionStrategy;
-import com.github.bgora.rpnlibrary.advanced.functions.CtgFunctionStrategy;
-import com.github.bgora.rpnlibrary.advanced.functions.FibFunctionStrategy;
-import com.github.bgora.rpnlibrary.advanced.functions.MaxFunctionStrategy;
-import com.github.bgora.rpnlibrary.advanced.functions.MinFunctionStrategy;
-import com.github.bgora.rpnlibrary.advanced.functions.SinusFunctionStrategy;
-import com.github.bgora.rpnlibrary.advanced.functions.TanFunctionStrategy;
-import com.github.bgora.rpnlibrary.advanced.operators.AbstractOperatorStrategy;
-import com.github.bgora.rpnlibrary.advanced.operators.AddOperatorStrategy;
-import com.github.bgora.rpnlibrary.advanced.operators.DivideOperatorStrategy;
-import com.github.bgora.rpnlibrary.advanced.operators.MiltiplyOperatorStrategy;
-import com.github.bgora.rpnlibrary.advanced.operators.MinusOperatorStrategy;
-import com.github.bgora.rpnlibrary.advanced.operators.PowerOperatorStrategy;
+import com.github.bgora.rpnlibrary.functions.AbstractFunctionStrategy;
+import com.github.bgora.rpnlibrary.functions.CosFunctionStrategy;
+import com.github.bgora.rpnlibrary.functions.CtgFunctionStrategy;
+import com.github.bgora.rpnlibrary.functions.FibFunctionStrategy;
+import com.github.bgora.rpnlibrary.functions.MaxFunctionStrategy;
+import com.github.bgora.rpnlibrary.functions.MinFunctionStrategy;
+import com.github.bgora.rpnlibrary.functions.SinusFunctionStrategy;
+import com.github.bgora.rpnlibrary.functions.TanFunctionStrategy;
+import com.github.bgora.rpnlibrary.operators.AbstractOperatorStrategy;
+import com.github.bgora.rpnlibrary.operators.AddOperatorStrategy;
+import com.github.bgora.rpnlibrary.operators.DivideOperatorStrategy;
+import com.github.bgora.rpnlibrary.operators.MiltiplyOperatorStrategy;
+import com.github.bgora.rpnlibrary.operators.MinusOperatorStrategy;
+import com.github.bgora.rpnlibrary.operators.PowerOperatorStrategy;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -55,7 +55,7 @@ public final class StrategiesUtil {
     static {
         AbstractFunctionStrategy sinusFunctionStrategy = new SinusFunctionStrategy();
         DEFAULT_FUNCTIONS.put(sinusFunctionStrategy.getName(), sinusFunctionStrategy);
-        AbstractFunctionStrategy cosinusFunctionStrategy = new CosinusFunctionStrategy();
+        AbstractFunctionStrategy cosinusFunctionStrategy = new CosFunctionStrategy();
         DEFAULT_FUNCTIONS.put(cosinusFunctionStrategy.getName(), cosinusFunctionStrategy);
         AbstractFunctionStrategy tanFunctionStrategy = new TanFunctionStrategy();
         DEFAULT_FUNCTIONS.put(tanFunctionStrategy.getName(), tanFunctionStrategy);

@@ -19,13 +19,13 @@
 
 package com.github.bgora.rpnlibrary;
 
-import com.github.bgora.rpnlibrary.advanced.functions.AbstractFunctionStrategy;
-import com.github.bgora.rpnlibrary.advanced.operators.AbstractOperatorStrategy;
 import com.github.bgora.rpnlibrary.exceptions.NoSuchFunctionFound;
 import com.github.bgora.rpnlibrary.exceptions.WrongArgumentException;
+import com.github.bgora.rpnlibrary.functions.AbstractFunctionStrategy;
+import com.github.bgora.rpnlibrary.operators.AbstractOperatorStrategy;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.math.MathContext;
 import java.util.Map;
 
 /**
@@ -42,12 +42,6 @@ public class CalculatorEngine extends DefaultChecker implements CalculationEngin
 
     private Map<String, AbstractOperatorStrategy> operators;
     private Map<String, AbstractFunctionStrategy> functions;
-
-    /**
-     * Default Constructor
-     */
-    public CalculatorEngine() {
-    }
 
     /**
      * Parametrized constructor.
@@ -85,21 +79,13 @@ public class CalculatorEngine extends DefaultChecker implements CalculationEngin
     }
 
     @Override
-    public BigDecimal executeOperator(String operator, String var1, String var2, RoundingMode mode) throws WrongArgumentException {
-        return operators.get(operator).execute(var1, var2);
+    public BigDecimal executeOperator(String operator, MathContext mathContext, String var1, String var2) throws WrongArgumentException {
+        return operators.get(operator).execute(var1, var2, mathContext);
     }
 
     @Override
-    public BigDecimal executeFunction(String functionName, RoundingMode mode, String... arguments) throws NoSuchFunctionFound {
-        return functions.get(functionName).execute(arguments);
-    }
-
-    public Map<String, AbstractOperatorStrategy> getOperators() {
-        return operators;
-    }
-
-    public Map<String, AbstractFunctionStrategy> getFunctions() {
-        return functions;
+    public BigDecimal executeFunction(String functionName, MathContext mathContext, String... arguments) throws NoSuchFunctionFound {
+        return functions.get(functionName).execute(mathContext, arguments);
     }
 
     @Override
@@ -108,7 +94,7 @@ public class CalculatorEngine extends DefaultChecker implements CalculationEngin
     }
 
     @Override
-    public void addFunctionStartegy(AbstractFunctionStrategy abstractFunctionStrategy) {
+    public void addFunctionStrategy(AbstractFunctionStrategy abstractFunctionStrategy) {
         this.functions.put(abstractFunctionStrategy.getName(), abstractFunctionStrategy);
     }
 }

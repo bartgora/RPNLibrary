@@ -17,38 +17,56 @@
  * Contact: bartlomiej.gora@gmail.com
  */
 
-package com.github.bgora.rpnlibrary.advanced.operators;
+package com.github.bgora.rpnlibrary.operators;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.math.MathContext;
 
+/**
+ * Abstract class for operators.
+ * <p>
+ * This class contains operator name, param count.
+ * It also provides execute method which is responsible for call the underlying math function.
+ *
+ * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
+ */
 public abstract class AbstractOperatorStrategy {
 
-    private String operator;
-    private int priority;
+    private final String operator;
+    private final int priority;
     private volatile int hashCode = 0;
-    protected RoundingMode roundingMode;
 
-
-    public AbstractOperatorStrategy(String operator, int priority, RoundingMode roundingMode) {
+    /**
+     * Default Constructor.
+     * Subclass need to provide required fields.
+     *
+     * @param operator Name of the operator
+     * @param priority priority of the operator to sort
+     */
+    public AbstractOperatorStrategy(final String operator, int priority) {
         this.operator = operator;
         this.priority = priority;
-        this.roundingMode = roundingMode;
     }
 
-
-    public abstract BigDecimal execute(String first, String second);
+    /**
+     * Execute Operator
+     *
+     * @param first       first argument of the operation
+     * @param second      second argument of the operation
+     * @param mathContext matchContext object to do eqation
+     * @return result of the operation
+     */
+    public abstract BigDecimal execute(final String first, final String second, final MathContext mathContext);
 
     /**
      * @see java.lang.Object#equals(java.lang.Object)
      */
     @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof AbstractOperatorStrategy) {
-            AbstractOperatorStrategy rpn = (AbstractOperatorStrategy) obj;
-            return (operator != null ? operator.equals(rpn.operator) : operator == rpn.operator);
-        }
-        return false;
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        final AbstractOperatorStrategy that = (AbstractOperatorStrategy) o;
+        return operator.equals(that.operator);
     }
 
     /**
@@ -64,15 +82,23 @@ public abstract class AbstractOperatorStrategy {
         return hashCode;
     }
 
+
+    /**
+     * Returns operator sign
+     *
+     * @return operator
+     */
     public String getOperator() {
         return operator;
     }
 
+    /**
+     * Returns priority
+     *
+     * @return priority
+     */
     public int getPriority() {
         return priority;
     }
 
-    public RoundingMode getRoundingMode() {
-        return roundingMode;
-    }
 }

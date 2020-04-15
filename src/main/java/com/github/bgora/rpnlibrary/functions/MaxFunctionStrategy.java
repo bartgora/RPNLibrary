@@ -17,20 +17,26 @@
  * Contact: bartlomiej.gora@gmail.com
  */
 
-package com.github.bgora.rpnlibrary;
+package com.github.bgora.rpnlibrary.functions;
 
-import com.github.bgora.rpnlibrary.factory.AbstractCalculatorFactory;
+import java.math.BigDecimal;
+import java.math.MathContext;
 
 /**
- * Creates DefaultCalculator instance
+ * Max function - return greater value from given two.
  *
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
- * @see Calculator
  */
-public class DefaultCalculatorFactory extends AbstractCalculatorFactory {
+public class MaxFunctionStrategy extends AbstractFunctionStrategy {
+
+    public MaxFunctionStrategy() {
+        super("max", 2);
+    }
 
     @Override
-    public CalculatorInterface createCalculator() {
-        return Calculator.createDefaultCalculator();
+    public BigDecimal execute(final MathContext mathContext, String... params) {
+        BigDecimal param1 = new BigDecimal(params[0]);
+        BigDecimal param2 = new BigDecimal(params[1]);
+        return param1.max(param2);
     }
 }

@@ -1,5 +1,5 @@
 /*
- * RPNLibrary - Reverse Polish Notation Library
+ * RPNLibrary - Reverse Polish NotationLibrary
  * Copyright (C) 2011  Bartłomiej Góra
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,24 +17,30 @@
  * Contact: bartlomiej.gora@gmail.com
  */
 
-package com.github.bgora.rpnlibrary.advanced.operators;
+package com.github.bgora.rpnlibrary.functions;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.math.MathContext;
 
-public class PowerOperatorStrategy extends AbstractOperatorStrategy {
+public class FibFunctionStrategy extends AbstractFunctionStrategy {
 
 
-    public PowerOperatorStrategy() {
-        super("^", 3, RoundingMode.HALF_EVEN);
+    public FibFunctionStrategy() {
+        super("fib", 1);
     }
 
     @Override
-    public BigDecimal execute(String first, String second) {
-        Double big1 = new Double(first);
-        Double big2 = new Double(second);
-        return BigDecimal.valueOf(Math.pow(big1, big2));
+    public BigDecimal execute(final MathContext mathContext, final String... params) {
+        BigDecimal bigDecimal = new BigDecimal(params[0]);
+        return fib(bigDecimal);
     }
 
-
+    private BigDecimal fib(BigDecimal bigDecimal) {
+        if (bigDecimal.equals(BigDecimal.ZERO)) {
+            return BigDecimal.ZERO;
+        } else if (bigDecimal.equals(BigDecimal.ONE)) {
+            return BigDecimal.ONE;
+        }
+        return fib(bigDecimal.subtract(BigDecimal.ONE)).add(fib(bigDecimal.subtract(BigDecimal.valueOf(2))));
+    }
 }

@@ -23,7 +23,7 @@ import com.github.bgora.rpnlibrary.exceptions.NoSuchFunctionFound;
 import com.github.bgora.rpnlibrary.exceptions.WrongArgumentException;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.math.MathContext;
 import java.util.Deque;
 import java.util.LinkedList;
 
@@ -34,79 +34,53 @@ import java.util.LinkedList;
  *
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  */
-public class Calculator implements CalculatorInterface {
+public class Calculator {
 
 
-    protected RPNChecking checker;
-
-    protected RPNExecuting executioner;
-
-    protected RoundingMode roundingMode;
+    public static final String ZERO = "0.0";
+    public static final String EMPTY_SPACE = " ";
+    public static final String COMMA = ",";
+    protected final RPNChecking checker;
+    protected final RPNExecuting executioner;
+    private final MathContext mathContext;
+    private final int SCALE;
 
 
     /**
-     * Factory Method for RPN calculator object. Creates RPN Calulcator with
-     * default Chcecker, and Executioner. Executioner Uses
-     * {@code java.math.RoundingMode.HALF_EVEN} for calculations. Fallowing is
-     * explanation of this: A tie-breaking rule that is even less biased is
-     * round half to even, namely
-     * <p>
-     * If the fraction of y is 0.5, then q is the even integer nearest to y.
-     * <p>
-     * Thus, for example, +23.5 becomes +24, +22.5 becomes +22, 22.5 becomes
-     * 22, and 23.5 becomes 24.
-     * <p>
-     * This method also treats positive and negative values symmetrically, and
-     * therefore is free of overall bias if the original numbers are positive or
-     * negative with equal probability. In addition, for most reasonable
-     * distributions of y values, the expected (average) value of the rounded
-     * numbers is essentially the same as that of the original numbers, even if
-     * the latter are all positive (or all negative). However, this rule will
-     * still introduce a positive bias for even numbers (including zero), and a
-     * negative bias for the odd ones.
-     * <p>
-     * This variant of the round-to-nearest method is also called unbiased
-     * rounding (ambiguously, and a bit abusively), convergent rounding,
-     * statistician's rounding, Dutch rounding, Gaussian rounding, or bankers'
-     * rounding. This is widely used in bookkeeping.
-     * <p>
-     * This is the default rounding mode used in IEEE 754 computing functions
-     * and operators.
+     * Factory method for RPN Calculator object with custom functions, and
+     * operations. You should use this factory method if you want to create your
+     * own operations. To do so, you have to implement you own objects, that
+     * implementas {@code RPNChecking}, and
+     * {@code RPNExecuting}.
      *
-     * @return Calculator Object.
-     * @see <a href="http://en.wikipedia.org/wiki/Rounding#Round_half_to_even"></a>
-     * @see java.math.RoundingMode
+     * @return new Instance of {@code pl.bgora.Calculator}
+     * @see RPNChecking
+     * @see RPNExecuting
      */
-    public static Calculator createDefaultCalculator() {
-        return createDefaultCalculator(RoundingMode.HALF_EVEN);
-    }
-
-    /**
-     * Factory Method for RPN calculator object.
-     *
-     * @param mode Rounding Mode for calculations.
-     * @return Calculator Object.
-     */
-    public static Calculator createDefaultCalculator(RoundingMode mode) {
-        return new Calculator(new DefaultChecker(), new DefaultExecutioner(), mode);
+    public static Calculator createCalculator() {
+        final CalculationEngine calculationEngine = new CalculatorEngine(StrategiesUtil.DEFAULT_OPERATORS, StrategiesUtil.DEFAULT_FUNCTIONS);
+        final MathContext mathContext = MathContext.DECIMAL64;
+        return new Calculator(calculationEngine, calculationEngine, mathContext, 2);
     }
 
     /**
      * Factory method for RPN Calculator object with custom functions, and
      * operations. You should use this factory method if you want to create your
-     * own operations. To do so, you have to implement you own objectst, that
+     * own operations. To do so, you have to implement you own objects, that
      * implementas {@code RPNChecking}, and
      * {@code RPNExecuting}.
      *
-     * @param mode        Rounding Mode for calculations.
-     * @param checker     Custom Checker object.
-     * @param executioner custom executioner object
+     * @param checker     Object implementing RPNChecking - Used for checking operations in input.
+     * @param executioner Object implementing RPNExecuting - used for executing operations on input.
+     * @param mathContext MathContext - Set Rounding Mode, and precision
+     * @param scale       scale number of digits after .
      * @return new Instance of {@code pl.bgora.Calculator}
      * @see RPNChecking
      * @see RPNExecuting
      */
-    public static Calculator createCalculator(RoundingMode mode, RPNChecking checker, RPNExecuting executioner) {
-        return new Calculator(checker, executioner, mode);
+
+    public static Calculator createCalculator(RPNChecking checker, RPNExecuting executioner, final MathContext mathContext, final int scale) {
+        return new Calculator(checker, executioner, mathContext, scale);
     }
 
 
@@ -115,15 +89,16 @@ public class Calculator implements CalculatorInterface {
      *
      * @param checker     Object implementing RPNChecking - Used for checking operations in input.
      * @param executioner Object implementing RPNExecuting - used for executing operations on input.
-     * @param mode        Rounding mode for arithmetic operations.
+     * @param mathContext
+     * @param scale
      */
-    protected Calculator(RPNChecking checker, RPNExecuting executioner, RoundingMode mode) {
+    private Calculator(RPNChecking checker, RPNExecuting executioner, final MathContext mathContext, final int scale) {
         this.checker = checker;
         this.executioner = executioner;
-        this.roundingMode = mode;
+        this.mathContext = mathContext;
+        this.SCALE = scale;
     }
 
-    @Override
     public BigDecimal calculate(final String input) throws WrongArgumentException, NoSuchFunctionFound {
         final String temp = prepareInput(input);
         final String result = createRPN(temp);
@@ -156,43 +131,36 @@ public class Calculator implements CalculatorInterface {
                 result.append(c);
                 lastWasWhiteSpace = false;
                 lastWasLetter = false;
-                continue;
             } else if (Character.isDigit(c)) {
                 lastWasDigit = true;
                 lastWasLetter = false;
                 lastWasOperator = false;
                 if (!lastWasWhiteSpace) {
-                    result.append(" ");
+                    result.append(EMPTY_SPACE);
                 }
                 result.append(c);
                 lastWasWhiteSpace = false;
-                continue;
             } else if (checker.isOperatorOrBracket(String.valueOf(c))) {
                 lastWasDigit = false;
                 lastWasLetter = false;
                 lastWasOperator = true;
                 if (!lastWasWhiteSpace) {
-                    result.append(" ");
+                    result.append(EMPTY_SPACE);
                 }
                 result.append(c);
                 lastWasWhiteSpace = false;
-                continue;
             } else if (Character.isWhitespace(c)) {
-                // Check Next digit, if it is digit then
-                // erase whitespace
-                // and place digit ex.: 12 456 -> 12456
                 if (!lastWasWhiteSpace && !lastWasDigit) {
-                    result.append(" ");
+                    result.append(EMPTY_SPACE);
                     lastWasWhiteSpace = true;
                 }
                 lastWasDigit = false;
                 lastWasOperator = false;
-                continue;
             } else if (Character.isLetter(c)) {
                 lastWasDigit = false;
                 lastWasOperator = false;
                 if (!lastWasLetter && !lastWasWhiteSpace) {
-                    result.append(" ").append(c);
+                    result.append(EMPTY_SPACE).append(c);
                 } else {
                     result.append(c);
                 }
@@ -222,73 +190,57 @@ public class Calculator implements CalculatorInterface {
         String trimmed = input.trim();
         StringBuilder result = new StringBuilder();
         Deque<String> stack = new LinkedList<String>();
-        String[] factors = trimmed.split(" ");
+        String[] factors = trimmed.split(EMPTY_SPACE);
         int length = factors.length;
-        String temp = null;
-        String stackOper = null;
+        String temp;
+        String stackOperator;
         for (int i = 0; i < length; i++) {
             temp = factors[i];
             if (checker.isDigit(temp)) {
-                // input String.
-                result.append(" ").append(temp);
+                result.append(EMPTY_SPACE).append(temp);
             } else if (checker.isFunction(temp)) {
                 stack.push(temp);
-            } else if (",".equals(temp)) {
+            } else if (COMMA.equals(temp)) {
                 do {
-                    stackOper = stack.pop();
-                    if (!checker.isLeftBracket(stackOper)) {
-                        result.append(" ").append(stackOper);
+                    stackOperator = stack.pop();
+                    if (!checker.isLeftBracket(stackOperator)) {
+                        result.append(EMPTY_SPACE).append(stackOperator);
                     }
-                } while (!stack.isEmpty() && !checker.isLeftBracket(stackOper));
+                } while (!stack.isEmpty() && !checker.isLeftBracket(stackOperator));
             } else if (checker.isOperator(temp)) {
-                // 1) until the top of the stack is an operator, o2 such that:
-                // O1 is the total or left-total and its sequence
-                // Execution is less than or equal to the order of execution o2, or
-                // O1 is right-total and the order of execution
-                // Is less than o2,
-                // Remove O2 from the stack and add it to the output queue;
-                // 2) o1 put on the stack operators.
                 while (!stack.isEmpty() && checker.isOperator(stack.peek())) {
-                    stackOper = stack.peek();
-                    if (checker.isLeftAssociativity(stackOper) && (checker.compareOperators(stackOper, temp) >= 0)) {
+                    stackOperator = stack.peek();
+                    if (checker.isLeftAssociativity(stackOperator) && (checker.compareOperators(stackOperator, temp) >= 0)) {
                         stack.pop();
-                        result.append(" ").append(stackOper);
-                    } else if (checker.isRightAssociativity(stackOper)
-                            && (checker.compareOperators(stackOper, temp) > 0)) {
+                        result.append(EMPTY_SPACE).append(stackOperator);
+                    } else if (checker.isRightAssociativity(stackOperator)
+                            && (checker.compareOperators(stackOperator, temp) > 0)) {
                         stack.pop();
-                        result.append(" ").append(stackOper);
+                        result.append(EMPTY_SPACE).append(stackOperator);
                     } else {
                         break;
                     }
                 }
 
-                // 2.
                 stack.push(temp);
             } else if (checker.isLeftBracket(temp)) {
-                // put on stack
                 stack.push(temp);
             } else if (checker.isRightBracket(temp)) {
-                // Download from the stack and place the items on the exit until you
-                // Get a left parenthesis.
-                // Left bracket oil (and right too)
                 do {
                     temp = stack.pop();
                     if (!checker.isLeftBracket(temp)) {
-                        result.append(" ").append(temp);
+                        result.append(EMPTY_SPACE).append(temp);
                     }
                 } while (!checker.isLeftBracket(temp));
-
                 if (!stack.isEmpty() && checker.isFunction(stack.peek())) {
-                    result.append(" ").append(stack.pop());
+                    result.append(EMPTY_SPACE).append(stack.pop());
                 }
             } else {
-                // If there is anything that can be recognized ....
                 throw new WrongArgumentException("Element \"" + temp + "\" is not recognized by the Checker");
             }
         }
-        // End of entry, empty the stack.
         while (!stack.isEmpty()) {
-            result.append(" ").append(stack.pop());
+            result.append(EMPTY_SPACE).append(stack.pop());
         }
 
         return result.toString().trim();
@@ -303,37 +255,42 @@ public class Calculator implements CalculatorInterface {
      * @throws NoSuchFunctionFound
      */
     private BigDecimal getResult(String result) throws WrongArgumentException, NoSuchFunctionFound {
-        String[] factors = result.trim().split(" ");
+        String[] factors = result.trim().split(EMPTY_SPACE);
         Deque<String> stack = new LinkedList<String>();
-        String temp = null;
-        String var1 = null;
-        String var2 = null;
-        BigDecimal value = null;
+        String temp;
+        String variable1;
+        String variable2;
+        BigDecimal value;
         for (int i = 0; i < factors.length; i++) {
             temp = factors[i];
             if (checker.isDigit(temp)) {
                 stack.push(temp);
             } else if (checker.isOperator(temp)) {
-                var1 = stack.pop();
+                variable1 = stack.pop();
                 if (!stack.isEmpty()) {
-                    var2 = stack.pop();
+                    variable2 = stack.pop();
                 } else {
-                    var2 = "0.0";
+                    variable2 = ZERO;
                 }
-                value = executioner.executeOperator(temp, var2, var1, roundingMode);
+                value = executioner.executeOperator(temp, mathContext, variable2, variable1);
                 stack.push(value.toPlainString());
             } else if (checker.isFunction(temp)) {
                 int count = checker.getFunctionParamsCount(temp);
                 String[] table = new String[count];
                 String params = stack.pop();
-                String[] paramsTable = params.split(",");
+                String[] paramsTable = params.split(COMMA);
                 for (int j = 0; j < count; j++) {
                     table[j] = paramsTable[j];
                 }
-                value = executioner.executeFunction(temp, roundingMode, table);
+                value = executioner.executeFunction(temp, mathContext, table);
                 stack.push(value.toPlainString());
             }
         }
-        return new BigDecimal(stack.pop());
+        return new BigDecimal(stack.pop()).setScale(SCALE, mathContext.getRoundingMode());
     }
+
+    public MathContext getMathContext() {
+        return new MathContext(mathContext.getPrecision(), mathContext.getRoundingMode());
+    }
+
 }

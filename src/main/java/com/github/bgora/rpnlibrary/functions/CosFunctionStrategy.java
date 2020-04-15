@@ -16,24 +16,28 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * Contact: bartlomiej.gora@gmail.com
  */
+package com.github.bgora.rpnlibrary.functions;
 
-package com.github.bgora.rpnlibrary.advanced.operators;
+import ch.obermuhlner.math.big.BigDecimalMath;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.math.MathContext;
 
-public class AddOperatorStrategy extends AbstractOperatorStrategy {
+/**
+ * Cosine function
+ *
+ * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
+ */
+public class CosFunctionStrategy extends AbstractFunctionStrategy {
 
-
-    public AddOperatorStrategy() {
-        super("+", 1, RoundingMode.HALF_EVEN);
+    public CosFunctionStrategy() {
+        super("cos", 1);
     }
 
+
     @Override
-    public BigDecimal execute(String first, String second) {
-        BigDecimal big1 = new BigDecimal(first);
-        BigDecimal big2 = new BigDecimal(second);
-        return big1.add(big2);
+    public BigDecimal execute(final MathContext mathContext, final String... params) {
+        return BigDecimalMath.cos(new BigDecimal(params[0]), mathContext);
     }
 
 }
