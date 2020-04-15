@@ -10,7 +10,7 @@ addons:
       secure: "78f34cd7189b0ebc7027d5271d15be9d6df06ce4"
 
 script:
-  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=bartlomiej-gora_RPNLibrary
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar -Dsonar.projectKey=bartlomiej-gora_RPNLibrary
 #before_install:
 #  - wget https://github.com/codacy/codacy-coverage-reporter/releases/download/4.0.3/codacy-coverage-reporter-4.0.3-assembly.jar
 
