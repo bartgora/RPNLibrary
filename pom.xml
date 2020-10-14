@@ -5,6 +5,7 @@
         <sonar.projectKey>bartlomiej-gora_RPNLibrary</sonar.projectKey>
         <sonar.organization>bartlomiej-gora</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
     </properties>
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.bartlomiej-gora</groupId>
