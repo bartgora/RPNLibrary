@@ -3,11 +3,7 @@
 Simple RPN (Reverse Polish Notation) Library for Java.<br>
 It is based on Dijkstra Algorithm. (https://en.wikipedia.org/wiki/Reverse_Polish_notation)
 
-<a href="https://www.codacy.com/app/bartlomiej.gora/RPNLibrary?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bartlomiej-gora/RPNLibrary&amp;utm_campaign=Badge_Grade">
-<img src="https://api.codacy.com/project/badge/Grade/94cbf471a20048989c9b066f6ad4d414"/></a>
-<a href="https://www.codacy.com/app/bartlomiej.gora/RPNLibrary?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bartlomiej-gora/RPNLibrary&amp;utm_campaign=Badge_Coverage"><img src="https://api.codacy.com/project/badge/Coverage/94cbf471a20048989c9b066f6ad4d414"/></a>
-
-[![Build Status](https://travis-ci.org/bartlomiej-gora/RPNLibrary.svg?branch=master)](https://travis-ci.org/bartlomiej-gora/RPNLibrary)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=bartlomiej-gora_RPNLibrary&metric=alert_status)](https://sonarcloud.io/dashboard?id=bartlomiej-gora_RPNLibrary)
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.bartlomiej-gora/RPNLibrary/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.bartlomiej-gora/RPNLibrary)
 
