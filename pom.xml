@@ -5,7 +5,6 @@
         <sonar.projectKey>bartlomiej-gora_RPNLibrary</sonar.projectKey>
         <sonar.organization>bartlomiej-gora</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-        <sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
     </properties>
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.bartlomiej-gora</groupId>
@@ -89,6 +88,11 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.sonar-plugins.java</groupId>
+                <artifactId>sonar-jacoco-plugin</artifactId>
+                <version>2.3</version>
+            </plugin>
 
             <plugin>
                 <groupId>org.jacoco</groupId>
@@ -138,18 +142,6 @@
                 </executions>
             </plugin>
 
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>cobertura-maven-plugin</artifactId>
-                <version>2.7</version>
-                <configuration>
-                    <formats>
-                        <format>html</format>
-                        <format>xml</format>
-                    </formats>
-                    <check/>
-                </configuration>
-            </plugin>
 
         </plugins>
         <pluginManagement>
