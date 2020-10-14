@@ -63,6 +63,7 @@ public class Calculator {
         return new Calculator(calculationEngine, calculationEngine, mathContext, 2);
     }
 
+
     /**
      * Factory method for RPN Calculator object with custom functions, and
      * operations. You should use this factory method if you want to create your
