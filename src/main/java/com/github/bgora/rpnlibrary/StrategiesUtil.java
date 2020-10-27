@@ -30,8 +30,8 @@ import com.github.bgora.rpnlibrary.functions.TanFunctionStrategy;
 import com.github.bgora.rpnlibrary.operators.AbstractOperatorStrategy;
 import com.github.bgora.rpnlibrary.operators.AddOperatorStrategy;
 import com.github.bgora.rpnlibrary.operators.DivideOperatorStrategy;
-import com.github.bgora.rpnlibrary.operators.MiltiplyOperatorStrategy;
 import com.github.bgora.rpnlibrary.operators.MinusOperatorStrategy;
+import com.github.bgora.rpnlibrary.operators.MultiplyOperatorStrategy;
 import com.github.bgora.rpnlibrary.operators.PowerOperatorStrategy;
 
 import java.util.HashMap;
@@ -46,11 +46,11 @@ public final class StrategiesUtil {
     /**
      * Default arithmetic operators
      */
-    public static Map<String, AbstractOperatorStrategy> DEFAULT_OPERATORS = new HashMap<String, AbstractOperatorStrategy>();
+    public static Map<String, AbstractOperatorStrategy> DEFAULT_OPERATORS = new HashMap<>();
     /**
      * Default Arithmetic functions
      */
-    public static Map<String, AbstractFunctionStrategy> DEFAULT_FUNCTIONS = new HashMap<String, AbstractFunctionStrategy>();
+    public static Map<String, AbstractFunctionStrategy> DEFAULT_FUNCTIONS = new HashMap<>();
 
     static {
         AbstractFunctionStrategy sinusFunctionStrategy = new SinusFunctionStrategy();
@@ -72,7 +72,7 @@ public final class StrategiesUtil {
         DEFAULT_OPERATORS.put(addOperatorStrategy.getOperator(), addOperatorStrategy);
         AbstractOperatorStrategy minusOperatorStrategy = new MinusOperatorStrategy();
         DEFAULT_OPERATORS.put(minusOperatorStrategy.getOperator(), minusOperatorStrategy);
-        AbstractOperatorStrategy miltiplyOperatorStrategy = new MiltiplyOperatorStrategy();
+        AbstractOperatorStrategy miltiplyOperatorStrategy = new MultiplyOperatorStrategy();
         DEFAULT_OPERATORS.put(miltiplyOperatorStrategy.getOperator(), miltiplyOperatorStrategy);
         AbstractOperatorStrategy divideOperatorStrategy = new DivideOperatorStrategy();
         DEFAULT_OPERATORS.put(divideOperatorStrategy.getOperator(), divideOperatorStrategy);

@@ -1,5 +1,5 @@
 /*
- * RPNLibrary - Reverse Polish Notation Library
+ * RPNLibrary - Reverse Polish NotationLibrary
  * Copyright (C) 2011  Bartłomiej Góra
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,21 +19,35 @@
 
 package com.github.bgora.rpnlibrary.operators;
 
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.math.RoundingMode;
 
-public class MiltiplyOperatorStrategy extends AbstractOperatorStrategy {
+class MultiplyOperatorStrategyTest {
 
+    private MultiplyOperatorStrategy tested;
+    private MathContext mathContext;
 
-    public MiltiplyOperatorStrategy() {
-        super("*", 2);
+    @BeforeEach
+    void setup() {
+        tested = new MultiplyOperatorStrategy();
+        mathContext = new MathContext(0, RoundingMode.HALF_EVEN);
     }
 
-    @Override
-    public BigDecimal execute(String first, String second, final MathContext mathContext) {
-        Double big1 = new Double(first);
-        Double big2 = new Double(second);
-        return BigDecimal.valueOf(big1 * big2);
+    @Test
+    void executeShouldReturn4() {
+
+        final String givenFirstNumber = "2";
+        final String givenSecondNumber = "2";
+
+        final BigDecimal result = tested.execute(givenFirstNumber, givenSecondNumber, mathContext);
+
+        Assertions.assertThat(result).isEqualByComparingTo(BigDecimal.valueOf(4));
+
     }
 
 
