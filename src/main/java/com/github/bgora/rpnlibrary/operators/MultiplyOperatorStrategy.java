@@ -31,9 +31,9 @@ public class MultiplyOperatorStrategy extends AbstractOperatorStrategy {
 
     @Override
     public BigDecimal execute(String first, String second, final MathContext mathContext) {
-        Double big1 = new Double(first);
-        Double big2 = new Double(second);
-        return BigDecimal.valueOf(big1 * big2);
+        BigDecimal firstDecimal = new BigDecimal(first);
+        BigDecimal secondDecimal = new BigDecimal(second);
+        return firstDecimal.multiply(secondDecimal);
     }
 
 

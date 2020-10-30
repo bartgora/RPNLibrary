@@ -50,5 +50,29 @@ class MultiplyOperatorStrategyTest {
 
     }
 
+    @Test
+    void executeShouldReturnMinus4() {
+
+        final String givenFirstNumber = "2";
+        final String givenSecondNumber = "-2";
+
+        final BigDecimal result = tested.execute(givenFirstNumber, givenSecondNumber, mathContext);
+
+        Assertions.assertThat(result).isEqualByComparingTo(BigDecimal.valueOf(-4));
+
+    }
+
+    @Test
+    void executeShouldReturn25ForTwoMinus5() {
+
+        final String givenFirstNumber = "-5";
+        final String givenSecondNumber = "-5";
+
+        final BigDecimal result = tested.execute(givenFirstNumber, givenSecondNumber, mathContext);
+
+        Assertions.assertThat(result).isEqualByComparingTo(BigDecimal.valueOf(25));
+
+    }
+
 
 }
