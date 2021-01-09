@@ -36,14 +36,14 @@ public class DefaultChecker implements RPNChecking {
     private Map<String, Integer> functions;
 
     public DefaultChecker() {
-        operators = new HashMap<String, Integer>();
+        operators = new HashMap<>();
         operators.put("+", 1);
         operators.put("-", 1);
         operators.put("*", 2);
         operators.put("/", 2);
         operators.put("^", 3);
 
-        functions = new HashMap<String, Integer>();
+        functions = new HashMap<>();
         functions.put("sin", 1);
         functions.put("cos", 1);
         functions.put("tg", 1);
@@ -133,7 +133,7 @@ public class DefaultChecker implements RPNChecking {
      */
     @Override
     public boolean isFunction(String input) {
-        return functions.keySet().contains(input);
+        return functions.containsKey(input);
     }
 
     @Override

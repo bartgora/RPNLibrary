@@ -19,13 +19,13 @@
 
 package com.github.bgora.rpnlibrary.operators;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
-import java.math.RoundingMode;
+
+import static org.assertj.core.api.BDDAssertions.then;
 
 class MultiplyOperatorStrategyTest {
 
@@ -35,7 +35,7 @@ class MultiplyOperatorStrategyTest {
     @BeforeEach
     void setup() {
         tested = new MultiplyOperatorStrategy();
-        mathContext = new MathContext(0, RoundingMode.HALF_EVEN);
+        mathContext = MathContext.DECIMAL64;
     }
 
     @Test
@@ -46,8 +46,7 @@ class MultiplyOperatorStrategyTest {
 
         final BigDecimal result = tested.execute(givenFirstNumber, givenSecondNumber, mathContext);
 
-        Assertions.assertThat(result).isEqualByComparingTo(BigDecimal.valueOf(4));
-
+        then(result).isEqualByComparingTo(BigDecimal.valueOf(4));
     }
 
     @Test
@@ -58,8 +57,7 @@ class MultiplyOperatorStrategyTest {
 
         final BigDecimal result = tested.execute(givenFirstNumber, givenSecondNumber, mathContext);
 
-        Assertions.assertThat(result).isEqualByComparingTo(BigDecimal.valueOf(-4));
-
+        then(result).isEqualByComparingTo(BigDecimal.valueOf(-4));
     }
 
     @Test
@@ -70,9 +68,6 @@ class MultiplyOperatorStrategyTest {
 
         final BigDecimal result = tested.execute(givenFirstNumber, givenSecondNumber, mathContext);
 
-        Assertions.assertThat(result).isEqualByComparingTo(BigDecimal.valueOf(25));
-
+        then(result).isEqualByComparingTo(BigDecimal.valueOf(25));
     }
-
-
 }

@@ -27,7 +27,6 @@ import java.math.MathContext;
 import java.util.Deque;
 import java.util.LinkedList;
 
-
 /**
  * RPN Calculator Implementation with functions.
  * This Implementation uses Dijkstra Algorithm to create Reverse Polish Notation.
@@ -36,7 +35,6 @@ import java.util.LinkedList;
  */
 public class Calculator {
 
-
     public static final String ZERO = "0.0";
     public static final String EMPTY_SPACE = " ";
     public static final String COMMA = ",";
@@ -44,7 +42,6 @@ public class Calculator {
     protected final RPNExecuting executioner;
     private final MathContext mathContext;
     private final int SCALE;
-
 
     /**
      * Factory method for RPN Calculator object with custom functions, and
@@ -58,11 +55,11 @@ public class Calculator {
      * @see RPNExecuting
      */
     public static Calculator createCalculator() {
-        final CalculationEngine calculationEngine = new CalculatorEngine(StrategiesUtil.DEFAULT_OPERATORS, StrategiesUtil.DEFAULT_FUNCTIONS);
+        final CalculationEngine calculationEngine = new CalculatorEngine(StrategiesUtil.DEFAULT_OPERATORS,
+                                                                         StrategiesUtil.DEFAULT_FUNCTIONS);
         final MathContext mathContext = MathContext.DECIMAL64;
         return new Calculator(calculationEngine, calculationEngine, mathContext, 2);
     }
-
 
     /**
      * Factory method for RPN Calculator object with custom functions, and
@@ -80,10 +77,12 @@ public class Calculator {
      * @see RPNExecuting
      */
 
-    public static Calculator createCalculator(RPNChecking checker, RPNExecuting executioner, final MathContext mathContext, final int scale) {
+    public static Calculator createCalculator(RPNChecking checker,
+                                              RPNExecuting executioner,
+                                              final MathContext mathContext,
+                                              final int scale) {
         return new Calculator(checker, executioner, mathContext, scale);
     }
-
 
     /**
      * Constructor Creates an instance of the class.
@@ -106,7 +105,6 @@ public class Calculator {
         return getResult(result);
     }
 
-
     /**
      * Format input for further processing.
      *
@@ -116,59 +114,59 @@ public class Calculator {
      *                                unsupported operations)
      */
     private String prepareInput(String input) throws WrongArgumentException {
-        StringBuilder result = new StringBuilder();
-        String inputValue = input.trim();
+        final StringBuilder result = new StringBuilder();
+        final String inputValue = input.trim();
         int length = inputValue.length();
-        char c = 0;
+        char character;
         boolean lastWasDigit = false;
         boolean lastWasOperator = false;
         boolean lastWasWhiteSpace = false;
         boolean lastWasLetter = false;
         // Iteration thought input String.
         for (int i = 0; i < length; i++) {
-            c = inputValue.charAt(i);
-            if (isDigitOrSeparator(c) && (lastWasDigit || !lastWasOperator)) {
+            character = inputValue.charAt(i);
+            if (isDigitOrSeparator(character) && (lastWasDigit || !lastWasOperator)) {
                 lastWasDigit = true;
-                result.append(c);
+                result.append(character);
                 lastWasWhiteSpace = false;
                 lastWasLetter = false;
-            } else if (Character.isDigit(c)) {
+            } else if (Character.isDigit(character)) {
                 lastWasDigit = true;
                 lastWasLetter = false;
                 lastWasOperator = false;
                 if (!lastWasWhiteSpace) {
                     result.append(EMPTY_SPACE);
                 }
-                result.append(c);
+                result.append(character);
                 lastWasWhiteSpace = false;
-            } else if (checker.isOperatorOrBracket(String.valueOf(c))) {
+            } else if (checker.isOperatorOrBracket(String.valueOf(character))) {
                 lastWasDigit = false;
                 lastWasLetter = false;
                 lastWasOperator = true;
                 if (!lastWasWhiteSpace) {
                     result.append(EMPTY_SPACE);
                 }
-                result.append(c);
+                result.append(character);
                 lastWasWhiteSpace = false;
-            } else if (Character.isWhitespace(c)) {
+            } else if (Character.isWhitespace(character)) {
                 if (!lastWasWhiteSpace && !lastWasDigit) {
                     result.append(EMPTY_SPACE);
                     lastWasWhiteSpace = true;
                 }
                 lastWasDigit = false;
                 lastWasOperator = false;
-            } else if (Character.isLetter(c)) {
+            } else if (Character.isLetter(character)) {
                 lastWasDigit = false;
                 lastWasOperator = false;
                 if (!lastWasLetter && !lastWasWhiteSpace) {
-                    result.append(EMPTY_SPACE).append(c);
+                    result.append(EMPTY_SPACE).append(character);
                 } else {
-                    result.append(c);
+                    result.append(character);
                 }
                 lastWasWhiteSpace = false;
                 lastWasLetter = true;
             } else {
-                throw new WrongArgumentException("Element \"" + c + "\" is not recognized by the Checker");
+                throw new WrongArgumentException("Element \"" + character + "\" is not recognized by the Checker");
             }
         }
 
@@ -188,11 +186,11 @@ public class Calculator {
      *                                unsupported opertians)
      */
     private String createRPN(String input) throws WrongArgumentException {
-        String trimmed = input.trim();
-        StringBuilder result = new StringBuilder();
-        Deque<String> stack = new LinkedList<String>();
-        String[] factors = trimmed.split(EMPTY_SPACE);
-        int length = factors.length;
+        final String trimmed = input.trim();
+        final StringBuilder result = new StringBuilder();
+        final Deque<String> stack = new LinkedList<String>();
+        final String[] factors = trimmed.split(EMPTY_SPACE);
+        final int length = factors.length;
         String temp;
         String stackOperator;
         for (int i = 0; i < length; i++) {
@@ -211,7 +209,8 @@ public class Calculator {
             } else if (checker.isOperator(temp)) {
                 while (!stack.isEmpty() && checker.isOperator(stack.peek())) {
                     stackOperator = stack.peek();
-                    if (checker.isLeftAssociativity(stackOperator) && (checker.compareOperators(stackOperator, temp) >= 0)) {
+                    if (checker.isLeftAssociativity(stackOperator) && (checker.compareOperators(stackOperator,
+                                                                                                temp) >= 0)) {
                         stack.pop();
                         result.append(EMPTY_SPACE).append(stackOperator);
                     } else if (checker.isRightAssociativity(stackOperator)
@@ -222,7 +221,6 @@ public class Calculator {
                         break;
                     }
                 }
-
                 stack.push(temp);
             } else if (checker.isLeftBracket(temp)) {
                 stack.push(temp);
@@ -256,8 +254,8 @@ public class Calculator {
      * @throws NoSuchFunctionFound
      */
     private BigDecimal getResult(String result) throws WrongArgumentException, NoSuchFunctionFound {
-        String[] factors = result.trim().split(EMPTY_SPACE);
-        Deque<String> stack = new LinkedList<String>();
+        final String[] factors = result.trim().split(EMPTY_SPACE);
+        final Deque<String> stack = new LinkedList<String>();
         String temp;
         String variable1;
         String variable2;
@@ -293,5 +291,4 @@ public class Calculator {
     public MathContext getMathContext() {
         return new MathContext(mathContext.getPrecision(), mathContext.getRoundingMode());
     }
-
 }

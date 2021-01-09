@@ -62,8 +62,8 @@ public class CalculatorEngine extends DefaultChecker implements CalculationEngin
     }
 
     @Override
-    public int compareOperators(String operato1, String operator2) {
-        AbstractOperatorStrategy strategy1 = operators.get(operato1);
+    public int compareOperators(String operator1, String operator2) {
+        AbstractOperatorStrategy strategy1 = operators.get(operator1);
         AbstractOperatorStrategy strategy2 = operators.get(operator2);
         return strategy1.getPriority() - strategy2.getPriority();
     }
