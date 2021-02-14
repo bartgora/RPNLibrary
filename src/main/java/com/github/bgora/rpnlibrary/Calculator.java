@@ -122,7 +122,6 @@ public class Calculator {
         boolean lastWasOperator = false;
         boolean lastWasWhiteSpace = false;
         boolean lastWasLetter = false;
-        // Iteration thought input String.
         for (int i = 0; i < length; i++) {
             character = inputValue.charAt(i);
             if (isDigitOrSeparator(character) && (lastWasDigit || !lastWasOperator)) {
@@ -188,7 +187,7 @@ public class Calculator {
     private String createRPN(String input) throws WrongArgumentException {
         final String trimmed = input.trim();
         final StringBuilder result = new StringBuilder();
-        final Deque<String> stack = new LinkedList<String>();
+        final Deque<String> stack = new LinkedList<>();
         final String[] factors = trimmed.split(EMPTY_SPACE);
         final int length = factors.length;
         String temp;
