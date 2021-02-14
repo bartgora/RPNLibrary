@@ -8,8 +8,10 @@ class DefaultStrategyProviderTest : BehaviorSpec({
         val tested = DefaultStrategyProvider()
         When("Ask for + operator") {
             val actual = tested.getOperator("+")
-            Then("Should return not empty object")
-            actual.operator shouldBe "+"
+            Then("Should be +") {
+                actual.operator shouldBe "+"
+                actual.priority shouldBe 1
+            }
         }
     }
 })

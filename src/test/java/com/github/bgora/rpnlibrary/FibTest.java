@@ -22,8 +22,8 @@ package com.github.bgora.rpnlibrary;
 import com.github.bgora.rpnlibrary.exceptions.NoSuchFunctionFound;
 import com.github.bgora.rpnlibrary.exceptions.WrongArgumentException;
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 
@@ -31,43 +31,43 @@ public class FibTest {
 
     private Calculator calc;
 
-    @Before
-    public void setUp() {
+    @BeforeEach
+     void setUp() {
         calc = Calculator.createCalculator();
     }
 
     @Test
-    public void testFib0() throws WrongArgumentException, NoSuchFunctionFound {
+     void testFib0() throws WrongArgumentException, NoSuchFunctionFound {
         BigDecimal result = calc.calculate("fib(0)");
         Assertions.assertThat(result).isEqualTo(new BigDecimal("0.00"));
     }
 
     @Test
-    public void testFib1() throws WrongArgumentException, NoSuchFunctionFound {
+     void testFib1() throws WrongArgumentException, NoSuchFunctionFound {
         BigDecimal result = calc.calculate("fib(1)");
         Assertions.assertThat(result).isEqualTo(new BigDecimal("1.00"));
     }
 
     @Test
-    public void testFib6() throws WrongArgumentException, NoSuchFunctionFound {
+     void testFib6() throws WrongArgumentException, NoSuchFunctionFound {
         BigDecimal result = calc.calculate("fib(6)");
         Assertions.assertThat(result).isEqualTo(new BigDecimal("8.00"));
     }
 
     @Test
-    public void testFib10() throws WrongArgumentException, NoSuchFunctionFound {
+     void testFib10() throws WrongArgumentException, NoSuchFunctionFound {
         BigDecimal result = calc.calculate("fib(10)");
         Assertions.assertThat(result).isEqualTo(new BigDecimal("55.00"));
     }
 
     @Test
-    public void testFib15() throws WrongArgumentException, NoSuchFunctionFound {
+     void testFib15() throws WrongArgumentException, NoSuchFunctionFound {
         BigDecimal result = calc.calculate("fib(15)");
         Assertions.assertThat(result).isEqualTo(new BigDecimal("610.00"));
     }
 
     @Test
-    public void testFib19() throws WrongArgumentException, NoSuchFunctionFound {
+     void testFib19() throws WrongArgumentException, NoSuchFunctionFound {
         BigDecimal result = calc.calculate("fib(19)");
         Assertions.assertThat(result).isEqualTo(new BigDecimal("4181.00"));
     }

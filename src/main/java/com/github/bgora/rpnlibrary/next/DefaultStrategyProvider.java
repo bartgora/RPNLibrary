@@ -2,12 +2,13 @@ package com.github.bgora.rpnlibrary.next;
 
 import com.github.bgora.rpnlibrary.functions.AbstractFunctionStrategy;
 import com.github.bgora.rpnlibrary.operators.AbstractOperatorStrategy;
+import com.github.bgora.rpnlibrary.operators.AddOperatorStrategy;
 
 public class DefaultStrategyProvider implements StrategyProvider{
 
     @Override
     public AbstractOperatorStrategy getOperator(final String operator) {
-        return null;
+        return new AddOperatorStrategy();
     }
 
     @Override
