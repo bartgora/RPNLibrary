@@ -55,8 +55,8 @@ public final class StrategiesUtil {
     static {
         AbstractFunctionStrategy sinusFunctionStrategy = new SinusFunctionStrategy();
         DEFAULT_FUNCTIONS.put(sinusFunctionStrategy.getName(), sinusFunctionStrategy);
-        AbstractFunctionStrategy cosinusFunctionStrategy = new CosFunctionStrategy();
-        DEFAULT_FUNCTIONS.put(cosinusFunctionStrategy.getName(), cosinusFunctionStrategy);
+        AbstractFunctionStrategy cosFunctionStrategy = new CosFunctionStrategy();
+        DEFAULT_FUNCTIONS.put(cosFunctionStrategy.getName(), cosFunctionStrategy);
         AbstractFunctionStrategy tanFunctionStrategy = new TanFunctionStrategy();
         DEFAULT_FUNCTIONS.put(tanFunctionStrategy.getName(), tanFunctionStrategy);
         AbstractFunctionStrategy ctgFunctionStrategy = new CtgFunctionStrategy();
@@ -72,8 +72,8 @@ public final class StrategiesUtil {
         DEFAULT_OPERATORS.put(addOperatorStrategy.getOperator(), addOperatorStrategy);
         AbstractOperatorStrategy minusOperatorStrategy = new MinusOperatorStrategy();
         DEFAULT_OPERATORS.put(minusOperatorStrategy.getOperator(), minusOperatorStrategy);
-        AbstractOperatorStrategy miltiplyOperatorStrategy = new MultiplyOperatorStrategy();
-        DEFAULT_OPERATORS.put(miltiplyOperatorStrategy.getOperator(), miltiplyOperatorStrategy);
+        AbstractOperatorStrategy multiplyOperatorStrategy = new MultiplyOperatorStrategy();
+        DEFAULT_OPERATORS.put(multiplyOperatorStrategy.getOperator(), multiplyOperatorStrategy);
         AbstractOperatorStrategy divideOperatorStrategy = new DivideOperatorStrategy();
         DEFAULT_OPERATORS.put(divideOperatorStrategy.getOperator(), divideOperatorStrategy);
         AbstractOperatorStrategy powerOperatorStrategy = new PowerOperatorStrategy();

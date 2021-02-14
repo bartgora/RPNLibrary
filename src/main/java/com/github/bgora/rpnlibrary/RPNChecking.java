@@ -82,11 +82,11 @@ public interface RPNChecking {
     /**
      * Compare opertors due to their hierarchy
      *
-     * @param operato1 String First operator
+     * @param operator1 String First operator
      * @param operator2 String Second operator
      * @return int 0 if equals, more than 0 if first is before second less tahn 0 if second is before first
      */
-    int compareOperators(String operato1, String operator2);
+    int compareOperators(String operator1, String operator2);
 
     /**
      * Checks if given String is function name

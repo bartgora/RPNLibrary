@@ -118,8 +118,8 @@ public class DefaultChecker implements RPNChecking {
      * java.lang.String)
      */
     @Override
-    public int compareOperators(String operato1, String operator2) {
-        Integer i1 = operators.get(operato1);
+    public int compareOperators(String operator1, String operator2) {
+        Integer i1 = operators.get(operator1);
         Integer i2 = operators.get(operator2);
         return i1 - i2;
     }
