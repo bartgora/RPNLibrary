@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.bartlomiej-gora</groupId>
     <artifactId>RPNLibrary</artifactId>
-    <version>4.0.0</version>
+    <version>5.0.0</version>
     <packaging>jar</packaging>
 
     <distributionManagement>
