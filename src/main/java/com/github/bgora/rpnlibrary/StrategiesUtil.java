@@ -30,7 +30,7 @@ import com.github.bgora.rpnlibrary.functions.TanFunctionStrategy;
 import com.github.bgora.rpnlibrary.operators.AbstractOperatorStrategy;
 import com.github.bgora.rpnlibrary.operators.AddOperatorStrategy;
 import com.github.bgora.rpnlibrary.operators.DivideOperatorStrategy;
-import com.github.bgora.rpnlibrary.operators.MinusOperatorStrategy;
+import com.github.bgora.rpnlibrary.operators.SubtractOperatorStrategy;
 import com.github.bgora.rpnlibrary.operators.MultiplyOperatorStrategy;
 import com.github.bgora.rpnlibrary.operators.PowerOperatorStrategy;
 
@@ -70,7 +70,7 @@ public final class StrategiesUtil {
 
         AbstractOperatorStrategy addOperatorStrategy = new AddOperatorStrategy();
         DEFAULT_OPERATORS.put(addOperatorStrategy.getOperator(), addOperatorStrategy);
-        AbstractOperatorStrategy minusOperatorStrategy = new MinusOperatorStrategy();
+        AbstractOperatorStrategy minusOperatorStrategy = new SubtractOperatorStrategy();
         DEFAULT_OPERATORS.put(minusOperatorStrategy.getOperator(), minusOperatorStrategy);
         AbstractOperatorStrategy multiplyOperatorStrategy = new MultiplyOperatorStrategy();
         DEFAULT_OPERATORS.put(multiplyOperatorStrategy.getOperator(), multiplyOperatorStrategy);

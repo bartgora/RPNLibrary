@@ -3,17 +3,40 @@ package com.github.bgora.rpnlibrary.next;
 import com.github.bgora.rpnlibrary.functions.AbstractFunctionStrategy;
 import com.github.bgora.rpnlibrary.operators.AbstractOperatorStrategy;
 import com.github.bgora.rpnlibrary.operators.AddOperatorStrategy;
+import com.github.bgora.rpnlibrary.operators.DivideOperatorStrategy;
+import com.github.bgora.rpnlibrary.operators.SubtractOperatorStrategy;
+import com.github.bgora.rpnlibrary.operators.MultiplyOperatorStrategy;
+import com.github.bgora.rpnlibrary.operators.PowerOperatorStrategy;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class DefaultStrategyProvider implements StrategyProvider{
 
+    private Map<String, AbstractOperatorStrategy> operators;
+
+    public DefaultStrategyProvider() {
+        operators = new HashMap<>();
+        AbstractOperatorStrategy addOperatorStrategy = new AddOperatorStrategy();
+        operators.put(addOperatorStrategy.getOperator(), addOperatorStrategy);
+        AbstractOperatorStrategy subtractOperatorStrategy = new SubtractOperatorStrategy();
+        operators.put(subtractOperatorStrategy.getOperator(), subtractOperatorStrategy);
+        AbstractOperatorStrategy multiplyOperatorStrategy = new MultiplyOperatorStrategy();
+        operators.put(multiplyOperatorStrategy.getOperator(), multiplyOperatorStrategy);
+        AbstractOperatorStrategy divideOperatorStrategy = new DivideOperatorStrategy();
+        operators.put(divideOperatorStrategy.getOperator(), divideOperatorStrategy);
+        AbstractOperatorStrategy powerOperatorStrategy = new PowerOperatorStrategy();
+        operators.put(powerOperatorStrategy.getOperator(), powerOperatorStrategy);
+    }
+
     @Override
     public AbstractOperatorStrategy getOperator(final String operator) {
-        return new AddOperatorStrategy();
+        return operators.get(operator);
     }
 
     @Override
     public boolean isOperatorAvailable(final String operator) {
-        return false;
+        return operators.containsKey(operator);
     }
 
     @Override
