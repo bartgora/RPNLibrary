@@ -1,5 +1,6 @@
 package com.github.bgora.rpnlibrary.next
 
+import com.github.bgora.rpnlibrary.functions.*
 import com.github.bgora.rpnlibrary.operators.*
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.data.row
@@ -26,13 +27,13 @@ class DefaultStrategyProviderTest : FreeSpec({
 
     }
 
-    "Should Return null for Invalid Operator Name"-{
+    "getOperator should Return null for Invalid Operator Name"-{
 
         val result = tested.getOperator("@")
         result shouldBe null
     }
 
-    "Should Return false for not exiting operator"-{
+    "isOperator should Return false for not exiting operator"-{
         val result = tested.isOperatorAvailable("@")
         result shouldBe false
     }
@@ -42,6 +43,49 @@ class DefaultStrategyProviderTest : FreeSpec({
             it
             val operator = it.a;
             val result = tested.isOperatorAvailable(operator)
+            result shouldBe true
+        }
+    }
+
+    val functionList = listOf(
+        row("sin", SinusFunctionStrategy()),
+        row("cos", CosFunctionStrategy()),
+        row("fib", FibFunctionStrategy()),
+        row("tg", TanFunctionStrategy()),
+        row("ctg", CtgFunctionStrategy()),
+        row("max", MaxFunctionStrategy()),
+        row("min", MinFunctionStrategy()),
+        row("fib", FibFunctionStrategy())
+    )
+
+    "getFunction should return Functions" - {
+
+        functionList.forEach {
+            it
+            val function = it.a;
+            val result = tested.getFunction(function)
+            result.name shouldBe it.a
+            result.paramCount shouldBe it.b.paramCount
+        }
+
+    }
+
+    "getFunction should Return null for Invalid function name"-{
+
+        val result = tested.getFunction("@")
+        result shouldBe null
+    }
+
+    "isFunction should return false for not exiting function"-{
+        val result = tested.isFunctionAvailable("@")
+        result shouldBe false
+    }
+
+    "isFunctionAvailable should return true for existing function "-{
+        functionList.forEach {
+            it
+            val function = it.a;
+            val result = tested.isFunctionAvailable(function)
             result shouldBe true
         }
     }

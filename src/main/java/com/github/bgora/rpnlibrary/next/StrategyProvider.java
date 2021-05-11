@@ -13,7 +13,4 @@ public interface StrategyProvider {
 
     boolean isFunctionAvailable(String name);
 
-    void addFunction(AbstractFunctionStrategy functionStrategy);
-
-    void addOperator(AbstractOperatorStrategy operatorStrategy);
 }
