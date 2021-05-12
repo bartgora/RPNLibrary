@@ -1,13 +1,13 @@
 package com.github.bgora.rpnlibrary.next;
 
-import com.github.bgora.rpnlibrary.RPNChecking;
+
 import com.github.bgora.rpnlibrary.exceptions.WrongArgumentException;
 
-public class InputTransformer {
+import java.util.function.Function;
 
-    public static final String ZERO = "0.0";
+public class InputTransformer implements Function<String ,String> {
+
     public static final String EMPTY_SPACE = " ";
-    public static final String COMMA = ",";
     protected final RPNChecking checker;
 
     public InputTransformer(final RPNChecking checker) {
@@ -22,7 +22,7 @@ public class InputTransformer {
      * @throws WrongArgumentException Thrown if the input is incorrect (Incorrect format, or
      *                                unsupported operations)
      */
-    private String prepareInput(String input) throws WrongArgumentException {
+    public String apply(String input) throws WrongArgumentException {
         final StringBuilder result = new StringBuilder();
         final String inputValue = input.trim();
         int length = inputValue.length();

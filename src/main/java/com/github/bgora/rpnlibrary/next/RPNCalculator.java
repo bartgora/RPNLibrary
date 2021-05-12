@@ -1,7 +1,6 @@
 package com.github.bgora.rpnlibrary.next;
 
-import com.github.bgora.rpnlibrary.RPNChecking;
-import com.github.bgora.rpnlibrary.RPNExecuting;
+
 import com.github.bgora.rpnlibrary.exceptions.NoSuchFunctionFound;
 import com.github.bgora.rpnlibrary.exceptions.WrongArgumentException;
 
@@ -9,8 +8,9 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.function.Function;
 
-public class RPNCalculator {
+public class RPNCalculator implements Function<String, BigDecimal> {
     public static final String ZERO = "0.0";
     public static final String EMPTY_SPACE = " ";
     public static final String COMMA = ",";
@@ -35,15 +35,15 @@ public class RPNCalculator {
      * @throws WrongArgumentException
      * @throws NoSuchFunctionFound
      */
-    private BigDecimal getResult(String result) throws WrongArgumentException, NoSuchFunctionFound {
+    public BigDecimal apply(String result) throws WrongArgumentException, NoSuchFunctionFound {
         final String[] factors = result.trim().split(EMPTY_SPACE);
-        final Deque<String> stack = new LinkedList<String>();
+        final Deque<String> stack = new LinkedList<>();
         String temp;
         String variable1;
         String variable2;
         BigDecimal value;
-        for (int i = 0; i < factors.length; i++) {
-            temp = factors[i];
+        for (final String factor : factors) {
+            temp = factor;
             if (checker.isDigit(temp)) {
                 stack.push(temp);
             } else if (checker.isOperator(temp)) {
@@ -60,9 +60,7 @@ public class RPNCalculator {
                 String[] table = new String[count];
                 String params = stack.pop();
                 String[] paramsTable = params.split(COMMA);
-                for (int j = 0; j < count; j++) {
-                    table[j] = paramsTable[j];
-                }
+                if (count >= 0) System.arraycopy(paramsTable, 0, table, 0, count);
                 value = executioner.executeFunction(temp, mathContext, table);
                 stack.push(value.toPlainString());
             }

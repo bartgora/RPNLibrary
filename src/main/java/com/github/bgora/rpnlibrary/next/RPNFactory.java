@@ -1,14 +1,13 @@
 package com.github.bgora.rpnlibrary.next;
 
-import com.github.bgora.rpnlibrary.RPNChecking;
 import com.github.bgora.rpnlibrary.exceptions.WrongArgumentException;
 
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.function.Function;
 
-public class RPNFactory {
+public class RPNFactory implements Function<String, String> {
 
-    public static final String ZERO = "0.0";
     public static final String EMPTY_SPACE = " ";
     public static final String COMMA = ",";
     protected final RPNChecking checker;
@@ -26,7 +25,7 @@ public class RPNFactory {
      * @throws WrongArgumentException Thrown if the input is incorrect (Incorrect format, or
      *                                unsupported opertians)
      */
-    private String createRPN(String input) throws WrongArgumentException {
+    public String apply(String input) throws WrongArgumentException {
         final String trimmed = input.trim();
         final StringBuilder result = new StringBuilder();
         final Deque<String> stack = new LinkedList<>();
@@ -34,8 +33,8 @@ public class RPNFactory {
         final int length = factors.length;
         String temp;
         String stackOperator;
-        for (int i = 0; i < length; i++) {
-            temp = factors[i];
+        for (final String factor : factors) {
+            temp = factor;
             if (checker.isDigit(temp)) {
                 result.append(EMPTY_SPACE).append(temp);
             } else if (checker.isFunction(temp)) {

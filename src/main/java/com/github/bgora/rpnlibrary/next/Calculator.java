@@ -56,7 +56,14 @@ public class Calculator {
      */
     public static Calculator createCalculator() {
         final MathContext mathContext = MathContext.DECIMAL64;
-        return new Calculator(null, null, null, mathContext, 2);
+        final StrategyProvider strategyProvider = new DefaultStrategyProvider();
+        final com.github.bgora.rpnlibrary.next.RPNChecking rpnChecking = new RPNChecker(strategyProvider);
+        final com.github.bgora.rpnlibrary.next.RPNExecuting rpnExecuting = new DefaultRPNExecutor(strategyProvider);
+        return new Calculator(
+                new InputTransformer(rpnChecking),
+                new RPNFactory(rpnChecking),
+                new RPNCalculator(2,rpnChecking, rpnExecuting, mathContext)
+                , mathContext, 2);
     }
 
     /**
