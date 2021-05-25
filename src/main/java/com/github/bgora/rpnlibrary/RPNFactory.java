@@ -1,4 +1,4 @@
-package com.github.bgora.rpnlibrary.next;
+package com.github.bgora.rpnlibrary;
 
 import com.github.bgora.rpnlibrary.exceptions.WrongArgumentException;
 
@@ -30,7 +30,6 @@ public class RPNFactory implements Function<String, String> {
         final StringBuilder result = new StringBuilder();
         final Deque<String> stack = new LinkedList<>();
         final String[] factors = trimmed.split(EMPTY_SPACE);
-        final int length = factors.length;
         String temp;
         String stackOperator;
         for (final String factor : factors) {

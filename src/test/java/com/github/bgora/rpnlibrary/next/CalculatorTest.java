@@ -19,6 +19,7 @@
 
 package com.github.bgora.rpnlibrary.next;
 
+import com.github.bgora.rpnlibrary.Calculator;
 import com.github.bgora.rpnlibrary.exceptions.RPNException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,7 +31,7 @@ import java.math.RoundingMode;
 
 public class CalculatorTest {
 
-    private com.github.bgora.rpnlibrary.next.Calculator calc;
+    private Calculator calc;
 
     @BeforeEach
     void setup() {
@@ -145,13 +146,13 @@ public class CalculatorTest {
     @Test
      void testCtgMinus() throws RPNException {
         BigDecimal result = calc.calculate("ctg(-1)");
-        Assertions.assertThat(result).isEqualTo(new BigDecimal(-0.6400000000, calc.getMathContext()).setScale(2));
+        Assertions.assertThat(result).isEqualTo(new BigDecimal(-0.6400000000, calc.getMathContext()).setScale(2, calc.getMathContext().getRoundingMode()));
     }
 
     @Test
      void testCtgMinus5Zeros() throws RPNException {
         BigDecimal result = calc.calculate("ctg(-1.65091)");
-        Assertions.assertThat(result).isEqualTo(new BigDecimal(0.080, calc.getMathContext()).setScale(2));
+        Assertions.assertThat(result).isEqualTo(new BigDecimal(0.080, calc.getMathContext()).setScale(2, calc.getMathContext().getRoundingMode()));
     }
 
     @Test

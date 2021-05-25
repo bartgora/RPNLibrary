@@ -1,5 +1,6 @@
 package com.github.bgora.rpnlibrary.next
 
+import com.github.bgora.rpnlibrary.DefaultStrategyProvider
 import com.github.bgora.rpnlibrary.functions.*
 import com.github.bgora.rpnlibrary.operators.*
 import io.kotest.core.spec.style.FreeSpec
@@ -19,7 +20,7 @@ class DefaultStrategyProviderTest : FreeSpec({
 
         operatorList.forEach {
             it
-            val operator = it.a;
+            val operator = it.a
             val result = tested.getOperator(operator)
             result.operator shouldBe it.a
             result.priority shouldBe it.b.priority
@@ -41,7 +42,7 @@ class DefaultStrategyProviderTest : FreeSpec({
     "isOperatorAvailable should return true for existing operator "-{
         operatorList.forEach {
             it
-            val operator = it.a;
+            val operator = it.a
             val result = tested.isOperatorAvailable(operator)
             result shouldBe true
         }
@@ -62,7 +63,7 @@ class DefaultStrategyProviderTest : FreeSpec({
 
         functionList.forEach {
             it
-            val function = it.a;
+            val function = it.a
             val result = tested.getFunction(function)
             result.name shouldBe it.a
             result.paramCount shouldBe it.b.paramCount
@@ -84,7 +85,7 @@ class DefaultStrategyProviderTest : FreeSpec({
     "isFunctionAvailable should return true for existing function "-{
         functionList.forEach {
             it
-            val function = it.a;
+            val function = it.a
             val result = tested.isFunctionAvailable(function)
             result shouldBe true
         }

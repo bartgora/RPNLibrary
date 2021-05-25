@@ -17,7 +17,7 @@
  * Contact: bartlomiej.gora@gmail.com
  */
 
-package com.github.bgora.rpnlibrary.next;
+package com.github.bgora.rpnlibrary;
 
 
 /**

@@ -30,7 +30,7 @@ import java.math.BigDecimal;
 
 public class FibTest {
 
-    private com.github.bgora.rpnlibrary.Calculator calc;
+    private Calculator calc;
 
     @BeforeEach
      void setUp() {

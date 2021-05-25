@@ -1,4 +1,4 @@
-package com.github.bgora.rpnlibrary.next;
+package com.github.bgora.rpnlibrary;
 
 import com.github.bgora.rpnlibrary.exceptions.NoSuchFunctionFound;
 import com.github.bgora.rpnlibrary.exceptions.WrongArgumentException;

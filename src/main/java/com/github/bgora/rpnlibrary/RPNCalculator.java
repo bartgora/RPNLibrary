@@ -1,4 +1,4 @@
-package com.github.bgora.rpnlibrary.next;
+package com.github.bgora.rpnlibrary;
 
 
 import com.github.bgora.rpnlibrary.exceptions.NoSuchFunctionFound;
@@ -32,8 +32,8 @@ public class RPNCalculator implements Function<String, BigDecimal> {
      *
      * @param result Input RPN String
      * @return value as {@code java.math.BigDecimal}
-     * @throws WrongArgumentException
-     * @throws NoSuchFunctionFound
+     * @throws WrongArgumentException Thrown when typed in character is not recognized
+     * @throws NoSuchFunctionFound Thrown when user typed in absent function's name
      */
     public BigDecimal apply(String result) throws WrongArgumentException, NoSuchFunctionFound {
         final String[] factors = result.trim().split(EMPTY_SPACE);

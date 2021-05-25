@@ -20,6 +20,7 @@
 package com.github.bgora.rpnlibrary.next;
 
 
+import com.github.bgora.rpnlibrary.Calculator;
 import com.github.bgora.rpnlibrary.exceptions.NoSuchFunctionFound;
 import com.github.bgora.rpnlibrary.exceptions.WrongArgumentException;
 import org.assertj.core.api.Assertions;
@@ -30,7 +31,7 @@ import java.math.BigDecimal;
 
 public class Calculator2ParamFunctionTest {
 
-    private com.github.bgora.rpnlibrary.next.Calculator calc;
+    private Calculator calc;
 
     @BeforeEach
      void setUp() {
