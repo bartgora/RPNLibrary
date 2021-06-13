@@ -65,20 +65,15 @@ public class Calculator {
     }
 
     /**
-     * Factory method for RPN Calculator object with custom functions, and
-     * operations. You should use this factory method if you want to create your
-     * own operations. To do so, you have to implement you own objects, that
-     * implementas {@code RPNChecking}, and
-     * {@code RPNExecuting}.
-     * .
+     * Factory method for Calculator object with custom functions
      *
-     * @param mathContext MathContext - Set Rounding Mode, and precision
-     * @param scale       scale number of digits after .
-     * @return new Instance of {@code pl.bgora.Calculator}
-     * @see RPNChecking
-     * @see RPNExecuting
+     * @param transformer
+     * @param rpnFactory
+     * @param rpnCalculator
+     * @param mathContext
+     * @param scale
+     * @return
      */
-
     public static Calculator createCalculator(Function<String, String> transformer,
                                               Function<String, String> rpnFactory,
                                               Function<String, BigDecimal> rpnCalculator,
@@ -87,16 +82,11 @@ public class Calculator {
         return new Calculator(transformer, rpnFactory, rpnCalculator, mathContext, scale);
     }
 
-    /**
-     * Constructor Creates an instance of the class.
-     *
-     * @param transformer
-     * @param rpnFactory
-     * @param rpnCalculator
-     * @param mathContext
-     * @param scale
-     */
-    private Calculator(final Function<String, String> transformer, final Function<String, String> rpnFactory, final Function<String, BigDecimal> rpnCalculator, final MathContext mathContext, final int scale) {
+    private Calculator(final Function<String, String> transformer,
+                       final Function<String, String> rpnFactory,
+                       final Function<String, BigDecimal> rpnCalculator,
+                       final MathContext mathContext,
+                       final int scale) {
         this.transformer = transformer;
         this.rpnFactory = rpnFactory;
         this.rpnCalculator = rpnCalculator;

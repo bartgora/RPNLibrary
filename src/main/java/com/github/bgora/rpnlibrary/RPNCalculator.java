@@ -10,6 +10,12 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.function.Function;
 
+/**
+ * RPN Calculator Implementation with functions.
+ * This Implementation uses Dijkstra Algorithm to create Reverse Polish Notation.
+ *
+ * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
+ */
 public class RPNCalculator implements Function<String, BigDecimal> {
     public static final String ZERO = "0.0";
     public static final String EMPTY_SPACE = " ";
@@ -20,8 +26,15 @@ public class RPNCalculator implements Function<String, BigDecimal> {
     protected final RPNExecuting executioner;
     protected final MathContext mathContext;
 
+    /**
+     *
+     * @param scale scale with
+     * @param checker
+     * @param executioner
+     * @param mathContext
+     */
     public RPNCalculator(final int scale, final RPNChecking checker, final RPNExecuting executioner, final MathContext mathContext) {
-        SCALE = scale;
+        this.SCALE = scale;
         this.checker = checker;
         this.executioner = executioner;
         this.mathContext = mathContext;
