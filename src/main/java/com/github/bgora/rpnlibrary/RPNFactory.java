@@ -4,12 +4,12 @@ import com.github.bgora.rpnlibrary.exceptions.WrongArgumentException;
 
 import java.util.Deque;
 import java.util.LinkedList;
-import java.util.function.Function;
+import java.util.function.UnaryOperator;
 
 /**
  * Creates String in Reverse Polish Notation.
  */
-public class RPNFactory implements Function<String, String> {
+public class RPNFactory implements UnaryOperator<String> {
 
     public static final String EMPTY_SPACE = " ";
     public static final String COMMA = ",";

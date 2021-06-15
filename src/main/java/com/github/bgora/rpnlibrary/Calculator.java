@@ -26,6 +26,7 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.function.UnaryOperator;
 
 /**
  * RPN Calculator Implementation with functions.
@@ -35,8 +36,8 @@ import java.util.function.Function;
  */
 public class Calculator {
 
-    protected final Function<String, String> transformer;
-    protected final Function<String, String> rpnFactory;
+    protected final UnaryOperator<String> transformer;
+    protected final UnaryOperator<String> rpnFactory;
     protected final Function<String, BigDecimal> rpnCalculator;
     private final MathContext mathContext;
     private final int SCALE;
@@ -79,16 +80,16 @@ public class Calculator {
      * @see RPNCalculator
      *
      */
-    public static Calculator createCalculator(Function<String, String> transformer,
-                                              Function<String, String> rpnFactory,
+    public static Calculator createCalculator(UnaryOperator<String> transformer,
+                                              UnaryOperator<String> rpnFactory,
                                               Function<String, BigDecimal> rpnCalculator,
                                               final MathContext mathContext,
                                               final int scale) {
         return new Calculator(transformer, rpnFactory, rpnCalculator, mathContext, scale);
     }
 
-    private Calculator(final Function<String, String> transformer,
-                       final Function<String, String> rpnFactory,
+    private Calculator(final UnaryOperator<String> transformer,
+                       final UnaryOperator<String> rpnFactory,
                        final Function<String, BigDecimal> rpnCalculator,
                        final MathContext mathContext,
                        final int scale) {
