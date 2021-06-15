@@ -3,12 +3,11 @@ package com.github.bgora.rpnlibrary;
 
 import com.github.bgora.rpnlibrary.exceptions.WrongArgumentException;
 
-import java.util.function.Function;
 import java.util.function.UnaryOperator;
 
 /**
  * Formats input for further processing:
- *
+ * <p>
  * example (1+2)*5 -> ( 1 + 2 ) * 5
  */
 public class InputTransformer implements UnaryOperator<String> {

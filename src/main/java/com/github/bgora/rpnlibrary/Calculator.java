@@ -40,7 +40,6 @@ public class Calculator {
     protected final UnaryOperator<String> rpnFactory;
     protected final Function<String, BigDecimal> rpnCalculator;
     private final MathContext mathContext;
-    private final int SCALE;
 
     /**
      * Factory method for RPN Calculator object with custom functions, and
@@ -61,43 +60,37 @@ public class Calculator {
         return new Calculator(
                 new InputTransformer(rpnChecking),
                 new RPNFactory(rpnChecking),
-                new RPNCalculator(2,rpnChecking, rpnExecuting, mathContext)
-                , mathContext, 2);
+                new RPNCalculator(2, rpnChecking, rpnExecuting, mathContext)
+                , mathContext);
     }
 
     /**
      * Factory method for Calculator object with custom functions
      *
-     * @param transformer Functional parameter to clean up input
-     * @param rpnFactory Functional parameter to create RPN
+     * @param transformer   Functional parameter to clean up input
+     * @param rpnFactory    Functional parameter to create RPN
      * @param rpnCalculator Functional parameter to execute calculation
      * @param mathContext
-     * @param scale
      * @return Calculator
-     *
      * @see InputTransformer
      * @see RPNFactory
      * @see RPNCalculator
-     *
      */
     public static Calculator createCalculator(UnaryOperator<String> transformer,
                                               UnaryOperator<String> rpnFactory,
                                               Function<String, BigDecimal> rpnCalculator,
-                                              final MathContext mathContext,
-                                              final int scale) {
-        return new Calculator(transformer, rpnFactory, rpnCalculator, mathContext, scale);
+                                              final MathContext mathContext) {
+        return new Calculator(transformer, rpnFactory, rpnCalculator, mathContext);
     }
 
     private Calculator(final UnaryOperator<String> transformer,
                        final UnaryOperator<String> rpnFactory,
                        final Function<String, BigDecimal> rpnCalculator,
-                       final MathContext mathContext,
-                       final int scale) {
+                       final MathContext mathContext) {
         this.transformer = transformer;
         this.rpnFactory = rpnFactory;
         this.rpnCalculator = rpnCalculator;
         this.mathContext = mathContext;
-        this.SCALE = scale;
     }
 
     public BigDecimal calculate(final String input) throws WrongArgumentException, NoSuchFunctionFound {
@@ -105,7 +98,7 @@ public class Calculator {
                 .map(transformer)
                 .map(rpnFactory)
                 .map(rpnCalculator)
-                .orElseThrow(()->new WrongArgumentException("Incorrect input"));
+                .orElseThrow(() -> new WrongArgumentException("Incorrect input"));
     }
 
 

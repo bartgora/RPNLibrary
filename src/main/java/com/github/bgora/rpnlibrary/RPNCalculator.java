@@ -20,7 +20,7 @@ public class RPNCalculator implements Function<String, BigDecimal> {
     public static final String ZERO = "0.0";
     public static final String EMPTY_SPACE = " ";
     public static final String COMMA = ",";
-    private final int SCALE;
+    private final int scale;
 
     protected final RPNChecking checker;
     protected final RPNExecuting executioner;
@@ -34,7 +34,7 @@ public class RPNCalculator implements Function<String, BigDecimal> {
      * @param mathContext
      */
     public RPNCalculator(final int scale, final RPNChecking checker, final RPNExecuting executioner, final MathContext mathContext) {
-        this.SCALE = scale;
+        this.scale = scale;
         this.checker = checker;
         this.executioner = executioner;
         this.mathContext = mathContext;
@@ -78,6 +78,6 @@ public class RPNCalculator implements Function<String, BigDecimal> {
                 stack.push(value.toPlainString());
             }
         }
-        return new BigDecimal(stack.pop()).setScale(SCALE, mathContext.getRoundingMode());
+        return new BigDecimal(stack.pop()).setScale(scale, mathContext.getRoundingMode());
     }
 }
