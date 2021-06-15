@@ -19,7 +19,6 @@ class DefaultStrategyProviderTest : FreeSpec({
     "getOperator should return Operators" - {
 
         operatorList.forEach {
-            it
             val operator = it.a
             val result = tested.getOperator(operator)
             result.operator shouldBe it.a
@@ -41,7 +40,6 @@ class DefaultStrategyProviderTest : FreeSpec({
 
     "isOperatorAvailable should return true for existing operator "-{
         operatorList.forEach {
-            it
             val operator = it.a
             val result = tested.isOperatorAvailable(operator)
             result shouldBe true
@@ -62,7 +60,6 @@ class DefaultStrategyProviderTest : FreeSpec({
     "getFunction should return Functions" - {
 
         functionList.forEach {
-            it
             val function = it.a
             val result = tested.getFunction(function)
             result.name shouldBe it.a
@@ -84,7 +81,6 @@ class DefaultStrategyProviderTest : FreeSpec({
 
     "isFunctionAvailable should return true for existing function "-{
         functionList.forEach {
-            it
             val function = it.a
             val result = tested.isFunctionAvailable(function)
             result shouldBe true

@@ -5,6 +5,11 @@ import com.github.bgora.rpnlibrary.exceptions.WrongArgumentException;
 
 import java.util.function.Function;
 
+/**
+ * Formats input for further processing:
+ *
+ * example (1+2)*5 -> ( 1 + 2 ) * 5
+ */
 public class InputTransformer implements Function<String ,String> {
 
     public static final String EMPTY_SPACE = " ";

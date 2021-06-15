@@ -21,9 +21,7 @@ package com.github.bgora.rpnlibrary;
 
 
 /**
- * This implementation Extends DefaultChecker with arithmetic funstions.
- * <p>
- * Provided functions are: sin, cos, tg, ctg
+ * Default implementation of RPNChecking
  *
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  */

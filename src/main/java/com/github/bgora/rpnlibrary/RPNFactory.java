@@ -6,6 +6,9 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.function.Function;
 
+/**
+ * Creates String in Reverse Polish Notation.
+ */
 public class RPNFactory implements Function<String, String> {
 
     public static final String EMPTY_SPACE = " ";

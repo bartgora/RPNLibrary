@@ -18,6 +18,17 @@ import com.github.bgora.rpnlibrary.operators.SubtractOperatorStrategy;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Default implementation of StrategyProvider.
+ * Provides:
+ * operators: +,-,/,*
+ * functions:
+ * sin(), cos(), tg(), ctg(), fib(), max(), min()
+ *
+ * @see StrategyProvider
+ * @see AbstractFunctionStrategy
+ * @see AbstractOperatorStrategy
+ */
 public class DefaultStrategyProvider implements StrategyProvider {
 
     private Map<String, AbstractOperatorStrategy> operators;

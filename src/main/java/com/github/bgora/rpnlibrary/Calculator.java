@@ -67,12 +67,17 @@ public class Calculator {
     /**
      * Factory method for Calculator object with custom functions
      *
-     * @param transformer
-     * @param rpnFactory
-     * @param rpnCalculator
+     * @param transformer Functional parameter to clean up input
+     * @param rpnFactory Functional parameter to create RPN
+     * @param rpnCalculator Functional parameter to execute calculation
      * @param mathContext
      * @param scale
-     * @return
+     * @return Calculator
+     *
+     * @see InputTransformer
+     * @see RPNFactory
+     * @see RPNCalculator
+     *
      */
     public static Calculator createCalculator(Function<String, String> transformer,
                                               Function<String, String> rpnFactory,

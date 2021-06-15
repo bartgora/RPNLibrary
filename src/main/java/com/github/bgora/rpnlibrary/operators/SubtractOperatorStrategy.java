@@ -22,6 +22,9 @@ package com.github.bgora.rpnlibrary.operators;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+/**
+ * Subtraction Operator
+ */
 public class SubtractOperatorStrategy extends AbstractOperatorStrategy {
 
 

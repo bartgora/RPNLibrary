@@ -94,7 +94,6 @@
                 <artifactId>sonar-jacoco-plugin</artifactId>
                 <version>2.3</version>
             </plugin>
-
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
