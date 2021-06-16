@@ -40,9 +40,9 @@ public class InputTransformer implements UnaryOperator<String> {
             character = inputValue.charAt(i);
             if (isDigitOrSeparator(character) && (lastWasDigit || !lastWasOperator)) {
                 lastWasDigit = true;
-                result.append(character);
                 lastWasWhiteSpace = false;
                 lastWasLetter = false;
+                result.append(character);
             } else if (Character.isDigit(character)) {
                 lastWasDigit = true;
                 lastWasLetter = false;

@@ -23,6 +23,8 @@ public class RPNFactory implements UnaryOperator<String> {
     /**
      * Creates String in Reverse Polish Notation.
      *
+     * example:  (2+3)×5 -> 2 3 + 5 ×
+     *
      * @param input Input String in "Natural" format.
      * @return String formatted into RPN.
      * @throws WrongArgumentException Thrown if the input is incorrect (Incorrect format, or
@@ -33,51 +35,21 @@ public class RPNFactory implements UnaryOperator<String> {
         final StringBuilder result = new StringBuilder();
         final Deque<String> stack = new LinkedList<>();
         final String[] factors = trimmed.split(EMPTY_SPACE);
-        String temp;
-        String stackOperator;
-        for (final String factor : factors) {
-            temp = factor;
-            if (checker.isDigit(temp)) {
-                result.append(EMPTY_SPACE).append(temp);
-            } else if (checker.isFunction(temp)) {
-                stack.push(temp);
-            } else if (COMMA.equals(temp)) {
-                do {
-                    stackOperator = stack.pop();
-                    if (!checker.isLeftBracket(stackOperator)) {
-                        result.append(EMPTY_SPACE).append(stackOperator);
-                    }
-                } while (!stack.isEmpty() && !checker.isLeftBracket(stackOperator));
-            } else if (checker.isOperator(temp)) {
-                while (!stack.isEmpty() && checker.isOperator(stack.peek())) {
-                    stackOperator = stack.peek();
-                    if (checker.isLeftAssociativity(stackOperator) && (checker.compareOperators(stackOperator,
-                            temp) >= 0)) {
-                        stack.pop();
-                        result.append(EMPTY_SPACE).append(stackOperator);
-                    } else if (checker.isRightAssociativity(stackOperator)
-                            && (checker.compareOperators(stackOperator, temp) > 0)) {
-                        stack.pop();
-                        result.append(EMPTY_SPACE).append(stackOperator);
-                    } else {
-                        break;
-                    }
-                }
-                stack.push(temp);
-            } else if (checker.isLeftBracket(temp)) {
-                stack.push(temp);
-            } else if (checker.isRightBracket(temp)) {
-                do {
-                    temp = stack.pop();
-                    if (!checker.isLeftBracket(temp)) {
-                        result.append(EMPTY_SPACE).append(temp);
-                    }
-                } while (!checker.isLeftBracket(temp));
-                if (!stack.isEmpty() && checker.isFunction(stack.peek())) {
-                    result.append(EMPTY_SPACE).append(stack.pop());
-                }
+        for (String factor : factors) {
+            if (checker.isDigit(factor)) {
+                result.append(EMPTY_SPACE).append(factor);
+            } else if (checker.isFunction(factor)) {
+                stack.push(factor);
+            } else if (COMMA.equals(factor)) {
+                processComma(result, stack);
+            } else if (checker.isOperator(factor)) {
+                processOperator(result, stack, factor);
+            } else if (checker.isLeftBracket(factor)) {
+                stack.push(factor);
+            } else if (checker.isRightBracket(factor)) {
+                processRightBracket(result, stack);
             } else {
-                throw new WrongArgumentException("Element \"" + temp + "\" is not recognized by the Checker");
+                throw new WrongArgumentException("Element \"" + factor + "\" is not recognized by the Checker");
             }
         }
         while (!stack.isEmpty()) {
@@ -85,5 +57,47 @@ public class RPNFactory implements UnaryOperator<String> {
         }
 
         return result.toString().trim();
+    }
+
+    private void processRightBracket(final StringBuilder result, final Deque<String> stack) {
+        String factor;
+        do {
+            factor = stack.pop();
+            if (!checker.isLeftBracket(factor)) {
+                result.append(EMPTY_SPACE).append(factor);
+            }
+        } while (!checker.isLeftBracket(factor));
+        if (!stack.isEmpty() && checker.isFunction(stack.peek())) {
+            result.append(EMPTY_SPACE).append(stack.pop());
+        }
+    }
+
+    private void processComma(final StringBuilder result, final Deque<String> stack) {
+        String stackOperator;
+        do {
+            stackOperator = stack.pop();
+            if (!checker.isLeftBracket(stackOperator)) {
+                result.append(EMPTY_SPACE).append(stackOperator);
+            }
+        } while (!stack.isEmpty() && !checker.isLeftBracket(stackOperator));
+    }
+
+    private void processOperator(final StringBuilder result, final Deque<String> stack, final String temp) {
+        String stackOperator;
+        while (!stack.isEmpty() && checker.isOperator(stack.peek())) {
+            stackOperator = stack.peek();
+            if (checker.isLeftAssociativity(stackOperator)
+                    && (checker.compareOperators(stackOperator, temp) >= 0)) {
+                stack.pop();
+                result.append(EMPTY_SPACE).append(stackOperator);
+            } else if (checker.isRightAssociativity(stackOperator)
+                    && (checker.compareOperators(stackOperator, temp) > 0)) {
+                stack.pop();
+                result.append(EMPTY_SPACE).append(stackOperator);
+            } else {
+                break;
+            }
+        }
+        stack.push(temp);
     }
 }

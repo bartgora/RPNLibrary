@@ -28,10 +28,10 @@ public class RPNCalculator implements Function<String, BigDecimal> {
 
     /**
      *
-     * @param scale scale with
-     * @param checker
-     * @param executioner
-     * @param mathContext
+     * @param scale scale to display numbers
+     * @param checker RpnChecking object
+     * @param executioner RPNExecuting object
+     * @param mathContext MathContext object
      */
     public RPNCalculator(final int scale, final RPNChecking checker, final RPNExecuting executioner, final MathContext mathContext) {
         this.scale = scale;

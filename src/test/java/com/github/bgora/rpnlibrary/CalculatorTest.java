@@ -155,15 +155,16 @@ public class CalculatorTest {
     }
 
     @Test
-     void testAddTousands() throws RPNException {
+     void testAddThousands() throws RPNException {
         BigDecimal result = calc.calculate("12 000 + 15");
         Assertions.assertThat(result).isEqualTo(new BigDecimal("12015.00"));
     }
 
-//    @Test(expected = RPNException.class)
-//     void shouldThrowRPNException() throws RPNException {
-//        calc.calculate("aaaaa");
-//    }
+    @Test
+     void shouldThrowRPNException() throws RPNException {
+        Assertions.assertThatThrownBy(()-> calc.calculate("aaaaa"))
+                .isInstanceOf(RPNException.class);
+    }
 
     @Test
      void shouldReturn2andHalf() throws RPNException {
