@@ -88,16 +88,19 @@ public class RPNFactory implements UnaryOperator<String> {
             stackOperator = stack.peek();
             if (checker.isLeftAssociativity(stackOperator)
                     && (checker.compareOperators(stackOperator, temp) >= 0)) {
-                stack.pop();
-                result.append(EMPTY_SPACE).append(stackOperator);
+                appendEmptySpace(result, stack, stackOperator);
             } else if (checker.isRightAssociativity(stackOperator)
                     && (checker.compareOperators(stackOperator, temp) > 0)) {
-                stack.pop();
-                result.append(EMPTY_SPACE).append(stackOperator);
+                appendEmptySpace(result, stack, stackOperator);
             } else {
                 break;
             }
         }
         stack.push(temp);
+    }
+
+    private void appendEmptySpace(final StringBuilder result, final Deque<String> stack, final String stackOperator) {
+        stack.pop();
+        result.append(EMPTY_SPACE).append(stackOperator);
     }
 }
