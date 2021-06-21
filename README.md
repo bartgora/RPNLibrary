@@ -9,6 +9,17 @@ It is based on Dijkstra Algorithm. (https://en.wikipedia.org/wiki/Reverse_Polish
 
 [![javadoc](https://javadoc.io/badge2/com.github.bartlomiej-gora/RPNLibrary/javadoc.svg)](https://javadoc.io/doc/com.github.bartlomiej-gora/RPNLibrary)
 
+Story
+===
+Couple years ago I read Joshua Bloch's "Java. Effective Programming".
+I wanted to practice what I've learned.
+I didn't want to create another CRUD like application, so I found that Dijkstra's algorithm would be good to learn.
+First version's were available on Sourceforge.
+Couple years later I manage to publish my library on maven cetral repo.
+Over the years I built a small ecosystem around this library.
+Feel free to check my other projects, that use this one.
+  
+ 
 Available functions:
 ===
 +,-,*,/ with (), power(^)
@@ -26,26 +37,24 @@ example:
         BigDecimal min = calc.calculate("min(10, 8) + 10");
 ```
 
-To Customize use:
-```java
-static Calculator Calculator.Calculator createCalculator(RPNChecking checker, RPNExecuting executioner, final MathContext mathContext, final int scale); 
-        
-    }
-```
-
 Maven:
 ===
 ```
         <dependency>
             <groupId>com.github.bartlomiej-gora</groupId>
             <artifactId>RPNLibrary</artifactId>
-            <version>4.0.0</version>
+            <version>5.0.0</version>
         </dependency>
 ```
 
 
 Changelog:
 ====
+
+### Version 5.0.0:
+
+- Moved to java 8
+- Refactoring, split Calculator class into smaller pieces, using java 8 functional interfaces
 
 ### Version 4.0.0:
 

@@ -93,6 +93,15 @@ public class Calculator {
         this.mathContext = mathContext;
     }
 
+    /**
+     * Calculates input String to BigDecimal
+     *
+     *
+     * @param input String like (1+3)*13+sin(1)
+     * @return Result of calculation
+     * @throws WrongArgumentException
+     * @throws NoSuchFunctionFound
+     */
     public BigDecimal calculate(final String input) throws WrongArgumentException, NoSuchFunctionFound {
         return Optional.of(input)
                 .map(transformer)
@@ -102,6 +111,10 @@ public class Calculator {
     }
 
 
+    /**
+     *
+     * @return MathContext of this Calculator
+     */
     public MathContext getMathContext() {
         return new MathContext(mathContext.getPrecision(), mathContext.getRoundingMode());
     }

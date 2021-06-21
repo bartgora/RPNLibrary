@@ -21,7 +21,8 @@ public class DefaultRPNExecutor implements RPNExecuting {
      * {@inheritDoc}
      */
     @Override
-    public BigDecimal executeOperator(final String operator, final MathContext mathContext, final String var1, final String var2) throws WrongArgumentException {
+    public BigDecimal executeOperator(final String operator, final MathContext mathContext,
+                                      final String var1, final String var2) throws WrongArgumentException {
         return strategyProvider.getOperator(operator).execute(var1, var2, mathContext);
     }
 
@@ -29,7 +30,8 @@ public class DefaultRPNExecutor implements RPNExecuting {
      * {@inheritDoc}
      */
     @Override
-    public BigDecimal executeFunction(final String functionName, final MathContext mathContext, final String... arguments) throws NoSuchFunctionFound {
+    public BigDecimal executeFunction(final String functionName, final MathContext mathContext,
+                                      final String... arguments) throws NoSuchFunctionFound {
         return strategyProvider.getFunction(functionName).execute(mathContext, arguments);
     }
 }
