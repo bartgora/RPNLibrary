@@ -19,6 +19,7 @@
 
 package com.github.bgora.rpnlibrary;
 
+
 import com.github.bgora.rpnlibrary.exceptions.NoSuchFunctionFound;
 import com.github.bgora.rpnlibrary.exceptions.WrongArgumentException;
 import org.assertj.core.api.Assertions;
@@ -27,7 +28,7 @@ import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 
-public class Calculator2ParamFunctionTest {
+ class Calculator2ParamFunctionTest {
 
     private Calculator calc;
 

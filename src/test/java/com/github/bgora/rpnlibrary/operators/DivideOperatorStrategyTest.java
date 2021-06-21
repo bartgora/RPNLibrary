@@ -1,5 +1,6 @@
 package com.github.bgora.rpnlibrary.operators;
 
+
 import org.assertj.core.data.Percentage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

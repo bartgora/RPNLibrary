@@ -1,6 +1,5 @@
-package com.github.bgora.rpnlibrary.next
+package com.github.bgora.rpnlibrary
 
-import com.github.bgora.rpnlibrary.DefaultStrategyProvider
 import com.github.bgora.rpnlibrary.functions.*
 import com.github.bgora.rpnlibrary.operators.*
 import io.kotest.core.spec.style.FreeSpec
@@ -14,7 +13,8 @@ class DefaultStrategyProviderTest : FreeSpec({
         row("-", SubtractOperatorStrategy()),
         row("*", MultiplyOperatorStrategy()),
         row("/", DivideOperatorStrategy()),
-        row("^", PowerOperatorStrategy()))
+        row("^", PowerOperatorStrategy())
+    )
 
     "getOperator should return Operators" - {
 
@@ -27,18 +27,18 @@ class DefaultStrategyProviderTest : FreeSpec({
 
     }
 
-    "getOperator should Return null for Invalid Operator Name"-{
+    "getOperator should Return null for Invalid Operator Name" - {
 
         val result = tested.getOperator("@")
         result shouldBe null
     }
 
-    "isOperator should Return false for not exiting operator"-{
+    "isOperator should Return false for not exiting operator" - {
         val result = tested.isOperatorAvailable("@")
         result shouldBe false
     }
 
-    "isOperatorAvailable should return true for existing operator "-{
+    "isOperatorAvailable should return true for existing operator " - {
         operatorList.forEach {
             val operator = it.a
             val result = tested.isOperatorAvailable(operator)
@@ -68,18 +68,18 @@ class DefaultStrategyProviderTest : FreeSpec({
 
     }
 
-    "getFunction should Return null for Invalid function name"-{
+    "getFunction should Return null for Invalid function name" - {
 
         val result = tested.getFunction("@")
         result shouldBe null
     }
 
-    "isFunction should return false for not exiting function"-{
+    "isFunction should return false for not exiting function" - {
         val result = tested.isFunctionAvailable("@")
         result shouldBe false
     }
 
-    "isFunctionAvailable should return true for existing function "-{
+    "isFunctionAvailable should return true for existing function " - {
         functionList.forEach {
             val function = it.a
             val result = tested.isFunctionAvailable(function)

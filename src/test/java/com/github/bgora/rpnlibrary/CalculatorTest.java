@@ -145,13 +145,13 @@ public class CalculatorTest {
     @Test
      void testCtgMinus() throws RPNException {
         BigDecimal result = calc.calculate("ctg(-1)");
-        Assertions.assertThat(result).isEqualTo(new BigDecimal(-0.6400000000, calc.getMathContext()).setScale(2));
+        Assertions.assertThat(result).isEqualTo(new BigDecimal(-0.6400000000, calc.getMathContext()).setScale(2, calc.getMathContext().getRoundingMode()));
     }
 
     @Test
      void testCtgMinus5Zeros() throws RPNException {
         BigDecimal result = calc.calculate("ctg(-1.65091)");
-        Assertions.assertThat(result).isEqualTo(new BigDecimal(0.080, calc.getMathContext()).setScale(2));
+        Assertions.assertThat(result).isEqualTo(new BigDecimal(0.080, calc.getMathContext()).setScale(2, calc.getMathContext().getRoundingMode()));
     }
 
     @Test
@@ -160,7 +160,7 @@ public class CalculatorTest {
         Assertions.assertThat(result).isEqualTo(new BigDecimal("12015.00"));
     }
 
-    @Test
+    @Test()
      void shouldThrowRPNException() throws RPNException {
         Assertions.assertThatThrownBy(()-> calc.calculate("aaaaa"))
                 .isInstanceOf(RPNException.class);
