@@ -55,6 +55,7 @@ Changelog:
 
 - Moved to java 8
 - Refactoring, split Calculator class into smaller pieces, using java 8 functional interfaces
+- Added test written in Kotest
 
 ### Version 4.0.0:
 
