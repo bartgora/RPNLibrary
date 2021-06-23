@@ -8,7 +8,11 @@ import java.util.function.UnaryOperator;
 
 /**
  * Creates String in Reverse Polish Notation.
- *  example:  (2+3)×5 -> 2 3 + 5 ×
+ *  example:  (2+3)*5 -> 2 3 + 5 *
+ *  First input must be transformed by InputTransformer, to add empty space
+ *  between numbers, operator, and brackets
+ *
+ * @see InputTransformer
  */
 public class RPNFactory implements UnaryOperator<String> {
 
