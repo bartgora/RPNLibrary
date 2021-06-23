@@ -19,40 +19,22 @@
 
 package com.github.bgora.rpnlibrary;
 
-import java.util.HashMap;
-import java.util.Map;
 
 /**
- * This implementation Extends DefaultChecker with arithmetic funstions.
- *
- * Provided functions are: sin, cos, tg, ctg
+ * Default implementation of RPNChecking
  *
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  */
-public class DefaultChecker implements RPNChecking {
+public class RPNChecker implements RPNChecking {
 
-    private Map<String, Integer> operators;
+    private final StrategyProvider strategyProvider;
 
-    private Map<String, Integer> functions;
-
-    public DefaultChecker() {
-        operators = new HashMap<>();
-        operators.put("+", 1);
-        operators.put("-", 1);
-        operators.put("*", 2);
-        operators.put("/", 2);
-        operators.put("^", 3);
-
-        functions = new HashMap<>();
-        functions.put("sin", 1);
-        functions.put("cos", 1);
-        functions.put("tg", 1);
-        functions.put("ctg", 1);
-
+    public RPNChecker(final StrategyProvider strategyProvider) {
+        this.strategyProvider = strategyProvider;
     }
 
     /**
-     * @see RPNChecking#isDigit(java.lang.String)
+     * @see RPNChecking#isDigit(String)
      */
     @Override
     public boolean isDigit(String input) {
@@ -60,7 +42,7 @@ public class DefaultChecker implements RPNChecking {
     }
 
     /**
-     * @see RPNChecking#isLeftBracket(java.lang.String)
+     * @see RPNChecking#isLeftBracket(String)
      */
     @Override
     public boolean isLeftBracket(String input) {
@@ -70,17 +52,17 @@ public class DefaultChecker implements RPNChecking {
     /**
      * Returns true if input = +, or -, or *, or /, or ^, false otherwise.
      *
-     * @see RPNChecking#isOperator(java.lang.String)
+     * @see RPNChecking#isOperator(String)
      */
     @Override
     public boolean isOperator(String input) {
-        return operators.containsKey(input);
+        return strategyProvider.isOperatorAvailable(input);
     }
 
     /**
      * Returns true if input = )
      *
-     * @see RPNChecking#isRightBracket(java.lang.String)
+     * @see RPNChecking#isRightBracket(String)
      */
     @Override
     public boolean isRightBracket(String input) {
@@ -90,7 +72,7 @@ public class DefaultChecker implements RPNChecking {
     /**
      * Returns true, if input is "+ - * /" or bracket "()"
      *
-     * @see RPNChecking#isOperatorOrBracket(java.lang.String)
+     * @see RPNChecking#isOperatorOrBracket(String)
      */
     @Override
     public boolean isOperatorOrBracket(String c) {
@@ -98,7 +80,7 @@ public class DefaultChecker implements RPNChecking {
     }
 
     /**
-     * @see RPNChecking#isLeftAssociativity(java.lang.String)
+     * @see RPNChecking#isLeftAssociativity(String)
      */
     @Override
     public boolean isLeftAssociativity(String c) {
@@ -106,7 +88,7 @@ public class DefaultChecker implements RPNChecking {
     }
 
     /**
-     * @see RPNChecking#isRightAssociativity(java.lang.String)
+     * @see RPNChecking#isRightAssociativity(String)
      */
     @Override
     public boolean isRightAssociativity(String c) {
@@ -114,31 +96,31 @@ public class DefaultChecker implements RPNChecking {
     }
 
     /**
-     * @see RPNChecking#compareOperators(java.lang.String,
-     * java.lang.String)
+     * @see RPNChecking#compareOperators(String,
+     * String)
      */
     @Override
-    public int compareOperators(String operato1, String operator2) {
-        Integer i1 = operators.get(operato1);
-        Integer i2 = operators.get(operator2);
+    public int compareOperators(String operator1, String operator2) {
+        Integer i1 = strategyProvider.getOperator(operator1).getPriority();
+        Integer i2 = strategyProvider.getOperator(operator2).getPriority();
         return i1 - i2;
     }
 
     /**
      * Checks if input is one of the recognized functions.
-     *
+     * <p>
      * Recognized functions are: sin, cos, tg, ctg.
      *
-     * @see RPNChecking#isFunction(java.lang.String)
+     * @see RPNChecking#isFunction(String)
      */
     @Override
     public boolean isFunction(String input) {
-        return functions.containsKey(input);
+        return strategyProvider.isFunctionAvailable(input);
     }
 
     @Override
     public int getFunctionParamsCount(String functionName) {
-        return functions.get(functionName);
+        return strategyProvider.getFunction(functionName).getParamCount();
     }
 
 }

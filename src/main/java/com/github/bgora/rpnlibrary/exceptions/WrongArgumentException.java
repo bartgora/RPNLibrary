@@ -34,6 +34,10 @@ public class WrongArgumentException extends RPNException {
     private static final long serialVersionUID = 8945842987018146049L;
 
 
+    /**
+     *
+     * @param message Exception Message
+     */
     public WrongArgumentException(String message) {
         super(message);
     }

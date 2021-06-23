@@ -24,8 +24,9 @@ import com.github.bgora.rpnlibrary.exceptions.WrongArgumentException;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
-import java.util.Deque;
-import java.util.LinkedList;
+import java.util.Optional;
+import java.util.function.Function;
+import java.util.function.UnaryOperator;
 
 /**
  * RPN Calculator Implementation with functions.
@@ -35,13 +36,10 @@ import java.util.LinkedList;
  */
 public class Calculator {
 
-    public static final String ZERO = "0.0";
-    public static final String EMPTY_SPACE = " ";
-    public static final String COMMA = ",";
-    protected final RPNChecking checker;
-    protected final RPNExecuting executioner;
+    protected final UnaryOperator<String> transformer;
+    protected final UnaryOperator<String> rpnFactory;
+    protected final Function<String, BigDecimal> rpnCalculator;
     private final MathContext mathContext;
-    private final int SCALE;
 
     /**
      * Factory method for RPN Calculator object with custom functions, and
@@ -55,239 +53,68 @@ public class Calculator {
      * @see RPNExecuting
      */
     public static Calculator createCalculator() {
-        final CalculationEngine calculationEngine = new CalculatorEngine(StrategiesUtil.DEFAULT_OPERATORS,
-                                                                         StrategiesUtil.DEFAULT_FUNCTIONS);
         final MathContext mathContext = MathContext.DECIMAL64;
-        return new Calculator(calculationEngine, calculationEngine, mathContext, 2);
+        final StrategyProvider strategyProvider = new DefaultStrategyProvider();
+        final RPNChecking rpnChecking = new RPNChecker(strategyProvider);
+        final RPNExecuting rpnExecuting = new DefaultRPNExecutor(strategyProvider);
+        return new Calculator(
+                new InputTransformer(rpnChecking),
+                new RPNFactory(rpnChecking),
+                new RPNCalculator(2, rpnChecking, rpnExecuting, mathContext)
+                , mathContext);
     }
 
     /**
-     * Factory method for RPN Calculator object with custom functions, and
-     * operations. You should use this factory method if you want to create your
-     * own operations. To do so, you have to implement you own objects, that
-     * implementas {@code RPNChecking}, and
-     * {@code RPNExecuting}.
+     * Factory method for Calculator object with custom functions
      *
-     * @param checker     Object implementing RPNChecking - Used for checking operations in input.
-     * @param executioner Object implementing RPNExecuting - used for executing operations on input.
-     * @param mathContext MathContext - Set Rounding Mode, and precision
-     * @param scale       scale number of digits after .
-     * @return new Instance of {@code pl.bgora.Calculator}
-     * @see RPNChecking
-     * @see RPNExecuting
-     */
-
-    public static Calculator createCalculator(RPNChecking checker,
-                                              RPNExecuting executioner,
-                                              final MathContext mathContext,
-                                              final int scale) {
-        return new Calculator(checker, executioner, mathContext, scale);
-    }
-
-    /**
-     * Constructor Creates an instance of the class.
-     *
-     * @param checker     Object implementing RPNChecking - Used for checking operations in input.
-     * @param executioner Object implementing RPNExecuting - used for executing operations on input.
+     * @param transformer   Functional parameter to clean up input
+     * @param rpnFactory    Functional parameter to create RPN
+     * @param rpnCalculator Functional parameter to execute calculation
      * @param mathContext
-     * @param scale
+     * @return Calculator
+     * @see InputTransformer
+     * @see RPNFactory
+     * @see RPNCalculator
      */
-    private Calculator(RPNChecking checker, RPNExecuting executioner, final MathContext mathContext, final int scale) {
-        this.checker = checker;
-        this.executioner = executioner;
+    public static Calculator createCalculator(UnaryOperator<String> transformer,
+                                              UnaryOperator<String> rpnFactory,
+                                              Function<String, BigDecimal> rpnCalculator,
+                                              final MathContext mathContext) {
+        return new Calculator(transformer, rpnFactory, rpnCalculator, mathContext);
+    }
+
+    private Calculator(final UnaryOperator<String> transformer,
+                       final UnaryOperator<String> rpnFactory,
+                       final Function<String, BigDecimal> rpnCalculator,
+                       final MathContext mathContext) {
+        this.transformer = transformer;
+        this.rpnFactory = rpnFactory;
+        this.rpnCalculator = rpnCalculator;
         this.mathContext = mathContext;
-        this.SCALE = scale;
-    }
-
-    public BigDecimal calculate(final String input) throws WrongArgumentException, NoSuchFunctionFound {
-        final String temp = prepareInput(input);
-        final String result = createRPN(temp);
-        return getResult(result);
     }
 
     /**
-     * Format input for further processing.
+     * Calculates input String to BigDecimal
      *
-     * @param input Input string.
-     * @return Formatted String.
-     * @throws WrongArgumentException Thrown if the input is incorrect (Incorrect format, or
-     *                                unsupported operations)
-     */
-    private String prepareInput(String input) throws WrongArgumentException {
-        final StringBuilder result = new StringBuilder();
-        final String inputValue = input.trim();
-        int length = inputValue.length();
-        char character;
-        boolean lastWasDigit = false;
-        boolean lastWasOperator = false;
-        boolean lastWasWhiteSpace = false;
-        boolean lastWasLetter = false;
-        // Iteration thought input String.
-        for (int i = 0; i < length; i++) {
-            character = inputValue.charAt(i);
-            if (isDigitOrSeparator(character) && (lastWasDigit || !lastWasOperator)) {
-                lastWasDigit = true;
-                result.append(character);
-                lastWasWhiteSpace = false;
-                lastWasLetter = false;
-            } else if (Character.isDigit(character)) {
-                lastWasDigit = true;
-                lastWasLetter = false;
-                lastWasOperator = false;
-                if (!lastWasWhiteSpace) {
-                    result.append(EMPTY_SPACE);
-                }
-                result.append(character);
-                lastWasWhiteSpace = false;
-            } else if (checker.isOperatorOrBracket(String.valueOf(character))) {
-                lastWasDigit = false;
-                lastWasLetter = false;
-                lastWasOperator = true;
-                if (!lastWasWhiteSpace) {
-                    result.append(EMPTY_SPACE);
-                }
-                result.append(character);
-                lastWasWhiteSpace = false;
-            } else if (Character.isWhitespace(character)) {
-                if (!lastWasWhiteSpace && !lastWasDigit) {
-                    result.append(EMPTY_SPACE);
-                    lastWasWhiteSpace = true;
-                }
-                lastWasDigit = false;
-                lastWasOperator = false;
-            } else if (Character.isLetter(character)) {
-                lastWasDigit = false;
-                lastWasOperator = false;
-                if (!lastWasLetter && !lastWasWhiteSpace) {
-                    result.append(EMPTY_SPACE).append(character);
-                } else {
-                    result.append(character);
-                }
-                lastWasWhiteSpace = false;
-                lastWasLetter = true;
-            } else {
-                throw new WrongArgumentException("Element \"" + character + "\" is not recognized by the Checker");
-            }
-        }
-
-        return result.toString().trim();
-    }
-
-    private boolean isDigitOrSeparator(char c) {
-        return Character.isDigit(c) || c == '.' || c == ',';
-    }
-
-    /**
-     * Creates String in Reverse Polish Notation.
      *
-     * @param input Input String in "Natural" format.
-     * @return String formatted into RPN.
-     * @throws WrongArgumentException Thrown if the input is incorrect (Incorrect format, or
-     *                                unsupported opertians)
-     */
-    private String createRPN(String input) throws WrongArgumentException {
-        final String trimmed = input.trim();
-        final StringBuilder result = new StringBuilder();
-        final Deque<String> stack = new LinkedList<String>();
-        final String[] factors = trimmed.split(EMPTY_SPACE);
-        final int length = factors.length;
-        String temp;
-        String stackOperator;
-        for (int i = 0; i < length; i++) {
-            temp = factors[i];
-            if (checker.isDigit(temp)) {
-                result.append(EMPTY_SPACE).append(temp);
-            } else if (checker.isFunction(temp)) {
-                stack.push(temp);
-            } else if (COMMA.equals(temp)) {
-                do {
-                    stackOperator = stack.pop();
-                    if (!checker.isLeftBracket(stackOperator)) {
-                        result.append(EMPTY_SPACE).append(stackOperator);
-                    }
-                } while (!stack.isEmpty() && !checker.isLeftBracket(stackOperator));
-            } else if (checker.isOperator(temp)) {
-                while (!stack.isEmpty() && checker.isOperator(stack.peek())) {
-                    stackOperator = stack.peek();
-                    if (checker.isLeftAssociativity(stackOperator) && (checker.compareOperators(stackOperator,
-                                                                                                temp) >= 0)) {
-                        stack.pop();
-                        result.append(EMPTY_SPACE).append(stackOperator);
-                    } else if (checker.isRightAssociativity(stackOperator)
-                            && (checker.compareOperators(stackOperator, temp) > 0)) {
-                        stack.pop();
-                        result.append(EMPTY_SPACE).append(stackOperator);
-                    } else {
-                        break;
-                    }
-                }
-                stack.push(temp);
-            } else if (checker.isLeftBracket(temp)) {
-                stack.push(temp);
-            } else if (checker.isRightBracket(temp)) {
-                do {
-                    temp = stack.pop();
-                    if (!checker.isLeftBracket(temp)) {
-                        result.append(EMPTY_SPACE).append(temp);
-                    }
-                } while (!checker.isLeftBracket(temp));
-                if (!stack.isEmpty() && checker.isFunction(stack.peek())) {
-                    result.append(EMPTY_SPACE).append(stack.pop());
-                }
-            } else {
-                throw new WrongArgumentException("Element \"" + temp + "\" is not recognized by the Checker");
-            }
-        }
-        while (!stack.isEmpty()) {
-            result.append(EMPTY_SPACE).append(stack.pop());
-        }
-
-        return result.toString().trim();
-    }
-
-    /**
-     * Calculates RPN String into BigDecimal.
-     *
-     * @param result Input RPN String
-     * @return value as {@code java.math.BigDecimal}
+     * @param input String like (1+3)*13+sin(1)
+     * @return Result of calculation
      * @throws WrongArgumentException
      * @throws NoSuchFunctionFound
      */
-    private BigDecimal getResult(String result) throws WrongArgumentException, NoSuchFunctionFound {
-        final String[] factors = result.trim().split(EMPTY_SPACE);
-        final Deque<String> stack = new LinkedList<String>();
-        String temp;
-        String variable1;
-        String variable2;
-        BigDecimal value;
-        for (int i = 0; i < factors.length; i++) {
-            temp = factors[i];
-            if (checker.isDigit(temp)) {
-                stack.push(temp);
-            } else if (checker.isOperator(temp)) {
-                variable1 = stack.pop();
-                if (!stack.isEmpty()) {
-                    variable2 = stack.pop();
-                } else {
-                    variable2 = ZERO;
-                }
-                value = executioner.executeOperator(temp, mathContext, variable2, variable1);
-                stack.push(value.toPlainString());
-            } else if (checker.isFunction(temp)) {
-                int count = checker.getFunctionParamsCount(temp);
-                String[] table = new String[count];
-                String params = stack.pop();
-                String[] paramsTable = params.split(COMMA);
-                for (int j = 0; j < count; j++) {
-                    table[j] = paramsTable[j];
-                }
-                value = executioner.executeFunction(temp, mathContext, table);
-                stack.push(value.toPlainString());
-            }
-        }
-        return new BigDecimal(stack.pop()).setScale(SCALE, mathContext.getRoundingMode());
+    public BigDecimal calculate(final String input) throws WrongArgumentException, NoSuchFunctionFound {
+        return Optional.of(input)
+                .map(transformer)
+                .map(rpnFactory)
+                .map(rpnCalculator)
+                .orElseThrow(() -> new WrongArgumentException("Incorrect input"));
     }
 
+
+    /**
+     *
+     * @return MathContext of this Calculator
+     */
     public MathContext getMathContext() {
         return new MathContext(mathContext.getPrecision(), mathContext.getRoundingMode());
     }

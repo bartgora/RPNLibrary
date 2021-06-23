@@ -30,7 +30,7 @@ public class RPNException extends RuntimeException {
     private static final long serialVersionUID = 601457826479138831L;
 
     /**
-     * Contructor.
+     * Constructor.
      * Creates class instance
      *
      * @param message Exception Message

@@ -22,6 +22,9 @@ package com.github.bgora.rpnlibrary.functions;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+/**
+ * Fibonacci function
+ */
 public class FibFunctionStrategy extends AbstractFunctionStrategy {
 
 

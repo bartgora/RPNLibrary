@@ -22,10 +22,13 @@ package com.github.bgora.rpnlibrary.operators;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-public class MinusOperatorStrategy extends AbstractOperatorStrategy {
+/**
+ * Subtraction Operator
+ */
+public class SubtractOperatorStrategy extends AbstractOperatorStrategy {
 
 
-    public MinusOperatorStrategy() {
+    public SubtractOperatorStrategy() {
         super("-", 1);
     }
 

@@ -21,158 +21,159 @@ package com.github.bgora.rpnlibrary;
 
 import com.github.bgora.rpnlibrary.exceptions.RPNException;
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-import static org.junit.Assert.assertEquals;
 
 public class CalculatorTest {
 
     private Calculator calc;
 
-    @Before
-    public void setUp() {
+    @BeforeEach
+    void setup() {
         calc = Calculator.createCalculator();
     }
 
     @Test
-    public void testCalculate() throws RPNException {
+     void testCalculate() throws RPNException {
         BigDecimal result = calc.calculate("2^3*(12/6)+18/3+5.0/2");
         Assertions.assertThat(result).isEqualTo(new BigDecimal("24.50"));
     }
 
     @Test
-    public void testMultiply() throws RPNException {
+     void testMultiply() throws RPNException {
         BigDecimal result = calc.calculate("2*8");
-        assertEquals("2*8", BigDecimal.valueOf(16), result.setScale(0, RoundingMode.HALF_EVEN));
+        Assertions.assertThat(result.setScale(0, RoundingMode.HALF_EVEN))
+                .isEqualTo(BigDecimal.valueOf(16));
     }
 
     @Test
-    public void testMultiplyDouble() throws RPNException {
+     void testMultiplyDouble() throws RPNException {
         BigDecimal result = calc.calculate("2*8.59");
-        assertEquals("2*8.59", BigDecimal.valueOf(17.18), result);
+        Assertions.assertThat(result).isEqualTo(BigDecimal.valueOf(17.18));
     }
 
     @Test
-    public void testMultiplyDouble3AfterDot() throws RPNException {
+     void testMultiplyDouble3AfterDot() throws RPNException {
         BigDecimal result = calc.calculate("9*3.351");
         Assertions.assertThat(result).isEqualTo(new BigDecimal("30.16"));
     }
 
 
     @Test
-    public void testPower() throws RPNException {
+     void testPower() throws RPNException {
         BigDecimal result = calc.calculate("2^8");
         Assertions.assertThat(result).isEqualTo(new BigDecimal("256.00"));
     }
 
 
     @Test
-    public void testPowerDouble() throws RPNException {
+     void testPowerDouble() throws RPNException {
         BigDecimal result = calc.calculate("3.678^2");
         Assertions.assertThat(result).isEqualTo(new BigDecimal("13.53"));
     }
 
     @Test
-    public void testAdd() throws RPNException {
+     void testAdd() throws RPNException {
         BigDecimal result = calc.calculate("2+8");
         Assertions.assertThat(result).isEqualTo(new BigDecimal("10.00"));
     }
 
     @Test
-    public void testSub() throws RPNException {
+     void testSub() throws RPNException {
         BigDecimal result = calc.calculate("2-5");
         Assertions.assertThat(result).isEqualTo(new BigDecimal("-3.00"));
     }
 
     @Test
-    public void testDiv() throws RPNException {
+     void testDiv() throws RPNException {
         BigDecimal result = calc.calculate("10.0/4");
         Assertions.assertThat(result).isEqualTo(new BigDecimal("2.50"));
     }
 
     @Test
-    public void testDivDouble() throws RPNException {
+     void testDivDouble() throws RPNException {
         BigDecimal result = calc.calculate("10.55/4");
-        assertEquals("10.55/4", BigDecimal.valueOf(2.64), result.setScale(2, RoundingMode.HALF_EVEN));
+        Assertions.assertThat(result.setScale(2, RoundingMode.HALF_EVEN)).isEqualTo(BigDecimal.valueOf(2.64));
     }
 
     @Test
-    public void testDivDouble3AfterDot() throws RPNException {
+     void testDivDouble3AfterDot() throws RPNException {
         BigDecimal result = calc.calculate("10.505/4");
         Assertions.assertThat(result).isEqualTo(new BigDecimal("2.63"));
     }
 
     @Test
-    public void testSinus() throws RPNException {
+     void testSinus() throws RPNException {
         BigDecimal result = calc.calculate("sin(2)");
         Assertions.assertThat(result).isEqualTo(new BigDecimal("0.91"));
     }
 
     @Test
-    public void testOneAddWhiteSpaceSinus() throws RPNException {
+     void testOneAddWhiteSpaceSinus() throws RPNException {
         BigDecimal result = calc.calculate("1 + sin(2)");
         Assertions.assertThat(result).isEqualTo(new BigDecimal("1.91"));
     }
 
     @Test
-    public void testSinusPlus() throws RPNException {
+     void testSinusPlus() throws RPNException {
         BigDecimal result = calc.calculate("sin(1+1)");
         Assertions.assertThat(result).isEqualTo(new BigDecimal("0.91"));
     }
 
     @Test
-    public void testSinusMinus() throws RPNException {
+     void testSinusMinus() throws RPNException {
         BigDecimal result = calc.calculate("sin(-1)");
         Assertions.assertThat(result).isEqualTo(new BigDecimal("-0.84"));
     }
 
     @Test
-    public void testCosMinus() throws RPNException {
+     void testCosMinus() throws RPNException {
         BigDecimal result = calc.calculate("cos(-1)");
         Assertions.assertThat(result).isEqualTo(new BigDecimal("0.54"));
     }
 
     @Test
-    public void testTgMinus() throws RPNException {
+     void testTgMinus() throws RPNException {
         BigDecimal result = calc.calculate("tg(-1)");
         Assertions.assertThat(result).isEqualTo(new BigDecimal("-1.56"));
     }
 
     @Test
-    public void testCtgMinus() throws RPNException {
+     void testCtgMinus() throws RPNException {
         BigDecimal result = calc.calculate("ctg(-1)");
-        Assertions.assertThat(result).isEqualTo(new BigDecimal(-0.6400000000, calc.getMathContext()).setScale(2));
+        Assertions.assertThat(result).isEqualTo(new BigDecimal(-0.6400000000, calc.getMathContext()).setScale(2, calc.getMathContext().getRoundingMode()));
     }
 
     @Test
-    public void testCtgMinus5Zeros() throws RPNException {
+     void testCtgMinus5Zeros() throws RPNException {
         BigDecimal result = calc.calculate("ctg(-1.65091)");
-        Assertions.assertThat(result).isEqualTo(new BigDecimal(0.080, calc.getMathContext()).setScale(2));
+        Assertions.assertThat(result).isEqualTo(new BigDecimal(0.080, calc.getMathContext()).setScale(2, calc.getMathContext().getRoundingMode()));
     }
 
     @Test
-    public void testAddTousands() throws RPNException {
+     void testAddThousands() throws RPNException {
         BigDecimal result = calc.calculate("12 000 + 15");
         Assertions.assertThat(result).isEqualTo(new BigDecimal("12015.00"));
     }
 
-    @Test(expected = RPNException.class)
-    public void shouldThrowRPNException() throws RPNException {
-        calc.calculate("aaaaa");
+    @Test()
+     void shouldThrowRPNException() throws RPNException {
+        Assertions.assertThatThrownBy(()-> calc.calculate("aaaaa"))
+                .isInstanceOf(RPNException.class);
     }
 
     @Test
-    public void shouldReturn2andHalf() throws RPNException {
+     void shouldReturn2andHalf() throws RPNException {
         BigDecimal result = calc.calculate("5/2");
         Assertions.assertThat(result).isEqualTo(new BigDecimal("2.50"));
     }
 
     @Test
-    public void shouldReturn35() throws RPNException {
+     void shouldReturn35() throws RPNException {
         BigDecimal result = calc.calculate("7/2");
         Assertions.assertThat(result).isEqualTo(new BigDecimal("3.50"));
     }

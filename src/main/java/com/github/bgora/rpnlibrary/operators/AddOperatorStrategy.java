@@ -22,6 +22,9 @@ package com.github.bgora.rpnlibrary.operators;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+/**
+ * Add Operator
+ */
 public class AddOperatorStrategy extends AbstractOperatorStrategy {
 
 

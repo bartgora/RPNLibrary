@@ -22,6 +22,9 @@ package com.github.bgora.rpnlibrary.operators;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+/**
+ * Multiplication Operator
+ */
 public class MultiplyOperatorStrategy extends AbstractOperatorStrategy {
 
 

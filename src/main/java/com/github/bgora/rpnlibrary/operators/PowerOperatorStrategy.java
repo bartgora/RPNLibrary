@@ -24,6 +24,9 @@ import ch.obermuhlner.math.big.BigDecimalMath;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+/**
+ * Power Operator
+ */
 public class PowerOperatorStrategy extends AbstractOperatorStrategy {
 
 
