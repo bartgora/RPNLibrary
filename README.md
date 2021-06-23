@@ -13,11 +13,12 @@ Story
 ===
 Couple years ago I read Joshua Bloch's "Java. Effective Programming".
 I wanted to practice what I've learned.
-I didn't want to create another CRUD like application, so I found that Dijkstra's algorithm would be good to learn.
+I didn't want to create another CRUD like application, so I found that Dijkstra's algorithm would be good 
+to learn design patterns, and effective programming.
 First version's were available on Sourceforge.
 Couple years later I manage to publish my library on maven cetral repo.
 Over the years I built a small ecosystem around this library.
-Feel free to check my other projects, that use this one.
+Feel free to check my other projects that use this one.
   
  
 Available functions:
@@ -55,7 +56,35 @@ Changelog:
 
 - Moved to java 8
 - Refactoring, split Calculator class into smaller pieces, using java 8 functional interfaces
-- Added test written in Kotest
+- Added tests written in Kotest:
+
+example:
+```kotlin
+class RPNFactoryTest : FreeSpec({
+
+    val tested = RPNFactory(RPNChecker(DefaultStrategyProvider()))
+            "should Return RPN" - {
+                val text = "( 2 + 3 ) * 5"
+                val result = tested.apply(text)
+                result shouldBe "2 3 + 5 *"
+            }
+            "should Return RPN for Function call" - {
+                val text = "sin ( 1 )"
+                val result = tested.apply(text)
+                result shouldBe "1 sin"
+            }
+            "should Return RPN for Function and equation" - {
+                val text = "sin ( 1 ) + 27 * 8"
+                val result = tested.apply(text)
+                result shouldBe "1 sin 27 8 * +"
+            }
+            "should Return RPN for  two Functions call" - {
+                val text = "sin ( 1 ) + ctg ( 0 )"
+                val result = tested.apply(text)
+                result shouldBe "1 sin 0 ctg +"
+            }
+})
+```
 
 ### Version 4.0.0:
 
