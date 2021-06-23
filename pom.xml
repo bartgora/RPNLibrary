@@ -25,7 +25,7 @@
     </distributionManagement>
 
     <name>RPNLibrary</name>
-    <description>RPN Libray for Java.</description>
+    <description>RPN Library for Java.</description>
     <url>https://github.com/bartlomiej-gora/RPNLibrary</url>
 
     <licenses>
@@ -47,7 +47,7 @@
     <scm>
         <connection>scm:git:git://github.com/bartlomiej-gora/RPNLibrary.git</connection>
         <developerConnection>scm:git:ssh://git@github.com:bartlomiej-gora/RPNLibrary.git</developerConnection>
-        <url>https://github.com/bartlomiej-gora/RPNLibrary</url>
+        <url>https://github.com/bartlomiej-gora/RPNLibrary/tree/master</url>
     </scm>
 
     <build>
@@ -81,7 +81,7 @@
                 <version>3.3.0</version>
                 <executions>
                     <execution>
-                        <phase>deploy</phase>
+                        <phase>package</phase>
                         <id>attach-javadocs</id>
                         <goals>
                             <goal>jar</goal>
@@ -134,7 +134,7 @@
                 <executions>
                     <execution>
                         <id>sign-artifacts</id>
-                        <phase>deploy</phase>
+                        <phase>verify</phase>
                         <goals>
                             <goal>sign</goal>
                         </goals>
