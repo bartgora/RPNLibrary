@@ -8,6 +8,7 @@ import java.util.function.UnaryOperator;
 
 /**
  * Creates String in Reverse Polish Notation.
+ *  example:  (2+3)×5 -> 2 3 + 5 ×
  */
 public class RPNFactory implements UnaryOperator<String> {
 
