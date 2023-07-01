@@ -55,7 +55,7 @@ public class InputTransformer implements UnaryOperator<String> {
 //            if(result == null){
 //                throw new WrongArgumentException("Element \"" + character + "\" is not recognized by the Checker");
 //            }
-            if (isDigitOrSeparator(character) && (lastWasDigit || !lastWasOperator)) {
+//            if (isDigitOrSeparator(character) && (lastWasDigit || !lastWasOperator)) {
 //                lastWasDigit = true;
 //                lastWasWhiteSpace = false;
 //                lastWasLetter = false;
