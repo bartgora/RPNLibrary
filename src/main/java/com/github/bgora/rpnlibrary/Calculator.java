@@ -60,8 +60,7 @@ public class Calculator {
         return new Calculator(
                 new InputTransformer(rpnChecking),
                 new RPNFactory(rpnChecking),
-                new RPNCalculator(2, rpnChecking, rpnExecuting, mathContext)
-                , mathContext);
+                new RPNCalculator(2, rpnChecking, rpnExecuting, mathContext), mathContext);
     }
 
     /**
@@ -70,7 +69,7 @@ public class Calculator {
      * @param transformer   Functional parameter to clean up input
      * @param rpnFactory    Functional parameter to create RPN
      * @param rpnCalculator Functional parameter to execute calculation
-     * @param mathContext
+     * @param mathContext   MathContext - Set Rounding Mode, and precision
      * @return Calculator
      * @see InputTransformer
      * @see RPNFactory
@@ -96,11 +95,11 @@ public class Calculator {
     /**
      * Calculates input String to BigDecimal
      *
-     *
      * @param input String like (1+3)*13+sin(1)
      * @return Result of calculation
-     * @throws WrongArgumentException
-     * @throws NoSuchFunctionFound
+     * @throws WrongArgumentException Thrown if the input is incorrect (Incorrect format, or
+     *                                unsupported opertians)
+     * @throws NoSuchFunctionFound    Thrown When function is not found
      */
     public BigDecimal calculate(final String input) throws WrongArgumentException, NoSuchFunctionFound {
         return Optional.of(input)
@@ -112,7 +111,6 @@ public class Calculator {
 
 
     /**
-     *
      * @return MathContext of this Calculator
      */
     public MathContext getMathContext() {
