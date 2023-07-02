@@ -5,12 +5,12 @@
         <sonar.projectKey>bartgora_RPNLibrary</sonar.projectKey>
         <sonar.organization>bartlomiej-gora</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-        <kotlin.version>1.4.30</kotlin.version>
+        <kotlin.version>1.6.0</kotlin.version>
     </properties>
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.bartlomiej-gora</groupId>
     <artifactId>RPNLibrary</artifactId>
-    <version>5.0.0</version>
+    <version>5.0.1</version>
     <packaging>jar</packaging>
 
     <distributionManagement>
@@ -26,7 +26,7 @@
 
     <name>RPNLibrary</name>
     <description>RPN Libray for Java.</description>
-    <url>https://github.com/bartlomiej-gora/RPNLibrary</url>
+    <url>https://github.com/bartgora/RPNLibrary</url>
 
     <licenses>
         <license>
@@ -39,15 +39,15 @@
         <developer>
             <name>Bartłomiej Góra</name>
             <email>bartlomiej.gora@gmail.com</email>
-            <organizationUrl>https://github.com/bartlomiej-gora</organizationUrl>
+            <organizationUrl>https://github.com/bartgora/RPNLibrary</organizationUrl>
         </developer>
     </developers>
 
 
     <scm>
-        <connection>scm:git:git://github.com/bartlomiej-gora/RPNLibrary.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com:bartlomiej-gora/RPNLibrary.git</developerConnection>
-        <url>https://github.com/bartlomiej-gora/RPNLibrary</url>
+        <connection>scm:git:git://github.com/bartgora/RPNLibrary.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com:bartgora/RPNLibrary.git</developerConnection>
+        <url>https://github.com/bartgora/RPNLibrary</url>
     </scm>
 
     <build>
@@ -112,6 +112,18 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.19.1</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.junit.platform</groupId>
+                        <artifactId>junit-platform-surefire-provider</artifactId>
+                        <version>1.1.0</version>
+                    </dependency>
+                </dependencies>
             </plugin>
 
 
@@ -208,6 +220,12 @@
             <version>4.2.0.RC2</version>
         </dependency>
         <dependency>
+            <groupId>io.kotlintest</groupId>
+            <artifactId>kotlintest-runner-junit5</artifactId>
+            <version>3.0.3</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-stdlib-jdk8</artifactId>
             <version>${kotlin.version}</version>
@@ -225,6 +243,7 @@
         </dependency>
 
     </dependencies>
+
 
     <reporting>
     </reporting>
