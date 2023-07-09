@@ -58,6 +58,7 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
+                    <target>1.8</target>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
@@ -180,7 +181,8 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <jvmTarget>1.8</jvmTarget>
+                    <jvmTarget>1.6</jvmTarget>
+                    <apiVersion>1.6</apiVersion>
                 </configuration>
             </plugin>
             <plugin>
@@ -198,9 +200,21 @@
     </build>
     <dependencies>
         <dependency>
+            <groupId>io.kotest</groupId>
+            <artifactId>kotest-runner-junit5-jvm</artifactId>
+            <version>5.5.4</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
             <version>5.5.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-surefire-provider</artifactId>
+            <version>1.2.0-M1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -239,7 +253,7 @@
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-test-junit5</artifactId>
-            <version>1.4.10</version>
+            <version>1.8.20</version>
         </dependency>
 
     </dependencies>
