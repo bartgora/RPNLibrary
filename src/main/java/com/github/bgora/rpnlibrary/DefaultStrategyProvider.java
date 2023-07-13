@@ -31,8 +31,8 @@ import java.util.Map;
  */
 public class DefaultStrategyProvider implements StrategyProvider {
 
-    private Map<String, AbstractOperatorStrategy> operators;
-    private Map<String, AbstractFunctionStrategy> functions;
+    private final Map<String, AbstractOperatorStrategy> operators;
+    private final Map<String, AbstractFunctionStrategy> functions;
 
     public DefaultStrategyProvider() {
         operators = new HashMap<>();

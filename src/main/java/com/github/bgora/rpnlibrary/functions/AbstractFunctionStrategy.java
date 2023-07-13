@@ -87,7 +87,7 @@ public abstract class AbstractFunctionStrategy {
     public boolean equals(Object obj) {
         if (obj instanceof AbstractFunctionStrategy) {
             AbstractFunctionStrategy rpn = (AbstractFunctionStrategy) obj;
-            return (name != null ? name.equals(rpn.name) : false) && paramCount == rpn.paramCount;
+            return (name != null && name.equals(rpn.name)) && paramCount == rpn.paramCount;
         }
         return false;
     }

@@ -5,12 +5,11 @@
         <sonar.projectKey>bartgora_RPNLibrary</sonar.projectKey>
         <sonar.organization>bartlomiej-gora</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-        <kotlin.version>1.4.30</kotlin.version>
     </properties>
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.bartlomiej-gora</groupId>
     <artifactId>RPNLibrary</artifactId>
-    <version>5.0.0</version>
+    <version>5.0.1</version>
     <packaging>jar</packaging>
 
     <distributionManagement>
@@ -26,7 +25,7 @@
 
     <name>RPNLibrary</name>
     <description>RPN Libray for Java.</description>
-    <url>https://github.com/bartlomiej-gora/RPNLibrary</url>
+    <url>https://github.com/bartgora/RPNLibrary</url>
 
     <licenses>
         <license>
@@ -39,24 +38,25 @@
         <developer>
             <name>Bartłomiej Góra</name>
             <email>bartlomiej.gora@gmail.com</email>
-            <organizationUrl>https://github.com/bartlomiej-gora</organizationUrl>
+            <organizationUrl>https://github.com/bartgora/RPNLibrary</organizationUrl>
         </developer>
     </developers>
 
 
     <scm>
-        <connection>scm:git:git://github.com/bartlomiej-gora/RPNLibrary.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com:bartlomiej-gora/RPNLibrary.git</developerConnection>
-        <url>https://github.com/bartlomiej-gora/RPNLibrary</url>
+        <connection>scm:git:git://github.com/bartgora/RPNLibrary.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com:bartgora/RPNLibrary.git</developerConnection>
+        <url>https://github.com/bartgora/RPNLibrary</url>
     </scm>
 
     <build>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
+                <version>3.11.0</version>
                 <configuration>
                     <source>1.8</source>
+                    <target>1.8</target>
                     <target>1.8</target>
                     <encoding>UTF-8</encoding>
                 </configuration>
@@ -90,31 +90,17 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>org.codehaus.sonar-plugins.java</groupId>
-                <artifactId>sonar-jacoco-plugin</artifactId>
-                <version>2.3</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.19.1</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.junit.platform</groupId>
+                        <artifactId>junit-platform-surefire-provider</artifactId>
+                        <version>1.1.0</version>
+                    </dependency>
+                </dependencies>
             </plugin>
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.6</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>report</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>report</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>nexus-staging-maven-plugin</artifactId>
@@ -141,91 +127,54 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.jetbrains.kotlin</groupId>
-                <artifactId>kotlin-maven-plugin</artifactId>
-                <version>${kotlin.version}</version>
-                <executions>
-                    <execution>
-                        <id>compile</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>compile</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>test-compile</id>
-                        <phase>test-compile</phase>
-                        <goals>
-                            <goal>test-compile</goal>
-                        </goals>
-                        <configuration>
-                            <sourceDirs>
-                                <source>src/test/java</source>
-                                <source>src/test/kotlin</source>
-                            </sourceDirs>
-                        </configuration>
-                    </execution>
-                </executions>
-                <configuration>
-                    <jvmTarget>1.8</jvmTarget>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.2</version>
-                <configuration>
-                    <includes>
-                        <include>**/*Spec*</include>
-                        <include>**/*Test*</include>
-                    </includes>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
     <dependencies>
+        <!--Test -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.5.2</version>
+            <version>5.9.3</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.9.3</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <version>5.9.3</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-surefire-provider</artifactId>
+            <version>1.2.0-M1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
-            <version>3.14.0</version>
+            <version>3.24.2</version>
             <scope>test</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.jacoco/jacoco-maven-plugin -->
+        <dependency>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.8.7</version>
+        </dependency>
+
+        <!--Math library-->
         <dependency>
             <groupId>ch.obermuhlner</groupId>
             <artifactId>big-math</artifactId>
             <version>2.3.0</version>
         </dependency>
-        <dependency>
-            <groupId>io.kotest</groupId>
-            <artifactId>kotest-core-jvm</artifactId>
-            <version>4.2.0.RC2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-stdlib-jdk8</artifactId>
-            <version>${kotlin.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-test</artifactId>
-            <version>${kotlin.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-test-junit5</artifactId>
-            <version>1.4.10</version>
-        </dependency>
-
     </dependencies>
-
     <reporting>
     </reporting>
 </project>
