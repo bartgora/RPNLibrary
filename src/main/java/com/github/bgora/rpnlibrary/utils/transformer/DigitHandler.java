@@ -1,9 +1,11 @@
-package com.github.bgora.rpnlibrary.utils;
+package com.github.bgora.rpnlibrary.utils.transformer;
 
-public class DigitHandler extends AbstractInputTransformerChain {
+import com.github.bgora.rpnlibrary.utils.TransformContext;
+
+public class DigitHandler extends InputTransformerHandler {
 
     private static final String EMPTY_SPACE = " ";
-    public DigitHandler(final AbstractInputTransformerChain next) {
+    public DigitHandler(final InputTransformerHandler next) {
         super(next);
     }
 

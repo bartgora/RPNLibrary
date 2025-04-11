@@ -1,8 +1,10 @@
-package com.github.bgora.rpnlibrary.utils;
+package com.github.bgora.rpnlibrary.utils.transformer;
 
-public class DigitOrSeparatorHandler extends AbstractInputTransformerChain {
+import com.github.bgora.rpnlibrary.utils.TransformContext;
 
-    public DigitOrSeparatorHandler(final AbstractInputTransformerChain next) {
+public class DigitOrSeparatorHandler extends InputTransformerHandler {
+
+    public DigitOrSeparatorHandler(final InputTransformerHandler next) {
         super(next);
     }
 

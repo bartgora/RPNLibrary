@@ -1,12 +1,13 @@
-package com.github.bgora.rpnlibrary.utils;
+package com.github.bgora.rpnlibrary.utils.transformer;
 
 import com.github.bgora.rpnlibrary.RPNChecking;
+import com.github.bgora.rpnlibrary.utils.TransformContext;
 
-public class OperatorHandler extends AbstractInputTransformerChain {
+public class OperatorHandler extends InputTransformerHandler {
     private final RPNChecking checker;
 
 
-    public OperatorHandler(final AbstractInputTransformerChain next, RPNChecking checker) {
+    public OperatorHandler(final InputTransformerHandler next, RPNChecking checker) {
         super(next);
         this.checker = checker;
     }

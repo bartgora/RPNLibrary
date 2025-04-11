@@ -1,7 +1,10 @@
-package com.github.bgora.rpnlibrary.utils;
+package com.github.bgora.rpnlibrary.utils.transformer;
 
-public class LetterHandler extends AbstractInputTransformerChain {
-    public LetterHandler(final AbstractInputTransformerChain next) {
+import com.github.bgora.rpnlibrary.utils.TransformContext;
+
+public class LetterHandler extends InputTransformerHandler {
+
+    public LetterHandler(final InputTransformerHandler next) {
         super(next);
     }
 

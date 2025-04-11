@@ -2,13 +2,13 @@ package com.github.bgora.rpnlibrary;
 
 
 import com.github.bgora.rpnlibrary.exceptions.WrongArgumentException;
-import com.github.bgora.rpnlibrary.utils.AbstractInputTransformerChain;
-import com.github.bgora.rpnlibrary.utils.DigitHandler;
-import com.github.bgora.rpnlibrary.utils.DigitOrSeparatorHandler;
-import com.github.bgora.rpnlibrary.utils.LetterHandler;
-import com.github.bgora.rpnlibrary.utils.OperatorHandler;
 import com.github.bgora.rpnlibrary.utils.TransformContext;
-import com.github.bgora.rpnlibrary.utils.WhitespaceHandler;
+import com.github.bgora.rpnlibrary.utils.transformer.DigitHandler;
+import com.github.bgora.rpnlibrary.utils.transformer.DigitOrSeparatorHandler;
+import com.github.bgora.rpnlibrary.utils.transformer.InputTransformerHandler;
+import com.github.bgora.rpnlibrary.utils.transformer.LetterHandler;
+import com.github.bgora.rpnlibrary.utils.transformer.OperatorHandler;
+import com.github.bgora.rpnlibrary.utils.transformer.WhitespaceHandler;
 
 import java.util.function.UnaryOperator;
 
@@ -20,7 +20,7 @@ import java.util.function.UnaryOperator;
 public class InputTransformer implements UnaryOperator<String> {
 
     protected final RPNChecking checker;
-    private AbstractInputTransformerChain transformerChain;
+    private InputTransformerHandler transformerChain;
 
     public InputTransformer(final RPNChecking checker) {
         this.checker = checker;

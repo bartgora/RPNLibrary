@@ -39,4 +39,5 @@ public class RPNFactoryTest {
         String result = tested.apply("sin ( 1 ) + ctg ( 0 )");
         assertThat(result).isEqualTo(expected);
     }
+
 }

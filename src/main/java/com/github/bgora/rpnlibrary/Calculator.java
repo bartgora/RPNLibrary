@@ -75,16 +75,16 @@ public class Calculator {
      * @see RPNFactory
      * @see RPNCalculator
      */
-    public static Calculator createCalculator(UnaryOperator<String> transformer,
-                                              UnaryOperator<String> rpnFactory,
-                                              Function<String, BigDecimal> rpnCalculator,
+    public static Calculator createCalculator(InputTransformer transformer,
+                                              RPNFactory rpnFactory,
+                                              RPNCalculator rpnCalculator,
                                               final MathContext mathContext) {
         return new Calculator(transformer, rpnFactory, rpnCalculator, mathContext);
     }
 
-    private Calculator(final UnaryOperator<String> transformer,
-                       final UnaryOperator<String> rpnFactory,
-                       final Function<String, BigDecimal> rpnCalculator,
+    private Calculator(final InputTransformer transformer,
+                       final RPNFactory rpnFactory,
+                       final RPNCalculator rpnCalculator,
                        final MathContext mathContext) {
         this.transformer = transformer;
         this.rpnFactory = rpnFactory;
@@ -98,7 +98,7 @@ public class Calculator {
      * @param input String like (1+3)*13+sin(1)
      * @return Result of calculation
      * @throws WrongArgumentException Thrown if the input is incorrect (Incorrect format, or
-     *                                unsupported opertians)
+     *                                unsupported operations)
      * @throws NoSuchFunctionFound    Thrown When function is not found
      */
     public BigDecimal calculate(final String input) throws WrongArgumentException, NoSuchFunctionFound {

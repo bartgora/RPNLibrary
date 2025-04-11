@@ -1,7 +1,9 @@
-package com.github.bgora.rpnlibrary.utils;
+package com.github.bgora.rpnlibrary.utils.transformer;
 
-public class WhitespaceHandler extends AbstractInputTransformerChain {
-    public WhitespaceHandler(final AbstractInputTransformerChain next) {
+import com.github.bgora.rpnlibrary.utils.TransformContext;
+
+public class WhitespaceHandler extends InputTransformerHandler {
+    public WhitespaceHandler(final InputTransformerHandler next) {
         super(next);
     }
 

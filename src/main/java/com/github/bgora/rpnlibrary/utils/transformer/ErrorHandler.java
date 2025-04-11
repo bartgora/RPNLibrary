@@ -1,9 +1,10 @@
-package com.github.bgora.rpnlibrary.utils;
+package com.github.bgora.rpnlibrary.utils.transformer;
 
 import com.github.bgora.rpnlibrary.exceptions.WrongArgumentException;
+import com.github.bgora.rpnlibrary.utils.TransformContext;
 
-public class ErrorHandler extends AbstractInputTransformerChain {
-    public ErrorHandler(final AbstractInputTransformerChain next) {
+public class ErrorHandler extends InputTransformerHandler {
+    public ErrorHandler(final InputTransformerHandler next) {
         super(next);
     }
 
