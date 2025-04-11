@@ -22,10 +22,9 @@ package com.github.bgora.rpnlibrary.operators;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-public class DivideOperatorStrategy extends AbstractOperatorStrategy {
+class DivideOperatorStrategy extends AbstractOperatorStrategy {
 
-
-    public DivideOperatorStrategy() {
+    DivideOperatorStrategy() {
         super("/", 2);
     }
 

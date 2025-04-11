@@ -29,7 +29,7 @@ import java.util.Map;
  *
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  */
-public class DefaultChecker implements RPNChecking {
+class DefaultChecker implements RPNChecker {
 
     private Map<String, Integer> operators;
 
@@ -52,7 +52,7 @@ public class DefaultChecker implements RPNChecking {
     }
 
     /**
-     * @see RPNChecking#isDigit(java.lang.String)
+     * @see RPNChecker#isDigit(java.lang.String)
      */
     @Override
     public boolean isDigit(String input) {
@@ -60,7 +60,7 @@ public class DefaultChecker implements RPNChecking {
     }
 
     /**
-     * @see RPNChecking#isLeftBracket(java.lang.String)
+     * @see RPNChecker#isLeftBracket(java.lang.String)
      */
     @Override
     public boolean isLeftBracket(String input) {
@@ -70,7 +70,7 @@ public class DefaultChecker implements RPNChecking {
     /**
      * Returns true if input = +, or -, or *, or /, or ^, false otherwise.
      *
-     * @see RPNChecking#isOperator(java.lang.String)
+     * @see RPNChecker#isOperator(java.lang.String)
      */
     @Override
     public boolean isOperator(String input) {
@@ -80,7 +80,7 @@ public class DefaultChecker implements RPNChecking {
     /**
      * Returns true if input = )
      *
-     * @see RPNChecking#isRightBracket(java.lang.String)
+     * @see RPNChecker#isRightBracket(java.lang.String)
      */
     @Override
     public boolean isRightBracket(String input) {
@@ -90,7 +90,7 @@ public class DefaultChecker implements RPNChecking {
     /**
      * Returns true, if input is "+ - * /" or bracket "()"
      *
-     * @see RPNChecking#isOperatorOrBracket(java.lang.String)
+     * @see RPNChecker#isOperatorOrBracket(java.lang.String)
      */
     @Override
     public boolean isOperatorOrBracket(String c) {
@@ -98,7 +98,7 @@ public class DefaultChecker implements RPNChecking {
     }
 
     /**
-     * @see RPNChecking#isLeftAssociativity(java.lang.String)
+     * @see RPNChecker#isLeftAssociativity(java.lang.String)
      */
     @Override
     public boolean isLeftAssociativity(String c) {
@@ -106,7 +106,7 @@ public class DefaultChecker implements RPNChecking {
     }
 
     /**
-     * @see RPNChecking#isRightAssociativity(java.lang.String)
+     * @see RPNChecker#isRightAssociativity(java.lang.String)
      */
     @Override
     public boolean isRightAssociativity(String c) {
@@ -114,12 +114,12 @@ public class DefaultChecker implements RPNChecking {
     }
 
     /**
-     * @see RPNChecking#compareOperators(java.lang.String,
+     * @see RPNChecker#compareOperators(java.lang.String,
      * java.lang.String)
      */
     @Override
-    public int compareOperators(String operato1, String operator2) {
-        Integer i1 = operators.get(operato1);
+    public int compareOperators(String operator1, String operator2) {
+        Integer i1 = operators.get(operator1);
         Integer i2 = operators.get(operator2);
         return i1 - i2;
     }
@@ -129,7 +129,7 @@ public class DefaultChecker implements RPNChecking {
      *
      * Recognized functions are: sin, cos, tg, ctg.
      *
-     * @see RPNChecking#isFunction(java.lang.String)
+     * @see RPNChecker#isFunction(java.lang.String)
      */
     @Override
     public boolean isFunction(String input) {

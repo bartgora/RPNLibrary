@@ -30,7 +30,7 @@ import java.math.MathContext;
  *
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  */
-public interface RPNExecuting {
+public interface RPNExecutioner {
 
 
     /**

@@ -22,10 +22,9 @@ package com.github.bgora.rpnlibrary.operators;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-public class AddOperatorStrategy extends AbstractOperatorStrategy {
+class AddOperatorStrategy extends AbstractOperatorStrategy {
 
-
-    public AddOperatorStrategy() {
+    AddOperatorStrategy() {
         super("+", 1);
     }
 

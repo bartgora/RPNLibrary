@@ -29,10 +29,10 @@ import java.math.MathContext;
  *
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  */
-public class CtgFunctionStrategy extends AbstractFunctionStrategy {
+class CtgFunctionStrategy extends AbstractFunctionStrategy {
 
 
-    public CtgFunctionStrategy() {
+    CtgFunctionStrategy() {
         super("ctg", 1);
     }
 

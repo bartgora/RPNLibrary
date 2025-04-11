@@ -27,9 +27,9 @@ import java.math.MathContext;
  *
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  */
-public class MaxFunctionStrategy extends AbstractFunctionStrategy {
+class MaxFunctionStrategy extends AbstractFunctionStrategy {
 
-    public MaxFunctionStrategy() {
+     MaxFunctionStrategy() {
         super("max", 2);
     }
 

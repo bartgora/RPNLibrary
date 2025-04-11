@@ -28,9 +28,9 @@ import java.math.MathContext;
  *
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  */
-public class CosFunctionStrategy extends AbstractFunctionStrategy {
+class CosFunctionStrategy extends AbstractFunctionStrategy {
 
-    public CosFunctionStrategy() {
+     CosFunctionStrategy() {
         super("cos", 1);
     }
 

@@ -34,11 +34,11 @@ import java.util.Map;
  * It uses Strategies for Operators, and Functions.
  *
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
- * @see RPNChecking
- * @see RPNExecuting
+ * @see RPNChecker
+ * @see RPNExecutioner
  * @see DefaultChecker
  */
-public class CalculatorEngine extends DefaultChecker implements CalculationEngine {
+class CalculatorEngine extends DefaultChecker implements CalculationEngine {
 
     private Map<String, AbstractOperatorStrategy> operators;
     private Map<String, AbstractFunctionStrategy> functions;
@@ -49,7 +49,7 @@ public class CalculatorEngine extends DefaultChecker implements CalculationEngin
      * Takes two maps with AbstractOperatorStrategy, and AbstractFunctionStrategy, to calculate.
      *
      * @param operators Map containing AbstractOperatorStrategy identified by it's operator
-     * @param functions Map containing AbstractFunctionStrategy idetfioed by it's name
+     * @param functions Map containing AbstractFunctionStrategy identified by it's name
      */
     public CalculatorEngine(Map<String, AbstractOperatorStrategy> operators, Map<String, AbstractFunctionStrategy> functions) {
         this.operators = operators;
@@ -62,8 +62,8 @@ public class CalculatorEngine extends DefaultChecker implements CalculationEngin
     }
 
     @Override
-    public int compareOperators(String operato1, String operator2) {
-        AbstractOperatorStrategy strategy1 = operators.get(operato1);
+    public int compareOperators(String operator1, String operator2) {
+        AbstractOperatorStrategy strategy1 = operators.get(operator1);
         AbstractOperatorStrategy strategy2 = operators.get(operator2);
         return strategy1.getPriority() - strategy2.getPriority();
     }

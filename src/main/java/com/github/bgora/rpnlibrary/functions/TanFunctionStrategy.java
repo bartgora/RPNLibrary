@@ -29,9 +29,9 @@ import java.math.MathContext;
  *
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  */
-public class TanFunctionStrategy extends AbstractFunctionStrategy {
+class TanFunctionStrategy extends AbstractFunctionStrategy {
 
-    public TanFunctionStrategy() {
+    TanFunctionStrategy() {
         super("tg", 1);
     }
 

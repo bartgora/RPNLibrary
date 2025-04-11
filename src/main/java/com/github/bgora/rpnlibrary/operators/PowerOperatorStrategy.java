@@ -24,10 +24,9 @@ import ch.obermuhlner.math.big.BigDecimalMath;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-public class PowerOperatorStrategy extends AbstractOperatorStrategy {
+class PowerOperatorStrategy extends AbstractOperatorStrategy {
 
-
-    public PowerOperatorStrategy() {
+    PowerOperatorStrategy() {
         super("^", 3);
     }
 

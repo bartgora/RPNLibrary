@@ -25,10 +25,10 @@ import com.github.bgora.rpnlibrary.operators.AbstractOperatorStrategy;
 /**
  * Interface tha declares additional operations for new CalculationEngine
  *
- * @see RPNChecking
- * @see RPNExecuting
+ * @see RPNChecker
+ * @see RPNExecutioner
  */
-public interface CalculationEngine extends RPNExecuting, RPNChecking {
+public interface CalculationEngine extends RPNExecutioner, RPNChecker {
 
     /**
      * Adds new operator strategy to the Engine

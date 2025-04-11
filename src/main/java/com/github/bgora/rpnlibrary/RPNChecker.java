@@ -24,7 +24,7 @@ package com.github.bgora.rpnlibrary;
 
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  */
-public interface RPNChecking {
+public interface RPNChecker {
 
 
     /**

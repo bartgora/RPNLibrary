@@ -29,9 +29,9 @@ import java.math.MathContext;
  *
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  */
-public class SinusFunctionStrategy extends AbstractFunctionStrategy {
+class SinusFunctionStrategy extends AbstractFunctionStrategy {
 
-    public SinusFunctionStrategy() {
+    SinusFunctionStrategy() {
         super("sin", 1);
     }
 

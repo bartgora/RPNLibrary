@@ -21,6 +21,8 @@ package com.github.bgora.rpnlibrary;
 
 import com.github.bgora.rpnlibrary.exceptions.NoSuchFunctionFound;
 import com.github.bgora.rpnlibrary.exceptions.WrongArgumentException;
+import com.github.bgora.rpnlibrary.functions.DefaultFunctionProvider;
+import com.github.bgora.rpnlibrary.operators.DefaultOperatorsProvider;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -40,11 +42,26 @@ public class Calculator {
     public static final String ZERO = "0.0";
     public static final String EMPTY_SPACE = " ";
     public static final String COMMA = ",";
-    protected final RPNChecking checker;
-    protected final RPNExecuting executioner;
+    protected final RPNChecker checker;
+    protected final RPNExecutioner executioner;
     private final MathContext mathContext;
     private final int SCALE;
 
+
+    /**
+     * Constructor Creates an instance of the class.
+     *
+     * @param checker     Object implementing RPNChecking - Used for checking operations in input.
+     * @param executioner Object implementing RPNExecuting - used for executing operations on input.
+     * @param mathContext
+     * @param scale
+     */
+    private Calculator(RPNChecker checker, RPNExecutioner executioner, final MathContext mathContext, final int scale) {
+        this.checker = checker;
+        this.executioner = executioner;
+        this.mathContext = mathContext;
+        this.SCALE = scale;
+    }
 
     /**
      * Factory method for RPN Calculator object with custom functions, and
@@ -54,11 +71,12 @@ public class Calculator {
      * {@code RPNExecuting}.
      *
      * @return new Instance of {@code pl.bgora.Calculator}
-     * @see RPNChecking
-     * @see RPNExecuting
+     * @see RPNChecker
+     * @see RPNExecutioner
      */
     public static Calculator createCalculator() {
-        final CalculationEngine calculationEngine = new CalculatorEngine(StrategiesUtil.DEFAULT_OPERATORS, StrategiesUtil.DEFAULT_FUNCTIONS);
+        final CalculationEngine calculationEngine = new CalculatorEngine(new DefaultOperatorsProvider().getOperators(),
+                new DefaultFunctionProvider().getFunctions());
         final MathContext mathContext = MathContext.DECIMAL64;
         return new Calculator(calculationEngine, calculationEngine, mathContext, 2);
     }
@@ -75,28 +93,13 @@ public class Calculator {
      * @param mathContext MathContext - Set Rounding Mode, and precision
      * @param scale       scale number of digits after .
      * @return new Instance of {@code pl.bgora.Calculator}
-     * @see RPNChecking
-     * @see RPNExecuting
+     * @see RPNChecker
+     * @see RPNExecutioner
      */
 
-    public static Calculator createCalculator(RPNChecking checker, RPNExecuting executioner, final MathContext mathContext, final int scale) {
+    public static Calculator createCalculator(
+            RPNChecker checker, RPNExecutioner executioner, final MathContext mathContext, final int scale) {
         return new Calculator(checker, executioner, mathContext, scale);
-    }
-
-
-    /**
-     * Constructor Creates an instance of the class.
-     *
-     * @param checker     Object implementing RPNChecking - Used for checking operations in input.
-     * @param executioner Object implementing RPNExecuting - used for executing operations on input.
-     * @param mathContext
-     * @param scale
-     */
-    private Calculator(RPNChecking checker, RPNExecuting executioner, final MathContext mathContext, final int scale) {
-        this.checker = checker;
-        this.executioner = executioner;
-        this.mathContext = mathContext;
-        this.SCALE = scale;
     }
 
     public BigDecimal calculate(final String input) throws WrongArgumentException, NoSuchFunctionFound {
@@ -213,8 +216,7 @@ public class Calculator {
                     if (checker.isLeftAssociativity(stackOperator) && (checker.compareOperators(stackOperator, temp) >= 0)) {
                         stack.pop();
                         result.append(EMPTY_SPACE).append(stackOperator);
-                    } else if (checker.isRightAssociativity(stackOperator)
-                            && (checker.compareOperators(stackOperator, temp) > 0)) {
+                    } else if (checker.isRightAssociativity(stackOperator) && (checker.compareOperators(stackOperator, temp) > 0)) {
                         stack.pop();
                         result.append(EMPTY_SPACE).append(stackOperator);
                     } else {

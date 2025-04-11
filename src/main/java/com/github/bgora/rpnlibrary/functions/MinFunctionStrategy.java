@@ -27,9 +27,9 @@ import java.math.MathContext;
  *
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  */
-public class MinFunctionStrategy extends AbstractFunctionStrategy {
+class MinFunctionStrategy extends AbstractFunctionStrategy {
 
-    public MinFunctionStrategy() {
+     MinFunctionStrategy() {
         super("min", 2);
     }
 
