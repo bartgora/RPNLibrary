@@ -21,6 +21,7 @@ jobs:
         uses: LowCostCustoms/sonar-scanner-action@v2
         with:
           sonar-host-url: https://sonarcloud.io/project/overview?id=bartgora_RPNLibrary
+          sonar-login: ca719c8cfb59228bf488878e5626a6f40d481cd0
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
