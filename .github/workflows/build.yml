@@ -19,6 +19,8 @@ jobs:
           java-version: 21
       - name: Sonar-Scanner action
         uses: LowCostCustoms/sonar-scanner-action@v2
+        with:
+          sonar-host-url: https://sonarcloud.io/project/overview?id=bartgora_RPNLibrary
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
