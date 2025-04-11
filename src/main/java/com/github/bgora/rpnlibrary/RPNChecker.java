@@ -21,7 +21,7 @@ package com.github.bgora.rpnlibrary;
 
 /**
  * Interface used to check conditions on input characters for Dijsktra Algorithm
-
+ *
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  */
 public interface RPNChecker {
@@ -53,6 +53,7 @@ public interface RPNChecker {
 
     /**
      * Checks if parameter is right bracket
+     *
      * @param input String parameter
      * @return true if rigth bracket
      */
@@ -60,6 +61,7 @@ public interface RPNChecker {
 
     /**
      * Checks if parameter is bracket or arithmetic operator
+     *
      * @param c String parameter
      * @return true if operator or bracket
      */
@@ -67,6 +69,7 @@ public interface RPNChecker {
 
     /**
      * Checks if parametr is lest associated
+     *
      * @param c String parameter
      * @return true if left associativity
      */
@@ -74,6 +77,7 @@ public interface RPNChecker {
 
     /**
      * Checks if parametr is right associated
+     *
      * @param c String parameter
      * @return true if right associativity
      */
@@ -82,11 +86,11 @@ public interface RPNChecker {
     /**
      * Compare opertors due to their hierarchy
      *
-     * @param operato1 String First operator
+     * @param operator1 String First operator
      * @param operator2 String Second operator
      * @return int 0 if equals, more than 0 if first is before second less tahn 0 if second is before first
      */
-    int compareOperators(String operato1, String operator2);
+    int compareOperators(String operator1, String operator2);
 
     /**
      * Checks if given String is function name
@@ -98,8 +102,11 @@ public interface RPNChecker {
 
     /**
      * Returns parameters count for the given function
+     *
      * @param functionName function name
      * @return parameters count
      */
     int getFunctionParamsCount(String functionName);
+
 }
+

@@ -38,7 +38,7 @@ import java.util.Map;
  * @see RPNExecutioner
  * @see DefaultChecker
  */
-class CalculatorEngine extends DefaultChecker implements CalculationEngine {
+class DefaultRPNExecutioner implements RPNExecutioner {
 
     private Map<String, AbstractOperatorStrategy> operators;
     private Map<String, AbstractFunctionStrategy> functions;
@@ -51,32 +51,11 @@ class CalculatorEngine extends DefaultChecker implements CalculationEngine {
      * @param operators Map containing AbstractOperatorStrategy identified by it's operator
      * @param functions Map containing AbstractFunctionStrategy identified by it's name
      */
-    public CalculatorEngine(Map<String, AbstractOperatorStrategy> operators, Map<String, AbstractFunctionStrategy> functions) {
+    public DefaultRPNExecutioner(Map<String, AbstractOperatorStrategy> operators, Map<String, AbstractFunctionStrategy> functions) {
         this.operators = operators;
         this.functions = functions;
     }
 
-    @Override
-    public boolean isOperator(String input) {
-        return operators.containsKey(input);
-    }
-
-    @Override
-    public int compareOperators(String operator1, String operator2) {
-        AbstractOperatorStrategy strategy1 = operators.get(operator1);
-        AbstractOperatorStrategy strategy2 = operators.get(operator2);
-        return strategy1.getPriority() - strategy2.getPriority();
-    }
-
-    @Override
-    public boolean isFunction(String input) {
-        return functions.containsKey(input);
-    }
-
-    @Override
-    public int getFunctionParamsCount(String functionName) {
-        return functions.get(functionName).getParamCount();
-    }
 
     @Override
     public BigDecimal executeOperator(String operator, MathContext mathContext, String var1, String var2) throws WrongArgumentException {
@@ -88,13 +67,4 @@ class CalculatorEngine extends DefaultChecker implements CalculationEngine {
         return functions.get(functionName).execute(mathContext, arguments);
     }
 
-    @Override
-    public void addOperator(AbstractOperatorStrategy abstractOperatorStrategy) {
-        this.operators.put(abstractOperatorStrategy.getOperator(), abstractOperatorStrategy);
-    }
-
-    @Override
-    public void addFunctionStrategy(AbstractFunctionStrategy abstractFunctionStrategy) {
-        this.functions.put(abstractFunctionStrategy.getName(), abstractFunctionStrategy);
-    }
 }

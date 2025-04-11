@@ -22,7 +22,9 @@ package com.github.bgora.rpnlibrary;
 import com.github.bgora.rpnlibrary.exceptions.NoSuchFunctionFound;
 import com.github.bgora.rpnlibrary.exceptions.WrongArgumentException;
 import com.github.bgora.rpnlibrary.functions.DefaultFunctionProvider;
+import com.github.bgora.rpnlibrary.functions.FunctionProvider;
 import com.github.bgora.rpnlibrary.operators.DefaultOperatorsProvider;
+import com.github.bgora.rpnlibrary.operators.OperatorsProvider;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -75,10 +77,11 @@ public class Calculator {
      * @see RPNExecutioner
      */
     public static Calculator createCalculator() {
-        final CalculationEngine calculationEngine = new CalculatorEngine(new DefaultOperatorsProvider().getOperators(),
-                new DefaultFunctionProvider().getFunctions());
         final MathContext mathContext = MathContext.DECIMAL64;
-        return new Calculator(calculationEngine, calculationEngine, mathContext, 2);
+        final FunctionProvider functionProvider = new DefaultFunctionProvider();
+        final OperatorsProvider operatorsProvider = new DefaultOperatorsProvider();
+        return new Calculator(new DefaultChecker(),
+                new DefaultRPNExecutioner(operatorsProvider.getOperators(), functionProvider.getFunctions()), mathContext, 2);
     }
 
     /**

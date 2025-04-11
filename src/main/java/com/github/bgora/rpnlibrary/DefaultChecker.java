@@ -48,6 +48,9 @@ class DefaultChecker implements RPNChecker {
         functions.put("cos", 1);
         functions.put("tg", 1);
         functions.put("ctg", 1);
+        functions.put("min", 2);
+        functions.put("max", 2);
+        functions.put("fib", 1);
 
     }
 
