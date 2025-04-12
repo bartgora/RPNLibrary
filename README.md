@@ -2,6 +2,7 @@
 
 Simple RPN (Reverse Polish Notation) Library for Java.<br>
 It is based on Dijkstra Algorithm. (https://en.wikipedia.org/wiki/Reverse_Polish_notation)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=bartgora_RPNLibrary&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=bartgora_RPNLibrary)
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/b004cdd19ecf42b697db1a19a3ae82ec)](https://app.codacy.com/gh/bartgora/RPNLibrary/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
