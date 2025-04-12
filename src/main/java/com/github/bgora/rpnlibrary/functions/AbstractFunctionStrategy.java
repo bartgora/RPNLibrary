@@ -34,7 +34,6 @@ import java.math.MathContext;
 public abstract class AbstractFunctionStrategy {
 
     private final String name;
-    private final int paramCount;
     private volatile int hashCode = 0;
 
 
@@ -43,11 +42,9 @@ public abstract class AbstractFunctionStrategy {
      * Subclass need to provide required fields.
      *
      * @param name       Name of the function
-     * @param paramCount parameters count
      */
-    public AbstractFunctionStrategy(String name, int paramCount) {
+    public AbstractFunctionStrategy(String name) {
         this.name = name;
-        this.paramCount = paramCount;
     }
 
 
@@ -61,14 +58,6 @@ public abstract class AbstractFunctionStrategy {
     }
 
 
-    /**
-     * Return paramCount value
-     *
-     * @return paramCount value
-     */
-    public int getParamCount() {
-        return paramCount;
-    }
 
 
     /**
@@ -87,7 +76,7 @@ public abstract class AbstractFunctionStrategy {
     public boolean equals(Object obj) {
         if (obj instanceof AbstractFunctionStrategy) {
             AbstractFunctionStrategy rpn = (AbstractFunctionStrategy) obj;
-            return (name != null ? name.equals(rpn.name) : false) && paramCount == rpn.paramCount;
+            return (name != null ? name.equals(rpn.name) : false);
         }
         return false;
     }
@@ -100,7 +89,6 @@ public abstract class AbstractFunctionStrategy {
         if (hashCode == 0) {
             int result = 17;
             result = 31 * result + name.hashCode();
-            result = 31 * result + paramCount;
             hashCode = result;
         }
         return hashCode;

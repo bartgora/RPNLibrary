@@ -30,7 +30,7 @@ import java.math.MathContext;
 class MinFunctionStrategy extends AbstractFunctionStrategy {
 
      MinFunctionStrategy() {
-        super("min", 2);
+        super("min");
     }
 
     @Override

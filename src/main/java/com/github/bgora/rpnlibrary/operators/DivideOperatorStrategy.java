@@ -25,7 +25,7 @@ import java.math.MathContext;
 class DivideOperatorStrategy extends AbstractOperatorStrategy {
 
     DivideOperatorStrategy() {
-        super("/", 2);
+        super("/");
     }
 
     @Override

@@ -33,7 +33,6 @@ import java.math.MathContext;
 public abstract class AbstractOperatorStrategy {
 
     private final String operator;
-    private final int priority;
     private volatile int hashCode = 0;
 
     /**
@@ -41,11 +40,10 @@ public abstract class AbstractOperatorStrategy {
      * Subclass need to provide required fields.
      *
      * @param operator Name of the operator
-     * @param priority priority of the operator to sort
      */
-    public AbstractOperatorStrategy(final String operator, int priority) {
+    public AbstractOperatorStrategy(final String operator) {
         this.operator = operator;
-        this.priority = priority;
+
     }
 
     /**
@@ -92,13 +90,5 @@ public abstract class AbstractOperatorStrategy {
         return operator;
     }
 
-    /**
-     * Returns priority
-     *
-     * @return priority
-     */
-    public int getPriority() {
-        return priority;
-    }
 
 }

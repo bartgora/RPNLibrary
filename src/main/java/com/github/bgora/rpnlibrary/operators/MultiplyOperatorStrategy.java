@@ -25,7 +25,7 @@ import java.math.MathContext;
  class MultiplyOperatorStrategy extends AbstractOperatorStrategy {
 
      MultiplyOperatorStrategy() {
-        super("*", 2);
+        super("*");
     }
 
     @Override

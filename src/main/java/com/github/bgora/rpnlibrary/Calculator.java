@@ -41,13 +41,13 @@ import java.util.LinkedList;
 public class Calculator {
 
 
-    public static final String ZERO = "0.0";
-    public static final String EMPTY_SPACE = " ";
-    public static final String COMMA = ",";
+    public final String ZERO = "0.0";
+    public final String EMPTY_SPACE = " ";
+    public final String COMMA = ",";
+    private final int SCALE;
+    private final MathContext mathContext;
     protected final RPNChecker checker;
     protected final RPNExecutioner executioner;
-    private final MathContext mathContext;
-    private final int SCALE;
 
 
     /**
@@ -101,7 +101,7 @@ public class Calculator {
      */
 
     public static Calculator createCalculator(
-            RPNChecker checker, RPNExecutioner executioner, final MathContext mathContext, final int scale) {
+            final RPNChecker checker, final RPNExecutioner executioner, final MathContext mathContext, final int scale) {
         return new Calculator(checker, executioner, mathContext, scale);
     }
 
