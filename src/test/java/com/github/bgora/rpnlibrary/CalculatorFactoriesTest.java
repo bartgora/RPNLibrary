@@ -11,7 +11,7 @@ public class CalculatorFactoriesTest {
     @Test
     public void testCalculate() throws RPNException {
         RPNCheckerFactory.createRPNChecker();
-        Calculator calc = Calculator.createCalculator(RPNCheckerFactory.createRPNChecker(), RPNExecutionerFactory.createRpnExecutioner(),
+        Calculator calc = Calculator.createCalculator(RPNCheckerFactory.createRPNChecker(), RPNExecutionerFactory.createRPNExecutioner(),
                 MathContext.DECIMAL64, 2);
 
 

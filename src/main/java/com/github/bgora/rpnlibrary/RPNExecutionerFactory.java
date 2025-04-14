@@ -22,7 +22,7 @@ public class RPNExecutionerFactory {
      * @return RPNExecutioner
      */
 
-    public static RPNExecutioner createRpnExecutioner() {
+    public static RPNExecutioner createRPNExecutioner() {
         DefaultOperatorsProvider operatorsProvider = new DefaultOperatorsProvider();
         DefaultFunctionProvider functionProvider = new DefaultFunctionProvider();
         return new DefaultRPNExecutioner(operatorsProvider.getOperators(), functionProvider.getFunctions());
