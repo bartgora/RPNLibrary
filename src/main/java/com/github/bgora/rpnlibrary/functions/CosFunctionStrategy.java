@@ -31,7 +31,7 @@ import java.math.MathContext;
 class CosFunctionStrategy extends AbstractFunctionStrategy {
 
      CosFunctionStrategy() {
-        super("cos", 1);
+        super("cos");
     }
 
 

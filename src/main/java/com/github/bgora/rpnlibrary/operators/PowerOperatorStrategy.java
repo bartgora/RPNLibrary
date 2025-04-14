@@ -27,7 +27,7 @@ import java.math.MathContext;
 class PowerOperatorStrategy extends AbstractOperatorStrategy {
 
     PowerOperatorStrategy() {
-        super("^", 3);
+        super("^");
     }
 
     @Override

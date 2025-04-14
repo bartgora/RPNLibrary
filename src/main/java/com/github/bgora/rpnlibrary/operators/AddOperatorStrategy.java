@@ -25,7 +25,7 @@ import java.math.MathContext;
 class AddOperatorStrategy extends AbstractOperatorStrategy {
 
     AddOperatorStrategy() {
-        super("+", 1);
+        super("+");
     }
 
     @Override

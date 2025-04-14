@@ -32,7 +32,7 @@ import java.math.MathContext;
 class TanFunctionStrategy extends AbstractFunctionStrategy {
 
     TanFunctionStrategy() {
-        super("tg", 1);
+        super("tg");
     }
 
     @Override

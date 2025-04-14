@@ -3,8 +3,9 @@ package com.github.bgora.rpnlibrary.operators;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DefaultOperatorsProvider implements OperatorsProvider{
+public class DefaultOperatorsProvider implements OperatorsProvider {
     Map<String, AbstractOperatorStrategy> DEFAULT_OPERATORS = new HashMap<String, AbstractOperatorStrategy>();
+
     @Override
     public Map<String, AbstractOperatorStrategy> getOperators() {
         AbstractOperatorStrategy addOperatorStrategy = new AddOperatorStrategy();
