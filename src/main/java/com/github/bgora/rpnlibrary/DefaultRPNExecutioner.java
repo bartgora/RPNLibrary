@@ -30,13 +30,13 @@ import java.util.Map;
 
 /**
  * Calculation Engine.
- * It is a composite that Implements RPNExecuting, and RPNChecking.
+ * It is a composite that Implements RPNExecutioner, and RPNChecker.
  * It uses Strategies for Operators, and Functions.
  *
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  * @see RPNChecker
  * @see RPNExecutioner
- * @see DefaultChecker
+ * @see DefaultRPNChecker
  */
 class DefaultRPNExecutioner implements RPNExecutioner {
 

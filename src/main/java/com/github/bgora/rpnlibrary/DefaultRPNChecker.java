@@ -29,13 +29,13 @@ import java.util.Map;
  *
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  */
-class DefaultChecker implements RPNChecker {
+class DefaultRPNChecker implements RPNChecker {
 
     private final Map<String, Integer> operators;
 
     private final Map<String, Integer> functions;
 
-    public DefaultChecker() {
+    public DefaultRPNChecker() {
         operators = new HashMap<String, Integer>();
         operators.put("+", 1);
         operators.put("-", 1);
@@ -54,7 +54,7 @@ class DefaultChecker implements RPNChecker {
 
     }
 
-    DefaultChecker(final Map<String, Integer> operators, final Map<String, Integer> functions) {
+    DefaultRPNChecker(final Map<String, Integer> operators, final Map<String, Integer> functions) {
         this.operators = operators;
         this.functions = functions;
     }
