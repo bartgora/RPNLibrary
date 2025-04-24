@@ -3,12 +3,9 @@
 Simple RPN (Reverse Polish Notation) Library for Java.<br>
 It is based on Dijkstra Algorithm. (https://en.wikipedia.org/wiki/Reverse_Polish_notation)
 
-<a href="https://travis-ci.org/bartlomiej-gora/RPNLibrary">
-<img src="https://travis-ci.org/bartlomiej-gora/RPNLibrary.svg?branch=master">
-</a>
-<a href="https://www.codacy.com/app/bartlomiej.gora/RPNLibrary?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bartlomiej-gora/RPNLibrary&amp;utm_campaign=Badge_Grade">
-<img src="https://api.codacy.com/project/badge/Grade/94cbf471a20048989c9b066f6ad4d414"/></a>
-<a href="https://www.codacy.com/app/bartlomiej.gora/RPNLibrary?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bartlomiej-gora/RPNLibrary&amp;utm_campaign=Badge_Coverage"><img src="https://api.codacy.com/project/badge/Coverage/94cbf471a20048989c9b066f6ad4d414"/></a>
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=bartgora_RPNLibrary&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=bartgora_RPNLibrary) [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=bartgora_RPNLibrary&metric=bugs)](https://sonarcloud.io/summary/new_code?id=bartgora_RPNLibrary) [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=bartgora_RPNLibrary&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=bartgora_RPNLibrary) [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=bartgora_RPNLibrary&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=bartgora_RPNLibrary)
+
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/b004cdd19ecf42b697db1a19a3ae82ec)](https://app.codacy.com/gh/bartgora/RPNLibrary/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.bartlomiej-gora/RPNLibrary/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.bartlomiej-gora/RPNLibrary)
 
