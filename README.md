@@ -43,12 +43,6 @@ example:
         BigDecimal min = calc.calculate("min(10, 8) + 10");
 ```
 
-To Customize use:
-```java
-static Calculator Calculator.Calculator createCalculator(RPNChecker checker, RPNExecutioner executioner, final MathContext mathContext, final int scale); 
-        
-    }
-```
 
 Maven:
 ===
@@ -56,13 +50,75 @@ Maven:
         <dependency>
             <groupId>com.github.bartlomiej-gora</groupId>
             <artifactId>RPNLibrary</artifactId>
-            <version>4.0.0</version>
+            <version>5.1.0</version>
         </dependency>
 ```
 
 
 Changelog:
 ====
+
+
+### Version 5.1.0:
+
+- Removed Tests in kotlin. (easier managed)
+- Moved to Java 17 (var, and Map.of)
+- Changed Interfaces names from RPNChecking -> RPNChecker, and RPNExecuting -> RPNExecutioner  
+- Added new Factories for RPNChecker, and RPNExecutioner.</br>
+If you want to customize the calculator by adding your own operators and functions to existing one, you can use those
+- Factories. Below there is an example of adding % (moduli) operator to the calculator.
+```java
+ var rpnChecker = RPNCheckerFactory.createRPNCheckerWithDefaults(Map.of("%", 1), Map.of());
+        AbstractOperatorStrategy modulo = new AbstractOperatorStrategy("%") {
+
+            @Override
+            public BigDecimal execute(final String first, final String second, final MathContext mathContext) {
+                var firstdec = new BigDecimal(first, mathContext);
+                var seconddec = new BigDecimal(second, mathContext);
+                return firstdec.remainder(seconddec);
+            }
+        };
+        var rpnExecutioner = RPNExecutionerFactory.createRPNExecutionerWithDefaults(Map.of("%", modulo), Map.of());
+
+        var calc = Calculator.createCalculator(rpnChecker,rpnExecutioner, MathContext.DECIMAL64, 2);
+
+        BigDecimal result = calc.calculate("4%17");
+        Assertions.assertThat(result).isEqualTo(new BigDecimal("4.00"));
+```
+
+### Version 5.0.0:
+
+- Moved to java 8
+- Refactoring, split Calculator class into smaller pieces, using java 8 functional interfaces
+- Added tests written in Kotest:
+
+example:
+```kotlin
+class RPNFactoryTest : FreeSpec({
+
+    val tested = RPNFactory(RPNChecker(DefaultStrategyProvider()))
+            "should Return RPN" - {
+                val text = "( 2 + 3 ) * 5"
+                val result = tested.apply(text)
+                result shouldBe "2 3 + 5 *"
+            }
+            "should Return RPN for Function call" - {
+                val text = "sin ( 1 )"
+                val result = tested.apply(text)
+                result shouldBe "1 sin"
+            }
+            "should Return RPN for Function and equation" - {
+                val text = "sin ( 1 ) + 27 * 8"
+                val result = tested.apply(text)
+                result shouldBe "1 sin 27 8 * +"
+            }
+            "should Return RPN for  two Functions call" - {
+                val text = "sin ( 1 ) + ctg ( 0 )"
+                val result = tested.apply(text)
+                result shouldBe "1 sin 0 ctg +"
+            }
+})
+```
 
 ### Version 4.0.0:
 

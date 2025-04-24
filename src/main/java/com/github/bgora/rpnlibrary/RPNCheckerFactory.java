@@ -1,5 +1,6 @@
 package com.github.bgora.rpnlibrary;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -41,23 +42,29 @@ public class RPNCheckerFactory {
      */
 
     public static RPNChecker createRPNCheckerWithDefaults(final Map<String, Integer> operators, final Map<String, Integer> functions) {
+        Map<String, Integer> defaultOperators = new HashMap<>();
+        defaultOperators.put("+", 1);
+        defaultOperators.put("-", 1);
+        defaultOperators.put("*", 2);
+        defaultOperators.put("/", 2);
+        defaultOperators.put("^", 3);
+        if (!operators.isEmpty()) {
+            defaultOperators.putAll(operators);
+        }
 
-        operators.put("+", 1);
-        operators.put("-", 1);
-        operators.put("*", 2);
-        operators.put("/", 2);
-        operators.put("^", 3);
+        Map<String, Integer> defaultFunctions = new HashMap<>();
+        defaultFunctions.put("sin", 1);
+        defaultFunctions.put("cos", 1);
+        defaultFunctions.put("tg", 1);
+        defaultFunctions.put("ctg", 1);
+        defaultFunctions.put("min", 2);
+        defaultFunctions.put("max", 2);
+        defaultFunctions.put("fib", 1);
+        if (!functions.isEmpty()) {
+            defaultFunctions.putAll(functions);
+        }
 
-
-        functions.put("sin", 1);
-        functions.put("cos", 1);
-        functions.put("tg", 1);
-        functions.put("ctg", 1);
-        functions.put("min", 2);
-        functions.put("max", 2);
-        functions.put("fib", 1);
-
-        return new DefaultRPNChecker(operators, functions);
+        return new DefaultRPNChecker(defaultOperators, defaultFunctions);
 
     }
 }

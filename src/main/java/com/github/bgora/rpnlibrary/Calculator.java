@@ -106,6 +106,25 @@ public class Calculator {
         return new Calculator(checker, executioner, mathContext, scale);
     }
 
+    /**
+     *
+     * Factory method for RPN Calculator object with custom functions, and
+     * operations. You should use this factory method if you want to create your
+     * own operations. To do so, you have to implement you own objects, that
+     * implementas {@code RPNChecker}, and
+     * {@code RPNExecutioner}.
+     *
+     * @param checker     Object implementing RPNChecker - Used for checking operations in input.
+     * @param executioner Object implementing RPNExecutioner - used for executing operations on input.
+     * @return new Instance of {@code pl.bgora.Calculator}
+     * @see RPNChecker
+     * @see RPNExecutioner
+     */
+    public static Calculator createCalculatorWithDefaultMathContext(
+            final RPNChecker checker, final RPNExecutioner executioner, final MathContext mathContext, final int scale) {
+        return new Calculator(checker, executioner, mathContext, scale);
+    }
+
     public BigDecimal calculate(final String input) throws WrongArgumentException, NoSuchFunctionFound {
         final String temp = prepareInput(input);
         final String result = createRPN(temp);

@@ -55,8 +55,18 @@ public class RPNExecutionerFactory {
             Map<String, AbstractOperatorStrategy> operators, Map<String, AbstractFunctionStrategy> functions) {
         DefaultOperatorsProvider operatorsProvider = new DefaultOperatorsProvider();
         DefaultFunctionProvider functionProvider = new DefaultFunctionProvider();
-        operators.putAll(operatorsProvider.getOperators());
-        functions.putAll(functionProvider.getFunctions());
-        return new DefaultRPNExecutioner(operators, functions);
+
+        Map<String, AbstractOperatorStrategy> defaultOperators = operatorsProvider.getOperators();
+        if(!operators.isEmpty()){
+            defaultOperators.putAll(operators);
+        }
+        Map<String, AbstractFunctionStrategy> defaultFunctions = functionProvider.getFunctions();
+        if(!functions.isEmpty()){
+            defaultFunctions.putAll(functions);
+        }
+
+        defaultOperators.putAll(operatorsProvider.getOperators());
+        defaultFunctions.putAll(functionProvider.getFunctions());
+        return new DefaultRPNExecutioner(defaultOperators, defaultFunctions);
     }
 }
