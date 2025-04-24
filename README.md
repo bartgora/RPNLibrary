@@ -61,7 +61,7 @@ Changelog:
 
 ### Version 5.1.0:
 
-- Removed Tests in kotlin. (easier managed)
+- Removed Tests in kotlin.
 - Moved to Java 17 (var, and Map.of)
 - Changed Interfaces names from RPNChecking -> RPNChecker, and RPNExecuting -> RPNExecutioner  
 - Added new Factories for RPNChecker, and RPNExecutioner.</br>
