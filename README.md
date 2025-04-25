@@ -58,7 +58,7 @@ Changelog:
 
 ### Version 5.1.0:
 
-- Removed Tests in kotlin.
+- Removed Tests in Kotlin.
 - Moved to Java 17 (var, and Map.of)
 - Changed Interfaces names from RPNChecking -> RPNChecker, and RPNExecuting -> RPNExecutioner  
 - Added new Factories for RPNChecker, and RPNExecutioner.</br>
@@ -70,9 +70,9 @@ If you want to customize the calculator by adding your own operators and functio
 
             @Override
             public BigDecimal execute(final String first, final String second, final MathContext mathContext) {
-                var firstdec = new BigDecimal(first, mathContext);
-                var seconddec = new BigDecimal(second, mathContext);
-                return firstdec.remainder(seconddec);
+                var firstDec = new BigDecimal(first, mathContext);
+                var secondDec = new BigDecimal(second, mathContext);
+                return firstDec.remainder(secondDec);
             }
         };
         var rpnExecutioner = RPNExecutionerFactory.createRPNExecutionerWithDefaults(Map.of("%", modulo), Map.of());
@@ -80,7 +80,7 @@ If you want to customize the calculator by adding your own operators and functio
         var calc = Calculator.createCalculator(rpnChecker,rpnExecutioner, MathContext.DECIMAL64, 2);
 
         BigDecimal result = calc.calculate("4%17");
-        Assertions.assertThat(result).isEqualTo(new BigDecimal("4.00"));
+        assertThat(result).isEqualTo(new BigDecimal("4.00"));
 ```
 
 ### Version 5.0.0:
