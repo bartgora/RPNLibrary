@@ -26,7 +26,7 @@ class MinusOperatorStrategy extends AbstractOperatorStrategy {
 
 
     MinusOperatorStrategy() {
-        super("-", 1);
+        super("-");
     }
 
     @Override

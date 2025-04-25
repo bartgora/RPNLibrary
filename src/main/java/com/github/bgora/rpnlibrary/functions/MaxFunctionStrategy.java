@@ -30,7 +30,7 @@ import java.math.MathContext;
 class MaxFunctionStrategy extends AbstractFunctionStrategy {
 
      MaxFunctionStrategy() {
-        super("max", 2);
+        super("max");
     }
 
     @Override

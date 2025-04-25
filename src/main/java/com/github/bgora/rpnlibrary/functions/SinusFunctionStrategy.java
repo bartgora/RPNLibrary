@@ -32,7 +32,7 @@ import java.math.MathContext;
 class SinusFunctionStrategy extends AbstractFunctionStrategy {
 
     SinusFunctionStrategy() {
-        super("sin", 1);
+        super("sin");
     }
 
     @Override

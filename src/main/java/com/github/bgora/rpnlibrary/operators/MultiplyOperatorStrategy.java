@@ -25,14 +25,14 @@ import java.math.MathContext;
  class MultiplyOperatorStrategy extends AbstractOperatorStrategy {
 
      MultiplyOperatorStrategy() {
-        super("*", 2);
+        super("*");
     }
 
     @Override
     public BigDecimal execute(String first, String second, final MathContext mathContext) {
-        Double big1 = new Double(first);
-        Double big2 = new Double(second);
-        return BigDecimal.valueOf(big1 * big2);
+        var big1 = new BigDecimal(first, mathContext);
+        var big2 = new BigDecimal(second, mathContext);
+        return big1.multiply(big2, mathContext);
     }
 
 

@@ -30,18 +30,18 @@ import java.util.Map;
 
 /**
  * Calculation Engine.
- * It is a composite that Implements RPNExecuting, and RPNChecking.
+ * It is a composite that Implements RPNExecutioner, and RPNChecker.
  * It uses Strategies for Operators, and Functions.
  *
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  * @see RPNChecker
  * @see RPNExecutioner
- * @see DefaultChecker
+ * @see DefaultRPNChecker
  */
 class DefaultRPNExecutioner implements RPNExecutioner {
 
-    private Map<String, AbstractOperatorStrategy> operators;
-    private Map<String, AbstractFunctionStrategy> functions;
+    private final Map<String, AbstractOperatorStrategy> operators;
+    private final Map<String, AbstractFunctionStrategy> functions;
 
     /**
      * Parametrized constructor.
@@ -51,7 +51,7 @@ class DefaultRPNExecutioner implements RPNExecutioner {
      * @param operators Map containing AbstractOperatorStrategy identified by it's operator
      * @param functions Map containing AbstractFunctionStrategy identified by it's name
      */
-    public DefaultRPNExecutioner(Map<String, AbstractOperatorStrategy> operators, Map<String, AbstractFunctionStrategy> functions) {
+     DefaultRPNExecutioner(final Map<String, AbstractOperatorStrategy> operators,final Map<String, AbstractFunctionStrategy> functions) {
         this.operators = operators;
         this.functions = functions;
     }

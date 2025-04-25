@@ -33,7 +33,7 @@ class CtgFunctionStrategy extends AbstractFunctionStrategy {
 
 
     CtgFunctionStrategy() {
-        super("ctg", 1);
+        super("ctg");
     }
 
     @Override

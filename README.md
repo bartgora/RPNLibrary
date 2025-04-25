@@ -11,6 +11,18 @@ It is based on Dijkstra Algorithm. (https://en.wikipedia.org/wiki/Reverse_Polish
 
 [![javadoc](https://javadoc.io/badge2/com.github.bartlomiej-gora/RPNLibrary/javadoc.svg)](https://javadoc.io/doc/com.github.bartlomiej-gora/RPNLibrary)
 
+Story
+===
+Couple years ago I read Joshua Bloch's "Java. Effective Programming".
+I wanted to practice what I've learned.
+I didn't want to create another CRUD like application, so I found that Dijkstra's algorithm would be good 
+to learn design patterns, and effective programming.
+First version's were available on Sourceforge.
+Couple years later I manage to publish my library on maven cetral repo.
+Over the years I built a small ecosystem around this library.
+Feel free to check my other projects that use this one.
+  
+ 
 Available functions:
 ===
 +,-,*,/ with (), power(^)
@@ -28,12 +40,6 @@ example:
         BigDecimal min = calc.calculate("min(10, 8) + 10");
 ```
 
-To Customize use:
-```java
-static Calculator Calculator.Calculator createCalculator(RPNChecking checker, RPNExecuting executioner, final MathContext mathContext, final int scale); 
-        
-    }
-```
 
 Maven:
 ===
@@ -41,13 +47,75 @@ Maven:
         <dependency>
             <groupId>com.github.bartlomiej-gora</groupId>
             <artifactId>RPNLibrary</artifactId>
-            <version>4.0.0</version>
+            <version>5.1.0</version>
         </dependency>
 ```
 
 
 Changelog:
 ====
+
+
+### Version 5.1.0:
+
+- Removed Tests in Kotlin.
+- Moved to Java 17 (var, and Map.of)
+- Changed Interfaces names from RPNChecking -> RPNChecker, and RPNExecuting -> RPNExecutioner  
+- Added new Factories for RPNChecker, and RPNExecutioner.</br>
+If you want to customize the calculator by adding your own operators and functions to existing one, you can use those
+- Factories. Below there is an example of adding % (moduli) operator to the calculator.
+```java
+ var rpnChecker = RPNCheckerFactory.createRPNCheckerWithDefaults(Map.of("%", 1), Map.of());
+        AbstractOperatorStrategy modulo = new AbstractOperatorStrategy("%") {
+
+            @Override
+            public BigDecimal execute(final String first, final String second, final MathContext mathContext) {
+                var firstDec = new BigDecimal(first, mathContext);
+                var secondDec = new BigDecimal(second, mathContext);
+                return firstDec.remainder(secondDec);
+            }
+        };
+        var rpnExecutioner = RPNExecutionerFactory.createRPNExecutionerWithDefaults(Map.of("%", modulo), Map.of());
+
+        var calc = Calculator.createCalculator(rpnChecker,rpnExecutioner, MathContext.DECIMAL64, 2);
+
+        BigDecimal result = calc.calculate("4%17");
+        assertThat(result).isEqualTo(new BigDecimal("4.00"));
+```
+
+### Version 5.0.0:
+
+- Moved to java 8
+- Refactoring, split Calculator class into smaller pieces, using java 8 functional interfaces
+- Added tests written in Kotest:
+
+example:
+```kotlin
+class RPNFactoryTest : FreeSpec({
+
+    val tested = RPNFactory(RPNChecker(DefaultStrategyProvider()))
+            "should Return RPN" - {
+                val text = "( 2 + 3 ) * 5"
+                val result = tested.apply(text)
+                result shouldBe "2 3 + 5 *"
+            }
+            "should Return RPN for Function call" - {
+                val text = "sin ( 1 )"
+                val result = tested.apply(text)
+                result shouldBe "1 sin"
+            }
+            "should Return RPN for Function and equation" - {
+                val text = "sin ( 1 ) + 27 * 8"
+                val result = tested.apply(text)
+                result shouldBe "1 sin 27 8 * +"
+            }
+            "should Return RPN for  two Functions call" - {
+                val text = "sin ( 1 ) + ctg ( 0 )"
+                val result = tested.apply(text)
+                result shouldBe "1 sin 0 ctg +"
+            }
+})
+```
 
 ### Version 4.0.0:
 

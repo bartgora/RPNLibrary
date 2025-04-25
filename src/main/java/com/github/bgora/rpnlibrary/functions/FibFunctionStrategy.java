@@ -26,7 +26,7 @@ public class FibFunctionStrategy extends AbstractFunctionStrategy {
 
 
     public FibFunctionStrategy() {
-        super("fib", 1);
+        super("fib");
     }
 
     @Override

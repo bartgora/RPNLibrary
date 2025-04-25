@@ -24,18 +24,18 @@ import java.util.Map;
 
 /**
  * This implementation Extends DefaultChecker with arithmetic funstions.
- *
+ * <p>
  * Provided functions are: sin, cos, tg, ctg
  *
  * @author Bartłomiej Góra (bartlomiej.gora@gmail.com)
  */
-class DefaultChecker implements RPNChecker {
+class DefaultRPNChecker implements RPNChecker {
 
-    private Map<String, Integer> operators;
+    private final Map<String, Integer> operators;
 
-    private Map<String, Integer> functions;
+    private final Map<String, Integer> functions;
 
-    public DefaultChecker() {
+    public DefaultRPNChecker() {
         operators = new HashMap<String, Integer>();
         operators.put("+", 1);
         operators.put("-", 1);
@@ -52,6 +52,11 @@ class DefaultChecker implements RPNChecker {
         functions.put("max", 2);
         functions.put("fib", 1);
 
+    }
+
+    DefaultRPNChecker(final Map<String, Integer> operators, final Map<String, Integer> functions) {
+        this.operators = operators;
+        this.functions = functions;
     }
 
     /**
@@ -129,7 +134,7 @@ class DefaultChecker implements RPNChecker {
 
     /**
      * Checks if input is one of the recognized functions.
-     *
+     * <p>
      * Recognized functions are: sin, cos, tg, ctg.
      *
      * @see RPNChecker#isFunction(java.lang.String)

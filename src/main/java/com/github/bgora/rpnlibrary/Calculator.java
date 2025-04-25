@@ -41,20 +41,20 @@ import java.util.LinkedList;
 public class Calculator {
 
 
-    public static final String ZERO = "0.0";
-    public static final String EMPTY_SPACE = " ";
-    public static final String COMMA = ",";
+    public final String ZERO = "0.0";
+    public final String EMPTY_SPACE = " ";
+    public final String COMMA = ",";
     protected final RPNChecker checker;
     protected final RPNExecutioner executioner;
-    private final MathContext mathContext;
     private final int SCALE;
+    private final MathContext mathContext;
 
 
     /**
      * Constructor Creates an instance of the class.
      *
-     * @param checker     Object implementing RPNChecking - Used for checking operations in input.
-     * @param executioner Object implementing RPNExecuting - used for executing operations on input.
+     * @param checker     Object implementing RPNChecker - Used for checking operations in input.
+     * @param executioner Object implementing RPNExecutioner - used for executing operations on input.
      * @param mathContext
      * @param scale
      */
@@ -69,8 +69,8 @@ public class Calculator {
      * Factory method for RPN Calculator object with custom functions, and
      * operations. You should use this factory method if you want to create your
      * own operations. To do so, you have to implement you own objects, that
-     * implementas {@code RPNChecking}, and
-     * {@code RPNExecuting}.
+     * implementas {@code RPNChecker}, and
+     * {@code RPNExecutioner}.
      *
      * @return new Instance of {@code pl.bgora.Calculator}
      * @see RPNChecker
@@ -80,19 +80,20 @@ public class Calculator {
         final MathContext mathContext = MathContext.DECIMAL64;
         final FunctionProvider functionProvider = new DefaultFunctionProvider();
         final OperatorsProvider operatorsProvider = new DefaultOperatorsProvider();
-        return new Calculator(new DefaultChecker(),
-                new DefaultRPNExecutioner(operatorsProvider.getOperators(), functionProvider.getFunctions()), mathContext, 2);
+        return new Calculator(RPNCheckerFactory.createRPNChecker(),
+                RPNExecutionerFactory.createRPNExecutioner(operatorsProvider.getOperators(), functionProvider.getFunctions()), mathContext,
+                2);
     }
 
     /**
      * Factory method for RPN Calculator object with custom functions, and
      * operations. You should use this factory method if you want to create your
      * own operations. To do so, you have to implement you own objects, that
-     * implementas {@code RPNChecking}, and
-     * {@code RPNExecuting}.
+     * implementas {@code RPNChecker}, and
+     * {@code RPNExecutioner}.
      *
-     * @param checker     Object implementing RPNChecking - Used for checking operations in input.
-     * @param executioner Object implementing RPNExecuting - used for executing operations on input.
+     * @param checker     Object implementing RPNChecker - Used for checking operations in input.
+     * @param executioner Object implementing RPNExecutioner - used for executing operations on input.
      * @param mathContext MathContext - Set Rounding Mode, and precision
      * @param scale       scale number of digits after .
      * @return new Instance of {@code pl.bgora.Calculator}
@@ -101,7 +102,26 @@ public class Calculator {
      */
 
     public static Calculator createCalculator(
-            RPNChecker checker, RPNExecutioner executioner, final MathContext mathContext, final int scale) {
+            final RPNChecker checker, final RPNExecutioner executioner, final MathContext mathContext, final int scale) {
+        return new Calculator(checker, executioner, mathContext, scale);
+    }
+
+    /**
+     *
+     * Factory method for RPN Calculator object with custom functions, and
+     * operations. You should use this factory method if you want to create your
+     * own operations. To do so, you have to implement you own objects, that
+     * implementas {@code RPNChecker}, and
+     * {@code RPNExecutioner}.
+     *
+     * @param checker     Object implementing RPNChecker - Used for checking operations in input.
+     * @param executioner Object implementing RPNExecutioner - used for executing operations on input.
+     * @return new Instance of {@code pl.bgora.Calculator}
+     * @see RPNChecker
+     * @see RPNExecutioner
+     */
+    public static Calculator createCalculatorWithDefaultMathContext(
+            final RPNChecker checker, final RPNExecutioner executioner, final MathContext mathContext, final int scale) {
         return new Calculator(checker, executioner, mathContext, scale);
     }
 
