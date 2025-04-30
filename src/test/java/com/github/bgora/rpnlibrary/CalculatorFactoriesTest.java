@@ -37,7 +37,7 @@ public class CalculatorFactoriesTest {
         };
         var rpnExecutioner = RPNExecutionerFactory.createRPNExecutionerWithDefaults(Map.of("%", modulo), Map.of());
 
-        var calc = Calculator.createCalculator(rpnChecker,rpnExecutioner, MathContext.DECIMAL64, 2);
+        var calc = Calculator.createCalculator(rpnChecker, rpnExecutioner, MathContext.DECIMAL64, 2);
 
         BigDecimal result = calc.calculate("4%17");
         Assertions.assertThat(result).isEqualTo(new BigDecimal("4.00"));
